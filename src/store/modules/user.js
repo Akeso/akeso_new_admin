@@ -1,12 +1,14 @@
 import { login, logout, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { setToken, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
-    token: getToken(),
+    id: '',
     name: '',
-    avatar: '',
-    roles: []
+    email: '',
+    avatarUrl: '',
+    authenticationToken: '',
+    type: ''
   },
 
   mutations: {
@@ -21,6 +23,17 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+    },
+    SET_USER_INFO: (state, data) => {
+      state = data
+    },
+    CLEAR_USER_INFO: (state) => {
+      state.id = ''
+      state.name = ''
+      state.email = ''
+      state.avatarUrl = ''
+      state.authenticationToken = ''
+      state.type = ''
     }
   },
 
@@ -32,8 +45,8 @@ const user = {
         login(username, userInfo.password).then(response => {
           const data = response.data
           console.log('data: ', data)
-          setToken(data.token)
-          commit('SET_TOKEN', data.token)
+          setToken(data.authenticationToken)
+          commit('SET_USER_INFO', data)
           resolve()
         }).catch(error => {
           console.log('error: ', error)
@@ -65,8 +78,7 @@ const user = {
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
+          commit('CLEAR_USER_INFO')
           removeToken()
           resolve()
         }).catch(error => {
@@ -83,6 +95,14 @@ const user = {
         resolve()
       })
     }
+  },
+
+  getters: {
+    id: state => state.id,
+    name: state => state.name,
+    email: state => state.email,
+    avatarUrl: state => state.avatarUrl,
+    authenticationToken: state => state.authenticationToken
   }
 }
 

@@ -30,12 +30,16 @@ export default {
     getBreadcrumb() {
       let matched = this.$route.matched.filter(item => item.name)
 
+      // const first = matched[0]
+      // if (first && first.name !== 'dashboard') {
+      //   matched = [{ path: '/dashboard', meta: { title: '首页' }}].concat(matched)
+      // }
+      // this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
       const first = matched[0]
-      if (first && first.name !== 'dashboard') {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
+      if (first && first.name.trim().toLocaleLowerCase() !== 'Dashboard'.toLocaleLowerCase()) {
+        matched = [{ path: '/dashboard', meta: { title: '首页' }}].concat(matched)
       }
-
-      this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+      this.levelList = matched
     },
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
