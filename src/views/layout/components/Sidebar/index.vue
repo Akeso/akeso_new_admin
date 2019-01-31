@@ -26,6 +26,7 @@ export default {
       'sidebar'
     ]),
     routes() {
+      console.log('router : ', this.$router.options.routes)
       return this.$router.options.routes
     },
     variables() {
