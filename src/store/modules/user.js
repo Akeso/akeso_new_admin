@@ -31,10 +31,12 @@ const user = {
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
           const data = response.data
+          console.log('data: ', data)
           setToken(data.token)
           commit('SET_TOKEN', data.token)
           resolve()
         }).catch(error => {
+          console.log('error: ', error)
           reject(error)
         })
       })
