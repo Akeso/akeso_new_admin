@@ -35,10 +35,30 @@ export const constantRouterMap = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard', noCache: true }
+      meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
     }]
   },
-
+  {
+    path: '/preview',
+    component: Layout,
+    redirect: '/preview/overview',
+    name: 'Preview',
+    meta: { title: 'preview', icon: 'example' },
+    children: [
+      {
+        path: 'overview',
+        name: 'Overview',
+        component: () => import('@/views/preview/overview'),
+        meta: { title: 'overview', icon: 'table' }
+      },
+      {
+        path: 'allchildren',
+        name: 'Allchildren',
+        component: () => import('@/views/preview/allchildren'),
+        meta: { title: 'allchildren', icon: 'table' }
+      }
+    ]
+  },
   {
     path: '/example',
     component: Layout,
@@ -132,16 +152,16 @@ export const constantRouterMap = [
     ]
   },
 
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
+  // {
+  //   path: 'external-link',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+  //       meta: { title: 'External Link', icon: 'link' }
+  //     }
+  //   ]
+  // },
 
   { path: '*', redirect: '/404', hidden: true }
 ]
