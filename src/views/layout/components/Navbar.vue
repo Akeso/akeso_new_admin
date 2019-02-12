@@ -4,7 +4,8 @@
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
-        <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+        <img :src="avatarUrl" class="user-avatar">
+        {{ name }}
         <i class="el-icon-caret-bottom"/>
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -34,15 +35,19 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'name',
+      'email',
+      'avatarUrl'
     ])
+  },
+  mounted: function() {
+    console.log('mouted.', this.$store.state.user)
   },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
     },
     logout() {
-      console.log('aaaaaaaaaaa')
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })

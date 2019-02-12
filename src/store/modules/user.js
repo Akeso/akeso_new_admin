@@ -18,14 +18,19 @@ const user = {
     SET_NAME: (state, name) => {
       state.name = name
     },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar
+    SET_AVATAR: (state, avatarUrl) => {
+      state.avatarUrl = avatarUrl
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
     },
     SET_USER_INFO: (state, data) => {
-      state = data
+      state.id = data.id
+      state.name = data.name
+      state.email = data.email
+      state.avatarUrl = data.avatarUrl
+      state.authenticationToken = data.authenticationToken
+      state.type = data.type
     },
     CLEAR_USER_INFO: (state) => {
       state.id = ''
