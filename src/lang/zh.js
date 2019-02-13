@@ -10,6 +10,8 @@ export default {
     preview: '最新预览',
     overview: '用户预览',
     allchildren: '全部儿童',
+    intelligent: '智能儿童',
+    frequency: '上传频次',
     // - - - 这里是例子的分界线 - - -
     Example: 'Example',
     Table: 'Table',

@@ -56,6 +56,12 @@ export const constantRouterMap = [
         name: 'Allchildren',
         component: () => import('@/views/preview/allchildren'),
         meta: { title: 'allchildren', icon: 'table' }
+      },
+      {
+        path: 'intelligent',
+        name: 'Intelligent',
+        component: () => import('@/views/preview/intelligent'),
+        meta: { title: 'intelligent', icon: 'table' }
       }
     ]
   },
@@ -77,6 +83,18 @@ export const constantRouterMap = [
         name: 'Tree',
         component: () => import('@/views/tree/index'),
         meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
+  },
+  {
+    path: '/frequency',
+    component: Layout,
+    children: [
+      {
+        path: 'frequency',
+        name: 'Frequency',
+        component: () => import('@/views/frequency/frequency'),
+        meta: { title: 'frequency', icon: 'guide' }
       }
     ]
   },
