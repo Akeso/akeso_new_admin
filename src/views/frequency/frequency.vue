@@ -5,13 +5,15 @@
     </div>
 
     <div class="filter-container">
-      <el-input v-model="listQuery.title" placeholder="搜索" style="width: 200px;" class="filter-item" />
+      <el-input v-model="listQuery.childName" placeholder="搜索姓名" style="width: 200px;" class="filter-item" />
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
     </div>
 
     <el-table
       :data="list"
       border
-      style="width: 100%">
+      style="width: 100%"
+      @sort-change="handleColumnSort">
       <el-table-column
         prop="childName"
         label="姓名"
@@ -19,6 +21,7 @@
       <el-table-column
         prop="uploadTime"
         label="上传时间"
+        sortable="custom"
         width="180"/>
       <el-table-column
         prop="electricity"
@@ -31,7 +34,7 @@
       <el-table-column
         prop="uploadCount"
         label="上传总条数"
-        width="90"/>
+        width="120"/>
       <el-table-column
         prop="daysCount"
         label="数据分布"/>
@@ -55,26 +58,11 @@ export default {
         page: 1,
         limit: 20,
         importance: undefined,
-        title: undefined,
-        type: undefined
-      },
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+        childName: undefined,
+        type: undefined,
+        sortProp: undefined,
+        sortOrder: undefined
+      }
     }
   },
   created() {
@@ -97,6 +85,14 @@ export default {
     },
     handleSizeChange(val) {
       this.listQuery.limit = val
+      this.getList()
+    },
+    handleColumnSort(val) {
+      this.listQuery.sortProp = val.prop
+      this.listQuery.sortOrder = val.order
+      this.getList()
+    },
+    handleFilter() {
       this.getList()
     }
   }
