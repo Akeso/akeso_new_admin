@@ -41,7 +41,7 @@ export default {
     ])
   },
   mounted: function() {
-    console.log('mouted.', this.$store.state.user)
+    // console.log('mouted.', this.$store.state.user)
   },
   methods: {
     toggleSideBar() {
