@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["9DEo"],{"9DEo":function(e,n,t){"use strict";t.r(n);var i=t("KHd+"),l=Object(i.a)({},function(){var e=this.$createElement;return(this._self._c||e)("h1",[this._v("智能儿童")])},[],!1,null,null,null);l.options.__file="intelligent.vue";n.default=l.exports}}]);
