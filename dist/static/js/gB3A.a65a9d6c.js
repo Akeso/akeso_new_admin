@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["gB3A"],{gB3A:function(e,n,t){"use strict";t.r(n);var l=t("KHd+"),i=Object(l.a)({},function(){var e=this.$createElement;return(this._self._c||e)("h1",[this._v("全部儿童")])},[],!1,null,null,null);i.options.__file="allchildren.vue";n.default=i.exports}}]);
