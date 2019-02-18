@@ -2,14 +2,7 @@ import { login, logout, getInfo } from '@/api/login'
 import { setToken, removeToken } from '@/utils/auth'
 
 const user = {
-  state: {
-    id: '',
-    name: '',
-    email: '',
-    avatarUrl: '',
-    authenticationToken: '',
-    type: ''
-  },
+  state: JSON.parse(localStorage.getItem('user') || '{"id": 0, "name": null, "email": null, "avatarUrl": null, "authenticationToken": "", "type": ""}'),
 
   mutations: {
     SET_TOKEN: (state, token) => {
@@ -51,6 +44,7 @@ const user = {
           const data = response.data
           console.log('data: ', data)
           setToken(data.authenticationToken)
+          localStorage.setItem('user', JSON.stringify(data))
           commit('SET_USER_INFO', data)
           resolve()
         }).catch(error => {
