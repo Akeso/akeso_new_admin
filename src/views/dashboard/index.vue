@@ -1,18 +1,22 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">{{ name }}</div>
+    <span>相关数据</span>
+
+    <panel-group @handleSetLineChartData="handleSetLineChartData"/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import PanelGroup from './components/PanelGroup'
 
 export default {
   name: 'Dashboard',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
+  components: {
+    PanelGroup
+  },
+  methods: {
+    handleSetLineChartData() {
+    }
   }
 }
 </script>
