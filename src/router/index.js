@@ -45,12 +45,12 @@ export const constantRouterMap = [
     name: 'Preview',
     meta: { title: 'preview', icon: 'example' },
     children: [
-      {
-        path: 'overview',
-        name: 'Overview',
-        component: () => import('@/views/preview/overview'),
-        meta: { title: 'overview', icon: 'table' }
-      },
+      // {
+      //   path: 'overview',
+      //   name: 'Overview',
+      //   component: () => import('@/views/preview/overview'),
+      //   meta: { title: 'overview', icon: 'table' }
+      // },
       {
         path: 'allchildren',
         name: 'Allchildren',
