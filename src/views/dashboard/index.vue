@@ -1,11 +1,32 @@
 <template>
   <div class="dashboard-container">
-    <span>相关数据</span>
+    <el-tag>相关数据</el-tag>
 
     <panel-group :statistics-data="statisticsData" @handleSetLineChartData="handleSetLineChartData" />
-    <span>用户标签统计</span>
-    <div>aaa</div>
-    <span>临床标签统计</span>
+    <el-tag>用户标签统计</el-tag>
+    <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
+      <el-col v-for="item in userTags" :key="item.id" :span="4">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>{{ item.name }}</span>
+          </div>
+          <div class="component-item">{{ item.childrenCount }}</div>
+        </el-card>
+      </el-col>
+    </el-row>
+
+    <el-tag>临床标签统计</el-tag>
+    <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
+      <el-col v-for="item in clinicalTags" :key="item.id" :span="6">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>{{ item.name }}</span>
+          </div>
+          <div class="component-item">{{ item.childrenCount }}</div>
+        </el-card>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
@@ -25,7 +46,9 @@ export default {
         deviceChildrenCount: 0,
         usersCount: 0,
         doctorsCount: 0
-      }
+      },
+      userTags: [],
+      clinicalTags: []
     }
   },
   created() {
@@ -40,6 +63,8 @@ export default {
         this.statisticsData.deviceChildrenCount = response.data.deviceChildrenCount
         this.statisticsData.usersCount = response.data.usersCount
         this.statisticsData.doctorsCount = response.data.doctorsCount
+        this.userTags = response.data.userTags
+        this.clinicalTags = response.data.clinicalTags
       })
     }
   }
