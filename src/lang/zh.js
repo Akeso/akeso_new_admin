@@ -12,10 +12,8 @@ export default {
     allchildren: '全部儿童',
     intelligent: '智能儿童',
     frequency: '上传频次',
+    doctors: '医生管理',
     // - - - 这里是例子的分界线 - - -
-    Example: 'Example',
-    Table: 'Table',
-    Tree: 'Tree',
     Nested: 'Nested',
     Menu1: 'Menu1',
     'Menu1-1': 'Menu1-1',
