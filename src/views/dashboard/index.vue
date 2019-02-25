@@ -145,7 +145,8 @@ export default {
       })
     },
     getGrowthData() {
-      fetchGrowth({ start_at: this.paramsQuery.dateSection[0], end_at: this.paramsQuery.dateSection[1], radioValue: this.paramsQuery.radioValue }).then(response => {
+      // fetchGrowth({ start_at: this.paramsQuery.dateSection[0], end_at: this.paramsQuery.dateSection[1], radioValue: this.paramsQuery.radioValue }).then(response => {
+      fetchGrowth(this.paramsQuery).then(response => {
         this.chartData.rows = response.data.items
       })
     }
