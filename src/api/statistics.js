@@ -7,3 +7,12 @@ export function fetchIndex(query) {
     params: query
   })
 }
+
+export function fetchGrowth(query) {
+  return request({
+    url: 'api/a1/statistics/growth',
+    method: 'get',
+    params: query
+  })
+}
+

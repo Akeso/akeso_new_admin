@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import VCharts from 'v-charts'
+import VeLine from 'v-charts/lib/line.common'
 
 import Cookies from 'js-cookie'
 
@@ -17,10 +19,13 @@ import i18n from './lang' // Internationalization
 import '@/icons' // icon
 import '@/permission' // permission control
 
+Vue.component(VeLine.name, VeLine)
+
 Vue.use(ElementUI, {
   size: Cookies.get('size') || 'medium', // set element-ui default size
   i18n: (key, value) => i18n.t(key, value)
 })
+Vue.use(VCharts)
 
 Vue.config.productionTip = false
 
