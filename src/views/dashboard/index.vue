@@ -129,7 +129,7 @@ export default {
     this.getGrowthData()
   },
   methods: {
-    radioCountChange(val) {
+    radioCountChange() {
       this.getGrowthData()
     },
     handleSetLineChartData() {
@@ -145,17 +145,9 @@ export default {
       })
     },
     getGrowthData() {
-      fetchGrowth(this.paramsQuery).then(response => {
+      fetchGrowth({ start_at: this.paramsQuery.dateSection[0], end_at: this.paramsQuery.dateSection[1], radioValue: this.paramsQuery.radioValue }).then(response => {
         this.chartData.rows = response.data.items
       })
-      // this.chartData.rows = [
-      //   { 'date': '2018-02-01', 'newChild': 2, 'newDeviceChild': 11, 'syncChild': 21 },
-      //   { 'date': '2018-02-02', 'newChild': 3, 'newDeviceChild': 15, 'syncChild': 31 },
-      //   { 'date': '2018-02-03', 'newChild': 9, 'newDeviceChild': 61, 'syncChild': 51 },
-      //   { 'date': '2018-02-05', 'newChild': 1, 'newDeviceChild': 21, 'syncChild': 37 },
-      //   { 'date': '2018-02-10', 'newChild': 12, 'newDeviceChild': 44, 'syncChild': 90 },
-      //   { 'date': '2018-02-20', 'newChild': 45, 'newDeviceChild': 33, 'syncChild': 77 }
-      // ]
     }
   }
 }
