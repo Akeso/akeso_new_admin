@@ -15,6 +15,7 @@
       <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
       <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+      <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
     </div>
 
     <el-table
@@ -133,6 +134,13 @@ export default {
     },
     handleFilter() {
       this.getList()
+    },
+    handleFilterClear() {
+      this.listQuery.name = ''
+      this.listQuery.phone = ''
+      this.listQuery.email = ''
+      this.listQuery.startDate = ''
+      this.listQuery.endDate = ''
     }
   }
 }
