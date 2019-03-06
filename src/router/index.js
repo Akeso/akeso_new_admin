@@ -62,6 +62,13 @@ export const constantRouterMap = [
         name: 'Intelligent',
         component: () => import('@/views/preview/intelligent'),
         meta: { title: 'intelligent', icon: 'table' }
+      },
+      {
+        path: 'child/:id(\\d+)',
+        name: 'ShowChild',
+        component: () => import('@/views/children/show'),
+        meta: { title: 'showChild', noCache: true },
+        hidden: true
       }
     ]
   },

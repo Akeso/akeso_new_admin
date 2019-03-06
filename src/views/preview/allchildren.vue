@@ -46,12 +46,15 @@
       <el-table-column
         prop="createdAt"
         label="创建时间"
+        sortable="custom"
         width="180"/>
       <el-table-column
         label="操作"
         width="180" >
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
+          <router-link :to="'/preview/child/'+scope.row.id">
+            <el-button type="text" size="small">查看</el-button>
+          </router-link>
         </template>
       </el-table-column>
     </el-table>

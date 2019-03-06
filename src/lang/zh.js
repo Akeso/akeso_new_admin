@@ -11,6 +11,7 @@ export default {
     overview: '用户预览',
     allchildren: '全部儿童',
     intelligent: '智能儿童',
+    showChild: '儿童详情',
     frequency: '上传频次',
     doctors: '医生管理',
     // - - - 这里是例子的分界线 - - -
@@ -22,5 +23,11 @@ export default {
     'Menu1-2-2': 'Menu1-2-2',
     'Menu1-3': 'Menu1-3',
     'menu2': 'Menu2'
+  },
+  tagsView: {
+    refresh: '刷新',
+    close: '关闭',
+    closeOthers: '关闭其它',
+    closeAll: '关闭所有'
   }
 }

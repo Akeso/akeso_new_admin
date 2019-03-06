@@ -7,3 +7,10 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function fetchChild(query) {
+  return request({
+    url: '/api/a1/children/' + query.id,
+    method: 'get'
+  })
+}
