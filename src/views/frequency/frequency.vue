@@ -15,9 +15,14 @@
       style="width: 100%"
       @sort-change="handleColumnSort">
       <el-table-column
-        prop="childName"
         label="姓名"
-        width="90"/>
+        width="90">
+        <template slot-scope="scope">
+          <router-link :to="'/preview/child/'+scope.row.childId">
+            <el-button type="text" size="small">{{ scope.row.childName }}</el-button>
+          </router-link>
+        </template>
+      </el-table-column>
       <el-table-column
         prop="uploadTime"
         label="上传时间"
