@@ -22,35 +22,35 @@
       <el-table-column
         prop="name"
         label="姓名"
-        width="90"/>
+        min-width="90"/>
       <el-table-column
         prop="age"
         label="年龄"
-        width="90"/>
+        min-width="90"/>
       <el-table-column
         prop="gender"
         label="性别"
-        width="90"/>
+        min-width="90"/>
       <el-table-column
         prop="schoolName"
         label="学校名称"
-        width="180"/>
+        min-width="180"/>
       <el-table-column
         prop="locationString"
         label="地区"
-        width="180"/>
+        min-width="180"/>
       <el-table-column
         prop="phone"
         label="联系电话"
-        width="120"/>
+        min-width="120"/>
       <el-table-column
         prop="createdAt"
         label="创建时间"
         sortable="custom"
-        width="180"/>
+        min-width="180"/>
       <el-table-column
         label="操作"
-        width="180" >
+        min-width="90" >
         <template slot-scope="scope">
           <router-link :to="'/preview/child/'+scope.row.id">
             <el-button type="text" size="small">查看</el-button>
