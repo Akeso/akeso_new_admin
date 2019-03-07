@@ -1,14 +1,16 @@
 <template>
   <div class="mixin-components-container">
     <Information :user-id="userId"/>
+    <HealthData :user-id="userId"/>
   </div>
 </template>
 
 <script>
 import Information from './components/information'
+import HealthData from './components/health_data'
 export default {
   components: {
-    Information
+    Information, HealthData
   },
   data() {
     return {

@@ -1,0 +1,172 @@
+<template>
+  <el-row>
+    <el-col :span="24">
+      <el-row>
+        <el-col :offset="1">
+          <el-date-picker
+            v-model="selectDate"
+            type="date"
+            placeholder="选择日期"
+            value-format="yyyy-MM-dd"
+            @change="changeDate"/>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="5">
+          <div style="text-align: center;">
+            <span class="text-score">0</span>
+          </div>
+          <div style="text-align: center; margin-top: 20px;">
+            <span style="font-size: 14px; background: #2bd710; padding: 8px 16px; border-radius:25px; color: #fff;">总加分0,总减分0</span>
+          </div>
+          <div style="text-align: center; margin-top: 20px;">
+            <span style="font-size: 16px;">戴镜时间0</span>
+          </div>
+        </el-col>
+        <el-col :span="19">
+          <el-row :span="24" class="margin-bottom">
+            <el-col :span="3" class="text-right text-standard-font">户外时间</el-col>
+            <el-col :span="6">
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" class="progress-l-r"/>
+            </el-col>
+            <el-col :span="3" class="text-standard-font">0/120分钟</el-col>
+            <el-col :span="3" class="text-right text-standard-font">用眼负荷</el-col>
+            <el-col :span="6">
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" class="progress-l-r"/>
+            </el-col>
+            <el-col :span="3" class="text-standard-font">0/750D</el-col>
+          </el-row>
+          <el-row :span="24" class="margin-bottom">
+            <el-col :span="3" class="text-right text-standard-font">护眼光照时间</el-col>
+            <el-col :span="6">
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" class="progress-l-r"/>
+            </el-col>
+            <el-col :span="3" class="text-standard-font">0/35分钟</el-col>
+            <el-col :span="3" class="text-right text-standard-font">近距离用眼时间</el-col>
+            <el-col :span="6">
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" class="progress-l-r"/>
+            </el-col>
+            <el-col :span="3" class="text-standard-font">0/240分钟</el-col>
+          </el-row>
+          <el-row :span="24" class="margin-bottom">
+            <el-col :span="3" class="text-right text-standard-font">户外阳光摄入</el-col>
+            <el-col :span="6">
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" class="progress-l-r"/>
+            </el-col>
+            <el-col :span="3">0/300000lux</el-col>
+            <el-col :span="3" class="text-right text-standard-font">不良姿势提醒</el-col>
+            <el-col :span="6">
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" class="progress-l-r"/>
+            </el-col>
+            <el-col :span="3" class="text-standard-font">0/90次</el-col>
+          </el-row>
+          <el-row :span="24" class="margin-bottom">
+            <el-col :span="3" class="text-right text-standard-font">运动步数</el-col>
+            <el-col :span="6">
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" class="progress-l-r"/>
+            </el-col>
+            <el-col :span="3" class="text-standard-font">0/10000步</el-col>
+          </el-row>
+        </el-col>
+        <!--<el-col :span="9">坏的</el-col>-->
+      </el-row>
+      <el-row :span="24">
+        <el-col :span="24">
+          <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
+        </el-col>
+      </el-row>
+    </el-col>
+  </el-row>
+</template>
+
+<script>
+import { fetchDaily } from '@/api/reports'
+export default {
+  props: {
+    userId: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    this.chartSettings = {
+      labelMap: {
+        score: '分数'
+      }
+    }
+    return {
+      offsetV: 1,
+      selectDate: new Date(),
+      chartData: {
+        columns: ['date', 'score'],
+        rows: [
+          { 'date': '00:00', 'score': 0 },
+          { 'date': '01:00', 'score': 2 },
+          { 'date': '02:00', 'score': 4 },
+          { 'date': '03:00', 'score': 2 },
+          { 'date': '04:00', 'score': 6 },
+          { 'date': '05:00', 'score': 2 },
+          { 'date': '06:00', 'score': 2 },
+          { 'date': '07:00', 'score': 2 },
+          { 'date': '08:00', 'score': 2 },
+          { 'date': '09:00', 'score': 2 },
+          { 'date': '10:00', 'score': 2 },
+          { 'date': '11:00', 'score': 2 },
+          { 'date': '12:00', 'score': 2 },
+          { 'date': '13:00', 'score': 19 },
+          { 'date': '14:00', 'score': 2 },
+          { 'date': '15:00', 'score': 2 },
+          { 'date': '16:00', 'score': 2 },
+          { 'date': '17:00', 'score': 2 },
+          { 'date': '18:00', 'score': 2 },
+          { 'date': '19:00', 'score': 2 },
+          { 'date': '20:00', 'score': 2 },
+          { 'date': '21:00', 'score': 2 },
+          { 'date': '22:00', 'score': 2 },
+          { 'date': '23:00', 'score': 2 }
+        ]
+      }
+    }
+  },
+  created() {
+    console.log('health score created.')
+    this.getDaily()
+  },
+  mounted() {
+    console.log('health score mounted.')
+  },
+  methods: {
+    getDaily() {
+      fetchDaily({ child_id: this.userId, selectDate: this.selectDate }).then(response => {
+        console.log('response: ', response)
+        const healthIndexes = response.data.healthIndexHour
+        this.chartData.rows.forEach(function(item, index) {
+          item.score = healthIndexes[index]
+        })
+      })
+    },
+    changeDate() {
+      this.getDaily()
+    }
+  }
+}
+</script>
+
+<style scope>
+.text-score {
+  width: 100%; font-size: 80px; color: #2bd710;
+}
+.text-right {
+  text-align: right;
+}
+.text-standard-font {
+  font-size: 14px;
+}
+.margin-bottom {
+  margin-bottom: 20px;
+}
+.progress-l-r {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+</style>
