@@ -40,9 +40,7 @@
       </el-row>
     </el-tab-pane>
     <el-tab-pane label="近视预测" name="second">
-      <div>
-        近视预测
-      </div>
+      <Forecast v-if="tabName === 'second'" />
     </el-tab-pane>
     <el-tab-pane label="屈光档案" name="third">屈光档案</el-tab-pane>
     <el-tab-pane label="防控意见" name="four">防控意见</el-tab-pane>
@@ -53,9 +51,10 @@
 import DailyScore from './daily_score'
 import WeeklyScore from './weekly_score'
 import MonthlyScore from './monthly_score'
+import Forecast from './forecast'
 export default {
   components: {
-    DailyScore, WeeklyScore, MonthlyScore
+    DailyScore, WeeklyScore, MonthlyScore, Forecast
   },
   props: {
     userId: {
@@ -77,7 +76,6 @@ export default {
   methods: {
     handleClick(tab, event) {
       this.tabName = tab.name
-      // console.log(tab, event)
     },
     menuItemSelect(index, indexPath) {
       this.menuItemIndex = index
