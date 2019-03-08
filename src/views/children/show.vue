@@ -21,10 +21,8 @@ export default {
     }
   },
   mounted() {
-    console.log('show mounted.')
   },
   created() {
-    console.log('show created. params' + this.$route.params.id)
   },
   methods: {
   }

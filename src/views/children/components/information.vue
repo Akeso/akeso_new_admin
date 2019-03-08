@@ -97,13 +97,11 @@ export default {
     }
   },
   created() {
-    console.log('created. userId: ', this.userId)
     this.getInformation()
   },
   methods: {
     getInformation() {
       fetchChild({ id: this.userId }).then(response => {
-        console.log('response: ', response.data)
         this.child = response.data
       })
     }
