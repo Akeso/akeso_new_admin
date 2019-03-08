@@ -5,8 +5,9 @@
     </div>
     <el-row>
       <el-col :span="24">
-        <el-row>
-          <el-col :offset="1">
+        <el-row style="margin-bottom: 10px;">
+          <el-col>
+            <label for="">选择日期</label>
             <el-date-picker
               v-model="selectDate"
               type="date"
