@@ -9,6 +9,8 @@
           <el-col>
             <label for="">选择日期</label>
             <el-date-picker
+              :editable="false"
+              :clearable="false"
               v-model="selectDate"
               type="date"
               placeholder="选择日期"
