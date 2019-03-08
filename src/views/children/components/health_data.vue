@@ -9,19 +9,33 @@
             :default-active="menuItemIndex"
             class="el-menu-vertical-demo"
             @select="menuItemSelect">
-            <el-menu-item index="1">
+            <el-menu-item index="daily_score">
               <span slot="title">健康评分</span>
             </el-menu-item>
-            <el-menu-item index="2">
+            <el-menu-item index="weekly_score">
               <span slot="title">健康周报</span>
             </el-menu-item>
-            <el-menu-item index="3">
+            <el-menu-item index="monthly_score">
               <span slot="title">健康月报</span>
+            </el-menu-item>
+            <el-menu-item index="out_time">
+              <span slot="title">户外时间</span>
+            </el-menu-item>
+            <el-menu-item index="lux_take">
+              <span slot="title">光照摄入</span>
+            </el-menu-item>
+            <el-menu-item index="posture">
+              <span slot="title">用眼姿势</span>
+            </el-menu-item>
+            <el-menu-item index="step_count">
+              <span slot="title">运动步数</span>
             </el-menu-item>
           </el-menu>
         </el-col>
         <el-col :span="21">
-          <HealthScore v-if="menuItemIndex === '1'" :user-id="userId"/>
+          <DailyScore v-if="menuItemIndex === 'daily_score'" :user-id="userId"/>
+          <WeeklyScore v-if="menuItemIndex === 'weekly_score'"/>
+          <MonthlyScore v-if="menuItemIndex === 'monthly_score'"/>
         </el-col>
       </el-row>
     </el-tab-pane>
@@ -36,10 +50,12 @@
 </template>
 
 <script>
-import HealthScore from './health_score'
+import DailyScore from './daily_score'
+import WeeklyScore from './weekly_score'
+import MonthlyScore from './monthly_score'
 export default {
   components: {
-    HealthScore
+    DailyScore, WeeklyScore, MonthlyScore
   },
   props: {
     userId: {
@@ -50,7 +66,7 @@ export default {
   data() {
     return {
       tabName: 'first',
-      menuItemIndex: '1'
+      menuItemIndex: 'daily_score'
     }
   },
   computed: {

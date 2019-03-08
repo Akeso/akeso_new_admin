@@ -27,7 +27,7 @@
           <el-row :span="24" class="margin-bottom">
             <el-col :span="3" class="text-right text-standard-font">户外时间</el-col>
             <el-col :span="6">
-              <el-progress :text-inside="true" :stroke-width="24" :percentage="healthScore.outTimePercent" color="#000000" status="success" class="progress-l-r"/>
+              <el-progress :text-inside="true" :stroke-width="24" :percentage="healthScore.outTimePercent" status="success" class="progress-l-r"/>
             </el-col>
             <el-col :span="3" class="text-standard-font">{{ healthScore.outTime }}/120分钟</el-col>
             <el-col :span="3" class="text-right text-standard-font">用眼负荷</el-col>
@@ -101,40 +101,38 @@ export default {
         columns: ['date', 'score'],
         rows: [
           { 'date': '00:00', 'score': 0 },
-          { 'date': '01:00', 'score': 2 },
-          { 'date': '02:00', 'score': 4 },
-          { 'date': '03:00', 'score': 2 },
-          { 'date': '04:00', 'score': 6 },
-          { 'date': '05:00', 'score': 2 },
-          { 'date': '06:00', 'score': 2 },
-          { 'date': '07:00', 'score': 2 },
-          { 'date': '08:00', 'score': 2 },
-          { 'date': '09:00', 'score': 2 },
-          { 'date': '10:00', 'score': 2 },
-          { 'date': '11:00', 'score': 2 },
-          { 'date': '12:00', 'score': 2 },
-          { 'date': '13:00', 'score': 19 },
-          { 'date': '14:00', 'score': 2 },
-          { 'date': '15:00', 'score': 2 },
-          { 'date': '16:00', 'score': 2 },
-          { 'date': '17:00', 'score': 2 },
-          { 'date': '18:00', 'score': 2 },
-          { 'date': '19:00', 'score': 2 },
-          { 'date': '20:00', 'score': 2 },
-          { 'date': '21:00', 'score': 2 },
-          { 'date': '22:00', 'score': 2 },
-          { 'date': '23:00', 'score': 2 }
+          { 'date': '01:00', 'score': 0 },
+          { 'date': '02:00', 'score': 0 },
+          { 'date': '03:00', 'score': 0 },
+          { 'date': '04:00', 'score': 0 },
+          { 'date': '05:00', 'score': 0 },
+          { 'date': '06:00', 'score': 0 },
+          { 'date': '07:00', 'score': 0 },
+          { 'date': '08:00', 'score': 0 },
+          { 'date': '09:00', 'score': 0 },
+          { 'date': '10:00', 'score': 0 },
+          { 'date': '11:00', 'score': 0 },
+          { 'date': '12:00', 'score': 0 },
+          { 'date': '13:00', 'score': 0 },
+          { 'date': '14:00', 'score': 0 },
+          { 'date': '15:00', 'score': 0 },
+          { 'date': '16:00', 'score': 0 },
+          { 'date': '17:00', 'score': 0 },
+          { 'date': '18:00', 'score': 0 },
+          { 'date': '19:00', 'score': 0 },
+          { 'date': '20:00', 'score': 0 },
+          { 'date': '21:00', 'score': 0 },
+          { 'date': '22:00', 'score': 0 },
+          { 'date': '23:00', 'score': 0 }
         ]
       },
       healthScore: {}
     }
   },
   created() {
-    console.log('health score created.')
     this.getDaily()
   },
   mounted() {
-    console.log('health score mounted.')
   },
   methods: {
     getDaily() {
