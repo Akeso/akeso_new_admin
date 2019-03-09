@@ -45,7 +45,8 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
+        <!--<ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>-->
+        <ve-line :series="series" :title="title" :tooltip="tooltip" :legend="legend" :settings="chartSettings" :x-axis="xAxis" :y-axis="yAxis" :set-option-opts="true"/>
       </el-col>
     </el-row>
   </el-card>
@@ -57,7 +58,8 @@ export default {
   data() {
     this.chartSettings = {
       labelMap: {
-        score: '分数'
+        noCtrlData: '不进行近视防控',
+        ctrlAkesoData: '健康数据分数影响'
       }
     }
     return {
@@ -74,21 +76,94 @@ export default {
         health_data: ''
       },
       chartData: {
-        columns: ['age', 'score'],
-        rows: [
-          { 'age': '6', 'score': 0 },
-          { 'age': '7', 'score': 0 },
-          { 'age': '8', 'score': 0 },
-          { 'age': '9', 'score': 0 },
-          { 'age': '10', 'score': 0 },
-          { 'age': '11', 'score': 0 },
-          { 'age': '12', 'score': 0 },
-          { 'age': '13', 'score': 0 },
-          { 'age': '14', 'score': 0 },
-          { 'age': '15', 'score': 0 },
-          { 'age': '16', 'score': 0 }
-        ]
-      }
+        columns: ['age', 'noCtrlData', 'ctrlAkesoData'],
+        rows: [],
+        colors: ['#d48265', '#91c7ae', '#749f83', '#ca8622']
+      },
+      title: {
+        text: '近视预测'
+      },
+      tooltip: {
+        trigger: 'axis',
+        formatter: function(params) {
+          return params[0].name + '<br/>' + params[0].seriesName + '：' + params[0].value + '<br/>' + params[3].seriesName + '：' + params[3].value
+        }
+      },
+      legend: {
+        data: ['不采取控制', '健康数据分数影响']
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: []
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: '不采取控制',
+          type: 'line',
+          stack: '总量',
+          itemStyle: {
+            normal: {
+              color: '#ef4836'
+            }
+          },
+          markPoint: {
+            data: [
+              {type: 'max', name: '最大值'},
+              {type: 'min', name: '最小值'}
+            ]
+          },
+          data: []
+        },
+        {
+          name: 'CL',
+          type: 'line',
+          data: [],
+          lineStyle: {
+            normal: {
+              opacity: 0
+            }
+          },
+          stack: 'confidence-band',
+          symbol: 'none'
+        },
+        {
+          name: '采取控制',
+          type: 'line',
+          data: [],
+          lineStyle: {
+            normal: {
+              opacity: 0
+            }
+          },
+          areaStyle: {
+            normal: {
+              color: '#26c281'
+            }
+          },
+          stack: 'confidence-band',
+          symbol: 'none'
+        },
+        {
+          name: '健康数据分数影响',
+          type: 'line',
+          itemStyle: {
+            normal: {
+              color: '#4B8DF8'
+            }
+          },
+          markPoint: {
+            data: [
+              {type: 'max', name: '最大值'},
+              {type: 'min', name: '最小值'}
+            ]
+          },
+          data: []
+        }
+      ]
     }
   },
   watch: {
@@ -124,13 +199,19 @@ export default {
         this.options = response.data
         this.conditionQuery.age = this.options.ageStartOptions[0]
         this.conditionQuery.re = this.options.reOptions[0].value
-        this.conditionQuery.ctrl_type = this.options.ctrlTypeOptions[0].value
+        this.conditionQuery.ctrl_type = this.options.ctrlTypeOptions[3].value
         this.conditionQuery.health_data = this.options.healthDataOptions[0].value
         this.getForecasts()
       })
     },
     getForecasts: function() {
       fetchForecasts(this.conditionQuery).then(response => {
+        // this.chartData.rows = response.data
+        this.xAxis.data = response.data.ages
+        this.series[0].data = response.data.noCtrlData
+        this.series[1].data = response.data.ctrlDataDefault
+        this.series[2].data = response.data.ctrlDataSection
+        this.series[3].data = response.data.ctrlAkesoData
       })
     }
   }
