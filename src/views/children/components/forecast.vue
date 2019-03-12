@@ -45,7 +45,6 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <!--<ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>-->
         <ve-line :series="series" :title="title" :tooltip="tooltip" :legend="legend" :settings="chartSettings" :x-axis="xAxis" :y-axis="yAxis" :set-option-opts="true"/>
       </el-col>
     </el-row>
@@ -74,11 +73,6 @@ export default {
         re: '',
         ctrl_type: '',
         health_data: ''
-      },
-      chartData: {
-        columns: ['age', 'noCtrlData', 'ctrlAkesoData'],
-        rows: [],
-        colors: ['#d48265', '#91c7ae', '#749f83', '#ca8622']
       },
       title: {
         text: '近视预测'
@@ -206,7 +200,6 @@ export default {
     },
     getForecasts: function() {
       fetchForecasts(this.conditionQuery).then(response => {
-        // this.chartData.rows = response.data
         this.xAxis.data = response.data.ages
         this.series[0].data = response.data.noCtrlData
         this.series[1].data = response.data.ctrlDataDefault

@@ -79,7 +79,6 @@ export default {
     },
     menuItemSelect(index, indexPath) {
       this.menuItemIndex = index
-      console.log(index, '-', indexPath)
     }
   }
 }
