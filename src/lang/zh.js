@@ -24,6 +24,14 @@ export default {
     'Menu1-3': 'Menu1-3',
     'menu2': 'Menu2'
   },
+  navbar: {
+    logOut: '退出登录',
+    dashboard: '首页',
+    github: '项目地址',
+    screenfull: '全屏',
+    theme: '换肤',
+    size: '布局大小'
+  },
   tagsView: {
     refresh: '刷新',
     close: '关闭',
