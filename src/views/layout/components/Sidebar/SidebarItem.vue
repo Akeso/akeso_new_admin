@@ -1,7 +1,7 @@
 <template>
-  <div v-if="!item.hidden&&item.children" class="menu-wrapper">
+  <div v-if="!item.hidden&&item.children&&englishShowingItem(item.children, item)" class="menu-wrapper">
 
-    <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
+    <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
           <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="generateTitle(onlyOneChild.meta.title)" />
@@ -64,6 +64,23 @@ export default {
     }
   },
   methods: {
+    englishShowingItem(children, parent) {
+      if (this.$store.getters.language === 'en') {
+        const showingChildren = children.filter(item => {
+          if (item.meta.english) {
+            return true
+          } else {
+            return false
+          }
+        })
+        if (showingChildren.length > 0) {
+          return true
+        } else {
+          return false
+        }
+      }
+      return true
+    },
     hasOneShowingChild(children, parent) {
       const showingChildren = children.filter(item => {
         if (item.hidden) {

@@ -10,6 +10,8 @@ export default {
     preview: '最新预览',
     overview: '用户预览',
     allchildren: '全部儿童',
+    enChildren: '算法儿童',
+    enShowChild: '算法儿童详情',
     intelligent: '智能儿童',
     showChild: '儿童详情',
     frequency: '上传频次',

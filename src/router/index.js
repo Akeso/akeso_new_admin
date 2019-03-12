@@ -11,6 +11,7 @@ import Layout from '../views/layout/Layout'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
+* english: true                  if `english:true` 改菜单是英文版本独有的，只有在英文版下才展示(default is false)
 * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
 *                                if not set alwaysShow, only more than one route under the children
 *                                it will becomes nested mode, otherwise not show the root menu
@@ -93,6 +94,25 @@ export const constantRouterMap = [
         name: 'Frequency',
         component: () => import('@/views/frequency/frequency'),
         meta: { title: 'frequency', icon: 'guide' }
+      }
+    ]
+  },
+  {
+    path: '/enChildren',
+    component: Layout,
+    children: [
+      {
+        path: 'enChildren',
+        name: 'EnChildren',
+        component: () => import('@/views/internations/enChildren'),
+        meta: { title: 'enChildren', icon: 'table', english: true }
+      },
+      {
+        path: 'child/:id(\\d+)',
+        name: 'EnShowChild',
+        component: () => import('@/views/internations/chilren/show'),
+        meta: { title: 'enShowChild', noCache: true },
+        hidden: true
       }
     ]
   },
