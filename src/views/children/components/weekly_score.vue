@@ -16,7 +16,86 @@
         <ve-radar :title="titleRadar1" :tooltip="tooltipRadar1" :radar="radarRadar1" :series="seriesRadar1"/>
         <ve-radar :title="titleRadar2" :tooltip="tooltipRadar2" :radar="radarRadar2" :series="seriesRadar2"/>
       </el-col>
-      <el-col :span="10">分数</el-col>
+      <el-col :span="10">
+        <el-row><label for="">本周平均分</label></el-row>
+        <el-row><label for="">累计戴镜时间</label></el-row>
+        <el-row><label for="">累计保护因素</label></el-row>
+        <el-row><label for="">累计危险因素</label></el-row>
+        <el-row><label for="">周一到周五平均分</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <el-row><label for="">周六周日平均分</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <label for="">加分项</label>
+        <el-row><label for="">户外时间/天</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <el-row><label for="">护眼光照时间/天</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <el-row><label for="">阳光摄入量/天</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <el-row><label for="">运动步数/天</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <label for="">减分项</label>
+        <el-row><label for="">用眼负荷/天</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <el-row><label for="">不良姿势提醒/天</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+        <el-row><label for="">近距离用眼时间/天</label></el-row>
+        <el-row>
+          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
+            <div>
+              <span>111</span>
+            </div>
+          </el-progress>
+        </el-row>
+      </el-col>
     </el-row>
   </el-card>
 </template>
@@ -25,6 +104,7 @@
 export default {
   data() {
     return {
+      statusText: 'text',
       colorHistogram: ['#26c281'],
       xAxisHistogram: {
         type: 'category',
@@ -107,24 +187,28 @@ export default {
             name: '标准',
             symbol: 'rect',
             symbolSize: 5,
-            areaStyle: {
-              color: '#ff5809'
-              // type: 'dashed'
-              // normal: {
-              // }
+            // areaStyle: {
+            //   color: '#ff5809'
+            //   // type: 'dashed'
+            //   // normal: {
+            //   // }
+            // },
+            lineStyle: {
+              color: '#8e8e8e',
+              type: 'dashed'
             }
           },
           {
             value: [60, 15000, 250000],
             name: '实际值',
             lineStyle: {
-              color: '#0000e3'
+              color: '#00a600'
             }
           }
         ]
       },
       titleRadar2: {
-        text: '保护因素分析'
+        text: '危险因素分析'
       },
       tooltipRadar2: {},
       radarRadar2: {
@@ -199,3 +283,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.el-progress__text {
+  display: none !important;
+}
+</style>
