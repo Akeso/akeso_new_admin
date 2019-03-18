@@ -125,8 +125,6 @@ export default {
         wearTime: 0,
         upElement: 0,
         downElement: 0,
-        weekendScoreAvg: 0,
-        weekScoreAvg: 0,
         outTime: 0,
         protectLuxTime: 0,
         luxDay: 0,
