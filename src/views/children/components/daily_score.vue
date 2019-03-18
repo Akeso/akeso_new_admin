@@ -60,7 +60,7 @@
               <el-col :span="6">
                 <el-progress :text-inside="true" :stroke-width="24" :percentage="healthScore.luxDayPercent" status="success" class="progress-l-r"/>
               </el-col>
-              <el-col :span="3">{{ healthScore.outTimeLux }}/300000lux</el-col>
+              <el-col :span="3" class="text-right text-standard-font">{{ healthScore.outTimeLux }}/300000lux</el-col>
               <el-col :span="3" class="text-right text-standard-font">不良姿势提醒</el-col>
               <el-col :span="6">
                 <el-progress :text-inside="true" :stroke-width="24" :percentage="healthScore.badPostureDayPercent" status="success" class="progress-l-r"/>

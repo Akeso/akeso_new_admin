@@ -3,97 +3,107 @@
     <div slot="header" class="clearfix">
       <span>健康周报</span>
     </div>
+    <el-row style="margin-bottom: 10px;">
+      <el-col>
+        <label for="">选择日期</label>
+        <el-date-picker
+          :editable="false"
+          :clearable="false"
+          v-model="selectDate"
+          type="date"
+          placeholder="选择日期"
+          value-format="yyyy-MM-dd"
+          @change="changeDate"/>
+      </el-col>
+    </el-row>
     <div class="filter-container">
       <el-button class="filter-item" type="primary" icon="el-icon-download" >导出PDF</el-button>
       <el-button class="filter-item" type="primary" icon="el-icon-download" >导出Excel</el-button>
     </div>
     <el-row>
       <el-col :span="14">
-        <el-tag>标签一</el-tag>
-        <el-tag>标签一</el-tag>
-        <el-tag>标签一</el-tag>
+        <el-tag>健康周报</el-tag>
         <ve-histogram :color="colorHistogram" :x-axis="xAxisHistogram" :y-axis="yAxisHistogram" :series="seriesHistogram"/>
-        <ve-radar :title="titleRadar1" :tooltip="tooltipRadar1" :radar="radarRadar1" :series="seriesRadar1"/>
-        <ve-radar :title="titleRadar2" :tooltip="tooltipRadar2" :radar="radarRadar2" :series="seriesRadar2"/>
+        <ve-radar :title="titleRadarGood" :tooltip="tooltipRadarGood" :radar="radarRadarGood" :series="seriesRadarGood"/>
+        <ve-radar :title="titleRadarBad" :tooltip="tooltipRadarBad" :radar="radarRadarBad" :series="seriesRadarBad"/>
       </el-col>
       <el-col :span="10">
-        <el-row><label for="">本周平均分</label></el-row>
-        <el-row><label for="">累计戴镜时间</label></el-row>
-        <el-row><label for="">累计保护因素</label></el-row>
-        <el-row><label for="">累计危险因素</label></el-row>
-        <el-row><label for="">周一到周五平均分</label></el-row>
         <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>得分情况</span>
             </div>
-          </el-progress>
+            <p style="font-size: 20px; font-weight: bold;">本周平均分 {{ weekData.healthIndex }}</p>
+            <p>总戴镜时间 {{ weekData.wearTime }}</p>
+            <p>累计保护因素 {{ weekData.upElement }}</p>
+            <p>累计危险因素 {{ weekData.downElement }}</p>
+            <p>周一到周五平均分 {{ weekData.weekScoreAvg }}</p>
+            <p>周六周日平均分 {{ weekData.weekendScoreAvg }}</p>
+          </el-card>
         </el-row>
-        <el-row><label for="">周六周日平均分</label></el-row>
         <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>加分项</span>
             </div>
-          </el-progress>
+            <label for="">户外时间/天</label>
+            <el-progress :stroke-width="14" :percentage="weekData.outTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <div>
+                <span>{{ weekData.outTime }}</span>
+              </div>
+            </el-progress>
+            <label for="">护眼光照时间/天</label>
+            <el-progress :stroke-width="14" :percentage="weekData.protectLuxTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <div>
+                <span>{{ weekData.protectLuxTime }}</span>
+              </div>
+            </el-progress>
+            <label for="">阳光摄入量/天</label>
+            <el-progress :stroke-width="14" :percentage="weekData.luxDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <div>
+                <span>{{ weekData.luxDay }}</span>
+              </div>
+            </el-progress>
+            <label for="">运动步数/天</label>
+            <el-progress :stroke-width="14" :percentage="weekData.stepCountPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <div>
+                <span>{{ weekData.stepCount }}</span>
+              </div>
+            </el-progress>
+          </el-card>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>减分项</span>
+            </div>
+            <label for="">用眼负荷/天</label>
+            <el-progress :stroke-width="14" :percentage="weekData.nearworkBurdenDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <div>
+                <span>{{ weekData.nearworkBurdenDay }}</span>
+              </div>
+            </el-progress>
+            <label for="">不良姿势提醒/天</label>
+            <el-progress :stroke-width="14" :percentage="weekData.badPostureTimesPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <div>
+                <span>{{ weekData.badPostureTimes }}</span>
+              </div>
+            </el-progress>
+            <label for="">近距离用眼时间/天</label>
+            <el-progress :stroke-width="14" :percentage="weekData.nearworkDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <div>
+                <span>{{ weekData.nearworkBurdenDay }}</span>
+              </div>
+            </el-progress>
+          </el-card>
         </el-row>
-        <label for="">加分项</label>
-        <el-row><label for="">户外时间/天</label></el-row>
         <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>医生建议</span>
             </div>
-          </el-progress>
-        </el-row>
-        <el-row><label for="">护眼光照时间/天</label></el-row>
-        <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
             <div>
-              <span>111</span>
+              {{ weekData.suggest }}
             </div>
-          </el-progress>
-        </el-row>
-        <el-row><label for="">阳光摄入量/天</label></el-row>
-        <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
-            </div>
-          </el-progress>
-        </el-row>
-        <el-row><label for="">运动步数/天</label></el-row>
-        <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
-            </div>
-          </el-progress>
-        </el-row>
-        <label for="">减分项</label>
-        <el-row><label for="">用眼负荷/天</label></el-row>
-        <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
-            </div>
-          </el-progress>
-        </el-row>
-        <el-row><label for="">不良姿势提醒/天</label></el-row>
-        <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
-            </div>
-          </el-progress>
-        </el-row>
-        <el-row><label for="">近距离用眼时间/天</label></el-row>
-        <el-row>
-          <el-progress :stroke-width="14" :percentage="50" :show-text="true" :status="statusText" class="progress-l-r">
-            <div>
-              <span>111</span>
-            </div>
-          </el-progress>
+          </el-card>
         </el-row>
       </el-col>
     </el-row>
@@ -101,41 +111,73 @@
 </template>
 
 <script>
+import { fetchWeekly } from '@/api/reports'
 export default {
+  props: {
+    userId: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
+      weekData: {
+        healthIndex: 0,
+        wearTime: 0,
+        upElement: 0,
+        downElement: 0,
+        weekendScoreAvg: 0,
+        weekScoreAvg: 0,
+        outTime: 0,
+        protectLuxTime: 0,
+        luxDay: 0,
+        stepCount: 0,
+        nearworkBurdenDay: 0,
+        badPostureTimes: 0,
+        nearworkDay: 0,
+        outTimePercent: 0,
+        protectLuxTimePercent: 0,
+        luxDayPercent: 0,
+        stepCountPercent: 0,
+        nearworkBurdenDayPercent: 0,
+        badPostureTimesPercent: 0,
+        nearworkDayPercent: 0,
+        suggest: ''
+      },
+      // 以上是单项指标，以下是图表样式
+      selectDate: new Date(),
       statusText: 'text',
       colorHistogram: ['#26c281'],
       xAxisHistogram: {
         type: 'category',
         boundaryGap: true,
-        data: ['1/1', '1/1', '1/1', '1/1', '1/1', '1/1', '1/1']
+        data: []
       },
       yAxisHistogram: {
         type: 'value'
       },
-      seriesHistogram: [
-        {
-          name: '分数',
-          type: 'bar',
-          barWidth: '40%',
-          label: {
-            // normal: {
-            show: true,
-            formatter: '{c}分',
-            position: 'top',
-            fontSize: 12,
-            fontWeight: 'bold',
-            color: '#000000'
-          },
-          data: [10, 52, 200, 334, 390, 330, 220]
-        }
-      ],
-      titleRadar1: {
+      seriesHistogram: {
+        name: '分数',
+        type: 'bar',
+        barWidth: '40%',
+        label: {
+          // normal: {
+          show: true,
+          formatter: '{c}分',
+          position: 'top',
+          fontSize: 12,
+          fontWeight: 'bold',
+          color: '#000000'
+        },
+        data: []
+      },
+      titleRadarGood: {
         text: '保护因素分析'
       },
-      tooltipRadar1: {},
-      radarRadar1: {
+      indicatorGood: [],
+      tooltipRadarGood: {
+      },
+      radarRadarGood: {
         indicator: [
           { text: '户外时间' },
           { text: '运动步数' },
@@ -154,52 +196,36 @@ export default {
         },
         splitArea: {
           areaStyle: {
-            color: ['#adadad', '#f0f0f0'],
+            color: ['#eeeeee', '#ffffff'],
             shadowColor: 'rgba(0, 0, 0, 0.3)'
-            // shadowBlur: 10
           }
         },
         axisLine: {
           lineStyle: {
-            color: 'rgba(255, 255, 255, 0.5)'
+            color: '#bbbbbb'
           }
         },
         splitLine: {
           lineStyle: {
-            color: 'rgba(255, 255, 255, 0.5)'
+            color: '#d4d4d4'
           }
         }
       },
-      seriesRadar1: {
-        name: '雷达图',
+      seriesRadarGood: {
         type: 'radar',
-        itemStyle: {
-          emphasis: {
-            // color: 各异,
-            lineStyle: {
-              width: 4
-            }
-          }
-        },
         data: [
           {
             value: [120, 10000, 300000],
-            name: '标准',
+            name: '标准值',
             symbol: 'rect',
             symbolSize: 5,
-            // areaStyle: {
-            //   color: '#ff5809'
-            //   // type: 'dashed'
-            //   // normal: {
-            //   // }
-            // },
             lineStyle: {
               color: '#8e8e8e',
               type: 'dashed'
             }
           },
           {
-            value: [60, 15000, 250000],
+            value: [],
             name: '实际值',
             lineStyle: {
               color: '#00a600'
@@ -207,11 +233,11 @@ export default {
           }
         ]
       },
-      titleRadar2: {
+      titleRadarBad: {
         text: '危险因素分析'
       },
-      tooltipRadar2: {},
-      radarRadar2: {
+      tooltipRadarBad: {},
+      radarRadarBad: {
         indicator: [
           { text: '户外时间' },
           { text: '运动步数' },
@@ -232,7 +258,6 @@ export default {
           areaStyle: {
             color: ['#adadad', '#f0f0f0'],
             shadowColor: 'rgba(0, 0, 0, 0.3)'
-            // shadowBlur: 10
           }
         },
         axisLine: {
@@ -246,39 +271,47 @@ export default {
           }
         }
       },
-      seriesRadar2: {
-        name: '雷达图',
+      seriesRadarBad: {
         type: 'radar',
-        itemStyle: {
-          emphasis: {
-            // color: 各异,
-            lineStyle: {
-              width: 4
-            }
-          }
-        },
         data: [
           {
-            value: [120, 10000, 300000],
-            name: '标准',
+            value: [750, 240, 90],
+            name: '标准值',
             symbol: 'rect',
             symbolSize: 5,
-            areaStyle: {
-              color: '#ff5809'
-              // type: 'dashed'
-              // normal: {
-              // }
+            lineStyle: {
+              color: '#8e8e8e',
+              type: 'dashed'
             }
           },
           {
-            value: [60, 15000, 250000],
+            value: [],
             name: '实际值',
             lineStyle: {
-              color: '#0000e3'
+              color: '#ff0000'
             }
           }
         ]
       }
+    }
+  },
+  created() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      fetchWeekly({ child_id: this.userId, date: this.selectDate }).then(response => {
+        this.xAxisHistogram.data = response.data.timeArray
+        this.seriesHistogram.data = response.data.healthIndexArray
+        this.radarRadarGood.indicator = response.data.goodIndicator
+        this.seriesRadarGood.data[1].value = response.data.goodValues
+        this.radarRadarBad.indicator = response.data.badIndicator
+        this.seriesRadarBad.data[1].value = response.data.badValues
+        this.weekData = response.data
+      })
+    },
+    changeDate() {
+      this.getData()
     }
   }
 }

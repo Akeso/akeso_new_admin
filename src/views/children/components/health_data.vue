@@ -34,8 +34,8 @@
         </el-col>
         <el-col :span="21">
           <DailyScore v-if="menuItemIndex === 'daily_score'" :user-id="userId"/>
-          <WeeklyScore v-if="menuItemIndex === 'weekly_score'"/>
-          <MonthlyScore v-if="menuItemIndex === 'monthly_score'"/>
+          <WeeklyScore v-if="menuItemIndex === 'weekly_score'" :user-id="userId"/>
+          <MonthlyScore v-if="menuItemIndex === 'monthly_score'" :user-id="userId"/>
         </el-col>
       </el-row>
     </el-tab-pane>
