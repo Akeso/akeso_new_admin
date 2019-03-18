@@ -70,7 +70,7 @@
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/devices'
+import { fetchList, unbindDevice } from '@/api/devices'
 const deviceTypeOptions = [
   { key: '', value: '全部' },
   { key: 'v1', value: '一代' },
@@ -113,6 +113,9 @@ export default {
   },
   methods: {
     handleClick(val) {
+      unbindDevice({ id: val.id }).then(response => {
+        this.getList()
+      })
     },
     getList() {
       fetchList(this.listQuery).then(response => {
