@@ -99,6 +99,7 @@
           <el-card class="box-card">
             <div slot="header" class="clearfix">
               <span>医生建议</span>
+              <el-button style="float: right; padding: 3px 0" type="text">编辑建议</el-button>
             </div>
             <div>
               {{ weekData.suggest }}

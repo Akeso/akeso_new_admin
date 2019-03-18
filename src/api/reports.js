@@ -15,3 +15,12 @@ export function fetchWeekly(query) {
     params: query
   })
 }
+
+export function fetchMonthly(query) {
+  return request({
+    url: '/api/a1/reports/monthly',
+    methods: 'get',
+    params: query
+  })
+}
+
