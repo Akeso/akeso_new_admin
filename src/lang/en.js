@@ -15,7 +15,11 @@ export default {
     intelligent: 'intelligent',
     showChild: 'show child',
     frequency: 'frequency',
-    doctors: 'doctors'
+    doctors: 'doctors',
+    devices: 'device manage'
+  },
+  device: {
+    deviceType: 'Device Type'
   },
   navbar: {
     logOut: 'Log Out',

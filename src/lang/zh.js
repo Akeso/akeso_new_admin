@@ -16,6 +16,7 @@ export default {
     showChild: '儿童详情',
     frequency: '上传频次',
     doctors: '医生管理',
+    devices: '镜腿设备',
     // - - - 这里是例子的分界线 - - -
     Nested: 'Nested',
     Menu1: 'Menu1',
@@ -25,6 +26,9 @@ export default {
     'Menu1-2-2': 'Menu1-2-2',
     'Menu1-3': 'Menu1-3',
     'menu2': 'Menu2'
+  },
+  device: {
+    deviceType: '镜腿型号'
   },
   navbar: {
     logOut: '退出登录',
