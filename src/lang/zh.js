@@ -17,6 +17,7 @@ export default {
     frequency: '上传频次',
     doctors: '医生管理',
     devices: '镜腿设备',
+    versions: '版本管理',
     // - - - 这里是例子的分界线 - - -
     Nested: 'Nested',
     Menu1: 'Menu1',

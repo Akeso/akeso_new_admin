@@ -110,6 +110,18 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/versions',
+    component: Layout,
+    children: [
+      {
+        path: 'versions',
+        name: 'Versions',
+        component: () => import('@/views/versions/versions'),
+        meta: { title: 'versions', icon: 'bug' }
+      }
+    ]
+  },
+  {
     path: '/enChildren',
     component: Layout,
     children: [

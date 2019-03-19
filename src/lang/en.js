@@ -16,7 +16,8 @@ export default {
     showChild: 'show child',
     frequency: 'frequency',
     doctors: 'doctors',
-    devices: 'device manage'
+    devices: 'device manage',
+    versions: 'Version'
   },
   device: {
     deviceType: 'Device Type'
