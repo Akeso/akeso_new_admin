@@ -4,13 +4,13 @@
       <span>{{ $t('route.enChildren') }}</span>
     </div>
     <div class="filter-container">
-      姓名:
-      <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" />
-      创建时间:
-      <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
-      <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
-      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-      <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+      Name:
+      <el-input v-model="listQuery.name" label="name" placeholder="name" style="width: 100px;" class="filter-item" />
+      Creation Time:
+      <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="start date"/> -
+      <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="end date"/>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">Search</el-button>
+      <el-button class="filter-item" type="primary" @click="handleFilterClear">Clear</el-button>
     </div>
 
     <el-table
@@ -20,27 +20,27 @@
       @sort-change="handleColumnSort">
       <el-table-column
         prop="name"
-        label="姓名"
+        label="Name"
         min-width="90"/>
       <el-table-column
         prop="age"
-        label="年龄"
+        label="Age"
         min-width="90"/>
       <el-table-column
         prop="gender"
-        label="性别"
+        label="Gender"
         min-width="90"/>
       <el-table-column
         prop="createdAt"
-        label="创建时间"
+        label="Creation time"
         sortable="custom"
         min-width="180"/>
       <el-table-column
-        label="操作"
+        label="Operation"
         min-width="90" >
         <template slot-scope="scope">
           <router-link :to="'/enChildren/child/'+scope.row.id">
-            <el-button type="text" size="small">查看</el-button>
+            <el-button type="text" size="small">Show</el-button>
           </router-link>
         </template>
       </el-table-column>

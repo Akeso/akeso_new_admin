@@ -2,83 +2,78 @@
   <div class="app-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>三代儿童指标详情</span>
-        <el-button style="float: right; padding: 3px 0" type="text">导出原始数据</el-button>
+        <span>Child Information</span>
+        <el-button style="float: right; padding: 3px 0" type="text">
+          <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">export data</a>
+        </el-button>
       </div>
       <el-row style="margin-bottom: 10px;">
         <el-col>
-          <label for="">选择日期</label>
+          <label for="">Select Date</label>
           <el-date-picker
             :editable="false"
             :clearable="false"
             v-model="selectDate"
             type="date"
-            placeholder="选择日期"
+            placeholder="Select Date"
             value-format="yyyy-MM-dd"
             @change="changeDate"/>
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>姓名</p></el-col>
+        <el-col :span="6" style="border: 5px #000000;"><p>Name</p></el-col>
         <el-col :span="18"><p>{{ healthScore.childName }}</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>指标</p></el-col>
-        <el-col :span="18"><p>值</p></el-col>
+        <el-col :span="6"><p>Out Time</p></el-col>
+        <el-col :span="18"><p>{{ healthScore.outTime }} minutes</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>户外时间/天</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.outTime }} 分钟</p></el-col>
+        <el-col :span="6"><p>Eye protection lighting time</p></el-col>
+        <el-col :span="18"><p>{{ healthScore.protectLuxTime }} minutes</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>护眼光照时间/天</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.protectLuxTime }} 分钟</p></el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="6"><p>户外阳光摄入/天</p></el-col>
+        <el-col :span="6"><p>Outdoor sunlight intake</p></el-col>
         <el-col :span="18"><p>{{ healthScore.outTimeLux }} lux</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>运动步数/天</p></el-col>
+        <el-col :span="6"><p>Movement steps</p></el-col>
         <el-col :span="18"><p>{{ healthScore.stepCount }} 步</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>用眼负荷/天</p></el-col>
+        <el-col :span="6"><p>Neck burden</p></el-col>
         <el-col :span="18"><p>{{ healthScore.nearworkBurdenDay }} D</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>近距离用眼时间/天</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.nearworkTotal }} 分钟</p></el-col>
+        <el-col :span="6"><p>Time near-word</p></el-col>
+        <el-col :span="18"><p>{{ healthScore.nearworkTotal }} minutes</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>不良姿势提醒/天</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.badPostureTimes }} 次</p></el-col>
+        <el-col :span="6"><p>Poor eye position</p></el-col>
+        <el-col :span="18"><p>{{ healthScore.badPostureTimes }} times</p></el-col>
       </el-row>
       <el-row>
-        <p>= = = = = = = = = = = = = = = = = 新指标 = = = = = = = = = = = = = = = </p>
-      </el-row>
-      <el-row>
-        <el-col :span="6"><p>平均用眼距离/天</p></el-col>
+        <el-col :span="6"><p>Average eye distance</p></el-col>
         <el-col :span="18"><p>{{ healthScore.avgEyeDistance }} cm</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>连续用眼时间/天</p></el-col>
+        <el-col :span="6"><p>Use eye time continuously</p></el-col>
         <el-col :span="18"><p>{{ healthScore.eyeTimeContinuously }} hours</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>连续用眼频率/天</p></el-col>
+        <el-col :span="6"><p>Use eye frequency continuously</p></el-col>
         <el-col :span="18"><p>{{ healthScore.eyeFrequencyContinuously }} times</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>视负荷/天</p></el-col>
+        <el-col :span="6"><p>Accommodation burden</p></el-col>
         <el-col :span="18"><p>{{ healthScore.accommodationBurden }} D/hour</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>白天平均光照强度/天</p></el-col>
+        <el-col :span="6"><p>Mean daily light exposure</p></el-col>
         <el-col :span="18"><p>{{ healthScore.dailyLightExposure }} lux/min</p></el-col>
       </el-row>
       <el-row>
-        <el-col :span="6"><p>夜间平均光照强度/天</p></el-col>
+        <el-col :span="6"><p>Mean night light exposure</p></el-col>
         <el-col :span="18"><p>{{ healthScore.dailyNightExposure }} lux/min</p></el-col>
       </el-row>
     </el-card>
@@ -92,7 +87,8 @@ export default {
     return {
       userId: this.$route.params.id,
       selectDate: new Date(),
-      healthScore: {}
+      healthScore: {},
+      downloadUrl: '/api/a1/excels/original_data'
     }
   },
   mounted() {
