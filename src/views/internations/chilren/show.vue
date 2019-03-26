@@ -20,61 +20,91 @@
             @change="changeDate"/>
         </el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6" style="border: 5px #000000;"><p>Name</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.childName }}</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6"><div class="grid-content bg-purple">Name</div></el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.childName }}</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Out Time</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.outTime }} minutes</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6"><div class="grid-content bg-purple">Monitoring indicators</div></el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">Monitoring results</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Eye protection lighting time</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.protectLuxTime }} minutes</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/> Out Time</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.outTime }} minutes</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Outdoor sunlight intake</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.outTimeLux }} lux</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Eye protection lighting time</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.protectLuxTime }} minutes</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Movement steps</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.stepCount }} 步</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Outdoor sunlight intake</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.outTimeLux }} lux</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Neck burden</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.nearworkBurdenDay }} D</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Movement steps</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.stepCount }} 步</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Time near-word</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.nearworkTotal }} minutes</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Neck burden</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.nearworkBurdenDay }} D</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Poor eye position</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.badPostureTimes }} times</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Time near-word</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.nearworkTotal }} minutes</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Average eye distance</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.avgEyeDistance }} cm</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Poor eye position</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.badPostureTimes }} times</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Use eye time continuously</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.eyeTimeContinuously }} hours</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Average eye distance</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.avgEyeDistance }} cm</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Use eye frequency continuously</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.eyeFrequencyContinuously }} times</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Use eye time continuously</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.eyeTimeContinuously }} hours</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Accommodation burden</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.accommodationBurden }} D/hour</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Use eye frequency continuously</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.eyeFrequencyContinuously }} times</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Mean daily light exposure</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.dailyLightExposure }} lux/min</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Accommodation burden</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.accommodationBurden }} D/hour</div></el-col>
       </el-row>
-      <el-row>
-        <el-col :span="6"><p>Mean night light exposure</p></el-col>
-        <el-col :span="18"><p>{{ healthScore.dailyNightExposure }} lux/min</p></el-col>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Mean daily light exposure</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.dailyLightExposure }} lux/min</div></el-col>
+      </el-row>
+      <el-row :gutter="6">
+        <el-col :span="6">
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/> Mean night light exposure</div>
+        </el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.dailyNightExposure }} lux/min</div></el-col>
       </el-row>
     </el-card>
   </div>
@@ -108,4 +138,28 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.bg-purple {
+  background: #d3dce6;
+}
+
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+  padding-left: 10px;
+  /*text-align: center;*/
+  line-height: 35px;
+}
+/* element中的样式 */
+.el-row {
+  margin-bottom: 5px;
+&:last-child {
+   margin-bottom: 0;
+ }
+}
+.el-col {
+  border-radius: 4px;
+}
+</style>
 
