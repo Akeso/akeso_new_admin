@@ -54,7 +54,7 @@
         </el-col>
         <el-col :span="5"><div class="grid-content bg-purple">{{ healthScore.protectLuxTime }} minutes</div></el-col>
         <el-col :span="6">
-          <div class="grid-content bg-purple title"><svg-icon :icon-class="''"/>  Time near-word</div>
+          <div class="grid-content bg-purple title"><svg-icon :icon-class="''"/>  Time near-work</div>
         </el-col>
         <el-col :span="5"><div class="grid-content bg-purple">{{ healthScore.nearworkTotal }} minutes</div></el-col>
       </el-row>
@@ -94,15 +94,15 @@
         </el-col>
         <el-col :span="5"><div class="grid-content bg-purple">{{ healthScore.dailyNightExposure }} lux/min</div></el-col>
         <el-col :span="6">
-          <div class="grid-content bg-purple title"><svg-icon :icon-class="''"/>  Use eye frequency continuously</div>
-        </el-col>
-        <el-col :span="5"><div class="grid-content bg-purple">{{ healthScore.eyeFrequencyContinuously }} times</div></el-col>
-      </el-row>
-      <el-row :gutter="9">
-        <el-col :span="6" :offset="11">
           <div class="grid-content bg-purple title"><svg-icon :icon-class="''"/>  Accommodation burden</div>
         </el-col>
         <el-col :span="5"><div class="grid-content bg-purple">{{ healthScore.accommodationBurden }} D/hour</div></el-col>
+      </el-row>
+      <el-row :gutter="9">
+        <el-col :span="6" :offset="11">
+          <div class="grid-content bg-purple title"><svg-icon :icon-class="''"/>  Use eye frequency continuously</div>
+        </el-col>
+        <el-col :span="5"><div class="grid-content bg-purple">{{ healthScore.eyeFrequencyContinuously }} times</div></el-col>
       </el-row>
     </el-card>
   </div>
