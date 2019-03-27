@@ -30,7 +30,7 @@
       </el-row>
       <el-row :gutter="6">
         <el-col :span="6">
-          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/> Out Time</div>
+          <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/> Time outdoor</div>
         </el-col>
         <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.outTime }} minutes</div></el-col>
       </el-row>
@@ -50,7 +50,7 @@
         <el-col :span="6">
           <div class="grid-content bg-purple"><svg-icon :icon-class="'eye-open'"/>  Movement steps</div>
         </el-col>
-        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.stepCount }} 步</div></el-col>
+        <el-col :span="18"><div class="grid-content bg-purple">{{ healthScore.stepCount }} step</div></el-col>
       </el-row>
       <el-row :gutter="6">
         <el-col :span="6">
