@@ -15,6 +15,7 @@ export default {
     intelligent: '智能儿童',
     showChild: '儿童详情',
     frequency: '上传频次',
+    feedback: '意见反馈',
     doctors: '医生管理',
     devices: '镜腿设备',
     versions: '版本管理',

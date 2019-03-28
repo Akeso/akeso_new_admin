@@ -15,6 +15,7 @@ export default {
     intelligent: 'intelligent',
     showChild: 'show child',
     frequency: 'frequency',
+    feedback: 'feedback',
     doctors: 'doctors',
     devices: 'device manage',
     versions: 'Version'

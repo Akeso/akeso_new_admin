@@ -110,6 +110,18 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/feedback',
+    component: Layout,
+    children: [
+      {
+        path: 'feedback',
+        name: 'Feedback',
+        component: () => import('@/views/feedback/feedback'),
+        meta: { title: 'feedback', icon: 'guide' }
+      }
+    ]
+  },
+  {
     path: '/versions',
     component: Layout,
     children: [
