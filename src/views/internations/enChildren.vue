@@ -33,7 +33,6 @@
       <el-table-column
         prop="createdAt"
         label="Creation time"
-        sortable="custom"
         min-width="180"/>
       <el-table-column
         label="Operation"
@@ -52,7 +51,7 @@
   </el-card>
 </template>
 <script>
-import { fetchList } from '@/api/children'
+import { fetchIntelligentChildren } from '@/api/children'
 export default {
   data() {
     return {
@@ -73,7 +72,7 @@ export default {
   },
   methods: {
     getList() {
-      fetchList(this.listQuery).then(response => {
+      fetchIntelligentChildren(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
         // Just to simulate the time of the request
