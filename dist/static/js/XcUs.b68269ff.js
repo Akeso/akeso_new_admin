@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["XcUs"],{XcUs:function(n,s,e){"use strict";e.r(s);var t=e("KHd+"),c=Object(t.a)({},function(){var n=this.$createElement;return(this._self._c||n)("h1",[this._v("分级预警")])},[],!1,null,null,null);c.options.__file="class_warn.vue";s.default=c.exports}}]);
