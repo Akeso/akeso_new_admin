@@ -5,7 +5,7 @@
     </div>
     <el-row>
       <el-form :inline="true" :model="conditionQuery" class="demo-form-inline">
-        <el-form-item label="年龄">
+        <el-form-item label="年龄" min-width="100">
           <el-select v-model="conditionQuery.age" placeholder="请选择">
             <el-option
               v-for="item in options.ageStartOptions"
