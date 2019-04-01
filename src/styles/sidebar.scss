@@ -64,6 +64,15 @@
       &:hover {
         background-color: $menuHover !important;
       }
+      i {
+        color: $menuHover !important;
+      }
+    }
+
+    .el-submenu__title {
+      i {
+        color: #ffffff !important;
+      }
     }
 
     .is-active>.el-submenu__title {
@@ -175,3 +184,4 @@
     }
   }
 }
+

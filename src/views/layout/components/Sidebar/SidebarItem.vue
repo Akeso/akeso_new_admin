@@ -4,7 +4,7 @@
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="generateTitle(onlyOneChild.meta.title)"/>
+          <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="generateTitle(onlyOneChild.meta.title) + isAdmin"/>
         </el-menu-item>
       </app-link>
     </template>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import path from 'path'
 import { generateTitle } from '@/utils/i18n'
 import { isExternal } from '@/utils'
@@ -60,6 +61,14 @@ export default {
   data() {
     return {
       onlyOneChild: null
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'baseType'
+    ]),
+    isAdmin: function() {
+      return this.baseType === 'admin'
     }
   },
   methods: {

@@ -74,6 +74,27 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/apt_arch',
+    component: Layout,
+    redirect: '/apt_arch/appintments',
+    name: 'aptArch',
+    meta: { title: 'aptArch', icon: 'example' },
+    children: [
+      {
+        path: 'appointments',
+        name: 'Appointments',
+        component: () => import('@/views/apt_arch/appointments'),
+        meta: { title: 'appointments', icon: 'table' }
+      },
+      {
+        path: 'archives',
+        name: 'Archives',
+        component: () => import('@/views/apt_arch/archives'),
+        meta: { title: 'archives', icon: 'table' }
+      }
+    ]
+  },
+  {
     path: '/doctors',
     component: Layout,
     children: [
