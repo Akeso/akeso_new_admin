@@ -51,7 +51,7 @@
   </el-card>
 </template>
 <script>
-import { fetchIntelligentChildren } from '@/api/children'
+import { fetchChildrenEn } from '@/api/children'
 export default {
   data() {
     return {
@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     getList() {
-      fetchIntelligentChildren(this.listQuery).then(response => {
+      fetchChildrenEn(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
         // Just to simulate the time of the request

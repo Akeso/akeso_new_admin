@@ -17,6 +17,14 @@ export function fetchChild(query) {
 
 export function fetchIntelligentChildren(query) {
   return request({
+    url: '/api/a1/children/with_equipment',
+    method: 'get',
+    params: query
+  })
+}
+
+export function fetchChildrenEn(query) {
+  return request({
     url: '/api/a1/children/index_en',
     method: 'get',
     params: query

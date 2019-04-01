@@ -1,68 +1,69 @@
 <template>
   <div class="app-container">
-    <div class="title-container">
-      <svg-icon icon-class="list" />全部儿童
-    </div>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>全部儿童</span>
+      </div>
 
-    <div class="filter-container">
-      姓名:
-      <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" />
-      创建时间:
-      <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
-      <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
-      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-      <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
-    </div>
+      <div class="filter-container">
+        姓名:
+        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" />
+        创建时间:
+        <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
+        <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+        <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+      </div>
 
-    <el-table
-      :data="list"
-      border
-      style="width: 100%"
-      @sort-change="handleColumnSort">
-      <el-table-column
-        prop="name"
-        label="姓名"
-        min-width="90"/>
-      <el-table-column
-        prop="age"
-        label="年龄"
-        min-width="90"/>
-      <el-table-column
-        prop="gender"
-        label="性别"
-        min-width="90"/>
-      <el-table-column
-        prop="schoolName"
-        label="学校名称"
-        min-width="180"/>
-      <el-table-column
-        prop="locationString"
-        label="地区"
-        min-width="180"/>
-      <el-table-column
-        prop="phone"
-        label="联系电话"
-        min-width="120"/>
-      <el-table-column
-        prop="createdAt"
-        label="创建时间"
-        sortable="custom"
-        min-width="180"/>
-      <el-table-column
-        label="操作"
-        min-width="90" >
-        <template slot-scope="scope">
-          <router-link :to="'/preview/child/'+scope.row.id">
-            <el-button type="text" size="small">查看</el-button>
-          </router-link>
-        </template>
-      </el-table-column>
-    </el-table>
+      <el-table
+        :data="list"
+        border
+        style="width: 100%"
+        @sort-change="handleColumnSort">
+        <el-table-column
+          prop="name"
+          label="姓名"
+          min-width="60"/>
+        <el-table-column
+          prop="age"
+          label="年龄"
+          min-width="50"/>
+        <el-table-column
+          prop="gender"
+          label="性别"
+          min-width="50"/>
+        <el-table-column
+          prop="schoolName"
+          label="学校名称"
+          min-width="90"/>
+        <el-table-column
+          prop="locationString"
+          label="地区"
+          min-width="120"/>
+        <el-table-column
+          prop="phone"
+          label="联系电话"
+          min-width="100"/>
+        <el-table-column
+          prop="createdAt"
+          label="创建时间"
+          sortable="custom"
+          min-width="120"/>
+        <el-table-column
+          label="操作"
+          min-width="80" >
+          <template slot-scope="scope">
+            <router-link :to="'/preview/child/'+scope.row.id">
+              <el-button type="text" size="small">查看</el-button>
+            </router-link>
+          </template>
+        </el-table-column>
+      </el-table>
 
-    <div class="pagination-container">
-      <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
-    </div>
-
+      <div class="pagination-container">
+        <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
+      </div>
+    </el-card>
   </div>
 </template>
 <script>
