@@ -98,6 +98,18 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/messages',
+    component: Layout,
+    children: [
+      {
+        path: 'messages',
+        name: 'Messages',
+        component: () => import('@/views/messages/messages'),
+        meta: { title: 'messages', icon: 'bug' }
+      }
+    ]
+  },
+  {
     path: '/devices',
     component: Layout,
     children: [

@@ -18,6 +18,7 @@ export default {
     feedback: 'feedback',
     doctors: 'doctors',
     devices: 'device manage',
+    messages: 'messages',
     versions: 'Version'
   },
   device: {

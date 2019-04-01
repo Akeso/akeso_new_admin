@@ -18,6 +18,7 @@ export default {
     feedback: '意见反馈',
     doctors: '医生管理',
     devices: '镜腿设备',
+    messages: '消息盒子',
     versions: '版本管理',
     // - - - 这里是例子的分界线 - - -
     Nested: 'Nested',
