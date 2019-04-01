@@ -11,6 +11,7 @@ import Layout from '../views/layout/Layout'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
+* only: true                   if `hidden:true` 将只有管理员才展示
 * english: true                  if `english:true` 改菜单是英文版本独有的，只有在英文版下才展示(default is false)
 * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
 *                                if not set alwaysShow, only more than one route under the children
@@ -97,6 +98,7 @@ export const constantRouterMap = [
   {
     path: '/doctors',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'doctors',
@@ -109,6 +111,7 @@ export const constantRouterMap = [
   {
     path: '/frequency',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'frequency',
@@ -133,6 +136,7 @@ export const constantRouterMap = [
   {
     path: '/devices',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'devices',
@@ -145,6 +149,7 @@ export const constantRouterMap = [
   {
     path: '/feedback',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'feedback',
@@ -157,6 +162,7 @@ export const constantRouterMap = [
   {
     path: '/versions',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'versions',
@@ -169,6 +175,7 @@ export const constantRouterMap = [
   {
     path: '/enChildren',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'enChildren',

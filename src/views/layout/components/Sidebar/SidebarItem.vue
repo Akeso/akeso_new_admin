@@ -1,14 +1,16 @@
 <template>
-  <div v-if="!item.hidden&&item.children&&englishShowingItem(item.children, item)" class="menu-wrapper">
+  <div v-if="!item.hidden&&item.children&&englishShowingItem(item.children, item)&&canShow(item)" class="menu-wrapper">
 
+    <!--没有子菜单-->
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="generateTitle(onlyOneChild.meta.title) + isAdmin"/>
+          <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="generateTitle(onlyOneChild.meta.title)"/>
         </el-menu-item>
       </app-link>
     </template>
 
+    <!--有子菜单-->
     <el-submenu v-else :index="resolvePath(item.path)">
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta.icon" :title="generateTitle(item.meta.title)" />
@@ -72,6 +74,9 @@ export default {
     }
   },
   methods: {
+    canShow(item) {
+      return this.isAdmin ? true : !item.only
+    },
     englishShowingItem(children, parent) {
       if (this.$store.getters.language === 'en') {
         const showingChildren = children.filter(item => {
