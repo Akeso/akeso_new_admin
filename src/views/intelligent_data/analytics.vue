@@ -1,3 +1,10 @@
 <template>
-  <h1>智能分析</h1>
+  <div class="app-container">
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>智能分析</span>
+      </div>
+    </el-card>
+  </div>
 </template>
+
