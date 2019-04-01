@@ -96,6 +96,48 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/myopia',
+    component: Layout,
+    redirect: '/myopia/class_warn',
+    name: 'myopia',
+    meta: { title: 'myopia', icon: 'example' },
+    children: [
+      {
+        path: 'classwarn',
+        name: 'classWarn',
+        component: () => import('@/views/myopia/class_warn'),
+        meta: { title: 'class_warn', icon: 'table' }
+      },
+      {
+        path: 'highwarn',
+        name: 'highWarn',
+        component: () => import('@/views/myopia/high_warn'),
+        meta: { title: 'high_warn', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/intelligent_data',
+    component: Layout,
+    redirect: '/intelligent_data/class_warn',
+    name: 'intelligentData',
+    meta: { title: 'intelligentData', icon: 'example' },
+    children: [
+      {
+        path: 'analytics',
+        name: 'analytics',
+        component: () => import('@/views/intelligent_data/analytics'),
+        meta: { title: 'analytics', icon: 'table' }
+      },
+      {
+        path: 'sorting',
+        name: 'sorting',
+        component: () => import('@/views/intelligent_data/sorting'),
+        meta: { title: 'sorting', icon: 'table' }
+      }
+    ]
+  },
+  {
     path: '/doctors',
     component: Layout,
     only: true,
