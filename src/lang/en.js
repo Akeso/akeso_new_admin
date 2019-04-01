@@ -6,6 +6,7 @@ export default {
   },
   route: {
     dashboard: 'Dashboard',
+    Account: 'Account',
     Form: 'Form',
     preview: 'Preview',
     overview: 'Overview',

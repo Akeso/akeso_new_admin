@@ -6,7 +6,7 @@ export default {
   },
   route: {
     dashboard: '首页',
-    Form: '表单',
+    Account: '账户信息',
     preview: '最新预览',
     overview: '用户预览',
     allchildren: '全部儿童',
