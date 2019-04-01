@@ -74,7 +74,8 @@ import { fetchList, unbindDevice } from '@/api/devices'
 const deviceTypeOptions = [
   { key: '', value: '全部' },
   { key: 'v1', value: '一代' },
-  { key: 'v2', value: '二代' }
+  { key: 'v2', value: '二代' },
+  { key: 'v3', value: '三代' }
 ]
 const stateOptions = [
   { key: '', value: '全部' },
