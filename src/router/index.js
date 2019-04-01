@@ -42,7 +42,7 @@ export const constantRouterMap = [
   {
     path: '/preview',
     component: Layout,
-    redirect: '/preview/overview',
+    redirect: '/preview/allchildren',
     name: 'Preview',
     meta: { title: 'preview', icon: 'example' },
     children: [
