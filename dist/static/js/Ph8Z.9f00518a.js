@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["Ph8Z"],{Ph8Z:function(e,n,t){"use strict";t.r(n);var i=t("KHd+"),s=Object(i.a)({},function(){var e=this.$createElement;return(this._self._c||e)("h1",[this._v("账户信息")])},[],!1,null,null,null);s.options.__file="index.vue";n.default=s.exports}}]);

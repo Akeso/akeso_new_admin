@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["Djdm"],{Djdm:function(n,e,t){"use strict";t.r(e);var i=t("KHd+"),s=Object(i.a)({},function(){var n=this.$createElement;return(this._self._c||n)("h1",[this._v("高级预警")])},[],!1,null,null,null);s.options.__file="high_warn.vue";e.default=s.exports}}]);

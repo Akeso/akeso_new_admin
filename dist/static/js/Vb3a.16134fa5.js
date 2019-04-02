@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["Vb3a"],{Vb3a:function(n,t,e){"use strict";e.r(t);var s=e("KHd+"),a=Object(s.a)({},function(){var n=this.$createElement;return(this._self._c||n)("h1",[this._v("智能分析")])},[],!1,null,null,null);a.options.__file="analytics.vue";t.default=a.exports}}]);
