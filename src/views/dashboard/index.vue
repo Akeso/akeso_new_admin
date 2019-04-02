@@ -37,7 +37,7 @@
     <el-tag>临床标签统计</el-tag>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
       <el-col v-for="item in clinicalTags" :key="item.id" :span="6">
-        <el-card class="box-card">
+        <el-card class="box-card" >
           <div slot="header" class="clearfix">
             <span>{{ item.name }}</span>
           </div>
