@@ -3,26 +3,52 @@
     <el-row :gutter="20">
       <el-col :span="12">
         选择日期
-        <el-date-picker
-          v-model="value1"
-          type="date"
-          placeholder="选择日期"/>
+        <el-select v-model="selectDate" placeholder="请选择">
+          <el-option
+            v-for="item in dateOptions"
+            :key="item.key"
+            :label="item.label"
+            :value="item.key"/>
+        </el-select>
       </el-col>
-      <el-col :span="6">
-        <el-breadcrumb separator="/" class="breadcrumb">
-          <el-breadcrumb-item><a href="/">近一周</a></el-breadcrumb-item>
-          <el-breadcrumb-item>近一个月</el-breadcrumb-item>
-          <el-breadcrumb-item>近三个月</el-breadcrumb-item>
-        </el-breadcrumb>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        条件选择
+        <el-select v-model="selectCondition" placeholder="请选择">
+          <el-option
+            v-for="item in conditionOptions"
+            :key="item.key"
+            :label="item.label"
+            :value="item.key"/>
+        </el-select>
       </el-col>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
     </el-row>
   </div>
 </template>
 <script>
+const dateOptions = [
+  { key: 'first', label: '近一周' },
+  { key: 'second', label: '近一个月' },
+  { key: 'third', label: '近三个月' }
+]
+const conditionOptions = [
+  { key: 'area', label: '区域对比' },
+  { key: 'gender', label: '性别对比' },
+  { key: 'age', label: '年龄对比' }
+]
 export default {
   data() {
     return {
-      value1: ''
+      dateOptions,
+      conditionOptions,
+      selectDate: 'first',
+      selectCondition: 'area'
+    }
+  },
+  methods: {
+    handleFilter: function() {
     }
   }
 }
@@ -30,10 +56,10 @@ export default {
 
 <style scoped>
   .container {
-    padding: 20px 5px 10px 5px;
+    padding: 10px 5px 10px 5px;
   }
-  .breadcrumb {
-    line-height: 35px;
+  .el-row {
+    margin-top: 10px;
   }
   .table-cls {
     margin-top: 20px;

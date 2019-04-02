@@ -120,7 +120,6 @@ export default {
   },
   methods: {
     handleFilter: function() {
-      console.log('aaaaaaaaa')
       this.getData()
     },
     getData: function() {
