@@ -45,7 +45,7 @@ export default {
       },
       tooltip: {
         trigger: 'axis',
-        formatter: '{b}<br />光照摄入：{c} lux'
+        formatter: '{b}<br />运动步数：{c} 步'
       },
       xAxis: {
         type: 'category',
