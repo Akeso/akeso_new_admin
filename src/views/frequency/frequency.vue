@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>意见反馈</span>

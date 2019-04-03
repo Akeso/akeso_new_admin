@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>分级预警</span>

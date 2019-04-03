@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>建立/查询档案</span>
@@ -13,17 +13,17 @@
         </el-button>
       </div>
 
-      <div class="filter-container">
+      <el-row>
         姓名:
         <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 200px;" class="filter-item" clearable/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
-      </div>
+      </el-row>
 
       <el-table
         :data="list"
         border
-        style="width: 100%"
+        style="width: 100%;margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
           prop="date"

@@ -1,15 +1,17 @@
 <template>
-  <div class="app-container">
+  <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>镜腿设备</span>
       </div>
 
-      <div class="filter-container">
+      <el-row>
         MAC地址:
         <el-input v-model="listQuery.macAddress" label="MAC地址" placeholder="地址" style="width: 180px;" class="filter-item" clearable/>
         孩子姓名:
         <el-input v-model="listQuery.childName" label="孩子姓名" placeholder="姓名" style="width: 120px;" class="filter-item" clearable/>
+      </el-row>
+      <el-row style="margin-top: 10px;">
         镜腿型号：
         <el-select v-model="listQuery.deviceType" :placeholder="$t('device.deviceType')" clearable class="filter-item" style="width: 120px">
           <el-option v-for="item in deviceTypeOptions" :key="item.key" :label="item.value" :value="item.key"/>
@@ -20,12 +22,12 @@
         </el-select>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
-      </div>
+      </el-row>
 
       <el-table
         :data="list"
         border
-        style="width: 100%"
+        style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
           prop="macAddress"

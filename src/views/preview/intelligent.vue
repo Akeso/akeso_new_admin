@@ -1,28 +1,30 @@
 <template>
-  <div class="app-container">
+  <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>智能儿童</span>
       </div>
 
-      <div class="filter-container">
+      <el-row>
         姓名:
-        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" />
+        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
         联系电话:
-        <el-input v-model="listQuery.phone" label="联系电话" placeholder="联系电话" style="width: 180px;" class="filter-item" />
+        <el-input v-model="listQuery.phone" label="联系电话" placeholder="联系电话" style="width: 180px;" class="filter-item" clearable/>
         Mac地址:
-        <el-input v-model="listQuery.macAddress" label="Mac地址" placeholder="Mac地址" style="width: 180px;" class="filter-item" />
+        <el-input v-model="listQuery.macAddress" label="Mac地址" placeholder="Mac地址" style="width: 180px;" class="filter-item" clearable/>
+      </el-row>
+      <el-row style="margin-top: 10px;">
         最近同步时间:
         <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
         <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
-      </div>
+      </el-row>
 
       <el-table
         :data="list"
         border
-        style="width: 100%"
+        style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
           label="姓名"

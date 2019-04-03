@@ -1,20 +1,20 @@
 <template>
-  <div class="app-container">
+  <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>意见反馈</span>
       </div>
 
-      <div class="filter-container">
-        <label for="">家长联系电话</label>
-        <el-input v-model="listQuery.phone" placeholder="搜索电话" style="width: 200px;" class="filter-item" />
+      <el-row>
+        家长联系电话
+        <el-input v-model="listQuery.phone" placeholder="搜索电话" style="width: 200px;" class="filter-item" clearable/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-      </div>
+      </el-row>
 
       <el-table
         :data="list"
         border
-        style="width: 100%"
+        style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
           prop="parentPhone"

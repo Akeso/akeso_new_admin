@@ -1,28 +1,34 @@
 <template>
-  <div class="app-container">
+  <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>医生管理</span>
       </div>
 
-      <div class="filter-container">
-        姓名:
-        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" />
-        联系电话:
-        <el-input v-model="listQuery.phone" label="联系电话" placeholder="联系电话" style="width: 180px;" class="filter-item" />
-        登录账号:
-        <el-input v-model="listQuery.email" label="姓名" placeholder="登录账号" style="width: 180px;" class="filter-item" />
-        注册时间:
-        <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
-        <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-        <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
-      </div>
+      <el-row>
+        <el-col>
+          姓名:
+          <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
+          联系电话:
+          <el-input v-model="listQuery.phone" label="联系电话" placeholder="联系电话" style="width: 180px;" class="filter-item" clearable/>
+          登录账号:
+          <el-input v-model="listQuery.email" label="姓名" placeholder="登录账号" style="width: 180px;" class="filter-item" clearable/>
+        </el-col>
+      </el-row>
+      <el-row style="margin-top: 10px;">
+        <el-col>
+          注册时间:
+          <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
+          <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
+          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+          <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+        </el-col>
+      </el-row>
 
       <el-table
         :data="list"
         border
-        style="width: 100%"
+        style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
           prop="name"
