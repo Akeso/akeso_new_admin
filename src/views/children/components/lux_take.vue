@@ -85,7 +85,12 @@ export default {
         ]
       },
       yAxis: {
-        name: '光照摄入量(lux)',
+        name: '           光照摄入量(lux)',
+        nameLocation: 'end',
+        nameTextStyle: {
+          align: 'right'
+        },
+        boundaryGap: ['20%', '20%'],
         type: 'value'
       },
       series: {
