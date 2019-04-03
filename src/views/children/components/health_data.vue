@@ -1,5 +1,5 @@
 <template>
-  <el-tabs :value="tabName" @tab-click="handleClick">
+  <el-tabs :value="tabName" type="border-card" @tab-click="handleClick">
     <el-tab-pane name="first">
       <span slot="label">健康数据</span>
       <el-row class="tac">
