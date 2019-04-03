@@ -47,3 +47,12 @@ export function fetchLuxTake(query) {
     params: query
   })
 }
+
+export function fetchStepCount(query) {
+  return request({
+    url: '/api/a1/reports/step_count',
+    method: 'get',
+    params: query
+  })
+}
+

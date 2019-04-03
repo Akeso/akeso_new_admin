@@ -67,7 +67,6 @@ export default {
     }
     return {
       luxData: {},
-      offsetV: 1,
       selectDate: new Date(),
       legend: {
         data: ['光照摄入量']
@@ -90,7 +89,6 @@ export default {
         nameTextStyle: {
           align: 'right'
         },
-        boundaryGap: ['20%', '20%'],
         type: 'value'
       },
       series: {
