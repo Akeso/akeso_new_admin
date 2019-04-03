@@ -21,6 +21,7 @@
         <el-row>
           <el-col :span="24">
             <!--<ve-histogram :data="chartData" :settings="chartSettings" :set-option-opts="true"/>-->
+            <ve-pie :title="title" :tooltip="tooltipPie" :series="seriesPie"></ve-pie>
             <ve-histogram :color="colorHistogram" :legend="legendHistogram" :x-axis="xAxisHistogram" :y-axis="yAxisHistogram" :series="seriesHistogram"/>
           </el-col>
         </el-row>
@@ -46,8 +47,8 @@ export default {
     }
     return {
       selectDate: new Date(),
-      titleHistogram: {
-        text: '保护因素分析'
+      title: {
+        text: '户内外时间'
       },
       colorHistogram: ['#26c281', '#003366'],
       xAxisHistogram: {
@@ -118,12 +119,30 @@ export default {
             fontWeight: 'bold',
             color: '#000000'
           },
-          itemStyle: {
-            color: '#003366'
-          },
+          itemStyle: { color: '#003366' },
           data: []
         }
-      ]
+      ],
+      tooltipPie: {
+        trigger: 'item',
+        formatter: '{b} : {c}分钟 ({d}%)'
+      },
+      seriesPie: {
+        type: 'pie',
+        radius: '65%',
+        center: ['50%', '60%'],
+        data: [
+          { value: 0, name: '户外时长', itemStyle: { color: '#26c281' }},
+          { value: 0, name: '室内时长', itemStyle: { color: '#003366' }}
+        ],
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
+          }
+        }
+      }
     }
   },
   created() {
@@ -136,6 +155,8 @@ export default {
       fetchOutTime({ child_id: this.userId, selectDate: this.selectDate }).then(response => {
         this.seriesHistogram[0].data = response.data.outTimeHour
         this.seriesHistogram[1].data = response.data.inTimeHour
+        this.seriesPie.data[0].value = response.data.outTime
+        this.seriesPie.data[1].value = response.data.inTime
         // this.healthScore = response.data
         // const healthIndexes = response.data.healthIndexHour
         // this.chartData.rows.forEach(function(item, index) {
