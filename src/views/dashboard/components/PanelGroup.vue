@@ -1,9 +1,9 @@
 <template>
-  <el-row :gutter="40" class="panel-group">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+  <el-row :gutter="20" class="panel-group">
+    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('Allchildren')">
         <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+          <svg-icon icon-class="bear01" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">全部儿童</div>
@@ -11,10 +11,10 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('messages')">
+    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('Intelligent')">
         <div class="card-panel-icon-wrapper icon-message">
-          <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+          <svg-icon icon-class="bear02" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">智能儿童</div>
@@ -69,7 +69,9 @@ export default {
   },
   methods: {
     handleSetLineChartData(type) {
-      this.$emit('handleSetLineChartData', type)
+      console.log('type => ', type)
+      this.$router.push({ name: type })
+      // this.$emit('handleSetLineChartData', type)
     }
   }
 }

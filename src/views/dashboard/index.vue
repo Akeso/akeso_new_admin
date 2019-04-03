@@ -1,7 +1,8 @@
 <template>
   <div class="dashboard-container">
-    <el-tag>相关数据</el-tag>
+
     <panel-group :statistics-data="statisticsData" @handleSetLineChartData="handleSetLineChartData" />
+
     <el-row type="flex" class="row-bg" justify="space-between">
       <el-tag>时段分布</el-tag>
       <el-date-picker
