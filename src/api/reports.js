@@ -39,3 +39,11 @@ export function fetchOutTime(query) {
     params: query
   })
 }
+
+export function fetchLuxTake(query) {
+  return request({
+    url: '/api/a1/reports/lux_take',
+    method: 'get',
+    params: query
+  })
+}

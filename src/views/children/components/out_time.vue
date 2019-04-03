@@ -21,7 +21,7 @@
         <el-row>
           <el-col :span="24">
             <!--<ve-histogram :data="chartData" :settings="chartSettings" :set-option-opts="true"/>-->
-            <ve-pie :title="title" :tooltip="tooltipPie" :series="seriesPie"></ve-pie>
+            <ve-pie :title="title" :tooltip="tooltipPie" :series="seriesPie"/>
             <ve-histogram :color="colorHistogram" :legend="legendHistogram" :x-axis="xAxisHistogram" :y-axis="yAxisHistogram" :series="seriesHistogram"/>
           </el-col>
         </el-row>
