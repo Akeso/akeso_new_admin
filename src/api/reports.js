@@ -19,7 +19,7 @@ export function fetchDailyEn(query) {
 export function fetchWeekly(query) {
   return request({
     url: '/api/a1/reports/weekly',
-    methods: 'get',
+    method: 'get',
     params: query
   })
 }
@@ -27,8 +27,15 @@ export function fetchWeekly(query) {
 export function fetchMonthly(query) {
   return request({
     url: '/api/a1/reports/monthly',
-    methods: 'get',
+    method: 'get',
     params: query
   })
 }
 
+export function fetchOutTime(query) {
+  return request({
+    url: '/api/a1/reports/out_time',
+    method: 'get',
+    params: query
+  })
+}
