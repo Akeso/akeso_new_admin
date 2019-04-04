@@ -18,6 +18,7 @@
         <span>选择日期</span>
         <el-date-picker
           v-model="listQuery.selectDate"
+          :clearable="false"
           type="date"
           placeholder="选择日期"/>
         <el-select v-model="listQuery.period" placeholder="请选择">
@@ -36,9 +37,14 @@
       style="width: 100%"
       @sort-change="handleColumnSort">
       <el-table-column
-        prop="childName"
         label="姓名"
-        min-width="60"/>
+        min-width="60">
+        <template slot-scope="scope">
+          <router-link :to="'/preview/child/'+scope.row.childId">
+            <el-button type="text" size="small">{{ scope.row.childName }}</el-button>
+          </router-link>
+        </template>
+      </el-table-column>
       <el-table-column
         v-if="hasOptions('healthIndex')"
         prop="healthIndex"
