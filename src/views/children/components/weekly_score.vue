@@ -1,9 +1,6 @@
 <template>
-  <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <span>健康周报</span>
-    </div>
-    <el-row style="margin-bottom: 10px;">
+  <div>
+    <el-row style="margin: 10px;">
       <el-col>
         <label for="">选择日期</label>
         <el-date-picker
@@ -16,99 +13,103 @@
           @change="changeDate"/>
       </el-col>
     </el-row>
-    <div class="filter-container">
-      <el-button class="filter-item" type="primary" icon="el-icon-download" >导出PDF</el-button>
+    <el-row style="margin: 10px;">
+      <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF</el-button>
       <el-button class="filter-item" type="primary" icon="el-icon-download" >导出Excel</el-button>
-    </div>
-    <el-row>
-      <el-col :span="14">
-        <el-tag>健康周报</el-tag>
-        <ve-histogram :color="colorHistogram" :x-axis="xAxisHistogram" :y-axis="yAxisHistogram" :series="seriesHistogram"/>
-        <ve-radar :title="titleRadarGood" :tooltip="tooltipRadarGood" :radar="radarRadarGood" :series="seriesRadarGood"/>
-        <ve-radar :title="titleRadarBad" :tooltip="tooltipRadarBad" :radar="radarRadarBad" :series="seriesRadarBad"/>
-      </el-col>
-      <el-col :span="10">
-        <el-row>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>得分情况</span>
-            </div>
-            <p style="font-size: 20px; font-weight: bold;">本周平均分 {{ weekData.healthIndex }}</p>
-            <p>总戴镜时间 {{ weekData.wearTime }}</p>
-            <p>累计保护因素 {{ weekData.upElement }}</p>
-            <p>累计危险因素 {{ weekData.downElement }}</p>
-            <p>周一到周五平均分 {{ weekData.weekScoreAvg }}</p>
-            <p>周六周日平均分 {{ weekData.weekendScoreAvg }}</p>
-          </el-card>
-        </el-row>
-        <el-row>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>加分项</span>
-            </div>
-            <label for="">户外时间/天</label>
-            <el-progress :stroke-width="14" :percentage="weekData.outTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
-              <div>
-                <span>{{ weekData.outTime }}</span>
-              </div>
-            </el-progress>
-            <label for="">护眼光照时间/天</label>
-            <el-progress :stroke-width="14" :percentage="weekData.protectLuxTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
-              <div>
-                <span>{{ weekData.protectLuxTime }}</span>
-              </div>
-            </el-progress>
-            <label for="">阳光摄入量/天</label>
-            <el-progress :stroke-width="14" :percentage="weekData.luxDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
-              <div>
-                <span>{{ weekData.luxDay }}</span>
-              </div>
-            </el-progress>
-            <label for="">运动步数/天</label>
-            <el-progress :stroke-width="14" :percentage="weekData.stepCountPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
-              <div>
-                <span>{{ weekData.stepCount }}</span>
-              </div>
-            </el-progress>
-          </el-card>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>减分项</span>
-            </div>
-            <label for="">用眼负荷/天</label>
-            <el-progress :stroke-width="14" :percentage="weekData.nearworkBurdenDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
-              <div>
-                <span>{{ weekData.nearworkBurdenDay }}</span>
-              </div>
-            </el-progress>
-            <label for="">不良姿势提醒/天</label>
-            <el-progress :stroke-width="14" :percentage="weekData.badPostureTimesPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
-              <div>
-                <span>{{ weekData.badPostureTimes }}</span>
-              </div>
-            </el-progress>
-            <label for="">近距离用眼时间/天</label>
-            <el-progress :stroke-width="14" :percentage="weekData.nearworkDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
-              <div>
-                <span>{{ weekData.nearworkBurdenDay }}</span>
-              </div>
-            </el-progress>
-          </el-card>
-        </el-row>
-        <el-row>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>医生建议</span>
-              <el-button style="float: right; padding: 3px 0" type="text">编辑建议</el-button>
-            </div>
-            <div>
-              {{ weekData.suggest }}
-            </div>
-          </el-card>
-        </el-row>
-      </el-col>
     </el-row>
-  </el-card>
+    <el-card id="pdfDom" class="box-card">
+      <div slot="header" class="clearfix">
+        <span>健康周报</span>
+      </div>
+      <el-row>
+        <el-col :span="14">
+          <ve-histogram :color="colorHistogram" :x-axis="xAxisHistogram" :y-axis="yAxisHistogram" :series="seriesHistogram"/>
+          <ve-radar :title="titleRadarGood" :tooltip="tooltipRadarGood" :radar="radarRadarGood" :series="seriesRadarGood"/>
+          <ve-radar :title="titleRadarBad" :tooltip="tooltipRadarBad" :radar="radarRadarBad" :series="seriesRadarBad"/>
+        </el-col>
+        <el-col :span="10">
+          <el-row>
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>得分情况</span>
+              </div>
+              <p style="font-size: 20px; font-weight: bold;">本周平均分 {{ weekData.healthIndex }}</p>
+              <p>总戴镜时间 {{ weekData.wearTime }}</p>
+              <p>累计保护因素 {{ weekData.upElement }}</p>
+              <p>累计危险因素 {{ weekData.downElement }}</p>
+              <p>周一到周五平均分 {{ weekData.weekScoreAvg }}</p>
+              <p>周六周日平均分 {{ weekData.weekendScoreAvg }}</p>
+            </el-card>
+          </el-row>
+          <el-row>
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>加分项</span>
+              </div>
+              <label for="">户外时间/天</label>
+              <el-progress :stroke-width="14" :percentage="weekData.outTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+                <div>
+                  <span>{{ weekData.outTime }}</span>
+                </div>
+              </el-progress>
+              <label for="">护眼光照时间/天</label>
+              <el-progress :stroke-width="14" :percentage="weekData.protectLuxTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+                <div>
+                  <span>{{ weekData.protectLuxTime }}</span>
+                </div>
+              </el-progress>
+              <label for="">阳光摄入量/天</label>
+              <el-progress :stroke-width="14" :percentage="weekData.luxDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+                <div>
+                  <span>{{ weekData.luxDay }}</span>
+                </div>
+              </el-progress>
+              <label for="">运动步数/天</label>
+              <el-progress :stroke-width="14" :percentage="weekData.stepCountPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+                <div>
+                  <span>{{ weekData.stepCount }}</span>
+                </div>
+              </el-progress>
+            </el-card>
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>减分项</span>
+              </div>
+              <label for="">用眼负荷/天</label>
+              <el-progress :stroke-width="14" :percentage="weekData.nearworkBurdenDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+                <div>
+                  <span>{{ weekData.nearworkBurdenDay }}</span>
+                </div>
+              </el-progress>
+              <label for="">不良姿势提醒/天</label>
+              <el-progress :stroke-width="14" :percentage="weekData.badPostureTimesPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+                <div>
+                  <span>{{ weekData.badPostureTimes }}</span>
+                </div>
+              </el-progress>
+              <label for="">近距离用眼时间/天</label>
+              <el-progress :stroke-width="14" :percentage="weekData.nearworkDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+                <div>
+                  <span>{{ weekData.nearworkBurdenDay }}</span>
+                </div>
+              </el-progress>
+            </el-card>
+          </el-row>
+          <el-row>
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>医生建议</span>
+                <el-button style="float: right; padding: 3px 0" type="text">编辑建议</el-button>
+              </div>
+              <div>
+                {{ weekData.suggest }}
+              </div>
+            </el-card>
+          </el-row>
+        </el-col>
+      </el-row>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -294,6 +295,11 @@ export default {
           }
         ]
       }
+    }
+  },
+  computed: {
+    htmlTitle: function() {
+      return this.selectDate + '周报'
     }
   },
   created() {

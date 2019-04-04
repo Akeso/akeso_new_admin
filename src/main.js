@@ -19,6 +19,10 @@ import i18n from './lang' // Internationalization
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import htmlToPdf from '@/utils/htmlToPdf'
+
+Vue.use(htmlToPdf)
+
 Vue.component(VeLine.name, VeLine)
 
 Vue.use(ElementUI, {
