@@ -5,7 +5,7 @@
         <span>儿童基本信息</span>
       </div>
       <el-row type="flex" class="row-bg">
-        <el-col :span="6">
+        <el-col :span="4">
           <div>
             <img :src="avatarUrl" class="pan-thumb">
           </div>
@@ -19,7 +19,66 @@
             <el-button type="success">编辑标签</el-button>
           </div>
         </el-col>
-        <el-col :span="24">
+        <el-col :span="18">
+          <el-row>
+            <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
+              <tr>
+                <td style="width: 20%;">姓名</td>
+                <td style="width: 15%">{{ child.name }}</td>
+                <td style="width: 15%">性别</td>
+                <td style="width: 15%">{{ child.gender }}</td>
+                <td style="width: 20%">年龄</td>
+                <td>{{ child.age }}</td>
+              </tr>
+              <tr>
+                <td>身高(cm)</td>
+                <td>{{ child.height }}</td>
+                <td>体重(kg)</td>
+                <td>{{ child.weight }}</td>
+                <td>体重指数BMI</td>
+                <td>{{ child.bmi || 0 }}</td>
+              </tr>
+              <tr v-if="showMore">
+                <td>近家族史</td>
+                <td colspan="2">{{ child.mother_eye }} - {{ child.father_eye }}</td>
+                <td>联系电话</td>
+                <td colspan="2">{{ child.phone }}</td>
+              </tr>
+              <tr v-if="showMore">
+                <td>眼病史</td>
+                <td colspan="5">{{ child.eye_illness_history || '-' }}</td>
+              </tr>
+              <tr v-if="showMore">
+                <td>居住地</td>
+                <td colspan="2">{{ child.location_string || '-' }}</td>
+                <td>学校</td>
+                <td colspan="2">{{ child.school || '-' }}</td>
+              </tr>
+              <tr v-if="showMore">
+                <td>用户标签</td>
+                <td colspan="5">{{ child.user_tags || '-' }}</td>
+              </tr>
+              <tr v-if="showMore">
+                <td>绑定设备</td>
+                <td colspan="2">{{ child.device || '-' }}</td>
+                <td>绑定医生</td>
+                <td colspan="2">{{ child.doctor || '-' }}</td>
+              </tr>
+              <tr v-if="showMore">
+                <td>用户资料完成度</td>
+                <td colspan="5">
+                  <el-progress :text-inside="true" :stroke-width="20" :percentage="child.integrity" status="success" style="margin-top: 10px;"/>
+                </td>
+              </tr>
+            </table>
+            <el-row type="flex" justify="space-around" style="margin-top: 5px;">
+              <span style="cursor: pointer;" @click="clickToShow">
+                <i :class="showMore ? 'el-icon-arrow-up' : 'el-icon-arrow-down'"/>
+                {{ showMore ? '隐藏' : '显示更多' }}
+              </span>
+            </el-row>
+          </el-row>
+          <!--
           <el-row :gutter="6">
             <el-col :span="4"><div class="grid-content bg-purple box-center">姓名</div></el-col>
             <el-col :span="4"><div class="grid-content bg-purple box-center">{{ child.name }}</div></el-col>
@@ -68,6 +127,7 @@
               <el-progress :text-inside="true" :stroke-width="20" :percentage="child.integrity" status="success" style="margin-top: 10px;"/>
             </el-col>
           </el-row>
+          -->
         </el-col>
       </el-row>
     </el-card>
@@ -85,6 +145,7 @@ export default {
   },
   data() {
     return {
+      showMore: false,
       avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
       emptyText: '',
       child: {
@@ -104,6 +165,9 @@ export default {
       fetchChild({ id: this.userId }).then(response => {
         this.child = response.data
       })
+    },
+    clickToShow() {
+      this.showMore = !this.showMore
     }
   }
 }
@@ -111,7 +175,7 @@ export default {
 
 <style scoped>
   .pan-thumb {
-    width: 80%;
+    width: 90%;
     height: 100%;
     /*background-size: 100%;*/
     /*border-radius: 50%;*/
@@ -146,10 +210,14 @@ export default {
     line-height: 35px;
   }
   .btn-user {
-    margin: 8px;
+    margin: 4px;
   }
   .row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
+  }
+  .table-cls {
+    width: 100%;
+    border: 1px solid #409EFF;
   }
 </style>
