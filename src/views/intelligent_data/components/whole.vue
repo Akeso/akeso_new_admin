@@ -60,6 +60,24 @@
         </tr>
       </table>
     </el-row>
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <StandardItem :title="'户外时间'" :done-count="wholeData.outTimeCount" :total-count="wholeData.totalCount" :done-percent="wholeData.outTimePercent"/>
+      </el-col>
+
+      <el-col :span="12">
+        <StandardItem :title="'阳光摄入量'" :done-count="wholeData.luxDayCount" :total-count="wholeData.totalCount" :done-percent="wholeData.luxDayPercent"/>
+      </el-col>
+    </el-row>
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <StandardItem :title="'运动步数'" :done-count="wholeData.stepCountCount" :total-count="wholeData.totalCount" :done-percent="wholeData.stepCountPercent"/>
+      </el-col>
+
+      <el-col :span="12">
+        <StandardItem :title="'护眼光照时间'" :done-count="wholeData.protectLuxTimeCount" :total-count="wholeData.totalCount" :done-percent="wholeData.protectLuxTimePercent"/>
+      </el-col>
+    </el-row>
     <el-row>
       <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
         <tr>
@@ -117,12 +135,16 @@
 </template>
 <script>
 import { fetchWhole } from '@/api/summary'
+import StandardItem from './standard_item'
 const dateOptions = [
   { key: 'first', label: '近一周' },
   { key: 'second', label: '近一个月' },
   { key: 'third', label: '近三个月' }
 ]
 export default {
+  components: {
+    StandardItem
+  },
   data() {
     return {
       dateOptions,
