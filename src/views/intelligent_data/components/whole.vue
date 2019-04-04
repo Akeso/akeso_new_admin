@@ -1,23 +1,32 @@
 <template>
   <div class="container">
     <el-row :gutter="20">
-      <el-col :span="12">
+      <el-col :span="14">
         选择日期
-        <el-select v-model="selectDate" placeholder="请选择">
-          <el-option
-            v-for="item in dateOptions"
-            :key="item.key"
-            :label="item.label"
-            :value="item.key"/>
-        </el-select>
+        <el-date-picker
+          :clearable="false"
+          v-model="selectSection"
+          format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
       </el-col>
+    </el-row>
+    <el-row style="margin-top: 10px;">
+      <el-radio-group v-model="selectDate" @change="radioChange">
+        <el-radio-button label="first">近一周</el-radio-button>
+        <el-radio-button label="second">近一个月</el-radio-button>
+        <el-radio-button label="third">近三个月</el-radio-button>
+      </el-radio-group>
     </el-row>
     <el-row>
       <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
         <tr>
-          <td class="td-50">名称</td>
-          <td class="td-50">统计值</td>
+          <td class="td-30">名称</td>
+          <td class="td-70">统计值</td>
         </tr>
         <tr>
           <td>智能儿童</td>
@@ -33,15 +42,21 @@
         </tr>
         <tr>
           <td>户外活动情况达标率</td>
-          <td>{{ wholeData.outTimePercent }}%</td>
+          <td>
+            <el-progress :text-inside="true" :stroke-width="18" :percentage="wholeData.outTimePercent" status="success"/>
+          </td>
         </tr>
         <tr>
           <td>体育运动情况达标率</td>
-          <td>{{ wholeData.stepCountPercent }}%</td>
+          <td>
+            <el-progress :text-inside="true" :stroke-width="18" :percentage="wholeData.stepCountPercent" status="success"/>
+          </td>
         </tr>
         <tr>
           <td>近视用眼不良未达标率</td>
-          <td>{{ wholeData.nearworkDayPercent }}%</td>
+          <td>
+            <el-progress :text-inside="true" :stroke-width="18" :percentage="wholeData.nearworkDayPercent" status="success"/>
+          </td>
         </tr>
       </table>
     </el-row>
@@ -111,7 +126,8 @@ export default {
   data() {
     return {
       dateOptions,
-      selectDate: 'first',
+      selectDate: '',
+      selectSection: [new Date(), new Date()],
       wholeData: {}
     }
   },
@@ -123,9 +139,25 @@ export default {
       this.getData()
     },
     getData: function() {
-      fetchWhole({ selectDate: this.selectDate }).then(response => {
+      fetchWhole({ selectSection: this.selectSection }).then(response => {
         this.wholeData = response.data
       })
+    },
+    radioChange: function() {
+      if (this.selectDate === 'first') {
+        const end = new Date()
+        const start = new Date(end.getTime() - 3600 * 1000 * 24 * 7)
+        this.selectSection = [start, end]
+      } else if (this.selectDate === 'second') {
+        const end = new Date()
+        const start = new Date(end.getTime() - 3600 * 1000 * 24 * 30)
+        this.selectSection = [start, end]
+      } else {
+        const end = new Date()
+        const start = new Date(end.getTime() - 3600 * 1000 * 24 * 90)
+        this.selectSection = [start, end]
+      }
+      this.getData()
     }
   }
 }
@@ -135,15 +167,19 @@ export default {
   .container {
     padding: 20px 5px 10px 5px;
   }
-  .breadcrumb {
-    line-height: 35px;
-  }
   .table-cls {
     margin-top: 20px;
     width: 100%;
+    border: 1px solid #409EFF;
+  }
+  .td-70 {
+    width: 70%;
   }
   .td-50 {
     width: 50%;
+  }
+  .td-30 {
+    width: 30%;
   }
   .td-20 {
     width: 20%;
