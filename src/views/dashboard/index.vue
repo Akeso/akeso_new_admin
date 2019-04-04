@@ -16,11 +16,11 @@
         end-placeholder="结束日期"
         value-format="yyyy-MM-dd"/>
     </el-row>
-    <el-radio-group v-model="paramsQuery.radioValue" @change="radioCountChange">
-      <el-radio-button label="newChild">新增用户</el-radio-button>
-      <el-radio-button label="newDeviceChild">新增智能用户</el-radio-button>
-      <el-radio-button label="syncChild">同步用户</el-radio-button>
-    </el-radio-group>
+    <!--<el-radio-group v-model="paramsQuery.radioValue" @change="radioCountChange">-->
+    <!--<el-radio-button label="newChild">新增用户</el-radio-button>-->
+    <!--<el-radio-button label="newDeviceChild">新增智能用户</el-radio-button>-->
+    <!--<el-radio-button label="syncChild">同步用户</el-radio-button>-->
+    <!--</el-radio-group>-->
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
     <el-tag>用户标签统计</el-tag>
@@ -65,7 +65,8 @@ export default {
         newChild: '新增用户量',
         newDeviceChild: '新增智能用户量',
         syncChild: '同步数据用户'
-      }
+      },
+      area: true
     }
     return {
       pickerOptions2: {
@@ -96,8 +97,8 @@ export default {
         }]
       },
       paramsQuery: {
-        dateSection: [new Date(new Date() - 7 * 24 * 3600 * 1000), new Date()],
-        radioValue: 'newChild'
+        dateSection: [new Date(new Date() - 7 * 24 * 3600 * 1000), new Date()]
+        // radioValue: 'newChild'
       },
       statisticsData: {
         childrenCount: 0,
@@ -130,9 +131,9 @@ export default {
     this.getGrowthData()
   },
   methods: {
-    radioCountChange() {
-      this.getGrowthData()
-    },
+    // radioCountChange() {
+    //   this.getGrowthData()
+    // },
     handleSetLineChartData() {
     },
     getStatisticsData() {
