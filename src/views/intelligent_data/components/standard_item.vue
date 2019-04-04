@@ -1,28 +1,34 @@
 <template>
   <div>
-    <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
-      <tr>
-        <td>{{ title }}</td>
-        <td>筛查人数</td>
-        <td>对应占比</td>
-      </tr>
-      <tr>
-        <td>达标</td>
-        <td>{{ doneCount }}</td>
-        <td>{{ 100 - undonePercent }}%</td>
-      </tr>
-      <tr>
-        <td>不达标</td>
-        <td>{{ totalCount - doneCount }}</td>
-        <td>{{ undonePercent }}%</td>
-      </tr>
-      <tr>
-        <td>合计人数</td>
-        <td>{{ totalCount }}</td>
-        <td>100%</td>
-      </tr>
-    </table>
-    <ve-pie :title="titlePie" :tooltip="tooltip" :legend="legend" :series="series"/>
+    <el-row>
+      <el-col :span="12">
+        <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
+          <tr>
+            <td>{{ title }}</td>
+            <td>筛查人数</td>
+            <td>对应占比</td>
+          </tr>
+          <tr>
+            <td>达标</td>
+            <td>{{ doneCount }}</td>
+            <td>{{ 100 - undonePercent }}%</td>
+          </tr>
+          <tr>
+            <td>不达标</td>
+            <td>{{ totalCount - doneCount }}</td>
+            <td>{{ undonePercent }}%</td>
+          </tr>
+          <tr>
+            <td>合计人数</td>
+            <td>{{ totalCount }}</td>
+            <td>100%</td>
+          </tr>
+        </table>
+      </el-col>
+      <el-col :span="12">
+        <ve-pie :title="titlePie" :tooltip="tooltip" :legend="legend" :series="series" :height="heightPie"/>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
@@ -47,6 +53,7 @@ export default {
   },
   data() {
     return {
+      heightPie: '200px',
       titlePie: {
         text: this.title,
         x: 'center'
@@ -57,7 +64,9 @@ export default {
       },
       legend: {
         orient: 'vertical',
-        left: 'left',
+        x: 10,
+        y: 20,
+        // left: 'left',
         data: ['达标', '未达标']
       },
       series: {
