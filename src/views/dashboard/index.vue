@@ -24,7 +24,7 @@
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
     <el-tag>用户标签统计</el-tag>
-    <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
+    <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
       <el-col v-for="item in userTags" :key="item.id" :span="4">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
@@ -37,7 +37,7 @@
 
     <el-tag>临床标签统计</el-tag>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
-      <el-col v-for="item in clinicalTags" :key="item.id" :span="6">
+      <el-col v-for="item in clinicalTags" :key="item.id" :span="3">
         <el-card class="box-card" >
           <div slot="header" class="clearfix">
             <span>{{ item.name }}</span>
@@ -159,7 +159,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .dashboard {
   &-container {
-    margin: 30px;
+    margin: 10px 20px 0px 20px;
   }
   &-text {
     font-size: 30px;
