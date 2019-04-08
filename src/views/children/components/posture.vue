@@ -18,18 +18,18 @@
               @change="changeDate"/>
           </el-col>
         </el-row>
-        <!--<el-row>-->
-        <!--<el-col :span="24">-->
-        <!--<ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>-->
-        <!--</el-col>-->
-        <!--</el-row>-->
+        <el-row>
+          <el-col :span="24">
+            <ve-line :x-axis="xAxis" :tooltip="tooltip" :legend="legend" :y-axis="yAxis" :series="series" />
+          </el-col>
+        </el-row>
       </el-col>
     </el-row>
   </el-card>
 </template>
 
 <script>
-import { fetchDaily } from '@/api/reports'
+import { fetchPosture } from '@/api/reports'
 export default {
   props: {
     userId: {
@@ -38,63 +38,51 @@ export default {
     }
   },
   data() {
-    this.chartSettings = {
-      labelMap: {
-        score: '分数'
-      }
-    }
     return {
-      offsetV: 1,
+      luxData: {},
       selectDate: new Date(),
-      chartData: {
-        columns: ['date', 'score'],
-        rows: [
-          { 'date': '00:00', 'score': 0 },
-          { 'date': '01:00', 'score': 0 },
-          { 'date': '02:00', 'score': 0 },
-          { 'date': '03:00', 'score': 0 },
-          { 'date': '04:00', 'score': 0 },
-          { 'date': '05:00', 'score': 0 },
-          { 'date': '06:00', 'score': 0 },
-          { 'date': '07:00', 'score': 0 },
-          { 'date': '08:00', 'score': 0 },
-          { 'date': '09:00', 'score': 0 },
-          { 'date': '10:00', 'score': 0 },
-          { 'date': '11:00', 'score': 0 },
-          { 'date': '12:00', 'score': 0 },
-          { 'date': '13:00', 'score': 0 },
-          { 'date': '14:00', 'score': 0 },
-          { 'date': '15:00', 'score': 0 },
-          { 'date': '16:00', 'score': 0 },
-          { 'date': '17:00', 'score': 0 },
-          { 'date': '18:00', 'score': 0 },
-          { 'date': '19:00', 'score': 0 },
-          { 'date': '20:00', 'score': 0 },
-          { 'date': '21:00', 'score': 0 },
-          { 'date': '22:00', 'score': 0 },
-          { 'date': '23:00', 'score': 0 }
+      legend: {
+        data: ['不良用眼姿势']
+      },
+      tooltip: {
+        trigger: 'axis',
+        formatter: '{b}<br />不良用眼姿势：{c} 次'
+      },
+      xAxis: {
+        type: 'category',
+        data: [
+          '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00',
+          '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',
+          '20:00', '21:00', '22:00', '23:00'
         ]
       },
-      healthScore: {}
+      yAxis: {
+        name: '次',
+        nameLocation: 'end',
+        nameTextStyle: {
+          align: 'right'
+        },
+        type: 'value'
+      },
+      series: {
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        type: 'line'
+      }
     }
   },
   created() {
-    this.getDaily()
+    this.getData()
   },
   mounted() {
   },
   methods: {
-    getDaily() {
-      fetchDaily({ child_id: this.userId, selectDate: this.selectDate }).then(response => {
-        this.healthScore = response.data
-        const healthIndexes = response.data.healthIndexHour
-        this.chartData.rows.forEach(function(item, index) {
-          item.score = healthIndexes[index]
-        })
+    getData() {
+      fetchPosture({ child_id: this.userId, selectDate: this.selectDate }).then(response => {
+        this.series.data = response.data.postureHour
       })
     },
     changeDate() {
-      this.getDaily()
+      this.getData()
     }
   }
 }

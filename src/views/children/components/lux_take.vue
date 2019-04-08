@@ -60,11 +60,6 @@ export default {
     }
   },
   data() {
-    this.chartSettings = {
-      labelMap: {
-        score: '分数'
-      }
-    }
     return {
       luxData: {},
       selectDate: new Date(),
@@ -98,19 +93,19 @@ export default {
     }
   },
   created() {
-    this.getDaily()
+    this.getData()
   },
   mounted() {
   },
   methods: {
-    getDaily() {
+    getData() {
       fetchLuxTake({ child_id: this.userId, selectDate: this.selectDate }).then(response => {
         this.luxData = response.data
         this.series.data = response.data.luxHour
       })
     },
     changeDate() {
-      this.getDaily()
+      this.getData()
     }
   }
 }

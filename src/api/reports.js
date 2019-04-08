@@ -48,6 +48,14 @@ export function fetchLuxTake(query) {
   })
 }
 
+export function fetchPosture(query) {
+  return request({
+    url: '/api/a1/reports/posture',
+    method: 'get',
+    params: query
+  })
+}
+
 export function fetchStepCount(query) {
   return request({
     url: '/api/a1/reports/step_count',
