@@ -12,12 +12,14 @@
           type="success"/>
       </div>
 
-      <div class="filter-container">
+      <el-row style="margin-bottom: 10px;">
         预约码:
-        <el-input v-model="listQuery.code" label="预约码" placeholder="预约码" style="width: 200px;" class="filter-item" />
+        <el-input v-model="listQuery.code" label="预约码" placeholder="预约码" style="width: 100px;" class="filter-item" clearable/>
+        姓名:
+        <el-input v-model="listQuery.childName" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
-      </div>
+      </el-row>
 
       <el-table
         :data="list"
@@ -56,9 +58,9 @@
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
-            <el-button v-if="scope.row.state === 'confirmed'" type="text" size="small" @click="handleClickOk(scope.row)">确认到店</el-button>
+            <el-button v-if="scope.row.state === 'confirmed'" type="text" size="small" @click="handleClickDone(scope.row)">确认到店</el-button>
 
-            <router-link v-if="scope.row.state === 'confirmed'" :to="'/apt_arch/archives'">
+            <router-link v-if="scope.row.state === 'done'" :to="'/apt_arch/archives'">
               <el-button type="text" size="small">建立档案</el-button>
             </router-link>
           </template>
@@ -84,7 +86,8 @@ export default {
         page: 1,
         limit: 20,
         importance: undefined,
-        code: undefined
+        code: undefined,
+        childName: undefined
       }
     }
   },
@@ -97,7 +100,7 @@ export default {
     this.getList()
   },
   methods: {
-    handleClickOk(val) {
+    handleClickDone(val) {
       this.$confirm('是否确认该用户已到店?', '提示', {
         confirmButtonText: '是',
         cancelButtonText: '否',
@@ -142,6 +145,7 @@ export default {
     },
     handleFilterClear() {
       this.listQuery.code = ''
+      this.listQuery.childName = ''
       this.getList()
     }
   }

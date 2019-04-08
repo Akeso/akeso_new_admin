@@ -8,7 +8,7 @@
       <el-row style="margin-bottom: 10px;">
         预约码:
         <el-input v-model="listQuery.code" label="预约码" placeholder="预约码" style="width: 100px;" class="filter-item" clearable/>
-        孩子姓名:
+        姓名:
         <el-input v-model="listQuery.childName" label="孩子姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
