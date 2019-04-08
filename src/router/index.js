@@ -82,6 +82,13 @@ export const constantRouterMap = [
     meta: { title: 'aptArch', icon: 'example' },
     children: [
       {
+        path: 'admin_appoints',
+        name: 'AdminAppoints',
+        only: true,
+        component: () => import('@/views/apt_arch/admin_appoints'),
+        meta: { title: 'admin_appoints', icon: 'table' }
+      },
+      {
         path: 'appointments',
         name: 'Appointments',
         component: () => import('@/views/apt_arch/appointments'),

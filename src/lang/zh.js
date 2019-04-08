@@ -14,6 +14,7 @@ export default {
     enShowChild: '算法儿童详情',
     aptArch: '预约建档',
     appointments: '新的预约',
+    admin_appoints: '预约管理',
     archives: '建立档案',
     myopia: '近视管理',
     class_warn: '分级预警',

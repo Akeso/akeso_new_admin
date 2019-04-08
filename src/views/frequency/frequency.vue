@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>意见反馈</span>
+        <span>上传频次</span>
       </div>
 
       <div class="filter-container">

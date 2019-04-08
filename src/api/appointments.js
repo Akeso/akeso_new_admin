@@ -15,3 +15,11 @@ export function putConfirm(query) {
     data: query
   })
 }
+
+export function putDone(query) {
+  return request({
+    url: '/api/a1/appointments/' + query.id + '/done',
+    method: 'put',
+    data: query
+  })
+}

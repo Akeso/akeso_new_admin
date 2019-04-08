@@ -15,6 +15,7 @@ export default {
     enShowChild: 'Child Information',
     aptArch: 'appointment archive',
     appointments: 'appointment',
+    admin_appoints: 'appoint manage',
     archives: 'archive',
     myopia: 'myopia',
     class_warn: 'Classified early warning',
