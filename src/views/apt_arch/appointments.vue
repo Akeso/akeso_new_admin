@@ -17,6 +17,8 @@
         <el-input v-model="listQuery.code" label="预约码" placeholder="预约码" style="width: 100px;" class="filter-item" clearable/>
         姓名:
         <el-input v-model="listQuery.childName" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
+        手机号:
+        <el-input v-model="listQuery.phone" label="手机号" placeholder="手机号" style="width: 100px;" class="filter-item" clearable/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
       </el-row>
@@ -87,7 +89,8 @@ export default {
         limit: 20,
         importance: undefined,
         code: undefined,
-        childName: undefined
+        childName: undefined,
+        phone: undefined
       }
     }
   },
@@ -146,6 +149,7 @@ export default {
     handleFilterClear() {
       this.listQuery.code = ''
       this.listQuery.childName = ''
+      this.phone = ''
       this.getList()
     }
   }
