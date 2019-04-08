@@ -4,22 +4,22 @@
       <el-col :span="12">
         <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
           <tr>
-            <td>{{ title }}</td>
-            <td>筛查人数</td>
-            <td>对应占比</td>
+            <td><span class="title-font">{{ title }}</span></td>
+            <td><span class="title-font">分析人次</span></td>
+            <td><span class="title-font">对应占比</span></td>
           </tr>
           <tr>
-            <td>达标</td>
+            <td><span class="title-font">达标</span></td>
             <td>{{ doneCount }}</td>
             <td>{{ 100 - undonePercent }}%</td>
           </tr>
           <tr>
-            <td>不达标</td>
+            <td><span class="title-font">不达标</span></td>
             <td>{{ totalCount - doneCount }}</td>
             <td>{{ undonePercent }}%</td>
           </tr>
           <tr>
-            <td>合计人数</td>
+            <td><span class="title-font">合计人次</span></td>
             <td>{{ totalCount }}</td>
             <td>100%</td>
           </tr>
@@ -75,8 +75,8 @@ export default {
         radius: '55%',
         center: ['50%', '60%'],
         data: [
-          { value: 0, name: '达标' },
-          { value: 0, name: '未达标' }
+          { value: 0, name: '达标', itemStyle: { color: '#08E2C1' }},
+          { value: 0, name: '未达标', itemStyle: { color: '#ff0000' }}
         ],
         itemStyle: {
           emphasis: {
@@ -109,4 +109,8 @@ export default {
   width: 100%;
   border: 1px solid #409EFF;
 }
+  .title-font {
+    font-weight: bold;
+    color: #000;
+  }
 </style>
