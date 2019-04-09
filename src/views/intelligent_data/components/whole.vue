@@ -33,31 +33,61 @@
           <td class="td-70 title-font">统计值</td>
         </tr>
         <tr>
-          <td class="title-font">智能儿童</td>
+          <td class="title-font">
+            <el-tooltip placement="top" effect="light">
+              <div slot="content">指配戴了智能眼镜的儿童， 右边<br>数值为系统里智能儿童的总和。</div>
+              <span>智能儿童</span>
+            </el-tooltip>
+          </td>
           <td>{{ wholeData.deviceChildrenCount }}</td>
         </tr>
         <tr>
-          <td class="title-font">全部儿童</td>
+          <td class="title-font">
+            <el-tooltip placement="top" effect="light">
+              <div slot="content">指绑定了该机构/医生的所有儿童，右边<br>数值包括智能儿童和非智能儿童的总和。</div>
+              <span>全部儿童</span>
+            </el-tooltip>
+          </td>
           <td>{{ wholeData.childrenCount }}</td>
         </tr>
         <tr>
-          <td class="title-font">智能/全部儿童占比</td>
+          <td class="title-font">
+            <el-tooltip placement="top" effect="light">
+              <div slot="content">该值代表所有智能儿童与全部儿童的比值。</div>
+              <span>智能/全部儿童占比</span>
+            </el-tooltip>
+          </td>
           <td>{{ wholeData.deviceChildrenPercent }}%</td>
         </tr>
         <tr>
-          <td class="title-font">户外活动情况达标率</td>
+          <td class="title-font">
+            <el-tooltip placement="top" effect="light">
+              <div slot="content">该值代表在选择的时间段内，智能儿童<br>的每日户外活动达标2小时及以上的情况与<br>所有智能儿童户外活动情况的比值，<br>>该比值越大，说明户外达标的情况越多。</div>
+              <span>户外活动情况达标率</span>
+            </el-tooltip>
+          </td>
           <td>
             <el-progress :text-inside="true" :stroke-width="18" :percentage="wholeData.outTimePercent" status="success"/>
           </td>
         </tr>
         <tr>
-          <td class="title-font">体育运动情况达标率</td>
+          <td class="title-font">
+            <el-tooltip placement="top" effect="light">
+              <div slot="content">该值代表在选择的时间段内，智能儿童<br>的每日运动步数达标10000步及以上的情况与<br>所有智能儿童运动步数情况的比值，<br>该比值越大，说明运动达标的情况越多。</div>
+              <span>体育运动情况达标率</span>
+            </el-tooltip>
+          </td>
           <td>
             <el-progress :text-inside="true" :stroke-width="18" :percentage="wholeData.stepCountPercent" status="success"/>
           </td>
         </tr>
         <tr>
-          <td class="title-font">近距离用眼不良未超标率</td>
+          <td class="title-font">
+            <el-tooltip placement="top" effect="light">
+              <div slot="content">该值代表在选择的时间段内，智能儿童<br>的每日近距离用眼未超过建议的参考值情况与<br>所有智能儿童近距离用眼情况的比值，<br>该值越大，说明儿童的用眼情况越好。</div>
+              <span>近距用眼不良未超标率</span>
+            </el-tooltip>
+          </td>
           <td>
             <el-progress :text-inside="true" :stroke-width="18" :percentage="wholeData.nearworkDayPercent" status="success"/>
           </td>
@@ -215,5 +245,6 @@ export default {
   .title-font {
     font-weight: bold;
     color: #000;
+    cursor: pointer;
   }
 </style>

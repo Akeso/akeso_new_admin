@@ -75,8 +75,8 @@ export default {
         radius: '55%',
         center: ['50%', '60%'],
         data: [
-          { value: 0, name: '达标', itemStyle: { color: '#08E2C1' }},
-          { value: 0, name: '未达标', itemStyle: { color: '#ff0000' }}
+          { value: 0, name: '达标' },
+          { value: 0, name: '未达标' }
         ],
         itemStyle: {
           emphasis: {

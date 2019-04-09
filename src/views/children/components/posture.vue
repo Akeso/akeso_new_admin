@@ -2,6 +2,13 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>用眼姿势</span>
+      <el-tooltip effect="light" placement="right">
+        <div slot="content">
+          该数值指孩子近距离用眼时低头、歪头过度时<br>
+          智能眼镜提醒矫正姿势的次数。
+        </div>
+        <i class="el-icon-question"/>
+      </el-tooltip>
     </div>
     <el-row>
       <el-col :span="24">

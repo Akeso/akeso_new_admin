@@ -2,6 +2,14 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>户外时间</span>
+      <el-tooltip effect="light" placement="right">
+        <div slot="content">
+          该数值指当天孩子在户外走路、玩耍、<br>
+          运动等累积的时间。该数值与白天户外光照强度<br>
+          及户外紫外线有关，傍晚及夜晚在室外不算户外时间。
+        </div>
+        <i class="el-icon-question"/>
+      </el-tooltip>
     </div>
     <el-row>
       <el-col :span="24">

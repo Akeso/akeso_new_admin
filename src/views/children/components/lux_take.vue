@@ -2,6 +2,16 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>光照摄入</span>
+      <el-tooltip effect="light" placement="right">
+        <div slot="content">
+          总光照摄入，记录一天中暴露在所有光照的总和。<br>
+          白天总光照摄入，记录6:00-18:00这段时间内暴露的光照总和。<br>
+          白天平均光照摄入，单位分钟内的白天总光照摄入的平均值。<br>
+          夜晚总光照摄入，记录18:00-6:00这段时间内暴露的光照总和。<br>
+          夜晚平均光照摄入，单位分钟内的夜晚总光照摄入的平均值。
+        </div>
+        <i class="el-icon-question"/>
+      </el-tooltip>
     </div>
     <el-row>
       <el-col :span="24">

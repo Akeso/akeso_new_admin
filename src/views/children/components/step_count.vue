@@ -2,6 +2,12 @@
   <el-card class="box-card">
     <div slot="header" class="clearfix">
       <span>运动步数</span>
+      <el-tooltip effect="light" placement="right">
+        <div slot="content">
+          该数值指孩子当天任何运动步数的总和。
+        </div>
+        <i class="el-icon-question"/>
+      </el-tooltip>
     </div>
     <el-row>
       <el-col :span="24">
