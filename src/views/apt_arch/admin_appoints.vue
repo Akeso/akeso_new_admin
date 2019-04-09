@@ -24,7 +24,7 @@
         <el-table-column
           prop="date"
           label="预约时间"
-          min-width="120"/>
+          min-width="100"/>
         <el-table-column
           prop="code"
           label="预约码"
@@ -42,22 +42,25 @@
           label="年龄"
           min-width="60"/>
         <el-table-column
+          prop="organizationTitle"
+          label="预约机构"
+          min-width="110"/>
+        <el-table-column
           prop="stateName"
           label="预约状态"
-          min-width="100"/>
+          min-width="80"/>
         <el-table-column
           prop="reachTime"
           label="到店时间"
-          min-width="120"/>
+          min-width="110"/>
         <el-table-column
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
-            <el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickConfirm(scope.row)">确认</el-button>
-
-            <!--<router-link v-if="scope.row.state === 'confirmed'" :to="'/apt_arch/archives'">-->
-            <!--<el-button type="text" size="small">建立档案</el-button>-->
-            <!--</router-link>-->
+            <el-button type="text" size="small" @click="handleClickShow(scope.row)">查看</el-button>
+            <!--<el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickConfirm(scope.row)">确认预约</el-button>-->
+            <el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickConfirm(scope.row)">确认预约</el-button>
+            <el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickCancel(scope.row)">取消</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -66,11 +69,20 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <AppointShow ref="show"/>
+    <AppointConfirm ref="confirm" @confirmSuccess="getList"/>
+    <AppointCancel ref="cancel" @cancelSuccess="getList"/>
   </div>
 </template>
 <script>
-import { fetchList, putConfirm } from '@/api/appointments'
+import { fetchList } from '@/api/appointments'
+import AppointShow from './components/appoint_show'
+import AppointConfirm from './components/appoint_confirm'
+import AppointCancel from './components/appoint_cancel'
 export default {
+  components: {
+    AppointShow, AppointConfirm, AppointCancel
+  },
   data() {
     return {
       list: null,
@@ -91,21 +103,14 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickCancel(val) {
+      this.$refs.cancel.show(val)
+    },
+    handleClickShow(val) {
+      this.$refs.show.show(val)
+    },
     handleClickConfirm(val) {
-      this.$confirm('是否确认该用户已到店?', '提示', {
-        confirmButtonText: '是',
-        cancelButtonText: '否',
-        type: 'warning'
-      }).then(() => {
-        putConfirm(val).then(response => {
-          this.getList()
-          this.$message({
-            type: 'success',
-            message: '确认成功!'
-          })
-        })
-      }).catch(() => {
-      })
+      this.$refs.confirm.show(val)
     },
     getList() {
       fetchList(this.listQuery).then(response => {

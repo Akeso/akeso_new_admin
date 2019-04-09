@@ -23,3 +23,11 @@ export function putDone(query) {
     data: query
   })
 }
+
+export function putCancel(query) {
+  return request({
+    url: '/api/a1/appointments/' + query.id + '/cancel',
+    method: 'put',
+    data: query
+  })
+}
