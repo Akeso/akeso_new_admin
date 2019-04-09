@@ -7,7 +7,9 @@
 
       <el-row>
         姓名:
-        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" />
+        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable />
+        家长电话:
+        <el-input v-model="listQuery.parentPhone" label="电话" placeholder="电话" style="width: 150px;" class="filter-item" clearable />
         创建时间:
         <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
         <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
@@ -78,6 +80,7 @@ export default {
         page: 1,
         limit: 20,
         name: '',
+        parentPhone: undefined,
         startDate: '',
         endDate: ''
       }
