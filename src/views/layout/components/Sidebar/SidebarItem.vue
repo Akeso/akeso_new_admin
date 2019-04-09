@@ -75,7 +75,10 @@ export default {
   },
   methods: {
     canShow(item) {
-      return this.isAdmin ? true : !item.only
+      // if(item.name === 'Appointments') {
+      //   return
+      // }
+      return this.isAdmin ? item.name !== 'Appointments' : !item.only
     },
     englishShowingItem(children, parent) {
       if (this.$store.getters.language === 'en') {

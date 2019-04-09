@@ -11,7 +11,7 @@
         姓名:
         <el-input v-model="listQuery.childName" label="孩子姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
         手机号:
-        <el-input v-model="listQuery.phone" label="手机号" placeholder="手机号" style="width: 100px;" class="filter-item" clearable/>
+        <el-input v-model="listQuery.phone" label="手机号" placeholder="手机号" style="width: 150px;" class="filter-item" clearable/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
       </el-row>
