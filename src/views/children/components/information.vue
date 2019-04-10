@@ -40,23 +40,26 @@
               </tr>
               <tr v-if="showMore">
                 <td>近家族史</td>
-                <td colspan="2">{{ child.mother_eye }} - {{ child.father_eye }}</td>
+                <td colspan="2">{{ child.motherEye }} - {{ child.fatherEye }}</td>
                 <td>联系电话</td>
                 <td colspan="2">{{ child.phone }}</td>
               </tr>
               <tr v-if="showMore">
                 <td>眼病史</td>
-                <td colspan="5">{{ child.eye_illness_history || '-' }}</td>
+                <td colspan="5">{{ child.eyeIllnessHistory || '-' }}</td>
               </tr>
               <tr v-if="showMore">
                 <td>居住地</td>
-                <td colspan="2">{{ child.location_string || '-' }}</td>
+                <td colspan="2">{{ child.locationString || '-' }}</td>
                 <td>学校</td>
                 <td colspan="2">{{ child.school || '-' }}</td>
               </tr>
               <tr v-if="showMore">
                 <td>用户标签</td>
-                <td colspan="5">{{ child.user_tags || '-' }}</td>
+                <td colspan="5">
+                  <span v-if="child.userTags.length === 0"> - </span>
+                  <el-tag v-for="item in child.userTags" :key="item">{{ item }}</el-tag>
+                </td>
               </tr>
               <tr v-if="showMore">
                 <td>绑定设备</td>

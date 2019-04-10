@@ -30,3 +30,11 @@ export function fetchChildrenEn(query) {
     params: query
   })
 }
+
+export function createChild(query) {
+  return request({
+    url: '/api/a1/children',
+    method: 'post',
+    data: query
+  })
+}

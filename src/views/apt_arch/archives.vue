@@ -15,7 +15,7 @@
 
       <el-row>
         姓名:
-        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 200px;" class="filter-item" clearable/>
+        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
       </el-row>
