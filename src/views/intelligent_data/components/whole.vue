@@ -6,6 +6,7 @@
         :clearable="false"
         v-model="selectSection.startDate"
         type="date"
+        style="width: 150px;"
         format="yyyy-MM-dd"
         value-format="yyyy-MM-dd"
         placeholder="选择日期"/>
@@ -14,6 +15,7 @@
         :clearable="false"
         v-model="selectSection.endDate"
         type="date"
+        style="width: 150px;"
         format="yyyy-MM-dd"
         value-format="yyyy-MM-dd"
         placeholder="选择日期"/>

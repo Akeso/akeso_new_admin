@@ -18,7 +18,7 @@ export default {
     archives: '建立档案',
     myopia: '近视管理',
     class_warn: '分级预警',
-    high_warn: '高级预警随访',
+    high_warn: '预警随访',
     intelligentData: '智能数据',
     analytics: '智能分析',
     sorting: '智能排序',
