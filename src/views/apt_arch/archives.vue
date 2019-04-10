@@ -6,7 +6,7 @@
       </div>
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleFilter">新建儿童档案</el-button>
+        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新建儿童档案</el-button>
         <el-button class="filter-item" type="primary" icon="el-icon-plus" @click="handleFilterClear">
           <i class="el-icon-plus"/>
           批量上传档案
@@ -21,40 +21,46 @@
       </el-row>
 
       <el-table
+        v-loading="listLoading"
         :data="list"
         border
         style="width: 100%;margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
-          prop="date"
           label="姓名"
-          min-width="80"/>
+          min-width="80">
+          <template slot-scope="scope">
+            <router-link :to="'/preview/child/'+scope.row.id">
+              <el-button type="text" size="small">{{ scope.row.name }}</el-button>
+            </router-link>
+          </template>
+        </el-table-column>
         <el-table-column
-          prop="code"
+          prop="nakedDistantAcuityOd"
           label="裸眼远视力(右)"
           min-width="80"/>
         <el-table-column
-          prop="childName"
+          prop="nakedDistantAcuityOs"
           label="裸眼远视力(左)"
           min-width="80"/>
         <el-table-column
-          prop="gender"
+          prop="glassDistantAcuityOd"
           label="戴镜远视力(右)"
           min-width="80"/>
         <el-table-column
-          prop="age"
+          prop="glassDistantAcuityOs"
           label="戴镜远视力(左)"
           min-width="80"/>
         <el-table-column
-          prop="stateName"
+          prop="axialLengthOd"
           label="眼轴长度(右)"
           min-width="80"/>
         <el-table-column
-          prop="reachTime"
+          prop="axialLengthOs"
           label="眼轴长度(左)"
           min-width="80"/>
         <el-table-column
-          prop="reachTime"
+          prop="orthokeratology"
           label="是否匹配OK镜"
           min-width="80"/>
         <el-table-column
@@ -71,16 +77,20 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <NewArchive ref="newArchive" />
   </div>
 </template>
 <script>
-// import { fetchList, putConfirm } from '@/api/appointments'
+import { fetchList } from '@/api/archives'
+import NewArchive from './components/new_archive'
 export default {
+  components: {
+    NewArchive
+  },
   data() {
     return {
       list: null,
       total: null,
-      todayCount: 0,
       listLoading: true,
       listQuery: {
         page: 1,
@@ -90,16 +100,22 @@ export default {
       }
     }
   },
-  computed: {
-    todayText: function() {
-      return '今日将有' + this.todayCount + '个用户预约到店建档'
-    }
-  },
   created() {
     this.getList()
   },
   methods: {
+    handleClickNew() {
+      this.$refs.newArchive.handleShow()
+    },
     getList() {
+      fetchList(this.listQuery).then(response => {
+        this.list = response.data.items
+        this.total = response.data.total
+        // Just to simulate the time of the request
+        setTimeout(() => {
+          this.listLoading = false
+        }, 1 * 1000)
+      })
     },
     handleCurrentChange(val) {
       this.listQuery.page = val
