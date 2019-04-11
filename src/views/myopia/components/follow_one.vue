@@ -56,7 +56,7 @@
     <div class="pagination-container">
       <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
     </div>
-    <NewFollow ref="new_follow" @createSuccess="getData"/>
+    <NewFollow ref="new_follow" @createSuccess="getList"/>
     <FollowLogs ref="follow_logs"/>
   </div>
 </template>
@@ -84,7 +84,7 @@ export default {
     }
   },
   created() {
-    this.getData()
+    this.getList()
   },
   methods: {
     handleClickLogs(val) {
@@ -93,7 +93,7 @@ export default {
     handleClickPhone(val) {
       this.$refs.new_follow.handleShow(val)
     },
-    getData() {
+    getList() {
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
