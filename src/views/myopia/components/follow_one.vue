@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-tag type="danger">上月眼健康评分 1-50分</el-tag>
+    <el-tag type="danger">上月眼健康评分 1-50分，用眼行为差，建议尽快随访或预约到店咨询</el-tag>
     <el-table
       :data="list"
       border
