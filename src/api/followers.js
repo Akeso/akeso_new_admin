@@ -7,3 +7,19 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function createFollow(query) {
+  return request({
+    url: '/api/a1/followers',
+    method: 'post',
+    data: query
+  })
+}
+
+export function fetchFollowList(query) {
+  return request({
+    url: '/api/a1/followers/logs',
+    method: 'get',
+    params: query
+  })
+}

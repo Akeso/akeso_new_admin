@@ -28,36 +28,45 @@
         label="上月眼健康评分"
         min-width="80"/>
       <el-table-column
-        prop="outTime"
+        prop="lastFollowAt"
         label="上次随访时间"
         min-width="80"/>
       <el-table-column
-        prop="protectLuxTime"
+        prop="lastFollowType"
         label="上次操作方式"
         min-width="80"/>
       <el-table-column
-        prop="luxDay"
+        prop="followState"
         label="随访状态"
-        min-width="80"/>
+        min-width="80">
+        <template slot-scope="scope">
+          {{ scope.row.followState ? '已随访' : '待随访' }}
+        </template>
+      </el-table-column>
       <el-table-column
         label="操作"
         min-width="120">
         <template slot-scope="scope">
           <!--<el-button type="text" size="small">APP联系</el-button>-->
-          <el-button type="text" size="small">电话联系</el-button>
-          <el-button type="text" size="small">随访记录</el-button>
+          <el-button v-if="!scope.row.followState" type="text" size="small" @click="handleClickPhone(scope.row)">电话联系</el-button>
+          <el-button type="text" size="small" @click="handleClickLogs(scope.row)">随访记录</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div class="pagination-container">
       <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
     </div>
+    <NewFollow ref="new_follow" @createSuccess="getData"/>
+    <FollowLogs ref="follow_logs"/>
   </div>
 </template>
 
 <script>
 import { fetchList } from '@/api/followers'
+import NewFollow from './new_follow'
+import FollowLogs from './follow_logs'
 export default {
+  components: { NewFollow, FollowLogs },
   data() {
     return {
       list: null,
@@ -78,6 +87,12 @@ export default {
     this.getData()
   },
   methods: {
+    handleClickLogs(val) {
+      this.$refs.follow_logs.handleShow(val)
+    },
+    handleClickPhone(val) {
+      this.$refs.new_follow.handleShow(val)
+    },
     getData() {
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
