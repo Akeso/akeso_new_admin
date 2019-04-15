@@ -7,3 +7,19 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function showData(query) {
+  return request({
+    url: '/api/a1/doctors/' + query.id,
+    method: 'get',
+    params: query
+  })
+}
+
+export function updateData(query) {
+  return request({
+    url: '/api/a1/doctors/' + query.id,
+    method: 'put',
+    data: query
+  })
+}
