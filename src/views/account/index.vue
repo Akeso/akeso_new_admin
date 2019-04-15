@@ -16,7 +16,7 @@
           <span class="item-title">名称</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.name }}</span>
+          <span>{{ user.name || '无' }}</span>
           <a class="item-operate">修改</a>
         </el-col>
       </el-row>
@@ -25,7 +25,7 @@
           <span class="item-title">所属机构</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.organization }}</span>
+          <span>{{ user.organization || '无' }}</span>
           <a class="item-operate" @click="handleClickOrganization">设置</a>
         </el-col>
       </el-row>
@@ -42,7 +42,7 @@
           <span class="item-title">邮箱</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.email }}</span>
+          <span>{{ user.email || '无' }}</span>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -50,7 +50,7 @@
           <span class="item-title">地址</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.locationStreet }}</span>
+          <span>{{ user.locationStreet || '无' }}</span>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -58,7 +58,7 @@
           <span class="item-title">联系方式</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.phone }}</span>
+          <span>{{ user.phone || '无' }}</span>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -66,7 +66,7 @@
           <span class="item-title">简介</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.description }}</span>
+          <span>{{ user.description || '无' }}</span>
         </el-col>
       </el-row>
     </el-card>
