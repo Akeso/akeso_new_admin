@@ -7,8 +7,8 @@
 
       <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
         <el-col :span="6">
-          <!--<img :src="user.avatar" style="width: 100%;">-->
-          <img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">
+          <img :src="user.avatar" style="width: 100%;">
+          <!--<img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">-->
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
