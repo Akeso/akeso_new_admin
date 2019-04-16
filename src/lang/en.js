@@ -27,6 +27,7 @@ export default {
     showChild: 'show child',
     frequency: 'frequency',
     feedback: 'feedback',
+    organizations: 'organizations',
     doctors: 'doctors',
     devices: 'device manage',
     messages: 'messages',
