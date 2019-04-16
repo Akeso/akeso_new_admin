@@ -151,7 +151,7 @@
         </tr>
         <tr>
           <td class="title-font">不良用眼姿态/天</td>
-          <td>{{ wholeData.badPostureTimesAvg }}次</td>
+          <td>{{ wholeData.badPostureDayAvg }}分钟</td>
           <td>≤90分钟</td>
           <td/>
         </tr>
