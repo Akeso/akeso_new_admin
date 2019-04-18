@@ -6,7 +6,7 @@
     <el-row>
       <el-form :inline="true" :model="conditionQuery" class="demo-form-inline">
         <el-form-item label="年龄" min-width="100">
-          <el-select v-model="conditionQuery.age" placeholder="请选择">
+          <el-select v-model="conditionQuery.age" placeholder="请选择" style="width: 100px;">
             <el-option
               v-for="item in options.ageStartOptions"
               :key="item"
@@ -15,7 +15,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="近视度数">
-          <el-select v-model="conditionQuery.re" placeholder="请选择">
+          <el-select v-model="conditionQuery.re" placeholder="请选择" style="width: 100px;">
             <el-option
               v-for="item in options.reOptions"
               :key="item.value"
@@ -33,7 +33,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="健康评分">
-          <el-select v-model="conditionQuery.health_data" placeholder="请选择">
+          <el-select v-model="conditionQuery.health_data" placeholder="请选择" style="width: 140px;">
             <el-option
               v-for="item in options.healthDataOptions"
               :key="item.value"
@@ -45,7 +45,7 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <ve-line :series="series" :title="title" :tooltip="tooltip" :legend="legend" :settings="chartSettings" :x-axis="xAxis" :y-axis="yAxis" :set-option-opts="true"/>
+        <ve-line :series="series" :title="title" :tooltip="tooltip" :legend="legend" :x-axis="xAxis" :y-axis="yAxis" :grid="grid" :set-option-opts="true"/>
       </el-col>
     </el-row>
   </el-card>
@@ -68,6 +68,9 @@ export default {
         ctrlTypeOptions: [],
         healthDataOptions: []
       },
+      grid: {
+        // x: '5%', y: '1%', width: '90%', height: '100%'
+      },
       conditionQuery: {
         age: '',
         re: '',
@@ -78,17 +81,17 @@ export default {
         text: '近视预测'
       },
       tooltip: {
-        trigger: 'axis',
-        formatter: function(params) {
-          return params[0].name + '<br/>' + params[0].seriesName + '：' + params[0].value + '<br/>' + params[3].seriesName + '：' + params[3].value
-        }
+        trigger: 'axis'
+        // formatter: function(params) {
+        //   return params[0].name + '<br/>' + params[0].seriesName + '：' + params[0].value + '<br/>' + params[3].seriesName + '：' + params[3].value
+        // }
       },
       legend: {
-        data: ['不采取控制', '健康数据分数影响']
+        data: ['不采取控制', '健康数据分数影响', '采取控制最优', '采取控制最差']
       },
       xAxis: {
         type: 'category',
-        boundaryGap: false,
+        // boundaryGap: false,
         data: []
       },
       yAxis: {
@@ -110,36 +113,47 @@ export default {
               { type: 'min', name: '最小值' }
             ]
           },
-          data: [3.83, 2.22, 0.78, -0.5, -1.6318540467794, -2.6211288403576, -3.4730632454664, -4.1962970941907, -4.8021139133635, -5.3036878141989, -5.7153990003853, -6.0522556125797, -6.3294360373569, -6.5619480988704, -6.7643902584689]
+          data: []
         },
         {
-          name: 'CL',
+          name: '采取控制最优',
           type: 'line',
+          markPoint: {
+            data: [
+              { type: 'max', name: '最大值' },
+              { type: 'min', name: '最小值' }
+            ]
+          },
           data: [],
           lineStyle: {
             normal: {
-              opacity: 0
+              color: '#3ced13'
             }
-          },
-          stack: 'confidence-band',
-          symbol: 'none'
+          }
+          // stack: 'confidence-band',
+          // symbol: 'none'
         },
         {
-          name: '采取控制',
+          name: '采取控制最差',
           type: 'line',
+          markPoint: {
+            data: [
+              { type: 'max', name: '最大值' },
+              { type: 'min', name: '最小值' }
+            ]
+          },
           data: [],
           lineStyle: {
-            normal: {
-              opacity: 0
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: '#26c281'
-            }
-          },
-          stack: 'confidence-band',
-          symbol: 'none'
+            color: '#efc70a'
+          }
+          // areaStyle: {
+          //   normal: {
+          //     origin: 'start',
+          //     color: '#26c281'
+          //   }
+          // }
+          // stack: 'confidence-band',
+          // symbol: 'none'
         },
         {
           name: '健康数据分数影响',
@@ -193,7 +207,7 @@ export default {
         this.options = response.data
         this.conditionQuery.age = this.options.ageStartOptions[0]
         this.conditionQuery.re = this.options.reOptions[0].value
-        this.conditionQuery.ctrl_type = this.options.ctrlTypeOptions[3].value
+        this.conditionQuery.ctrl_type = this.options.ctrlTypeOptions[1].value
         this.conditionQuery.health_data = this.options.healthDataOptions[0].value
         this.getForecasts()
       })
@@ -203,7 +217,7 @@ export default {
         this.xAxis.data = response.data.ages
         this.series[0].data = response.data.noCtrlData
         this.series[1].data = response.data.ctrlDataDefault
-        this.series[2].data = response.data.ctrlDataSection
+        this.series[2].data = response.data.ctrlDataDefaultTop
         this.series[3].data = response.data.ctrlAkesoData
       })
     }
