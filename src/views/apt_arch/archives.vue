@@ -6,7 +6,7 @@
       </div>
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新建儿童档案</el-button>
+        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新建儿童基本信息</el-button>
         <el-button class="filter-item" type="primary" icon="el-icon-plus" @click="handleFilterClear">
           <i class="el-icon-plus"/>
           批量上传档案

@@ -22,28 +22,28 @@
         </div>
       </div>
     </el-col>
-    <!--<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
-    <!--<div class="card-panel" @click="handleSetLineChartData('purchases')">-->
-    <!--<div class="card-panel-icon-wrapper icon-money">-->
-    <!--<svg-icon icon-class="money" class-name="card-panel-icon" />-->
-    <!--</div>-->
-    <!--<div class="card-panel-description">-->
-    <!--<div class="card-panel-text">家长总数</div>-->
-    <!--<count-to :start-val="0" :end-val="statisticsData.usersCount" :duration="2000" class="card-panel-num"/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</el-col>-->
-    <!--<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
-    <!--<div class="card-panel" @click="handleSetLineChartData('shoppings')">-->
-    <!--<div class="card-panel-icon-wrapper icon-shoppingCard">-->
-    <!--<svg-icon icon-class="shoppingCard" class-name="card-panel-icon" />-->
-    <!--</div>-->
-    <!--<div class="card-panel-description">-->
-    <!--<div class="card-panel-text">医生总数</div>-->
-    <!--<count-to :start-val="0" :end-val="statisticsData.doctorsCount" :duration="2000" class="card-panel-num"/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</el-col>-->
+    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('Appointments')">
+        <div class="card-panel-icon-wrapper icon-people">
+          <svg-icon icon-class="bear01" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">今日预约建档</div>
+          <count-to :start-val="0" :end-val="statisticsData.appointCount" :duration="2000" class="card-panel-num"/>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('highWarn')">
+        <div class="card-panel-icon-wrapper icon-message">
+          <svg-icon icon-class="bear02" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">今日预警随访</div>
+          <count-to :start-val="0" :end-val="statisticsData.followCount" :duration="2000" class="card-panel-num"/>
+        </div>
+      </div>
+    </el-col>
   </el-row>
 </template>
 
@@ -61,17 +61,15 @@ export default {
         return {
           childrenCount: 0,
           deviceChildrenCount: 0,
-          usersCount: 0,
-          doctorsCount: 0
+          appointCount: 0,
+          followCount: 0
         }
       }
     }
   },
   methods: {
     handleSetLineChartData(type) {
-      console.log('type => ', type)
       this.$router.push({ name: type })
-      // this.$emit('handleSetLineChartData', type)
     }
   }
 }

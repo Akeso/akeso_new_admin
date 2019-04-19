@@ -103,8 +103,8 @@ export default {
       statisticsData: {
         childrenCount: 0,
         deviceChildrenCount: 0,
-        usersCount: 0,
-        doctorsCount: 0
+        appointCount: 0,
+        followCount: 0
       },
       userTags: [],
       clinicalTags: [],
@@ -140,8 +140,8 @@ export default {
       fetchIndex().then(response => {
         this.statisticsData.childrenCount = response.data.childrenCount
         this.statisticsData.deviceChildrenCount = response.data.deviceChildrenCount
-        this.statisticsData.usersCount = response.data.usersCount
-        this.statisticsData.doctorsCount = response.data.doctorsCount
+        this.statisticsData.appointCount = response.data.appointCount
+        this.statisticsData.followCount = response.data.followCount
         this.userTags = response.data.userTags
         this.clinicalTags = response.data.clinicalTags
       })
