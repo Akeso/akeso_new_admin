@@ -1,19 +1,7 @@
 <template>
-  <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <span>近视预测</span>
-    </div>
+  <div style="margin: 0px 20px 0px 20px">
     <el-row>
       <el-form :inline="true" :model="conditionQuery" class="demo-form-inline">
-        <el-form-item label="年龄" min-width="100">
-          <el-select v-model="conditionQuery.age" placeholder="请选择" style="width: 100px;">
-            <el-option
-              v-for="item in options.ageStartOptions"
-              :key="item"
-              :label="item + '岁'"
-              :value="item"/>
-          </el-select>
-        </el-form-item>
         <el-form-item label="近视度数">
           <el-select v-model="conditionQuery.re" placeholder="请选择" style="width: 100px;">
             <el-option
@@ -21,6 +9,15 @@
               :key="item.value"
               :label="item.key"
               :value="item.value"/>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="年龄" min-width="100">
+          <el-select v-model="conditionQuery.age" placeholder="请选择" style="width: 100px;">
+            <el-option
+              v-for="item in options.ageStartOptions"
+              :key="item"
+              :label="item + '岁'"
+              :value="item"/>
           </el-select>
         </el-form-item>
         <el-form-item label="防控方式">
@@ -43,12 +40,17 @@
         </el-form-item>
       </el-form>
     </el-row>
-    <el-row>
-      <el-col :span="24">
-        <ve-line :series="series" :title="title" :tooltip="tooltip" :legend="legend" :x-axis="xAxis" :y-axis="yAxis" :grid="grid" :set-option-opts="true"/>
+    <el-row :gutter="20">
+      <el-col :span="16" style="margin-top: 10px;">
+        <ve-line :series="series_short" :title="title" :tooltip="tooltip" :legend="legend_short" :x-axis="xAxis" :y-axis="yAxis"/>
+      </el-col>
+      <el-col :span="8">
+        <p class="ng-binding" style="margin-top: 20px;">亲爱的小朋友，你现在 3岁，眼睛度数是远视300度，如果没有及时进行近视防控，日常眼健康评分差，有可能会在9岁变成近视眼，在17岁变成近视300度。</p>
+        <p class="sky ng-binding-v"/>
+        <p class="ng-binding">如果及时采取了近视防控，例如诺瞳智能眼镜，每天户外达标2小时，且日常眼健康评分优，17岁时近视的最终度数可能是20度。</p>
       </el-col>
     </el-row>
-  </el-card>
+  </div>
 </template>
 
 <script>
@@ -68,9 +70,6 @@ export default {
         ctrlTypeOptions: [],
         healthDataOptions: []
       },
-      grid: {
-        // x: '5%', y: '1%', width: '90%', height: '100%'
-      },
       conditionQuery: {
         age: '',
         re: '',
@@ -82,12 +81,9 @@ export default {
       },
       tooltip: {
         trigger: 'axis'
-        // formatter: function(params) {
-        //   return params[0].name + '<br/>' + params[0].seriesName + '：' + params[0].value + '<br/>' + params[3].seriesName + '：' + params[3].value
-        // }
       },
-      legend: {
-        data: ['不采取控制', '健康数据分数影响', '采取控制最优', '采取控制最差']
+      legend_short: {
+        data: ['不采取控制', '健康数据分数影响']
       },
       xAxis: {
         type: 'category',
@@ -97,7 +93,7 @@ export default {
       yAxis: {
         type: 'value'
       },
-      series: [
+      series_short: [
         {
           name: '不采取控制',
           type: 'line',
@@ -118,41 +114,31 @@ export default {
         {
           name: '采取控制最优',
           type: 'line',
-          markPoint: {
-            data: [
-              { type: 'max', name: '最大值' },
-              { type: 'min', name: '最小值' }
-            ]
-          },
           data: [],
           lineStyle: {
             normal: {
-              color: '#3ced13'
+              color: '#b3e0b9'
             }
-          }
-          // stack: 'confidence-band',
+          },
+          stack: 'confidence-band',
           // symbol: 'none'
         },
         {
           name: '采取控制最差',
           type: 'line',
-          markPoint: {
-            data: [
-              { type: 'max', name: '最大值' },
-              { type: 'min', name: '最小值' }
-            ]
-          },
           data: [],
           lineStyle: {
-            color: '#efc70a'
-          }
-          // areaStyle: {
-          //   normal: {
-          //     origin: 'start',
-          //     color: '#26c281'
-          //   }
-          // }
-          // stack: 'confidence-band',
+            normal: {
+              color: '#b3e0b9'
+            }
+          },
+          areaStyle: {
+            normal: {
+              origin: 'start',
+              color: '#b3e0b9'
+            }
+          },
+          stack: 'confidence-band'
           // symbol: 'none'
         },
         {
@@ -215,10 +201,10 @@ export default {
     getForecasts: function() {
       fetchForecasts(this.conditionQuery).then(response => {
         this.xAxis.data = response.data.ages
-        this.series[0].data = response.data.noCtrlData
-        this.series[1].data = response.data.ctrlDataDefault
-        this.series[2].data = response.data.ctrlDataDefaultTop
-        this.series[3].data = response.data.ctrlAkesoData
+        this.series_short[0].data = response.data.noCtrlData
+        this.series_short[1].data = response.data.ctrlDataDefault
+        this.series_short[2].data = response.data.ctrlDataSection
+        this.series_short[3].data = response.data.ctrlAkesoData
       })
     }
   }
@@ -226,4 +212,23 @@ export default {
 </script>
 
 <style scope>
+  .ng-binding {
+    color: #333;
+    font-size: 14px;
+  }
+  .sky {
+    color: #00aeef;
+  }
+  .green {
+    color: #00a651;
+  }
+  .red {
+    color: #ed1c24;
+  }
+  .ng-binding-v {
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: block;
+  }
 </style>
