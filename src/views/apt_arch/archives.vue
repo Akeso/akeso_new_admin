@@ -36,41 +36,39 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="nakedDistantAcuityOd"
-          label="裸眼远视力(右)"
-          min-width="80"/>
+          prop="age"
+          label="年龄"
+          min-width="50"/>
         <el-table-column
-          prop="nakedDistantAcuityOs"
-          label="裸眼远视力(左)"
-          min-width="80"/>
+          prop="gender"
+          label="性别"
+          min-width="50"/>
         <el-table-column
-          prop="glassDistantAcuityOd"
-          label="戴镜远视力(右)"
-          min-width="80"/>
+          prop="schoolName"
+          label="学校名称"
+          min-width="90"/>
         <el-table-column
-          prop="glassDistantAcuityOs"
-          label="戴镜远视力(左)"
-          min-width="80"/>
+          prop="locationString"
+          label="地区"
+          min-width="120"/>
         <el-table-column
-          prop="axialLengthOd"
-          label="眼轴长度(右)"
-          min-width="80"/>
+          prop="phone"
+          label="联系电话"
+          min-width="100"/>
         <el-table-column
-          prop="axialLengthOs"
-          label="眼轴长度(左)"
-          min-width="80"/>
+          prop="createdAt"
+          label="创建时间"
+          sortable="custom"
+          min-width="120"/>
         <el-table-column
-          prop="orthokeratology"
-          label="是否匹配OK镜"
-          min-width="80"/>
-        <el-table-column
-          prop="reachTime"
-          label="是否参与视功能训练"
-          min-width="80"/>
-        <el-table-column
-          prop="reachTime"
-          label="下次复查时间"
-          min-width="80"/>
+          label="操作"
+          min-width="80" >
+          <template slot-scope="scope">
+            <router-link :to="'/preview/child/'+scope.row.id">
+              <el-button type="text" size="small">查看</el-button>
+            </router-link>
+          </template>
+        </el-table-column>
       </el-table>
 
       <div class="pagination-container">
