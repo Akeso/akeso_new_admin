@@ -11,7 +11,15 @@ export function fetchOptions(query) {
 export function fetchForecasts(query) {
   return request({
     url: '/api/a1/forecasts',
-    methods: 'get',
+    method: 'get',
+    params: query
+  })
+}
+
+export function fetchForecastsLong(query) {
+  return request({
+    url: '/api/a1/forecasts/index_long',
+    method: 'get',
     params: query
   })
 }
