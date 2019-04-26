@@ -53,9 +53,11 @@
         <ve-line v-else :series="series_long" :title="title" :tooltip="tooltip" :x-axis="xAxis" :y-axis="yAxis"/>
       </el-col>
       <el-col :span="8">
-        <p class="ng-binding" style="margin-top: 20px;">亲爱的小朋友，你现在 3岁，眼睛度数是远视300度，如果没有及时进行近视防控，日常眼健康评分差，有可能会在9岁变成近视眼，在17岁变成近视300度。</p>
+        <p class="ng-binding" style="margin-top: 20px;">亲爱的小朋友，你现在{{ textIndicator.age }}岁</p>
+        <p class="ng-binding">眼睛度数是{{ textIndicator.sightType }}{{ textIndicator.re }}</p>
+        <p class="ng-binding">如果没有及时进行近视防控，日常眼健康评分差，有可能会在17岁变成近视{{ textIndicator.badMax }}度。</p>
         <p class="sky ng-binding-v"/>
-        <p class="ng-binding">如果及时采取了近视防控，例如诺瞳智能眼镜，每天户外达标2小时，且日常眼健康评分优，17岁时近视的最终度数可能是20度。</p>
+        <p class="ng-binding">如果及时采取了近视防控，例如诺瞳智能眼镜，每天户外达标2小时，且日常眼健康评分优，17岁时近视的最终度数可能是{{ textIndicator.goodMax }}度。</p>
       </el-col>
     </el-row>
   </div>
@@ -82,6 +84,8 @@ export default {
         reOptions: [],
         ctrlTypeOptions: [],
         healthDataOptions: []
+      },
+      textIndicator: {
       },
       conditionQuery: {
         sight_type: 'short',
@@ -173,35 +177,6 @@ export default {
         }
       ],
       series_long: [
-        // {
-        //   name: '不采取控制',
-        //   type: 'line',
-        //   stack: '总量',
-        //   itemStyle: {
-        //     normal: {
-        //       color: '#ef4836'
-        //     }
-        //   },
-        //   markPoint: {
-        //     data: [
-        //       { type: 'max', name: '最大值' },
-        //       { type: 'min', name: '最小值' }
-        //     ]
-        //   },
-        //   data: []
-        // },
-        // {
-        //   name: '采取控制最优',
-        //   type: 'line',
-        //   data: [],
-        //   lineStyle: {
-        //     normal: {
-        //       color: '#b3e0b9'
-        //     }
-        //   },
-        //   stack: 'confidence-band'
-        //   // symbol: 'none'
-        // },
         {
           name: '采取控制最差',
           type: 'line',
@@ -217,12 +192,6 @@ export default {
               color: '#b3e0b9'
             }
           }
-          // areaStyle: {
-          //   normal: {
-          //     origin: 'start',
-          //     color: '#b3e0b9'
-          //   }
-          // }
         },
         {
           name: '健康数据分数影响',
@@ -292,14 +261,14 @@ export default {
           this.series_short[1].data = response.data.ctrlDataDefault
           this.series_short[2].data = response.data.ctrlDataSection
           this.series_short[3].data = response.data.ctrlAkesoData
+          this.textIndicator = response.data.indicator
         })
       } else {
         fetchForecastsLong(this.conditionQuery).then(response => {
           this.xAxis.data = response.data.ages
           this.series_long[0].data = response.data.ctrlDataDefaultTop
           this.series_long[1].data = response.data.ctrlAkesoData
-          // this.series_short[2].data = response.data.ctrlDataSection
-          // this.series_short[3].data = response.data.ctrlAkesoData
+          this.textIndicator = response.data.indicator
         })
       }
     }
