@@ -2,7 +2,7 @@
   <el-tabs :value="tabName" type="border-card" @tab-click="handleClick">
     <el-tab-pane name="first">
       <span slot="label">健康数据</span>
-      <el-row class="tac">
+      <el-row v-if="tabName === 'first'" class="tac">
         <el-col :span="3">
           <el-menu
             :collapse="false"
@@ -46,23 +46,26 @@
     <el-tab-pane label="近视预测" name="second">
       <Forecast v-if="tabName === 'second'" />
     </el-tab-pane>
-    <el-tab-pane label="屈光档案" name="third">屈光档案</el-tab-pane>
+    <el-tab-pane label="屈光档案" name="third">
+      <EyeExaminations v-if="tabName === 'third'" :user-id="userId"/>
+    </el-tab-pane>
     <!--<el-tab-pane label="防控意见" name="four">防控意见</el-tab-pane>-->
   </el-tabs>
 </template>
 
 <script>
+import Forecast from './forecast'
+import EyeExaminations from './eye_examinations'
 import DailyScore from './daily_score'
 import WeeklyScore from './weekly_score'
 import MonthlyScore from './monthly_score'
-import Forecast from './forecast'
 import OutTime from './out_time'
 import LuxTake from './lux_take'
 import Posture from './posture'
 import StepCount from './step_count'
 export default {
   components: {
-    DailyScore, WeeklyScore, MonthlyScore, Forecast, OutTime, LuxTake, Posture, StepCount
+    DailyScore, WeeklyScore, MonthlyScore, Forecast, OutTime, LuxTake, Posture, StepCount, EyeExaminations
   },
   props: {
     userId: {
