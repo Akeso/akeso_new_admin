@@ -48,18 +48,19 @@
       </el-form>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span="16" style="margin-top: 10px;">
+      <el-col :span="14" style="margin-top: 10px;">
         <ve-line v-if="conditionQuery.sight_type === 'short'" :series="series_short" :title="title" :tooltip="tooltip" :legend="legend_short" :x-axis="xAxis" :y-axis="yAxis"/>
         <ve-line v-else :series="series_long" :title="title" :tooltip="tooltip" :x-axis="xAxis" :y-axis="yAxis"/>
       </el-col>
-      <el-col :span="8" style="padding: 10px 30px 0px 5px;">
-        <p class="ng-binding" style="margin-top: 60px; font-size: 16px; color: #4B8DF8;">亲爱的小朋友，你现在{{ textIndicator.age }}岁，{{ textIndicator.sightType }}是{{ textIndicator.re }}。</p>
+      <el-col :span="10" style="padding: 10px 30px 0px 5px;">
+        <div class="ng-binding" style="margin: 48px 0px 12px 0px; color: #4B8DF8;">亲爱的小朋友，你现在{{ textIndicator.age }}岁，{{ textIndicator.sightType }}是{{ textIndicator.re }}。</div>
         <div v-if="conditionQuery.sight_type === 'short'">
-          <p class="ng-binding">
-            如果没有及时进行近视防控，你在明年及17岁时近视的最终度数可能是 <br>
-            <span style="color: red; font-weight: bold;">{{ textIndicator.badEnd }}</span>
-          </p>
-          <p class="ng-binding">
+          <div class="ng-binding">
+            如果没有及时进行近视防控，你在明年及17岁时近视的最终度数可能是：
+          </div>
+          <div class="ng-binding" style="color: red; font-weight: bold; width: 100%; text-align: center;">{{ textIndicator.badEnd }}</div>
+          <br>
+          <div class="ng-binding">
             如果选择
             <span style="color: #4B8DF8;">{{ textIndicator.ctrlType }}</span>
             来控制近视，与普通矫正方法（例如仅佩戴普通框架眼镜）相比，它对近视增长的减缓比率为：
@@ -67,21 +68,24 @@
             ，若同时日常眼健康评分为
             <span style="color: #4B8DF8;">{{ textIndicator.akesoScore }}</span>
             ，则在明年及17岁时近视的程度可能会是： <br>
+          </div>
+          <div class="ng-binding" style="width: 100%; text-align: center;">
             <span style="color: #4B8DF8;">{{ textIndicator.goodEnd }}</span> <br>
-            近视情况将得到改善。
-          </p>
+            <span>近视情况将得到改善。</span>
+          </div>
         </div>
         <div v-else>
-          <p class="ng-binding">
+          <div class="ng-binding">
             如果没有及时进行近视防控，日常用眼健康评分为差，在17岁时近视的最终度数将会是：
-            <span style="color: red;">{{ textIndicator.badEnd }}</span><br>
-          </p>
-          <p class="ng-binding">
+          </div>
+          <div class="ng-binding" style="width: 100%; text-align: center;"><span style="color: red;">{{ textIndicator.badEnd }}</span><br></div>
+          <br>
+          <div class="ng-binding">
             如果及时采取近视防控，例如诺瞳智能眼镜，每天户外达标2小时，并且日常眼健康评分为
             <span style="color: #4B8DF8;">{{ textIndicator.akesoScore }}</span>
             ，17岁时近视的最终度数可能是：<br>
-            <span style="color: #4B8DF8;">{{ textIndicator.goodEnd }}</span>
-          </p>
+          </div>
+          <div class="ng-binding" style="width: 100%; text-align: center;"><span style="color: #4B8DF8;">{{ textIndicator.goodEnd }}</span></div>
         </div>
       </el-col>
     </el-row>
@@ -326,8 +330,10 @@ export default {
   }
   .ng-binding {
     color: #000000;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
+    line-height: 28px;
+    line-height: 26px;
   }
   .sky {
     color: #00aeef;
