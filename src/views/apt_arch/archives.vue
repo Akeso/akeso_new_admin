@@ -64,8 +64,8 @@
           label="操作"
           min-width="80" >
           <template slot-scope="scope">
-            <router-link :to="'/preview/child/'+scope.row.id">
-              <el-button type="text" size="small">查看</el-button>
+            <router-link :to="'/preview/child/'+scope.row.id+'?tabName=third'">
+              <el-button type="text" size="small">建立屈光档案</el-button>
             </router-link>
           </template>
         </el-table-column>

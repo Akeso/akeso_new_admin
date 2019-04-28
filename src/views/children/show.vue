@@ -1,7 +1,7 @@
 <template>
   <div class="mixin-components-container">
     <Information :user-id="userId"/>
-    <HealthData :user-id="userId"/>
+    <HealthData :user-id="userId" :default-tab-name="defaultTabName"/>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
   },
   data() {
     return {
+      defaultTabName: 'first',
       userId: this.$route.params.id,
       avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
       emptyText: '',
@@ -23,6 +24,9 @@ export default {
   mounted() {
   },
   created() {
+    if (this.$route.query) {
+      this.defaultTabName = this.$route.query.tabName
+    }
   },
   methods: {
   }

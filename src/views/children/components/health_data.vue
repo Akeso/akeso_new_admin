@@ -46,7 +46,7 @@
     <el-tab-pane label="近视预测" name="second">
       <Forecast v-if="tabName === 'second'" />
     </el-tab-pane>
-    <!--<el-tab-pane label="屈光档案" name="third">屈光档案</el-tab-pane>-->
+    <el-tab-pane label="屈光档案" name="third">屈光档案</el-tab-pane>
     <!--<el-tab-pane label="防控意见" name="four">防控意见</el-tab-pane>-->
   </el-tabs>
 </template>
@@ -68,11 +68,15 @@ export default {
     userId: {
       type: String,
       default: ''
+    },
+    defaultTabName: {
+      type: String,
+      default: 'first'
     }
   },
   data() {
     return {
-      tabName: 'first',
+      tabName: this.defaultTabName,
       menuItemIndex: 'daily_score'
     }
   },

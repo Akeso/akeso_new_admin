@@ -58,7 +58,7 @@
           <div class="ng-binding">
             如果没有及时进行近视防控，你在明年及17岁时近视的最终度数可能是：
           </div>
-          <div class="ng-binding" style="color: red; font-weight: bold; width: 100%; text-align: center;">{{ textIndicator.badEnd }}</div>
+          <div class="ng-binding" style="color: red; font-size: 18px; font-weight: bold; width: 100%; text-align: center;">{{ textIndicator.badEnd }}</div>
           <br>
           <div class="ng-binding">
             如果选择
@@ -70,7 +70,7 @@
             ，则在明年及17岁时近视的程度可能会是： <br>
           </div>
           <div class="ng-binding" style="width: 100%; text-align: center;">
-            <span style="color: #4B8DF8;">{{ textIndicator.goodEnd }}</span> <br>
+            <span style="color: #4B8DF8;font-size: 18px; font-weight: bold;">{{ textIndicator.goodEnd }}</span> <br>
             <span>近视情况将得到改善。</span>
           </div>
         </div>
@@ -78,18 +78,18 @@
           <div class="ng-binding">
             如果没有及时进行近视防控，日常用眼健康评分为差，在17岁时近视的最终度数将会是：
           </div>
-          <div class="ng-binding" style="width: 100%; text-align: center;"><span style="color: red;">{{ textIndicator.badEnd }}</span><br></div>
+          <div class="ng-binding" style="width: 100%; text-align: center;"><span style="color: red;font-size: 18px; font-weight: bold;">{{ textIndicator.badEnd }}</span><br></div>
           <br>
           <div class="ng-binding">
             如果及时采取近视防控，例如诺瞳智能眼镜，每天户外达标2小时，并且日常眼健康评分为
             <span style="color: #4B8DF8;">{{ textIndicator.akesoScore }}</span>
             ，17岁时近视的最终度数可能是：<br>
           </div>
-          <div class="ng-binding" style="width: 100%; text-align: center;"><span style="color: #4B8DF8;">{{ textIndicator.goodEnd }}</span></div>
+          <div class="ng-binding" style="width: 100%; text-align: center;"><span style="color: #4B8DF8;font-size: 18px; font-weight: bold;">{{ textIndicator.goodEnd }}</span></div>
         </div>
       </el-col>
     </el-row>
-    <el-row>
+    <el-row style="background-color: #eeeeee; padding: 20px 0px 0px 10px; border-radius: 6px;">
       <div style="padding: 0px 20px 10px 20px;">
         <p style="font-size: 16px; color: #000;">
           本近视预测专为亚洲儿童设计，有着众多参考文献支持，且这些参考文献大部分是近年来的最新研究数据，可以说，“
@@ -330,8 +330,8 @@ export default {
   }
   .ng-binding {
     color: #000000;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 14px;
+    /*font-weight: bold;*/
     line-height: 28px;
     line-height: 26px;
   }
