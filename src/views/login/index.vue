@@ -1,45 +1,52 @@
 <template>
-  <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">艾索健康后台管理系统</h3>
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input v-model="loginForm.username" :placeholder="$t('login.username')" name="username" type="text" auto-complete="on" />
-      </el-form-item>
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :type="pwdType"
-          v-model="loginForm.password"
-          name="password"
-          auto-complete="on"
-          placeholder="密码"
-          @keyup.enter.native="handleLogin" />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="pwdType === 'password' ? 'eye' : 'eye-open'" />
-        </span>
-      </el-form-item>
-      <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          {{ $t('login.logIn') }}
-        </el-button>
-      </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">AKESO信息管理平台 技术支持：400-778-0080</span>
+  <div>
+    <div class="login-container">
+      <div style="float: right; padding: 10px; font-size: 16px; color: white;text-decoration: underline;">
+        <el-button type="text" size="large" style="color: white;" @click="handleClickRegist">医生注册</el-button>
       </div>
-    </el-form>
+      <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+        <h3 class="title">艾索健康后台管理系统</h3>
+        <el-form-item prop="username">
+          <span class="svg-container">
+            <svg-icon icon-class="user" />
+          </span>
+          <el-input v-model="loginForm.username" :placeholder="$t('login.username')" name="username" type="text" auto-complete="on" />
+        </el-form-item>
+        <el-form-item prop="password">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input
+            :type="pwdType"
+            v-model="loginForm.password"
+            name="password"
+            auto-complete="on"
+            placeholder="密码"
+            @keyup.enter.native="handleLogin" />
+          <span class="show-pwd" @click="showPwd">
+            <svg-icon :icon-class="pwdType === 'password' ? 'eye' : 'eye-open'" />
+          </span>
+        </el-form-item>
+        <el-form-item>
+          <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
+            {{ $t('login.logIn') }}
+          </el-button>
+        </el-form-item>
+        <div class="tips">
+          <span style="margin-right:20px;">AKESO信息管理平台 技术支持：400-778-0080</span>
+        </div>
+      </el-form>
+    </div>
+    <Regist ref="regist"/>
   </div>
 </template>
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
-
+import Regist from './components/regist'
 export default {
   name: 'Login',
+  components: { Regist },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!isvalidUsername(value)) {
@@ -78,6 +85,9 @@ export default {
     }
   },
   methods: {
+    handleClickRegist() {
+      this.$refs.regist.show()
+    },
     showPwd() {
       if (this.pwdType === 'password') {
         this.pwdType = ''
@@ -108,7 +118,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
+$bg: #454545;
 $light_gray:#eee;
 
 /* reset element-ui css */
@@ -120,14 +130,14 @@ $light_gray:#eee;
     input {
       background: transparent;
       border: 0px;
-      -webkit-appearance: none;
+       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
       color: $light_gray;
       height: 47px;
       &:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: #fff !important;
+         -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
+         -webkit-text-fill-color: #fff !important;
       }
     }
   }
@@ -138,11 +148,10 @@ $light_gray:#eee;
     color: #454545;
   }
 }
-
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
+$bg:#3780c9;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 .login-container {
