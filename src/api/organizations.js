@@ -15,3 +15,12 @@ export function deleteItem(query) {
     params: query
   })
 }
+
+export function createItem(query) {
+  return request({
+    url: '/api/a1/organizations',
+    method: 'post',
+    data: query
+  })
+}
+

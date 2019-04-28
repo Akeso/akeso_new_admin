@@ -5,6 +5,10 @@
         <span>机构管理</span>
       </div>
 
+      <div class="filter-container">
+        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+      </div>
+
       <el-row>
         机构名称:
         <el-input v-model="listQuery.title" label="机构名称" placeholder="机构名称" style="width: 150px;" class="filter-item" clearable/>
@@ -49,13 +53,15 @@
       </div>
     </el-card>
     <Edit ref="edit" />
+    <NewOrganization ref="new_organization" @create-success="getList"/>
   </div>
 </template>
 <script>
 import Edit from './components/edit'
+import NewOrganization from './components/new_organization'
 import { fetchList, deleteItem } from '@/api/organizations'
 export default {
-  components: { Edit },
+  components: { Edit, NewOrganization },
   data() {
     return {
       list: null,
@@ -73,6 +79,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickNew() {
+      this.$refs.new_organization.show()
+    },
     handleClickShow(val) {
     },
     handleClickModify(val) {
@@ -85,8 +94,7 @@ export default {
         type: 'warning'
       }).then(() => {
         deleteItem({ id: val.id }).then(response => {
-          this.$emit('cancelSuccess')
-          this.dialogFormVisible = false
+          this.getList()
           this.$message({
             type: 'success',
             message: '删除成功!'

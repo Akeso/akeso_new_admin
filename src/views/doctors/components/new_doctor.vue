@@ -134,11 +134,17 @@ export default {
   },
   watch: {
     'temp.province_code': function(newVal, oldVal) {
+      if (newVal === undefined) {
+        return
+      }
       this.getCityData(newVal)
       this.temp.city_code = undefined
       this.temp.district_code = undefined
     },
     'temp.city_code': function(newVal, oldVal) {
+      if (newVal === undefined) {
+        return
+      }
       this.getDistrictData(newVal)
       this.temp.district_code = undefined
     }
