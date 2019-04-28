@@ -5,6 +5,10 @@
         <span>医生管理</span>
       </div>
 
+      <div class="filter-container">
+        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+      </div>
+
       <el-row>
         <el-col>
           姓名:
@@ -33,10 +37,10 @@
         <el-table-column
           prop="name"
           label="姓名"
-          min-width="120"/>
+          min-width="90"/>
         <el-table-column
-          prop="hospital"
-          label="组织"
+          prop="organizationTitle"
+          label="所属机构"
           min-width="120"/>
         <el-table-column
           prop="childrenCount"
@@ -54,14 +58,14 @@
           prop="gender"
           label="性别"
           min-width="50"/>
-        <el-table-column
-          prop="locationStreet"
-          label="地区"
-          min-width="120"/>
-        <el-table-column
-          prop="jobTitle"
-          label="职称"
-          min-width="60"/>
+        <!--<el-table-column-->
+        <!--prop="locationStreet"-->
+        <!--label="地区"-->
+        <!--min-width="120"/>-->
+        <!--<el-table-column-->
+        <!--prop="jobTitle"-->
+        <!--label="职称"-->
+        <!--min-width="60"/>-->
         <el-table-column
           prop="workingYears"
           label="工作时间"
@@ -85,11 +89,14 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <NewDoctor ref="newDoctor" @create-success="getList"/>
   </div>
 </template>
 <script>
 import { fetchList } from '@/api/doctors'
+import NewDoctor from './components/new_doctor'
 export default {
+  components: { NewDoctor },
   data() {
     return {
       list: null,
@@ -114,6 +121,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickNew() {
+      this.$refs.newDoctor.show()
+    },
     handleClick(val) {
     },
     getList() {

@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="login-container">
-      <div style="float: right; padding: 10px; font-size: 16px; color: white;text-decoration: underline;">
-        <el-button type="text" size="large" style="color: white;" @click="handleClickRegist">医生注册</el-button>
-      </div>
+      <!--<div style="float: right; padding: 10px; font-size: 16px; color: white;text-decoration: underline;">-->
+      <!--<el-button type="text" size="large" style="color: white;" @click="handleClickRegist">医生注册</el-button>-->
+      <!--</div>-->
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
         <h3 class="title">艾索健康后台管理系统</h3>
         <el-form-item prop="username">

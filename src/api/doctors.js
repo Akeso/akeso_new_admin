@@ -23,3 +23,11 @@ export function updateData(query) {
     data: query
   })
 }
+
+export function createItem(query) {
+  return request({
+    url: '/api/a1/doctors',
+    method: 'post',
+    data: query
+  })
+}
