@@ -31,3 +31,11 @@ export function createItem(query) {
     data: query
   })
 }
+
+export function deleteItem(query) {
+  return request({
+    url: '/api/a1/doctors/' + query.id,
+    method: 'delete',
+    data: query
+  })
+}

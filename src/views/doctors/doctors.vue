@@ -80,7 +80,7 @@
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
             <el-button type="text" size="small" @click="handleClick(scope.row)">修改</el-button>
-            <el-button type="text" size="small" @click="handleClick(scope.row)">删除</el-button>
+            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -93,7 +93,7 @@
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/doctors'
+import { fetchList, deleteItem } from '@/api/doctors'
 import NewDoctor from './components/new_doctor'
 export default {
   components: { NewDoctor },
@@ -125,6 +125,22 @@ export default {
       this.$refs.newDoctor.show()
     },
     handleClick(val) {
+    },
+    handleClickDelete(val) {
+      this.$confirm('确认删除该医生账号?', '提示', {
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        type: 'warning'
+      }).then(() => {
+        deleteItem({ id: val.id }).then(response => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() => {
+      })
     },
     getList() {
       fetchList(this.listQuery).then(response => {
