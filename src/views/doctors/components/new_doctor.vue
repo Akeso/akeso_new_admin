@@ -22,6 +22,23 @@
         <el-input v-model="temp.password_confirmation" type="password" />
         <el-alert v-if="passwork_valid" title="两次输入密码不一致" type="error"/>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="所属机构">
+        <el-select
+          v-model="temp.organization_id"
+          :remote-method="remoteMethod"
+          :loading="loading"
+          filterable
+          remote
+          reserve-keyword
+          clearable
+          placeholder="请输入关键词">
+          <el-option
+            v-for="item in organizationsData"
+            :key="item.id"
+            :label="item.title"
+            :value="item.id"/>
+        </el-select>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="地区">
         <el-select v-model="temp.province_code" placeholder="请选择" style="width: 130px;">
           <el-option
@@ -57,13 +74,14 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="dialogFormVisible = false">取 消</el-button>
+      <el-button @click="handleClickCancel">取 消</el-button>
       <el-button type="primary" @click="handleClickSubmit">确 定</el-button>
     </div>
   </el-dialog>
 </template>
 
 <script>
+import { fetchOrganizations } from '@/api/selects'
 import { createItem } from '@/api/doctors'
 import { fetchChinaData } from '@/api/china_map'
 const genderOptions = [
@@ -78,13 +96,14 @@ export default {
       formLabelWidth: '120px',
       passwork_valid: false,
       temp: {
-        name: '',
+        name: undefined,
         gender: undefined,
-        phone: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-        description: '',
+        phone: undefined,
+        email: undefined,
+        password: undefined,
+        password_confirmation: undefined,
+        organization_id: undefined,
+        description: undefined,
         start_work_date: undefined,
         province_code: undefined,
         city_code: undefined,
@@ -106,6 +125,8 @@ export default {
           { min: 6, message: '最少6个字符', trigger: 'blur' }
         ]
       },
+      loading: false,
+      organizationsData: [],
       provinceData: [],
       cityData: [],
       districtData: []
@@ -126,6 +147,10 @@ export default {
     this.getProvinceData()
   },
   methods: {
+    handleClickCancel() {
+      this.resetData()
+      this.dialogFormVisible = false
+    },
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
@@ -134,7 +159,7 @@ export default {
             return
           }
           createItem(this.temp).then(response => {
-            // console.log()
+            this.resetData()
             this.dialogFormVisible = false
             this.$emit('create-success')
           })
@@ -145,6 +170,34 @@ export default {
     },
     show() {
       this.dialogFormVisible = true
+    },
+    resetData() {
+      this.$refs['ruleForm'].resetFields()
+      this.temp = {
+        name: undefined,
+        gender: undefined,
+        phone: undefined,
+        email: undefined,
+        password: undefined,
+        password_confirmation: undefined,
+        organization_id: undefined,
+        description: '',
+        start_work_date: undefined,
+        province_code: undefined,
+        city_code: undefined,
+        district_code: undefined
+      }
+    },
+    remoteMethod(query) {
+      if (query !== '') {
+        this.loading = true
+        fetchOrganizations({ title: query }).then(response => {
+          this.organizationsData = response.data
+          this.loading = false
+        })
+      } else {
+        this.organizationsData = []
+      }
     },
     getProvinceData() {
       fetchChinaData().then(response => {
