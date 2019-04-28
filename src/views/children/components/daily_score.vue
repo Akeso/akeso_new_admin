@@ -50,7 +50,7 @@
               <el-col :span="3" class="text-standard-font">{{ healthScore.outTime }}/120分钟</el-col>
               <el-col :span="3" class="text-right text-standard-font">用眼负荷</el-col>
               <el-col :span="6">
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkBurdenPercent" status="success" class="progress-l-r"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkBurdenPercent" status="exception" class="progress-l-r"/>
               </el-col>
               <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/750D</el-col>
             </el-row>
@@ -62,7 +62,7 @@
               <el-col :span="3" class="text-standard-font">{{ healthScore.protectLuxTime }}/35分钟</el-col>
               <el-col :span="3" class="text-right text-standard-font">近距离用眼时间</el-col>
               <el-col :span="6">
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkPercent" status="success" class="progress-l-r"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkPercent" status="exception" class="progress-l-r"/>
               </el-col>
               <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkTotal }}/240分钟</el-col>
             </el-row>
@@ -74,7 +74,7 @@
               <el-col :span="3" class="text-right text-standard-font">{{ healthScore.outTimeLux }}/300000lux</el-col>
               <el-col :span="3" class="text-right text-standard-font">不良姿势提醒</el-col>
               <el-col :span="6">
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.badPostureDayPercent" status="success" class="progress-l-r"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.badPostureTimesPercent" status="exception" class="progress-l-r"/>
               </el-col>
               <el-col :span="3" class="text-standard-font">{{ healthScore.badPostureTimes }}/90次</el-col>
             </el-row>
