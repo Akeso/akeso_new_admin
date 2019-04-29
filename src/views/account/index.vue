@@ -69,6 +69,9 @@
           <span>{{ user.description || '无' }}</span>
         </el-col>
       </el-row>
+      <div style="text-align: center;">
+        <QRcode/>
+      </div>
     </el-card>
     <OrganizationSelect ref="organizationselect" @select-success="selectValue"/>
   </div>
@@ -78,10 +81,11 @@
 import { showData, updateData } from '@/api/doctors'
 import { mapGetters } from 'vuex'
 import OrganizationSelect from '@/components/OrganizationSelect'
+import QRcode from '@/components/QRCode'
 
 export default {
   components: {
-    OrganizationSelect
+    OrganizationSelect, QRcode
   },
   data() {
     return {
