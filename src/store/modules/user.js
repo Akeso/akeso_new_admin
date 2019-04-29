@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/login'
+import { login, logout } from '@/api/login'
 import { setToken, removeToken } from '@/utils/auth'
 
 const user = {
@@ -18,7 +18,7 @@ const user = {
       state.type = type
     },
     SET_BASE_TYPE: (state, baseType) => {
-      state.roles = baseType
+      state.baseType = baseType
     },
     SET_USER_INFO: (state, data) => {
       state.id = data.id
@@ -27,6 +27,7 @@ const user = {
       state.avatarUrl = data.avatarUrl
       state.authenticationToken = data.authenticationToken
       state.type = data.type
+      state.baseType = data.baseType
     },
     CLEAR_USER_INFO: (state) => {
       state.id = ''
@@ -35,6 +36,7 @@ const user = {
       state.avatarUrl = ''
       state.authenticationToken = ''
       state.type = ''
+      state.baseType = ''
     }
   },
 
@@ -52,25 +54,6 @@ const user = {
           resolve()
         }).catch(error => {
           console.log('error: ', error)
-          reject(error)
-        })
-      })
-    },
-
-    // 获取用户信息
-    GetInfo({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
-          const data = response.data
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
-          commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
-          resolve(response)
-        }).catch(error => {
           reject(error)
         })
       })
@@ -102,6 +85,7 @@ const user = {
   getters: {
     id: state => state.id,
     name: state => state.name,
+    baseType: state => state.baseType,
     email: state => state.email,
     avatarUrl: state => state.avatarUrl,
     authenticationToken: state => state.authenticationToken

@@ -26,7 +26,7 @@
         </el-col>
         <el-col :span="18" class="item-value">
           <span>{{ user.organization || '无' }}</span>
-          <a class="item-operate" @click="handleClickOrganization">设置</a>
+          <a v-if="baseType !== 'admin'" class="item-operate" @click="handleClickOrganization">设置</a>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -70,7 +70,7 @@
         </el-col>
       </el-row>
       <div style="text-align: center;">
-        <QRcode/>
+        <QRcode v-if="baseType !== 'admin'"/>
       </div>
     </el-card>
     <OrganizationSelect ref="organizationselect" @select-success="selectValue"/>
@@ -96,10 +96,12 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'id'
+      'id',
+      'baseType'
     ])
   },
   created() {
+    console.log('aaa => ', this.baseType)
     this.getData()
   },
   methods: {
