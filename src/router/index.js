@@ -28,6 +28,12 @@ export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
+  { path: '/mobile/doctor', component: () => import('@/views/mobile/doctor') },
+  { path: '/mobile/sign_in', component: () => import('@/views/mobile/sign_in') },
+  { path: '/mobile/child_select', component: () => import('@/views/mobile/child_select') },
+  { path: '/mobile/bind_success', component: () => import('@/views/mobile/bind_success') },
+  { path: '/mobile/create_child', component: () => import('@/views/mobile/create_child') },
+
   {
     path: '/',
     component: Layout,
