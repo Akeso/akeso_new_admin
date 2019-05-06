@@ -15,9 +15,9 @@
           <div class="btn-user">
             <el-button type="success">联系用户</el-button>
           </div>
-          <div class="btn-user">
-            <el-button type="success">编辑标签</el-button>
-          </div>
+          <!--<div class="btn-user">-->
+          <!--<el-button type="success">编辑标签</el-button>-->
+          <!--</div>-->
         </el-col>
         <el-col :span="18">
           <el-row>

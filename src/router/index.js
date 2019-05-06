@@ -111,16 +111,16 @@ export const constantRouterMap = [
   {
     path: '/myopia',
     component: Layout,
-    redirect: '/myopia/class_warn',
+    redirect: '/myopia/high_warn',
     name: 'myopia',
     meta: { title: 'myopia', icon: 'example' },
     children: [
-      {
-        path: 'classwarn',
-        name: 'classWarn',
-        component: () => import('@/views/myopia/class_warn'),
-        meta: { title: 'class_warn', icon: 'table' }
-      },
+      // {
+      //   path: 'classwarn',
+      //   name: 'classWarn',
+      //   component: () => import('@/views/myopia/class_warn'),
+      //   meta: { title: 'class_warn', icon: 'table' }
+      // },
       {
         path: 'highwarn',
         name: 'highWarn',

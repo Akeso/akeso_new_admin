@@ -25,7 +25,7 @@ export default{
       // var canvas = document.getElementById('canvas')
       var canvas = document.querySelector('canvas')
       var origin = window.location.origin
-      var href = origin + '/a/mobile/doctor?id=' + this.$store.state.user.id
+      var href = origin + '/m/doctor?id=' + this.$store.state.user.id
       console.log('href => ', origin)
       QRCode.toCanvas(canvas, href, { version: 20 }, function(error) {
         if (error) console.error(error)
