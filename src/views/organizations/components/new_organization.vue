@@ -1,11 +1,11 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增机构" width="70%">
-    <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 60%; margin-left:80px;">
+    <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="title" label="名称">
-        <el-input v-model="temp.title" autocomplete="off" clearable/>
+        <el-input v-model="temp.title" autocomplete="off" clearable style="width: 50%;"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="联系方式">
-        <el-input v-model="temp.phone" clearable/>
+      <el-form-item :label-width="formLabelWidth" prop="phone" label="联系方式">
+        <el-input v-model="temp.phone" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="地区">
         <el-select v-model="temp.province_code" placeholder="请选择" style="width: 130px;">
@@ -30,8 +30,11 @@
             :value="item.code"/>
         </el-select>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="详细地址">
-        <el-input v-model="temp.address"/>
+      <el-form-item :label-width="formLabelWidth" prop="address" label="详细地址">
+        <el-input v-model="temp.address" style="width: 60%;"/>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="简介">
+        <el-input v-model="temp.intro" type="textarea" style="width: 60%;"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -55,11 +58,18 @@ export default {
         province_code: undefined,
         city_code: undefined,
         district_code: undefined,
-        address: undefined
+        address: undefined,
+        intro: undefined
       },
       rules: {
         title: [
           { required: true, message: '请输入名称', trigger: 'blur' }
+        ],
+        phone: [
+          { required: true, message: '请输入联系方式', trigger: 'blur' }
+        ],
+        address: [
+          { required: true, message: '请输入详细地址', trigger: 'blur' }
         ]
       },
       loading: false,

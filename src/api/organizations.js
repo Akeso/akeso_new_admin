@@ -8,6 +8,14 @@ export function fetchList(query) {
   })
 }
 
+export function fetchItem(query) {
+  return request({
+    url: '/api/a1/organizations/' + query.id,
+    method: 'get',
+    params: query
+  })
+}
+
 export function deleteItem(query) {
   return request({
     url: '/api/a1/organizations/' + query.id,
@@ -24,3 +32,10 @@ export function createItem(query) {
   })
 }
 
+export function updateItem(query) {
+  return request({
+    url: '/api/a1/organizations/' + query.id,
+    method: 'put',
+    data: query
+  })
+}

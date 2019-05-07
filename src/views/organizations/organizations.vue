@@ -42,7 +42,7 @@
           min-width="100" >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClickShow(scope.row)">查看医生</el-button>
-            <el-button type="text" size="small" @click="handleClickModify(scope.row)">修改</el-button>
+            <el-button type="text" size="small" @click="handleClickModify(scope.row)">查看修改</el-button>
             <el-button type="text" size="small" @click="handleClickDel(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -52,7 +52,7 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
-    <Edit ref="edit" />
+    <Edit ref="edit" @update-success="getList" />
     <NewOrganization ref="new_organization" @create-success="getList"/>
   </div>
 </template>
@@ -85,7 +85,7 @@ export default {
     handleClickShow(val) {
     },
     handleClickModify(val) {
-      this.$refs.edit.handleShow()
+      this.$refs.edit.handleShow(val)
     },
     handleClickDel(val) {
       this.$confirm('是否删除该机构?', '提示', {
