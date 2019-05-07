@@ -22,7 +22,7 @@
           </el-col>
           <el-col :span="18" class="item-value">
             <span>{{ user.name || '无' }}</span>
-            <a class="item-operate">修改</a>
+            <a class="item-operate" @click="handleClickEditName">修改</a>
           </el-col>
         </el-row>
         <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -80,6 +80,7 @@
       </div>
     </el-card>
     <OrganizationSelect ref="organizationselect" @select-success="selectValue"/>
+    <EditName ref="editName" @update-success="getData"/>
   </div>
 </template>
 
@@ -87,11 +88,12 @@
 import { showData, updateDoctorOrganization } from '@/api/doctors'
 import { mapGetters } from 'vuex'
 import OrganizationSelect from '@/components/OrganizationSelect'
+import EditName from './components/edit_name'
 import QRcode from '@/components/QRCode'
 
 export default {
   components: {
-    OrganizationSelect, QRcode
+    OrganizationSelect, QRcode, EditName
   },
   data() {
     return {
@@ -110,7 +112,6 @@ export default {
     }
   },
   created() {
-    console.log('aaa => ', this.baseType)
     this.getData()
   },
   methods: {
@@ -118,6 +119,9 @@ export default {
       updateDoctorOrganization({ id: this.id, organization_id: val }).then(response => {
         this.user = response.data
       })
+    },
+    handleClickEditName() {
+      this.$refs.editName.handleShow()
     },
     handleClickOrganization() {
       this.$refs.organizationselect.handleShow()

@@ -8,19 +8,10 @@ const user = {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
-    SET_NAME: (state, name) => {
-      state.name = name
-    },
-    SET_AVATAR: (state, avatarUrl) => {
-      state.avatarUrl = avatarUrl
-    },
-    SET_TYPE: (state, type) => {
-      state.type = type
-    },
-    SET_BASE_TYPE: (state, baseType) => {
-      state.baseType = baseType
-    },
     SET_USER_INFO: (state, data) => {
+      console.log('updateUserInfo data => ', data)
+      localStorage.setItem('user', JSON.stringify(data))
+      setToken(data.authenticationToken)
       state.id = data.id
       state.name = data.name
       state.email = data.email
@@ -30,6 +21,7 @@ const user = {
       state.baseType = data.baseType
     },
     CLEAR_USER_INFO: (state) => {
+      localStorage.clear()
       state.id = ''
       state.name = ''
       state.email = ''
@@ -37,20 +29,34 @@ const user = {
       state.authenticationToken = ''
       state.type = ''
       state.baseType = ''
+    },
+    updateUserInfo: (state, data) => {
+      console.log('updateUserInfo data => ', data)
+      localStorage.setItem('user', JSON.stringify(data))
+      setToken(data.authenticationToken)
+      state.id = data.id
+      state.name = data.name
+      state.email = data.email
+      state.avatarUrl = data.avatarUrl
+      state.authenticationToken = data.authenticationToken
+      state.type = data.type
+      state.baseType = data.baseType
     }
   },
 
   actions: {
+    updateUserInfo({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        commit('SET_USER_INFO', data)
+      })
+    },
     // 登录
     Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
           const data = response.data
-          setToken(data.authenticationToken)
-          localStorage.setItem('user', JSON.stringify(data))
           commit('SET_USER_INFO', data)
-          commit('SET_BASE_TYPE', data.baseType)
           resolve()
         }).catch(error => {
           console.log('error: ', error)
