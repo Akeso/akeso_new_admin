@@ -55,17 +55,9 @@
           label="登录账号"
           min-width="160"/>
         <el-table-column
-          prop="gender"
+          prop="genderCn"
           label="性别"
           min-width="50"/>
-        <!--<el-table-column-->
-        <!--prop="locationStreet"-->
-        <!--label="地区"-->
-        <!--min-width="120"/>-->
-        <!--<el-table-column-->
-        <!--prop="jobTitle"-->
-        <!--label="职称"-->
-        <!--min-width="60"/>-->
         <el-table-column
           prop="workingYears"
           label="工作时间"
@@ -78,8 +70,7 @@
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
-            <el-button type="text" size="small" @click="handleClick(scope.row)">修改</el-button>
+            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -90,13 +81,15 @@
       </div>
     </el-card>
     <NewDoctor ref="newDoctor" @create-success="getList"/>
+    <EditDoctor ref="editDoctor" @update-success="getList"/>
   </div>
 </template>
 <script>
 import { fetchList, deleteItem } from '@/api/doctors'
 import NewDoctor from './components/new_doctor'
+import EditDoctor from './components/edit_doctor'
 export default {
-  components: { NewDoctor },
+  components: { NewDoctor, EditDoctor },
   data() {
     return {
       list: null,
@@ -121,6 +114,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickEdit(val) {
+      this.$refs.editDoctor.handleShow(val)
+    },
     handleClickNew() {
       this.$refs.newDoctor.show()
     },

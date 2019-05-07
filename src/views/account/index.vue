@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { showData, updateData } from '@/api/doctors'
+import { showData, updateDoctorOrganization } from '@/api/doctors'
 import { mapGetters } from 'vuex'
 import OrganizationSelect from '@/components/OrganizationSelect'
 import QRcode from '@/components/QRCode'
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     selectValue(val) {
-      updateData({ id: this.id, organization_id: val }).then(response => {
+      updateDoctorOrganization({ id: this.id, organization_id: val }).then(response => {
         this.user = response.data
       })
     },

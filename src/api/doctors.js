@@ -16,9 +16,17 @@ export function showData(query) {
   })
 }
 
-export function updateData(query) {
+export function updateItem(query) {
   return request({
     url: '/api/a1/doctors/' + query.id,
+    method: 'put',
+    data: query
+  })
+}
+
+export function updateDoctorOrganization(query) {
+  return request({
+    url: '/api/a1/doctors/' + query.id + '/update_doctor_organization',
     method: 'put',
     data: query
   })

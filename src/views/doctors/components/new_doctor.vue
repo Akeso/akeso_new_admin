@@ -1,8 +1,8 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增医生账号" width="70%">
-    <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 60%; margin-left:80px;">
+    <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="姓名">
-        <el-input v-model="temp.name" autocomplete="off" clearable/>
+        <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="性别" prop="gender">
         <el-select v-model="temp.gender" class="filter-item">
@@ -10,16 +10,16 @@
         </el-select>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="联系方式">
-        <el-input v-model="temp.phone" clearable/>
+        <el-input v-model="temp.phone" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="email" label="登录邮箱">
-        <el-input v-model="temp.email" />
+        <el-input v-model="temp.email" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="password" label="登录密码">
-        <el-input v-model="temp.password" type="password"/>
+        <el-input v-model="temp.password" type="password" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="password_confirmation" label="确认密码">
-        <el-input v-model="temp.password_confirmation" type="password" />
+        <el-input v-model="temp.password_confirmation" type="password" style="width: 50%;"/>
         <el-alert v-if="passwork_valid" title="两次输入密码不一致" type="error"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="所属机构">
@@ -70,7 +70,7 @@
           placeholder="选择日期"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="简介">
-        <el-input v-model="temp.description" type="textarea"/>
+        <el-input v-model="temp.description" type="textarea" style="width: 50%;"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
