@@ -9,74 +9,72 @@
         <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出医生二维码</el-button>
       </el-row>
 
-      <div id="pdfDom">
-        <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
-          <el-col :span="6">
-            <img :src="user.avatar" style="width: 100%;">
-            <!--<img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">-->
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin-bottom: 20px;">
-          <el-col :span="2" :offset="1">
-            <span class="item-title">名称</span>
-          </el-col>
-          <el-col :span="18" class="item-value">
-            <span>{{ user.name || '无' }}</span>
-            <a class="item-operate" @click="handleClickEditName">修改</a>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin-bottom: 20px;">
-          <el-col :span="2" :offset="1">
-            <span class="item-title">所属机构</span>
-          </el-col>
-          <el-col :span="18" class="item-value">
-            <span>{{ user.organization || '无' }}</span>
-            <a v-if="baseType !== 'admin'" class="item-operate" @click="handleClickOrganization">设置</a>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin-bottom: 20px;">
-          <el-col :span="2" :offset="1">
-            <span class="item-title">创建日期</span>
-          </el-col>
-          <el-col :span="18" class="item-value">
-            <span>{{ user.createdAt }}</span>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin-bottom: 20px;">
-          <el-col :span="2" :offset="1">
-            <span class="item-title">邮箱</span>
-          </el-col>
-          <el-col :span="18" class="item-value">
-            <span>{{ user.email || '无' }}</span>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin-bottom: 20px;">
-          <el-col :span="2" :offset="1">
-            <span class="item-title">地址</span>
-          </el-col>
-          <el-col :span="18" class="item-value">
-            <span>{{ user.locationStreet || '无' }}</span>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin-bottom: 20px;">
-          <el-col :span="2" :offset="1">
-            <span class="item-title">联系方式</span>
-          </el-col>
-          <el-col :span="18" class="item-value">
-            <span>{{ user.phone || '无' }}</span>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin-bottom: 20px;">
-          <el-col :span="2" :offset="1">
-            <span class="item-title">简介</span>
-          </el-col>
-          <el-col :span="18" class="item-value">
-            <span>{{ user.description || '无' }}</span>
-          </el-col>
-        </el-row>
-        <div style="text-align: center;">
-          <QRcode v-if="baseType !== 'admin'"/>
-        </div>
+      <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
+        <el-col :span="6">
+          <img :src="user.avatar" style="width: 100%;">
+          <!--<img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">-->
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">名称</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.name || '无' }}</span>
+          <a class="item-operate" @click="handleClickEditName">修改</a>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">所属机构</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.organization || '无' }}</span>
+          <a v-if="baseType !== 'admin'" class="item-operate" @click="handleClickOrganization">设置</a>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">创建日期</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.createdAt }}</span>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">邮箱</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.email || '无' }}</span>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">地址</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.locationStreet || '无' }}</span>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">联系方式</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.phone || '无' }}</span>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">简介</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.description || '无' }}</span>
+        </el-col>
+      </el-row>
+      <div id="pdfDom" style="text-align: center;">
+        <QRcode v-if="baseType !== 'admin'"/>
       </div>
     </el-card>
     <OrganizationSelect ref="organizationselect" @select-success="selectValue"/>
