@@ -39,7 +39,6 @@ export default {
     getList() {
       this.children = fetchList({ user_id: this.user_id }).then(response => {
         this.children = response.data.items
-        console.log('chidlren => ', this.children)
       })
     },
     handleClickAdd() {
