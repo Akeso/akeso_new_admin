@@ -5,16 +5,16 @@
         <img src="" alt="">
       </div>
       <div class="doctor">
-        <h1 class="title">北京艾索诺瞳健康视力服务中心</h1>
+        <h1 class="title">{{ user.organizationTitle }}</h1>
         <div class="name">
-          <span>医生名字</span>
-          <span class="c-color">视光师</span>
+          <span>{{ user.name }}</span>
+          <span class="c-color">{{ user.jobTitle }}</span>
         </div>
         <div class="doctor-title">
-          <span class="c-blue">8年</span>
+          <span class="c-blue">{{ user.workingYears }}年</span>
           <span>视光经验</span>
         </div>
-        <p class="info">毕业于四川大学华西临床医学院眼视光 专业，曾工作于华西医院、中国人民解 放军医院海南分院、重医附属大学城医 院眼科，主要从事儿童成人医学验光配 镜、近视防控及双眼视功能检查训练。</p>
+        <p class="info">{{ user.description }}</p>
       </div>
       <QRcode v-if="baseType !== 'admin'"/>
       <p>我是儿童视力健康的守门人</p>
@@ -30,6 +30,19 @@ export default {
   name: 'PdfCode',
   components: {
     QRcode
+  },
+  props: {
+    user: {
+      type: Object,
+      default: function() {
+        return {
+          name: '医生名称',
+          jobTitle: '视光师',
+          workingYears: 0,
+          description: '简介'
+        }
+      }
+    }
   },
   data() {
     return {

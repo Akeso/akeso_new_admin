@@ -6,7 +6,7 @@
       </div>
 
       <el-row style="margin: 10px;">
-        <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出医生二维码</el-button>
+        <el-button v-if="exportVisible" class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出医生二维码</el-button>
       </el-row>
 
       <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
@@ -74,7 +74,7 @@
         </el-col>
       </el-row>
       <div class="code-box">
-        <PdfCode />
+        <PdfCode :user="user"/>
       </div>
     </el-card>
     <OrganizationSelect ref="organizationselect" @select-success="selectValue"/>
@@ -98,7 +98,8 @@ export default {
     return {
       user: {
         id: undefined
-      }
+      },
+      exportVisible: false
     }
   },
   computed: {
@@ -127,6 +128,7 @@ export default {
     },
     getData() {
       showData({ id: this.id }).then(response => {
+        this.exportVisible = true
         this.user = response.data
         console.log(this.user)
       })
