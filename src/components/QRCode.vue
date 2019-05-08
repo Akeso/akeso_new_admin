@@ -27,7 +27,7 @@ export default{
       var origin = window.location.origin
       var href = origin + '/m/doctor?id=' + this.$store.state.user.id
       console.log('href => ', origin)
-      QRCode.toCanvas(canvas, href, { version: 20 }, function(error) {
+      QRCode.toCanvas(canvas, href, function(error) {
         if (error) console.error(error)
         // console.log('QRCode success!')
       })

@@ -73,8 +73,8 @@
           <span>{{ user.description || '无' }}</span>
         </el-col>
       </el-row>
-      <div id="pdfDom" style="text-align: center;">
-        <QRcode v-if="baseType !== 'admin'"/>
+      <div class="code-box">
+        <PdfCode />
       </div>
     </el-card>
     <OrganizationSelect ref="organizationselect" @select-success="selectValue"/>
@@ -87,11 +87,12 @@ import { showData, updateDoctorOrganization } from '@/api/doctors'
 import { mapGetters } from 'vuex'
 import OrganizationSelect from '@/components/OrganizationSelect'
 import EditName from './components/edit_name'
+import PdfCode from './components/pdf'
 import QRcode from '@/components/QRCode'
 
 export default {
   components: {
-    OrganizationSelect, QRcode, EditName
+    OrganizationSelect, QRcode, EditName, PdfCode
   },
   data() {
     return {
@@ -127,6 +128,7 @@ export default {
     getData() {
       showData({ id: this.id }).then(response => {
         this.user = response.data
+        console.log(this.user)
       })
     }
   }
@@ -149,5 +151,13 @@ export default {
     font-size: 14px;
     color: #576b95;
     float: right;
+  }
+  #pdfDom >>> #canvas {
+    width: 240px !important;
+    height: 240px !important;
+  }
+  .code-box{
+    height: 1px;
+    overflow: hidden;
   }
 </style>
