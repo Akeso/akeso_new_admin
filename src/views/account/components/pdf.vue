@@ -74,7 +74,7 @@ export default {
     background-size: 100%;
   }
   .doctor{
-    padding:10px 36px;
+    padding:10px 36px 50px;
     margin:-2px 2px 0;
     background:#fff;
   }
