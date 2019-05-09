@@ -35,7 +35,8 @@
               <span class="text-score">{{ healthScore.healthIndex }}</span>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-              <span style="font-size: 14px; background: #2bd710; padding: 8px 16px; border-radius:25px; color: #fff;">总加分{{ healthScore.upScoreMax }},总减分{{ healthScore.downScoreMax }}</span>
+              <span style="font-size: 14px; background: #2bd710; padding: 8px 12px; border-radius:25px; color: #fff;">总加分{{ healthScore.upScoreMax }}</span>
+              <span style="font-size: 14px; background: #d71f1f; padding: 8px 12px; border-radius:25px; color: #fff;">总减分{{ healthScore.downScoreMax }}</span>
             </div>
             <div style="text-align: center; margin-top: 20px;">
               <span style="font-size: 16px;">戴镜时间{{ healthScore.wearTime }}</span>
@@ -71,7 +72,7 @@
               <el-col :span="6">
                 <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.luxDayPercent" status="success" class="progress-l-r"/>
               </el-col>
-              <el-col :span="3" class="text-right text-standard-font">{{ healthScore.outTimeLux }}/300000lux</el-col>
+              <el-col :span="3" class="text-standard-font">{{ healthScore.outTimeLux }}/300000lux</el-col>
               <el-col :span="3" class="text-right text-standard-font">不良姿势提醒</el-col>
               <el-col :span="6">
                 <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.badPostureTimesPercent" status="exception" class="progress-l-r"/>

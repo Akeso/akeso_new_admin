@@ -47,25 +47,25 @@
                 <span>加分项</span>
               </div>
               <label for="">户外时间/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.outTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="weekData.outTimePercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ weekData.outTime }}</span>
                 </div>
               </el-progress>
               <label for="">护眼光照时间/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.protectLuxTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="weekData.protectLuxTimePercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ weekData.protectLuxTime }}</span>
                 </div>
               </el-progress>
               <label for="">阳光摄入量/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.luxDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="weekData.luxDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ weekData.luxDay }}</span>
                 </div>
               </el-progress>
               <label for="">运动步数/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.stepCountPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="weekData.stepCountPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ weekData.stepCount }}</span>
                 </div>
@@ -76,21 +76,21 @@
                 <span>减分项</span>
               </div>
               <label for="">用眼负荷/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.nearworkBurdenDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="weekData.nearworkBurdenDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ weekData.nearworkBurdenDay }}</span>
                 </div>
               </el-progress>
               <label for="">不良姿势提醒/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.badPostureTimesPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="weekData.badPostureTimesPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ weekData.badPostureTimes }}</span>
                 </div>
               </el-progress>
               <label for="">近距离用眼时间/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.nearworkDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="weekData.nearworkDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
-                  <span>{{ weekData.nearworkBurdenDay }}</span>
+                  <span>{{ weekData.nearworkDay }}</span>
                 </div>
               </el-progress>
             </el-card>
@@ -171,7 +171,25 @@ export default {
           fontWeight: 'bold',
           color: '#000000'
         },
-        data: []
+        data: [],
+        itemStyle: {
+          normal: {
+            color: function(params) {
+              console.log('params => ', params.data)
+              const item = params.data
+              // var result = y_data.map(function (item) {
+              if (item >= 120) {
+                return '#26c281'
+              } else if (item < 120 && item >= 80) {
+                return 'orange'
+              } else {
+                return '#ef4836'
+              }
+              // })
+              // return result[params.dataIndex];
+            }
+          }
+        }
       },
       titleRadarGood: {
         text: '保护因素分析'

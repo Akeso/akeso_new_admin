@@ -46,25 +46,25 @@
                 <span>加分项</span>
               </div>
               <label for="">户外时间/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.outTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="monthData.outTimePercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ monthData.outTime }}</span>
                 </div>
               </el-progress>
               <label for="">护眼光照时间/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.protectLuxTimePercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="monthData.protectLuxTimePercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ monthData.protectLuxTime }}</span>
                 </div>
               </el-progress>
               <label for="">阳光摄入量/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.luxDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="monthData.luxDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ monthData.luxDay }}</span>
                 </div>
               </el-progress>
               <label for="">运动步数/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.stepCountPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="monthData.stepCountPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ monthData.stepCount }}</span>
                 </div>
@@ -75,21 +75,21 @@
                 <span>减分项</span>
               </div>
               <label for="">用眼负荷/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.nearworkBurdenDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="monthData.nearworkBurdenDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ monthData.nearworkBurdenDay }}</span>
                 </div>
               </el-progress>
               <label for="">不良姿势提醒/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.badPostureTimesPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="monthData.badPostureTimesPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
                   <span>{{ monthData.badPostureTimes }}</span>
                 </div>
               </el-progress>
               <label for="">近距离用眼时间/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.nearworkDayPercent * 100" :show-text="true" :status="statusText" class="progress-l-r">
+              <el-progress :stroke-width="14" :percentage="monthData.nearworkDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
-                  <span>{{ monthData.nearworkBurdenDay }}</span>
+                  <span>{{ monthData.nearworkDay }}</span>
                 </div>
               </el-progress>
             </el-card>
