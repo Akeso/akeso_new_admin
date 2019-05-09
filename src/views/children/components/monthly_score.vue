@@ -168,7 +168,22 @@ export default {
           fontWeight: 'bold',
           color: '#000000'
         },
-        data: []
+        data: [],
+        itemStyle: {
+          normal: {
+            color: function(params) {
+              console.log('params => ', params.data)
+              const item = params.data
+              if (item >= 120) {
+                return '#26c281'
+              } else if (item < 120 && item >= 80) {
+                return 'orange'
+              } else {
+                return '#ef4836'
+              }
+            }
+          }
+        }
       },
       titleRadarGood: {
         text: '保护因素分析'
