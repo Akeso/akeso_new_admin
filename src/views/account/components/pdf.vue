@@ -62,6 +62,7 @@ export default {
   .container-doctor{
     width:500px;
     margin: 30px auto;
+    padding: 30px 0;
   }
   .title{
     font-size: 28px;
@@ -75,7 +76,7 @@ export default {
   }
   .doctor{
     padding:10px 36px 50px;
-    margin:-2px 2px 0;
+    margin:-4px 2px 0;
     background:#fff;
   }
   .name{
