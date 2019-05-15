@@ -31,6 +31,9 @@ export default {
     devices: '镜腿设备',
     messages: '消息盒子',
     versions: '版本管理',
+    awards: '奖品管理',
+    wx_organizations: '机构管理',
+    weapp: '步步兑换活动',
     // - - - 这里是例子的分界线 - - -
     Nested: 'Nested',
     Menu1: 'Menu1',
