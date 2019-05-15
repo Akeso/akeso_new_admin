@@ -36,11 +36,16 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <NewAward ref="new_award" @create-success="getList"/>
+    <EditAward ref="edit_award" @update-success="getList"/>
   </div>
 </template>
 <script>
 import { fetchList } from '@/api/weapp/awards'
+import NewAward from './components/new_award'
+import EditAward from './components/edit_award'
 export default {
+  components: { NewAward, EditAward },
   data() {
     return {
       list: null,
@@ -66,8 +71,10 @@ export default {
   },
   methods: {
     handleClickEdit(val) {
+      this.$refs.edit_award.show(val)
     },
     handleClickNew() {
+      this.$refs.new_award.show()
     },
     handleClick(val) {
     },
