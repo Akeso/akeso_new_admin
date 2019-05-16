@@ -85,7 +85,7 @@ export default {
     handleRemove(file, fileList) {
       const iii = this.asset_ids.indexOf(file.id)
       if (iii > -1) {
-        this.asset_ids.splice(iii,1)
+        this.asset_ids.splice(iii, 1)
       }
       console.log('asset_ids => ', this.asset_ids)
     },
