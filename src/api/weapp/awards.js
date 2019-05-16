@@ -32,9 +32,9 @@ export function changeLogo(query) {
   })
 }
 
-export function changeBanner(query) {
+export function changeImages(query) {
   return request({
-    url: '/api/a1/awards/change_banner',
+    url: '/api/a1/awards/change_images',
     method: 'get',
     params: query
   })

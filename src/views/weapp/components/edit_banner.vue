@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { fetchImages, changeBanner } from '@/api/weapp/awards'
+import { fetchImages, changeImages } from '@/api/weapp/awards'
 export default {
   data() {
     return {
@@ -65,7 +65,7 @@ export default {
       })
     },
     handleClickSubmit() {
-      changeBanner({ id: this.award_id, asset_ids: this.asset_ids }).then(res => {
+      changeImages({ id: this.award_id, asset_ids: this.asset_ids, type: 'banner' }).then(res => {
         this.resetData()
       })
     },
@@ -83,11 +83,10 @@ export default {
       console.log('file => ', file)
     },
     handleRemove(file, fileList) {
-      if (this.asset_ids.indexOf(file.id) !== -1) {
-        this.asset_ids.pop(file.id)
+      const iii = this.asset_ids.indexOf(file.id)
+      if (iii > -1) {
+        this.asset_ids.splice(iii,1)
       }
-      console.log('file => ', file)
-      console.log('fileList => ', fileList)
       console.log('asset_ids => ', this.asset_ids)
     },
     handleChange(file, fileList) {
