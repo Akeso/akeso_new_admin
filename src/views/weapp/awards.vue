@@ -27,6 +27,9 @@
           min-width="120" >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
+            <el-button type="text" size="small" @click="handleClickEditLogo(scope.row)">设置Logo</el-button>
+            <el-button type="text" size="small" @click="handleClickEditBanner(scope.row)">设置Banner</el-button>
+            <el-button type="text" size="small" @click="handleClickEditPicture(scope.row)">设置Picture</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -38,14 +41,20 @@
     </el-card>
     <NewAward ref="new_award" @create-success="getList"/>
     <EditAward ref="edit_award" @update-success="getList"/>
+    <EditLogo ref="edit_logo" @update-success="getList"/>
+    <EditBanner ref="edit_banner" @update-success="getList"/>
+    <EditPicture ref="edit_picture" @update-success="getList"/>
   </div>
 </template>
 <script>
 import { fetchList } from '@/api/weapp/awards'
 import NewAward from './components/new_award'
 import EditAward from './components/edit_award'
+import EditLogo from './components/edit_logo'
+import EditBanner from './components/edit_banner'
+import EditPicture from './components/edit_picture'
 export default {
-  components: { NewAward, EditAward },
+  components: { NewAward, EditAward, EditLogo, EditBanner, EditPicture },
   data() {
     return {
       list: null,
@@ -72,6 +81,15 @@ export default {
   methods: {
     handleClickEdit(val) {
       this.$refs.edit_award.show(val)
+    },
+    handleClickEditLogo(val) {
+      this.$refs.edit_logo.show(val)
+    },
+    handleClickEditBanner(val) {
+      this.$refs.edit_banner.show(val)
+    },
+    handleClickEditPicture(val) {
+      this.$refs.edit_picture.show(val)
     },
     handleClickNew() {
       this.$refs.new_award.show()

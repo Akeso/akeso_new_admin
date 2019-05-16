@@ -23,3 +23,11 @@ export function updateItem(query) {
     data: query
   })
 }
+
+export function changeLogo(query) {
+  return request({
+    url: '/api/a1/awards/change_logo',
+    method: 'get',
+    params: query
+  })
+}

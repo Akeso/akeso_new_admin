@@ -1,19 +1,6 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增奖品" width="70%">
     <el-form ref="ruleForm" :model="temp" style="width: 90%; margin-left:20px;">
-      <el-form-item :label-width="formLabelWidth" label="Logo">
-        <el-upload
-          :show-file-list="false"
-          :on-success="handleLogoSuccess"
-          :before-upload="beforeLogoUpload"
-          :action="actionUrl"
-          :data="data"
-          class="avatar-uploader">
-          <img v-if="imageUrl" :src="imageUrl" class="avatar">
-          <i v-else class="el-icon-plus avatar-uploader-icon"/>
-          <!--<i class="el-icon-plus avatar-uploader-icon"/>-->
-        </el-upload>
-      </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="title" label="名称">
         <el-input v-model="temp.title" autocomplete="off" clearable style="width: 50%;"/>
       </el-form-item>
@@ -38,10 +25,6 @@
 </template>
 
 <script>
-// const genderOptions = [
-//   { key: 'male', display_name: '男' },
-//   { key: 'female', display_name: '女' }
-// ]
 import { updateItem } from '@/api/weapp/awards'
 export default {
   data() {
@@ -77,41 +60,7 @@ export default {
         this.$emit('update-success')
         this.dialogFormVisible = false
       })
-    },
-    handleLogoSuccess(res, file) {
-      this.imageUrl = res.data.public_url
-      console.log('上传成功。', res)
-      console.log('上传成功。', file)
-      console.log('image url => ', this.imageUrl)
-    },
-    beforeLogoUpload(file) {
-      console.log('上传之前。。')
     }
   }
 }
 </script>
-<style scoped>
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
-</style>
