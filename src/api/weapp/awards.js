@@ -31,3 +31,19 @@ export function changeLogo(query) {
     params: query
   })
 }
+
+export function changeBanner(query) {
+  return request({
+    url: '/api/a1/awards/change_banner',
+    method: 'get',
+    params: query
+  })
+}
+
+export function fetchImages(query) {
+  return request({
+    url: '/api/a1/awards/images',
+    method: 'get',
+    params: query
+  })
+}
