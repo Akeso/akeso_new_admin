@@ -51,7 +51,7 @@ export default {
     },
     show(val) {
       this.temp = val
-      this.imageLogoUrl = val.imageLogoUrl
+      this.imageLogoUrl = val.logo
       this.dialogFormVisible = true
     },
     handleClickSubmit() {
@@ -65,7 +65,7 @@ export default {
     handleLogoSuccess(res, file) {
       console.log('上传之后 => ', res)
       this.asset_id = res.data.id
-      this.imageLogoUrl = res.data.publicUrl
+      this.imageLogoUrl = res.data.url
     },
     beforeLogoUpload(file) {
       console.log('上传之前。。')
