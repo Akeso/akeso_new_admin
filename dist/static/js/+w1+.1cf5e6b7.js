@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["+w1+"],{"+w1+":function(n,t,e){"use strict";e.r(t);var i=e("KHd+"),s=Object(i.a)({},function(){var n=this.$createElement;return(this._self._c||n)("h1",[this._v("机构管理")])},[],!1,null,null,null);s.options.__file="organizations.vue";t.default=s.exports}}]);
