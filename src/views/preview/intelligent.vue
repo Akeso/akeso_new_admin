@@ -15,8 +15,8 @@
       </el-row>
       <el-row style="margin-top: 10px;">
         最近同步时间:
-        <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
-        <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
+        <el-date-picker v-model="listQuery.startDate" value-format="yyyy-MM-dd" type="date" style="width: 150px;" placeholder="开始日期"/> -
+        <el-date-picker v-model="listQuery.endDate" value-format="yyyy-MM-dd" type="date" style="width: 150px;" placeholder="截止日期"/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
       </el-row>
@@ -135,9 +135,12 @@ export default {
       this.getList()
     },
     handleFilter() {
+      this.listQuery.page = 1
       this.getList()
     },
     handleFilterClear() {
+      this.listQuery.page = 1
+      this.listQuery.limit = 20
       this.listQuery.name = ''
       this.listQuery.phone = ''
       this.listQuery.macAddress = ''
