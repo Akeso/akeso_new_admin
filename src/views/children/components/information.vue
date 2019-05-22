@@ -65,7 +65,10 @@
                 <td>绑定设备</td>
                 <td colspan="2">{{ child.device || '-' }}</td>
                 <td>绑定医生</td>
-                <td colspan="2">{{ child.doctor || '-' }}</td>
+                <td colspan="2">
+                  {{ child.doctor || '-' }}
+                  <el-button type="primary" size="mini" round>解绑</el-button>
+                </td>
               </tr>
               <tr v-if="showMore">
                 <td>用户资料完成度</td>

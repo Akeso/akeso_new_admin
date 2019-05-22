@@ -56,6 +56,7 @@ export default {
     show(val) {
       this.temp = val
       this.award_id = val.id
+      this.asset_ids = []
       fetchImages({ id: val.id, type: 'picture' }).then(res => {
         this.fileList = res.data
         this.fileList.forEach(item => {
