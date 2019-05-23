@@ -38,3 +38,10 @@ export function createChild(query) {
     data: query
   })
 }
+
+export function unbindDoctor(query) {
+  return request({
+    url: '/api/a1/children/' + query.id + '/unbind_doctor',
+    method: 'get'
+  })
+}

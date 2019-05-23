@@ -67,7 +67,7 @@
                 <td>绑定医生</td>
                 <td colspan="2">
                   {{ child.doctor || '-' }}
-                  <el-button type="primary" size="mini" round>解绑</el-button>
+                  <el-button v-if="child.doctor" type="primary" size="mini" round @click="handleClickUnbindDoctor">解绑</el-button>
                 </td>
               </tr>
               <tr v-if="showMore">
@@ -77,7 +77,7 @@
                 </td>
               </tr>
             </table>
-            <el-row type="flex" justify="space-around" style="margin-top: 5px;">
+            <el-row v-if="loadSuccess" type="flex" justify="space-around" style="margin-top: 5px;">
               <span style="cursor: pointer;" @click="clickToShow">
                 <i :class="showMore ? 'el-icon-arrow-up' : 'el-icon-arrow-down'"/>
                 {{ showMore ? '隐藏' : '显示更多' }}
@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import { fetchChild } from '@/api/children'
+import { fetchChild, unbindDoctor } from '@/api/children'
 export default {
   props: {
     userId: {
@@ -151,6 +151,7 @@ export default {
   },
   data() {
     return {
+      loadSuccess: false,
       showMore: false,
       avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
       emptyText: '',
@@ -164,11 +165,24 @@ export default {
     }
   },
   created() {
+    this.loadSuccess = false
     this.getInformation()
   },
   methods: {
+    handleClickUnbindDoctor() {
+      if (this.userId) {
+        unbindDoctor({ id: this.userId }).then(res => {
+          this.$message({
+            message: '解绑成功',
+            type: 'success'
+          })
+          this.getInformation()
+        })
+      }
+    },
     getInformation() {
       fetchChild({ id: this.userId }).then(response => {
+        this.loadSuccess = true
         this.child = response.data
       })
     },
