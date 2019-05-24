@@ -26,6 +26,10 @@
           label="名称"
           min-width="80"/>
         <el-table-column
+          prop="cityCode"
+          label="定位"
+          min-width="60"/>
+        <el-table-column
           prop="address"
           label="地址"
           min-width="100"/>

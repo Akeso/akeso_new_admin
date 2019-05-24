@@ -4,6 +4,9 @@
       <el-form-item :label-width="formLabelWidth" prop="title" label="名称">
         <el-input v-model="temp.title" autocomplete="off" clearable style="width: 50%;"/>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="定位">
+        <el-input v-model="temp.city_code" autocomplete="off" clearable style="width: 50%;"/>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="联系方式">
         <el-input v-model="temp.phone" clearable style="width: 50%;"/>
       </el-form-item>
@@ -74,7 +77,7 @@ export default {
     }
   },
   created() {
-    this.getProvinceData()
+    // this.getProvinceData()
   },
   methods: {
     handleClickCancel() {
