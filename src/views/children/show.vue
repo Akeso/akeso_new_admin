@@ -1,6 +1,6 @@
 <template>
   <div class="mixin-components-container">
-    <Information :user-id="userId"/>
+    <Information :child-id="userId"/>
     <HealthData :user-id="userId" :default-tab-name="defaultTabName"/>
   </div>
 </template>
