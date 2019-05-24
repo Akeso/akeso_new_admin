@@ -5,7 +5,7 @@
         <el-input v-model="temp.title" class="filter-item" placeholder="机构名称" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="定位">
-        <el-input v-model="temp.cityCode" class="filter-item" placeholder="机构名称" style="width: 50%;"/>
+        <el-input v-model="temp.cityCode" class="filter-item" placeholder="定位位置" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="联系方式">
         <el-input v-model="temp.phone" clearable style="width: 50%;"/>
