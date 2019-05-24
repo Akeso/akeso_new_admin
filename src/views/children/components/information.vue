@@ -68,7 +68,7 @@
                   <td>绑定医生</td>
                   <td colspan="2">
                     {{ child.doctor || '-' }}
-                    <el-button v-if="child.doctor" type="primary" size="mini" round @click="handleClickUnbindDoctor">解绑</el-button>
+                    <el-button v-if="$store.getters.baseType && child.doctor" type="primary" size="mini" round @click="handleClickUnbindDoctor">解绑</el-button>
                   </td>
                 </tr>
                 <tr v-if="showMore">
@@ -131,12 +131,19 @@ export default {
     },
     handleClickUnbindDoctor() {
       if (this.childId) {
-        unbindDoctor({ id: this.childId }).then(res => {
-          this.$message({
-            message: '解绑成功',
-            type: 'success'
+        this.$confirm('确定要解绑该用户绑定的医生吗？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          unbindDoctor({ id: this.childId }).then(res => {
+            this.$message({
+              message: '解绑成功',
+              type: 'success'
+            })
+            this.getInformation()
           })
-          this.getInformation()
+        }).catch(() => {
         })
       }
     },
