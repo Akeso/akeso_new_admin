@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+export function fetchList(query) {
+  return request({
+    url: '/api/a1/messages',
+    method: 'get',
+    params: query
+  })
+}
+
 export function fetchLogs(query) {
   return request({
     url: '/api/a1/messages/logs?child_id=' + query.id,
