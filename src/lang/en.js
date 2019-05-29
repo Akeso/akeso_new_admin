@@ -29,6 +29,7 @@ export default {
     feedback: 'feedback',
     organizations: 'organizations',
     doctors: 'doctors',
+    systemSetting: 'Setting',
     devices: 'device manage',
     messages: 'messages',
     versions: 'Version'

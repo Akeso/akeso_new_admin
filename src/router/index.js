@@ -150,19 +150,19 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/organizations',
-    component: Layout,
-    only: true,
-    children: [
-      {
-        path: 'organizations',
-        name: 'Organizations',
-        component: () => import('@/views/organizations/organizations'),
-        meta: { title: 'organizations', icon: 'people' }
-      }
-    ]
-  },
+  // {
+  //   path: '/organizations',
+  //   component: Layout,
+  //   only: true,
+  //   children: [
+  //     {
+  //       path: 'organizations',
+  //       name: 'Organizations',
+  //       component: () => import('@/views/organizations/organizations'),
+  //       meta: { title: 'organizations', icon: 'people' }
+  //     }
+  //   ]
+  // },
   {
     path: '/doctors',
     component: Layout,
@@ -202,23 +202,24 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/devices',
+    path: '/system_setting',
     component: Layout,
-    only: true,
+    redirect: '/system_setting/devices',
+    name: 'systemSetting',
+    meta: { title: 'systemSetting', icon: 'example' },
     children: [
       {
         path: 'devices',
         name: 'Devices',
         component: () => import('@/views/devices/devices'),
         meta: { title: 'devices', icon: 'bug' }
-      }
-    ]
-  },
-  {
-    path: '/feedback',
-    component: Layout,
-    only: true,
-    children: [
+      },
+      {
+        path: 'versions',
+        name: 'Versions',
+        component: () => import('@/views/versions/versions'),
+        meta: { title: 'versions', icon: 'bug' }
+      },
       {
         path: 'feedback',
         name: 'Feedback',
@@ -227,19 +228,45 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/versions',
-    component: Layout,
-    only: true,
-    children: [
-      {
-        path: 'versions',
-        name: 'Versions',
-        component: () => import('@/views/versions/versions'),
-        meta: { title: 'versions', icon: 'bug' }
-      }
-    ]
-  },
+  // {
+  //   path: '/devices',
+  //   component: Layout,
+  //   only: true,
+  //   children: [
+  //     {
+  //       path: 'devices',
+  //       name: 'Devices',
+  //       component: () => import('@/views/devices/devices'),
+  //       meta: { title: 'devices', icon: 'bug' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/feedback',
+  //   component: Layout,
+  //   only: true,
+  //   children: [
+  //     {
+  //       path: 'feedback',
+  //       name: 'Feedback',
+  //       component: () => import('@/views/feedback/feedback'),
+  //       meta: { title: 'feedback', icon: 'guide' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/versions',
+  //   component: Layout,
+  //   only: true,
+  //   children: [
+  //     {
+  //       path: 'versions',
+  //       name: 'Versions',
+  //       component: () => import('@/views/versions/versions'),
+  //       meta: { title: 'versions', icon: 'bug' }
+  //     }
+  //   ]
+  // },
   {
     path: '/weapp',
     component: Layout,

@@ -28,6 +28,7 @@ export default {
     feedback: '意见反馈',
     organizations: '机构管理',
     doctors: '账户管理',
+    systemSetting: '系统设置',
     devices: '镜腿设备',
     messages: '消息盒子',
     versions: '版本管理',

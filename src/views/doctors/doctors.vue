@@ -21,9 +21,6 @@
       </el-row>
       <el-row style="margin-top: 10px;">
         <el-col>
-          注册时间:
-          <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
-          <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
           <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
           <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
         </el-col>
@@ -58,10 +55,6 @@
           prop="genderCn"
           label="性别"
           min-width="50"/>
-        <el-table-column
-          prop="workingYears"
-          label="工作时间"
-          min-width="80"/>
         <el-table-column
           prop="createdAt"
           label="创建时间"
@@ -102,8 +95,6 @@ export default {
         name: undefined,
         phone: undefined,
         email: undefined,
-        startDate: undefined,
-        endDate: undefined,
         type: undefined,
         sortProp: undefined,
         sortOrder: undefined
@@ -168,8 +159,6 @@ export default {
       this.listQuery.name = ''
       this.listQuery.phone = ''
       this.listQuery.email = ''
-      this.listQuery.startDate = ''
-      this.listQuery.endDate = ''
     }
   }
 }

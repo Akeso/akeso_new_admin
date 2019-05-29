@@ -22,23 +22,23 @@
         <el-input v-model="temp.password_confirmation" type="password" style="width: 50%;"/>
         <el-alert v-if="passwork_valid" title="两次输入密码不一致" type="error"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="所属机构">
-        <el-select
-          v-model="temp.organization_id"
-          :remote-method="remoteMethod"
-          :loading="loading"
-          filterable
-          remote
-          reserve-keyword
-          clearable
-          placeholder="请输入关键词">
-          <el-option
-            v-for="item in organizationsData"
-            :key="item.id"
-            :label="item.title"
-            :value="item.id"/>
-        </el-select>
-      </el-form-item>
+      <!--<el-form-item :label-width="formLabelWidth" label="所属机构">-->
+      <!--<el-select-->
+      <!--v-model="temp.organization_id"-->
+      <!--:remote-method="remoteMethod"-->
+      <!--:loading="loading"-->
+      <!--filterable-->
+      <!--remote-->
+      <!--reserve-keyword-->
+      <!--clearable-->
+      <!--placeholder="请输入关键词">-->
+      <!--<el-option-->
+      <!--v-for="item in organizationsData"-->
+      <!--:key="item.id"-->
+      <!--:label="item.title"-->
+      <!--:value="item.id"/>-->
+      <!--</el-select>-->
+      <!--</el-form-item>-->
       <el-form-item :label-width="formLabelWidth" label="地区">
         <el-select v-model="temp.province_code" placeholder="请选择" style="width: 130px;">
           <el-option
@@ -61,13 +61,6 @@
             :label="item.name"
             :value="item.code"/>
         </el-select>
-      </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="工作时间">
-        <el-date-picker
-          v-model="temp.start_work_date"
-          align="right"
-          type="date"
-          placeholder="选择日期"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="简介">
         <el-input v-model="temp.description" type="textarea" style="width: 50%;"/>

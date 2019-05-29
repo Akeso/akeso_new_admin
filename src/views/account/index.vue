@@ -24,15 +24,15 @@
           <a class="item-operate" @click="handleClickEditName">修改</a>
         </el-col>
       </el-row>
-      <el-row :gutter="20" style="margin-bottom: 20px;">
-        <el-col :span="2" :offset="1">
-          <span class="item-title">所属机构</span>
-        </el-col>
-        <el-col :span="18" class="item-value">
-          <span>{{ user.organization || '无' }}</span>
-          <a v-if="baseType !== 'admin'" class="item-operate" @click="handleClickOrganization">设置</a>
-        </el-col>
-      </el-row>
+      <!--<el-row :gutter="20" style="margin-bottom: 20px;">-->
+      <!--<el-col :span="2" :offset="1">-->
+      <!--<span class="item-title">所属机构</span>-->
+      <!--</el-col>-->
+      <!--<el-col :span="18" class="item-value">-->
+      <!--<span>{{ user.organization || '无' }}</span>-->
+      <!--<a v-if="baseType !== 'admin'" class="item-operate" @click="handleClickOrganization">设置</a>-->
+      <!--</el-col>-->
+      <!--</el-row>-->
       <el-row :gutter="20" style="margin-bottom: 20px;">
         <el-col :span="2" :offset="1">
           <span class="item-title">创建日期</span>
