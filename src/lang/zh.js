@@ -27,7 +27,7 @@ export default {
     frequency: '上传频次',
     feedback: '意见反馈',
     organizations: '机构管理',
-    doctors: '医生管理',
+    doctors: '账户管理',
     devices: '镜腿设备',
     messages: '消息盒子',
     versions: '版本管理',

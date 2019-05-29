@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>医生管理</span>
+        <span>账户管理</span>
       </div>
 
       <div class="filter-container">
