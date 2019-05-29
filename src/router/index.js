@@ -150,19 +150,19 @@ export const constantRouterMap = [
       }
     ]
   },
-  // {
-  //   path: '/organizations',
-  //   component: Layout,
-  //   only: true,
-  //   children: [
-  //     {
-  //       path: 'organizations',
-  //       name: 'Organizations',
-  //       component: () => import('@/views/organizations/organizations'),
-  //       meta: { title: 'organizations', icon: 'people' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/organizations',
+    component: Layout,
+    only: true,
+    children: [
+      {
+        path: 'organizations',
+        name: 'Organizations',
+        component: () => import('@/views/organizations/organizations'),
+        meta: { title: 'organizations', icon: 'people' }
+      }
+    ]
+  },
   {
     path: '/doctors',
     component: Layout,
