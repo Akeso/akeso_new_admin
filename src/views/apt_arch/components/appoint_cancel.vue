@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { putCancel } from '@/api/appointments'
+import { putCancel } from '@/api/appoints'
 export default {
   data() {
     return {

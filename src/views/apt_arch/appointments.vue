@@ -60,6 +60,10 @@
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
+
+            <el-button type="text" size="small" @click="handleClickShow(scope.row)">查看</el-button>
+            <el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickConfirm(scope.row)">确认预约</el-button>
+            <el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickCancel(scope.row)">取消</el-button>
             <el-button v-if="scope.row.state === 'confirmed'" type="text" size="small" @click="handleClickDone(scope.row)">确认到店</el-button>
 
             <router-link v-if="scope.row.state === 'done'" :to="'/apt_arch/archives'">
@@ -73,11 +77,18 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <AppointShow ref="show"/>
+    <AppointConfirm ref="confirm" @confirmSuccess="getList"/>
+    <AppointCancel ref="cancel" @cancelSuccess="getList"/>
   </div>
 </template>
 <script>
-import { fetchList, putDone } from '@/api/appointments'
+import { fetchList, putDone } from '@/api/appoints'
+import AppointShow from './components/appoint_show'
+import AppointConfirm from './components/appoint_confirm'
+import AppointCancel from './components/appoint_cancel'
 export default {
+  components: { AppointShow, AppointConfirm, AppointCancel },
   data() {
     return {
       list: null,
@@ -103,6 +114,15 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickCancel(val) {
+      this.$refs.cancel.show(val)
+    },
+    handleClickShow(val) {
+      this.$refs.show.show(val)
+    },
+    handleClickConfirm(val) {
+      this.$refs.confirm.show(val)
+    },
     handleClickDone(val) {
       this.$confirm('是否确认该用户已到店?', '提示', {
         confirmButtonText: '是',

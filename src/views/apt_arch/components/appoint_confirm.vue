@@ -11,7 +11,7 @@
         <el-input v-model="temp.date" disabled/>
       </el-form-item>
       <el-form-item :label="'备注'" prop="timestamp">
-        <span style="color: red;">请联系家长与机构，协商预约！预约反馈中写清楚预约的详细信息.</span>
+        <span style="color: red;">请联系用户，协商预约！预约反馈中写清楚预约的详细信息.</span>
         <!--<el-input :value="'请联系家长与机构，协商预约！预约反馈中写清楚预约的详细信息'" disabled/>-->
       </el-form-item>
     </el-form>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { putConfirm } from '@/api/appointments'
+import { putConfirm } from '@/api/appoints'
 export default {
   data() {
     return {

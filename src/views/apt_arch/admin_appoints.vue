@@ -42,8 +42,8 @@
           label="年龄"
           min-width="60"/>
         <el-table-column
-          prop="organizationTitle"
-          label="预约机构"
+          prop="merchantName"
+          label="预约机构/医生"
           min-width="110"/>
         <el-table-column
           prop="stateName"
@@ -53,16 +53,15 @@
           prop="reachTime"
           label="到店时间"
           min-width="110"/>
-        <el-table-column
-          label="操作"
-          min-width="120" >
-          <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickShow(scope.row)">查看</el-button>
-            <!--<el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickConfirm(scope.row)">确认预约</el-button>-->
-            <el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickConfirm(scope.row)">确认预约</el-button>
-            <el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickCancel(scope.row)">取消</el-button>
-          </template>
-        </el-table-column>
+          <!--<el-table-column-->
+          <!--label="操作"-->
+          <!--min-width="120" >-->
+          <!--<template slot-scope="scope">-->
+          <!--<el-button type="text" size="small" @click="handleClickShow(scope.row)">查看</el-button>-->
+          <!--<el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickConfirm(scope.row)">确认预约</el-button>-->
+          <!--<el-button v-if="scope.row.state === 'pending'" type="text" size="small" @click="handleClickCancel(scope.row)">取消</el-button>-->
+          <!--</template>-->
+          <!--</el-table-column>-->
       </el-table>
 
       <div class="pagination-container">
@@ -75,7 +74,7 @@
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/appointments'
+import { fetchList } from '@/api/appoints'
 import AppointShow from './components/appoint_show'
 import AppointConfirm from './components/appoint_confirm'
 import AppointCancel from './components/appoint_cancel'
