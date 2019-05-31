@@ -1,8 +1,8 @@
 <template>
   <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="修改医生信息" width="70%">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
-      <el-form-item :label-width="formLabelWidth" label="姓名" prop="name">
-        <el-input v-model="temp.name" class="filter-item" placeholder="姓名" style="width: 50%;"/>
+      <el-form-item :label-width="formLabelWidth" label="名称" prop="name">
+        <el-input v-model="temp.name" class="filter-item" placeholder="名称" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="性别" prop="gender">
         <el-select v-model="temp.gender" class="filter-item">
@@ -14,6 +14,9 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="email" label="登录邮箱">
         <el-input v-model="temp.email" clearable style="width: 50%;"/>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" prop="phone" label="详细地址">
+        <el-input v-model="temp.address" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="简介">
         <el-input v-model="temp.description" type="textarea" style="width: 60%;"/>
@@ -44,11 +47,12 @@ export default {
         phone: undefined,
         email: undefined,
         start_work_date: undefined,
-        description: undefined
+        description: undefined,
+        address: undefined
       },
       rules: {
         name: [
-          { required: true, message: '请输入姓名', trigger: 'blur' }
+          { required: true, message: '请输入名称', trigger: 'blur' }
         ],
         email: [
           { required: true, message: '请输入登录账号', trigger: 'blur' }

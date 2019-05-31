@@ -1,7 +1,7 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增医生账号" width="70%">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
-      <el-form-item :label-width="formLabelWidth" prop="name" label="姓名">
+      <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
         <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="性别" prop="gender">
@@ -62,6 +62,9 @@
             :value="item.code"/>
         </el-select>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="详细地址">
+        <el-input v-model="temp.address" clearable style="width: 50%;"/>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="简介">
         <el-input v-model="temp.description" type="textarea" style="width: 50%;"/>
       </el-form-item>
@@ -100,11 +103,12 @@ export default {
         start_work_date: undefined,
         province_code: undefined,
         city_code: undefined,
-        district_code: undefined
+        district_code: undefined,
+        address: undefined
       },
       rules: {
         name: [
-          { required: true, message: '请输入姓名', trigger: 'blur' }
+          { required: true, message: '请输入名称', trigger: 'blur' }
         ],
         email: [
           { required: true, message: '请输入登录账号', trigger: 'blur' }

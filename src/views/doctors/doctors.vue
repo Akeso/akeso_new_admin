@@ -33,11 +33,11 @@
         @sort-change="handleColumnSort">
         <el-table-column
           prop="name"
-          label="姓名"
+          label="名称"
           min-width="90"/>
         <el-table-column
-          prop="organizationTitle"
-          label="所属机构"
+          prop="address"
+          label="详细地址"
           min-width="120"/>
         <el-table-column
           prop="childrenCount"
@@ -51,10 +51,6 @@
           prop="email"
           label="登录账号"
           min-width="160"/>
-        <el-table-column
-          prop="genderCn"
-          label="性别"
-          min-width="50"/>
         <el-table-column
           prop="createdAt"
           label="创建时间"
