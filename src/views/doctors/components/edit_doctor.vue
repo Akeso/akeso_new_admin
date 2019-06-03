@@ -4,10 +4,8 @@
       <el-form-item :label-width="formLabelWidth" label="名称" prop="name">
         <el-input v-model="temp.name" class="filter-item" placeholder="名称" style="width: 50%;"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="性别" prop="gender">
-        <el-select v-model="temp.gender" class="filter-item">
-          <el-option v-for="item in genderOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
-        </el-select>
+      <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
+        <el-input v-model="temp.principal" class="filter-item" placeholder="负责人" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="联系方式">
         <el-input v-model="temp.phone" clearable style="width: 50%;"/>
@@ -30,20 +28,15 @@
 </template>
 <script>
 import { updateItem } from '@/api/doctors'
-const genderOptions = [
-  { key: 'male', display_name: '男' },
-  { key: 'female', display_name: '女' }
-]
 export default {
   data() {
     return {
-      genderOptions,
       dialogVisible: false,
       formLabelWidth: '100px',
       temp: {
         id: undefined,
         name: undefined,
-        gender: undefined,
+        principal: undefined,
         phone: undefined,
         email: undefined,
         start_work_date: undefined,
