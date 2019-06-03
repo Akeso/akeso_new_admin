@@ -41,9 +41,9 @@
           label="姓名"
           min-width="80"/>
         <el-table-column
-          prop="gender"
-          label="性别"
-          min-width="60"/>
+          prop="phone"
+          label="联系电话"
+          min-width="90"/>
         <el-table-column
           prop="age"
           label="年龄"
@@ -94,6 +94,7 @@ export default {
       list: null,
       total: null,
       todayCount: 0,
+      pendingCount: 0,
       listLoading: true,
       listQuery: {
         page: 1,
@@ -107,7 +108,7 @@ export default {
   },
   computed: {
     todayText: function() {
-      return '今日将有' + this.todayCount + '个用户预约到店建档'
+      return '今日将有' + this.todayCount + '个用户预约到店建档。有' + this.pendingCount + '个预约待处理。'
     }
   },
   created() {
@@ -144,6 +145,7 @@ export default {
         this.list = response.data.items
         this.total = response.data.total
         this.todayCount = response.data.todayCount
+        this.pendingCount = response.data.pendingCount
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
