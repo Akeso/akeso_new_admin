@@ -11,7 +11,7 @@
 
       <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
         <el-col :span="6">
-          <img :src="user.avatar" style="width: 100%;">
+          <img :src="user.avatar?user.avatar:avatar" style="width: 100%;">
           <!--<img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">-->
         </el-col>
       </el-row>
@@ -89,6 +89,7 @@ import OrganizationSelect from '@/components/OrganizationSelect'
 import EditName from './components/edit_name'
 import PdfCode from './components/pdf'
 import QRcode from '@/components/QRCode'
+import avatar from '@/assets/images/header.png'
 
 export default {
   components: {
@@ -99,7 +100,8 @@ export default {
       user: {
         id: undefined
       },
-      exportVisible: false
+      exportVisible: false,
+      avatar: avatar
     }
   },
   computed: {
