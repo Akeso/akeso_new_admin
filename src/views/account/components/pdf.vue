@@ -10,10 +10,10 @@
           <span>{{ user.name }}</span>
           <span class="c-color">{{ user.jobTitle }}</span>
         </div>
-        <div class="doctor-title">
-          <span class="c-blue">{{ user.workingYears }}年</span>
-          <span>视光经验</span>
-        </div>
+        <!--<div class="doctor-title">-->
+        <!--<span class="c-blue">{{ user.workingYears }}年</span>-->
+        <!--<span>视光经验</span>-->
+        <!--</div>-->
         <p class="info">{{ user.description }}</p>
       </div>
       <QRcode v-if="baseType !== 'admin'"/>

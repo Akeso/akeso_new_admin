@@ -3,7 +3,7 @@
     <el-row style="background-color: #eeeeee; padding: 20px 0px 0px 10px; border-radius: 6px;">
       <el-form :inline="true" :model="conditionQuery" class="demo-form-inline">
         <el-form-item label="度数">
-          <el-select v-model="conditionQuery.sight_type" placeholder="请选择" style="width: 70px;">
+          <el-select v-model="conditionQuery.sight_type" placeholder="请选择" style="width: 80px;">
             <el-option
               v-for="item in optionSights"
               :key="item.value"
@@ -325,9 +325,9 @@ export default {
 </script>
 
 <style scope>
-  .el-input__inner {
-    padding-left: 10px !important;
-  }
+  /*.el-input__inner {*/
+    /*padding-left: 10px !important;*/
+  /*}*/
   .ng-binding {
     color: #000000;
     font-size: 14px;
