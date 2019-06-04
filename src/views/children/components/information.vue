@@ -16,6 +16,9 @@
             <div class="btn-user">
               <el-button type="success" @click="handleClickContactUser">联系用户</el-button>
             </div>
+            <div class="btn-user">
+              <el-button type="success" @click="handleClickChannel">健康咨询</el-button>
+            </div>
             <!--<div class="btn-user">-->
             <!--<el-button type="success">编辑标签</el-button>-->
             <!--</div>-->
@@ -90,14 +93,16 @@
       </el-card>
     </el-row>
     <Contact ref="contact" :child-id="childId"/>
+    <Channel ref="channel" :child-id="childId"/>
   </div>
 </template>
 
 <script>
 import { fetchChild, unbindDoctor } from '@/api/children'
 import Contact from './contact'
+import Channel from './channel'
 export default {
-  components: { Contact },
+  components: { Contact, Channel },
   props: {
     childId: {
       type: String,
@@ -124,6 +129,11 @@ export default {
     this.getInformation()
   },
   methods: {
+    handleClickChannel() {
+      if (this.childId) {
+        this.$refs.channel.handleShow()
+      }
+    },
     handleClickContactUser() {
       if (this.childId) {
         this.$refs.contact.handleShow()

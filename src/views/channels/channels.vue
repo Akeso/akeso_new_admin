@@ -11,7 +11,7 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
-          prop="title"
+          prop="content"
           label="咨询内容"
           min-width="180"/>
         <el-table-column
@@ -24,11 +24,11 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="createdAt"
-          label="咨询时间"
+          prop="lastDate"
+          label="最后咨询时间"
           min-width="100"/>
         <el-table-column
-          prop="doctorName"
+          prop="merchantName"
           label="咨询医生"
           min-width="100"/>
       </el-table>
