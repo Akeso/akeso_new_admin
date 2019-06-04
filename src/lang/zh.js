@@ -31,6 +31,7 @@ export default {
     systemSetting: '系统设置',
     devices: '镜腿设备',
     messages: '消息盒子',
+    channels: '健康咨询',
     versions: '版本管理',
     awards: '奖品管理',
     wx_organizations: '机构管理',

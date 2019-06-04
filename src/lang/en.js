@@ -32,6 +32,7 @@ export default {
     systemSetting: 'Setting',
     devices: 'device manage',
     messages: 'messages',
+    channels: 'channels',
     versions: 'Version'
   },
   device: {

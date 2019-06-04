@@ -202,6 +202,18 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/channels',
+    component: Layout,
+    children: [
+      {
+        path: 'channels',
+        name: 'Channels',
+        component: () => import('@/views/channels/channels'),
+        meta: { title: 'channels', icon: 'bug' }
+      }
+    ]
+  },
+  {
     path: '/system_setting',
     component: Layout,
     redirect: '/system_setting/devices',
