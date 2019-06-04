@@ -11,7 +11,7 @@
 
       <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
         <el-col :span="6">
-          <img :src="user.avatar?user.avatar:avatar" style="width: 100%;">
+          <img :src="user.avatar?user.avatar:avatar" style="width: 100%; height:100%">
           <!--<img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">-->
         </el-col>
       </el-row>
@@ -20,19 +20,19 @@
           <span class="item-title">名称</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.name || '无' }}</span>
-          <a class="item-operate" @click="handleClickEditName">修改</a>
+          <el-input v-model="user.name" :disabled="nameDisable" style="width: 30%;"/>
+          <a class="item-operate" @click="editSumbit('name')">{{ nameDisable == true ? '修改' : '确认' }}</a>
         </el-col>
       </el-row>
-      <!--<el-row :gutter="20" style="margin-bottom: 20px;">-->
-      <!--<el-col :span="2" :offset="1">-->
-      <!--<span class="item-title">所属机构</span>-->
-      <!--</el-col>-->
-      <!--<el-col :span="18" class="item-value">-->
-      <!--<span>{{ user.organization || '无' }}</span>-->
-      <!--<a v-if="baseType !== 'admin'" class="item-operate" @click="handleClickOrganization">设置</a>-->
-      <!--</el-col>-->
-      <!--</el-row>-->
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
+          <span class="item-title">负责人</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <el-input v-model="user.principal" :disabled="principalDisable" style="width: 30%;"/>
+          <a class="item-operate" @click="editSumbit('principal')">{{ principalDisable == true ? '修改' : '确认' }}</a>
+        </el-col>
+      </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
         <el-col :span="2" :offset="1">
           <span class="item-title">创建日期</span>
@@ -46,7 +46,8 @@
           <span class="item-title">邮箱</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.email || '无' }}</span>
+          <el-input v-model="user.email" :disabled="emailDisable" style="width: 30%;"/>
+          <a class="item-operate" @click="editSumbit('email')">{{ emailDisable == true ? '修改' : '确认' }}</a>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -62,7 +63,8 @@
           <span class="item-title">联系方式</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.phone || '无' }}</span>
+          <el-input v-model="user.phone" :disabled="phoneDisable" style="width: 30%;"/>
+          <a class="item-operate" @click="editSumbit('phone')">{{ phoneDisable == true ? '修改' : '确认' }}</a>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -77,31 +79,36 @@
         <PdfCode :user="user"/>
       </div>
     </el-card>
-    <OrganizationSelect ref="organizationselect" @select-success="selectValue"/>
-    <EditName ref="editName" @update-success="getData"/>
   </div>
 </template>
 
 <script>
-import { showData, updateDoctorOrganization } from '@/api/doctors'
+import { updateData } from '@/api/accounts'
+import { showData } from '@/api/doctors'
 import { mapGetters } from 'vuex'
-import OrganizationSelect from '@/components/OrganizationSelect'
-import EditName from './components/edit_name'
 import PdfCode from './components/pdf'
 import QRcode from '@/components/QRCode'
 import avatar from '@/assets/images/header.png'
 
 export default {
   components: {
-    OrganizationSelect, QRcode, EditName, PdfCode
+    QRcode, PdfCode
   },
   data() {
     return {
       user: {
-        id: undefined
+        id: undefined,
+        name: undefined,
+        principal: undefined,
+        email: undefined,
+        phone: undefined
       },
       exportVisible: false,
-      avatar: avatar
+      avatar: avatar,
+      nameDisable: true,
+      principalDisable: true,
+      emailDisable: true,
+      phoneDisable: true
     }
   },
   computed: {
@@ -117,16 +124,22 @@ export default {
     this.getData()
   },
   methods: {
-    selectValue(val) {
-      updateDoctorOrganization({ id: this.id, organization_id: val }).then(response => {
-        this.user = response.data
-      })
-    },
-    handleClickEditName() {
-      this.$refs.editName.handleShow()
-    },
-    handleClickOrganization() {
-      this.$refs.organizationselect.handleShow()
+    editSumbit(field) {
+      if (field === 'name') {
+        this.nameDisable = !this.nameDisable
+      } else if (field === 'principal') {
+        this.principalDisable = !this.principalDisable
+      } else if (field === 'email') {
+        this.emailDisable = !this.emailDisable
+      } else if (field === 'phone') {
+        this.phoneDisable = !this.phoneDisable
+      }
+      if (this.nameDisable && this.principalDisable && this.emailDisable && this.phoneDisable) {
+        updateData(this.user).then(response => {
+          this.$store.commit('updateUserInfo', response.data)
+          this.user = response.data
+        })
+      }
     },
     getData() {
       showData({ id: this.id }).then(response => {

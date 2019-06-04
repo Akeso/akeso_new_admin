@@ -1,13 +1,11 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增医生账号" width="70%">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增机构/医生账号" width="70%">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
-        <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;"/>
+        <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="机构/医生名称"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="性别" prop="gender">
-        <el-select v-model="temp.gender" class="filter-item">
-          <el-option v-for="item in genderOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
-        </el-select>
+      <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
+        <el-input v-model="temp.principal" clearable style="width: 50%;" placeholder="负责人" />
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="联系方式">
         <el-input v-model="temp.phone" clearable style="width: 50%;"/>
@@ -22,23 +20,6 @@
         <el-input v-model="temp.password_confirmation" type="password" style="width: 50%;"/>
         <el-alert v-if="passwork_valid" title="两次输入密码不一致" type="error"/>
       </el-form-item>
-      <!--<el-form-item :label-width="formLabelWidth" label="所属机构">-->
-      <!--<el-select-->
-      <!--v-model="temp.organization_id"-->
-      <!--:remote-method="remoteMethod"-->
-      <!--:loading="loading"-->
-      <!--filterable-->
-      <!--remote-->
-      <!--reserve-keyword-->
-      <!--clearable-->
-      <!--placeholder="请输入关键词">-->
-      <!--<el-option-->
-      <!--v-for="item in organizationsData"-->
-      <!--:key="item.id"-->
-      <!--:label="item.title"-->
-      <!--:value="item.id"/>-->
-      <!--</el-select>-->
-      <!--</el-form-item>-->
       <el-form-item :label-width="formLabelWidth" label="地区">
         <el-select v-model="temp.province_code" placeholder="请选择" style="width: 130px;">
           <el-option
@@ -77,23 +58,17 @@
 </template>
 
 <script>
-import { fetchOrganizations } from '@/api/selects'
 import { createItem } from '@/api/doctors'
 import { fetchChinaData } from '@/api/china_map'
-const genderOptions = [
-  { key: 'male', display_name: '男' },
-  { key: 'female', display_name: '女' }
-]
 export default {
   data() {
     return {
-      genderOptions,
       dialogFormVisible: false,
       formLabelWidth: '120px',
       passwork_valid: false,
       temp: {
         name: undefined,
-        gender: undefined,
+        principal: undefined,
         phone: undefined,
         email: undefined,
         password: undefined,
@@ -123,7 +98,6 @@ export default {
         ]
       },
       loading: false,
-      organizationsData: [],
       provinceData: [],
       cityData: [],
       districtData: []
@@ -189,17 +163,6 @@ export default {
         province_code: undefined,
         city_code: undefined,
         district_code: undefined
-      }
-    },
-    remoteMethod(query) {
-      if (query !== '') {
-        this.loading = true
-        fetchOrganizations({ title: query }).then(response => {
-          this.organizationsData = response.data
-          this.loading = false
-        })
-      } else {
-        this.organizationsData = []
       }
     },
     getProvinceData() {
