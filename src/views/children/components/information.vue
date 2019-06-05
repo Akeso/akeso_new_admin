@@ -93,14 +93,14 @@
       </el-card>
     </el-row>
     <Contact ref="contact" :child-id="childId"/>
-    <Channel ref="channel" :child-id="childId"/>
+    <Channel ref="channel"/>
   </div>
 </template>
 
 <script>
 import { fetchChild, unbindDoctor } from '@/api/children'
 import Contact from './contact'
-import Channel from './channel'
+import Channel from '../../components/channel'
 export default {
   components: { Contact, Channel },
   props: {
@@ -131,7 +131,7 @@ export default {
   methods: {
     handleClickChannel() {
       if (this.childId) {
-        this.$refs.channel.handleShow()
+        this.$refs.channel.handleShow(this.childId)
       }
     },
     handleClickContactUser() {

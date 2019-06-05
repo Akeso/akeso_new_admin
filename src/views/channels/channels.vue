@@ -12,7 +12,7 @@
         @sort-change="handleColumnSort">
         <el-table-column
           prop="content"
-          label="咨询内容"
+          label="最后咨询内容"
           min-width="180"/>
         <el-table-column
           label="咨询儿童"
@@ -31,17 +31,27 @@
           prop="merchantName"
           label="咨询医生"
           min-width="100"/>
+        <el-table-column
+          label="操作"
+          min-width="120" >
+          <template slot-scope="scope">
+            <el-button type="text" size="small" @click="handleClickChannel(scope.row)">联系用户</el-button>
+          </template>
+        </el-table-column>
       </el-table>
 
       <div class="pagination-container">
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <Channel ref="channel"/>
   </div>
 </template>
 <script>
 import { fetchList } from '@/api/channels'
+import Channel from '../components/channel'
 export default {
+  components: { Channel },
   data() {
     return {
       list: null,
@@ -66,7 +76,10 @@ export default {
     this.getList()
   },
   methods: {
-    handleClick(val) {
+    handleClickChannel(val) {
+      if (val) {
+        this.$refs.channel.handleShow(val.childId)
+      }
     },
     getList() {
       fetchList(this.listQuery).then(response => {

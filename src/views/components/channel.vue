@@ -18,14 +18,9 @@
 import { fetchLogs, createItem } from '@/api/channel_logs'
 
 export default {
-  props: {
-    childId: {
-      type: String,
-      default: ''
-    }
-  },
   data() {
     return {
+      childId: undefined,
       dialogVisible: false,
       formLabelWidth: '100px',
       content: '',
@@ -41,6 +36,7 @@ export default {
       this.dialogVisible = false
     },
     handleShow(val) {
+      this.childId = val
       fetchLogs({ child_id: this.childId }).then(res => {
         this.merchantName = res.data.merchantName
         this.childName = res.data.childName
