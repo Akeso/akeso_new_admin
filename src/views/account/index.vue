@@ -11,7 +11,7 @@
 
       <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
         <el-col :span="6">
-          <img :src="user.avatar" style="width: 100%;">
+          <img :src="user.avatar?user.avatar:avatar" style="width: 100%; height:100%">
           <!--<img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">-->
         </el-col>
       </el-row>
@@ -88,6 +88,7 @@ import { showData } from '@/api/doctors'
 import { mapGetters } from 'vuex'
 import PdfCode from './components/pdf'
 import QRcode from '@/components/QRCode'
+import avatar from '@/assets/images/header.png'
 
 export default {
   components: {
@@ -103,6 +104,7 @@ export default {
         phone: undefined
       },
       exportVisible: false,
+      avatar: avatar,
       nameDisable: true,
       principalDisable: true,
       emailDisable: true,
