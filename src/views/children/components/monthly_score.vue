@@ -51,12 +51,6 @@
                   <span>{{ monthData.outTime }}</span>
                 </div>
               </el-progress>
-              <label for="">护眼光照时间/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.protectLuxTimePercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ monthData.protectLuxTime }}</span>
-                </div>
-              </el-progress>
               <label for="">阳光摄入量/天</label>
               <el-progress :stroke-width="14" :percentage="monthData.luxDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>

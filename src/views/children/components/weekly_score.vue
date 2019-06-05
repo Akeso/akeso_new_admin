@@ -52,12 +52,6 @@
                   <span>{{ weekData.outTime }}</span>
                 </div>
               </el-progress>
-              <label for="">护眼光照时间/天</label>
-              <el-progress :stroke-width="14" :percentage="weekData.protectLuxTimePercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ weekData.protectLuxTime }}</span>
-                </div>
-              </el-progress>
               <label for="">阳光摄入量/天</label>
               <el-progress :stroke-width="14" :percentage="weekData.luxDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
                 <div>
