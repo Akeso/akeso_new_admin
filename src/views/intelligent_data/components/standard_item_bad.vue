@@ -5,7 +5,7 @@
         <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
           <tr>
             <td><span class="title-font">{{ title }}</span></td>
-            <td><span class="title-font">分析人次</span></td>
+            <td><span class="title-font">分析人数</span></td>
             <td><span class="title-font">对应占比</span></td>
           </tr>
           <tr>
@@ -19,7 +19,7 @@
             <td>{{ undonePercent }}%</td>
           </tr>
           <tr>
-            <td><span class="title-font">合计人次</span></td>
+            <td><span class="title-font">合计人数</span></td>
             <td>{{ totalCount }}</td>
             <td>100%</td>
           </tr>

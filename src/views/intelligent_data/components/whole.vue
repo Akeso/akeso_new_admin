@@ -108,9 +108,9 @@
       <el-col :span="12">
         <StandardItemGood :title="'运动步数'" :done-count="wholeData.stepCountCount" :total-count="wholeData.totalCount" :done-percent="wholeData.stepCountPercent"/>
       </el-col>
-      <el-col :span="12">
-        <StandardItemGood :title="'护眼光照时间'" :done-count="wholeData.protectLuxTimeCount" :total-count="wholeData.totalCount" :done-percent="wholeData.protectLuxTimePercent"/>
-      </el-col>
+      <!--<el-col :span="12">-->
+      <!--<StandardItemGood :title="'护眼光照时间'" :done-count="wholeData.protectLuxTimeCount" :total-count="wholeData.totalCount" :done-percent="wholeData.protectLuxTimePercent"/>-->
+      <!--</el-col>-->
     </el-row>
 
     <el-row :gutter="10">
