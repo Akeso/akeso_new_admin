@@ -11,8 +11,8 @@
 
       <el-row>
         <el-col>
-          姓名:
-          <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
+          名称:
+          <el-input v-model="listQuery.name" label="名称" placeholder="名称" style="width: 200px;" class="filter-item" clearable/>
           联系电话:
           <el-input v-model="listQuery.phone" label="联系电话" placeholder="联系电话" style="width: 180px;" class="filter-item" clearable/>
           登录账号:
@@ -55,6 +55,10 @@
           prop="createdAt"
           label="创建时间"
           min-width="120"/>
+        <el-table-column
+          prop="cateName"
+          label="类型"
+          min-width="80"/>
         <el-table-column
           label="操作"
           min-width="120" >

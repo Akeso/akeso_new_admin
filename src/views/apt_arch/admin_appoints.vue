@@ -34,7 +34,7 @@
           label="姓名"
           min-width="80"/>
         <el-table-column
-          prop="gender"
+          prop="genderCn"
           label="性别"
           min-width="60"/>
         <el-table-column
