@@ -6,7 +6,7 @@
         <span>{{ item.doctorSend ? item.doctorName : item.childName }}</span>-->
         <!--<span>2019-05-24 13:21:11</span>
         <div>{{ item.title }}</div>-->
-        <div :class="!item.doctorSend ? 'header-logr' : 'header-logl'"> <img src="" alt=""></div>
+        <div :class="!item.doctorSend ? 'header-logr' : 'header-logl'"> <img :src="avatar" alt=""></div>
         <p class="chat-title">{{ !item.doctorSend ? item.doctorName : item.childName }}</p>
         <div class="chat-time">{{ item.createdAt }}</div>
         <div :class="!item.doctorSend ? 'chat-info' : 'chat-infol'">{{ item.title }}</div>
@@ -21,7 +21,7 @@
 </template>
 <script>
 import { fetchLogs, sendToChild } from '@/api/messages'
-
+import avatar from '@/assets/images/header.png'
 export default {
   props: {
     childId: {
@@ -34,7 +34,8 @@ export default {
       dialogVisible: false,
       formLabelWidth: '100px',
       question: '',
-      data: []
+      data: [],
+      avatar: avatar
     }
   },
   created() {
@@ -71,7 +72,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  background: #ccc;
+  background: #fff;
 }
 .header-logl img,.header-logr img{
   width:100%;

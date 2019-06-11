@@ -3,7 +3,7 @@
     <div style="height: 300px;overflow-y: scroll; padding: 20px;background-color: rgba(196,196,196,0.23);">
       <el-row v-for="item in data" :style="{ textAlign: item.source === 'merchant' ? 'right' : 'left' }" :key="item.id" :gutter="20" class="chat-con">
         <!--<el-tag type="success">{{ item.source === 'merchant' ? merchantName : childName }}</el-tag>-->
-        <div :class="item.source === 'merchant' ? 'header-logr' : 'header-logl'"> <img src="" alt=""></div>
+        <div :class="item.source === 'merchant' ? 'header-logr' : 'header-logl'"> <img :src="avatar" alt=""></div>
         <p class="chat-title">{{ item.source === 'merchant' ? merchantName : childName }}</p>
         <div class="chat-time">{{ item.createdAt }}</div>
         <div :class="item.source === 'merchant' ? 'chat-info' : 'chat-infol'">{{ item.content }}</div>
@@ -18,7 +18,7 @@
 </template>
 <script>
 import { fetchLogs, createItem } from '@/api/channel_logs'
-
+import avatar from '@/assets/images/header.png'
 export default {
   data() {
     return {
@@ -28,7 +28,8 @@ export default {
       content: '',
       data: [],
       merchantName: '',
-      childName: ''
+      childName: '',
+      avatar: avatar
     }
   },
   created() {
@@ -70,7 +71,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  background: #ccc;
+  background: #fff;
 }
 .header-logl img,.header-logr img{
   width:100%;
