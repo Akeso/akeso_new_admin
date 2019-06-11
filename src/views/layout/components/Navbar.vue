@@ -10,8 +10,10 @@
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatarUrl" class="user-avatar">
-          <i class="el-icon-caret-bottom"/>
+          <el-badge value="new" class="item">
+            <img :src="avatarUrl" class="user-avatar">
+            <i class="el-icon-caret-bottom"/>
+          </el-badge>
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
@@ -19,8 +21,15 @@
               {{ $t('navbar.dashboard') }}
             </el-dropdown-item>
           </router-link>
-          <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">{{ $t('navbar.logOut') }}</span>
+          <router-link to="/channels/channels">
+            <el-dropdown-item>
+              <el-badge value="new" class="item">
+                <span @click="logout">消息</span>
+              </el-badge>
+            </el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided style="margin-top: 5px;">
+            <span @click="logout">{{ $t('navbar.logOut') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>

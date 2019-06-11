@@ -47,7 +47,7 @@
         label="操作"
         min-width="120">
         <template slot-scope="scope">
-          <!--<el-button type="text" size="small">APP联系</el-button>-->
+          <el-button type="text" size="small" @click="handleClickChannel(scope.row)">联系用户</el-button>
           <el-button v-if="!scope.row.followState" type="text" size="small" @click="handleClickPhone(scope.row)">电话联系</el-button>
           <el-button type="text" size="small" @click="handleClickLogs(scope.row)">随访记录</el-button>
         </template>
@@ -58,6 +58,7 @@
     </div>
     <NewFollow ref="new_follow" @createSuccess="getList"/>
     <FollowLogs ref="follow_logs"/>
+    <Channel ref="channel"/>
   </div>
 </template>
 
@@ -65,8 +66,9 @@
 import { fetchList } from '@/api/followers'
 import NewFollow from './new_follow'
 import FollowLogs from './follow_logs'
+import Channel from '../../components/channel'
 export default {
-  components: { NewFollow, FollowLogs },
+  components: { NewFollow, FollowLogs, Channel },
   data() {
     return {
       list: null,
@@ -87,6 +89,11 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickChannel(val) {
+      if (val) {
+        this.$refs.channel.handleShow(val.childId)
+      }
+    },
     handleClickLogs(val) {
       this.$refs.follow_logs.handleShow(val)
     },
