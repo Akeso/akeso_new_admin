@@ -24,6 +24,10 @@
           </template>
         </el-table-column>
         <el-table-column
+          prop="userCount"
+          label="未读消息"
+          min-width="60"/>
+        <el-table-column
           prop="lastDate"
           label="最后咨询时间"
           min-width="100"/>
