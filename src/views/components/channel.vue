@@ -1,10 +1,12 @@
 <template>
   <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="聊天" width="60%">
     <div style="height: 300px;overflow-y: scroll; padding: 20px;background-color: rgba(196,196,196,0.23);">
-      <el-row v-for="item in data" :style="{ textAlign: item.source === 'merchant' ? 'right' : 'left' }" :key="item.id" :gutter="20">
-        <el-tag type="success">{{ item.source === 'merchant' ? merchantName : childName }}</el-tag>
-        <span>{{ item.createdAt }}</span>
-        <div>{{ item.content }}</div>
+      <el-row v-for="item in data" :style="{ textAlign: item.source === 'merchant' ? 'right' : 'left' }" :key="item.id" :gutter="20" class="chat-con">
+        <!--<el-tag type="success">{{ item.source === 'merchant' ? merchantName : childName }}</el-tag>-->
+        <div :class="item.source === 'merchant' ? 'header-logr' : 'header-logl'"> <img src="" alt=""></div>
+        <p class="chat-title">{{ item.source === 'merchant' ? merchantName : childName }}</p>
+        <div class="chat-time">{{ item.createdAt }}</div>
+        <div :class="item.source === 'merchant' ? 'chat-info' : 'chat-infol'">{{ item.content }}</div>
       </el-row>
     </div>
     <el-input v-model="content" type="textarea" style="width: 100%;margin-top: 20px;"/>
@@ -58,3 +60,54 @@ export default {
   }
 }
 </script>
+<style scoped>
+.chat-con{
+  padding: 0 50px;
+  position: relative;
+}
+.header-logl,.header-logr{
+  width:40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ccc;
+}
+.header-logl img,.header-logr img{
+  width:100%;
+  height: 100%;
+}
+.header-logl{
+  position: absolute;
+  left:0px;
+  top: 10px;
+}
+.header-logr{
+  position: absolute;
+  right:0px;
+  top: 10px;
+}
+.chat-title{
+  margin: 10px 0 6px;
+}
+.chat-time{
+  font-size:12px;
+  padding-bottom: 8px;
+}
+.chat-info,.chat-infol{
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  max-width: 86%;
+  line-height: 20px;
+  display: inline-block;
+}
+.chat-info{
+  background: #3aa7ff;
+  color:#fff;
+  text-align: left;
+}
+.chat-infol{
+  background:#fff;
+}
+</style>
+
