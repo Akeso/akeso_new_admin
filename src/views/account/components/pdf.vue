@@ -36,7 +36,13 @@ export default {
       type: Object,
       default: function() {
         return {
+          id: undefined,
           name: '医生名称',
+          avatarUrl: undefined,
+          principal: undefined,
+          email: undefined,
+          phone: undefined,
+          address: undefined,
           jobTitle: '视光师',
           workingYears: 0,
           description: '简介'
