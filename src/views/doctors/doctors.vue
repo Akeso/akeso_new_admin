@@ -56,8 +56,8 @@
           label="创建时间"
           min-width="120"/>
         <el-table-column
-          prop="cateName"
-          label="类型"
+          prop="baseTypeVal"
+          label="账户类型"
           min-width="80"/>
         <el-table-column
           label="操作"

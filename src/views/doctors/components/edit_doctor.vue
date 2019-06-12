@@ -4,13 +4,22 @@
       <el-form-item :label-width="formLabelWidth" label="名称" prop="name">
         <el-input v-model="temp.name" class="filter-item" placeholder="名称" style="width: 50%;"/>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="账户类型">
+        <el-select v-model="temp.baseType" placeholder="请选择" style="width: 130px;">
+          <el-option
+            v-for="item in base_types"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"/>
+        </el-select>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
         <el-input v-model="temp.principal" class="filter-item" placeholder="负责人" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="联系方式">
         <el-input v-model="temp.phone" clearable style="width: 50%;"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" prop="email" label="登录邮箱">
+      <el-form-item :label-width="formLabelWidth" prop="email" label="登录账号">
         <el-input v-model="temp.email" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="详细地址">
@@ -28,6 +37,10 @@
 </template>
 <script>
 import { updateItem } from '@/api/doctors'
+const base_types = [
+  { key: 'organization', value: '机构' },
+  { key: 'doctor', value: '医生' }
+]
 export default {
   data() {
     return {
@@ -36,6 +49,7 @@ export default {
       temp: {
         id: undefined,
         name: undefined,
+        baseType: 'organization',
         principal: undefined,
         phone: undefined,
         email: undefined,
@@ -50,7 +64,8 @@ export default {
         email: [
           { required: true, message: '请输入登录账号', trigger: 'blur' }
         ]
-      }
+      },
+      base_types: base_types
     }
   },
   created() {
@@ -61,7 +76,7 @@ export default {
     },
     handleShow(val) {
       this.temp = JSON.parse(JSON.stringify(val))
-      // this.temp = val
+      console.log('temp => ', this.temp)
       this.dialogVisible = true
     },
     handleClickSubmit() {

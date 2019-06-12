@@ -4,13 +4,22 @@
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
         <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="机构/医生名称"/>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="账户类型">
+        <el-select v-model="temp.base_type" placeholder="请选择" style="width: 130px;">
+          <el-option
+            v-for="item in base_types"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"/>
+        </el-select>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
         <el-input v-model="temp.principal" clearable style="width: 50%;" placeholder="负责人" />
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="联系方式">
         <el-input v-model="temp.phone" clearable style="width: 50%;"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" prop="email" label="登录邮箱">
+      <el-form-item :label-width="formLabelWidth" prop="email" label="登录账号">
         <el-input v-model="temp.email" style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="password" label="登录密码">
@@ -60,6 +69,10 @@
 <script>
 import { createItem } from '@/api/doctors'
 import { fetchChinaData } from '@/api/china_map'
+const base_types = [
+  { key: 'organization', value: '机构' },
+  { key: 'doctor', value: '医生' }
+]
 export default {
   data() {
     return {
@@ -68,6 +81,7 @@ export default {
       passwork_valid: false,
       temp: {
         name: undefined,
+        base_type: 'organization',
         principal: undefined,
         phone: undefined,
         email: undefined,
@@ -100,7 +114,8 @@ export default {
       loading: false,
       provinceData: [],
       cityData: [],
-      districtData: []
+      districtData: [],
+      base_types: base_types
     }
   },
   watch: {
@@ -152,6 +167,7 @@ export default {
       this.$refs['ruleForm'].resetFields()
       this.temp = {
         name: undefined,
+        base_type: 'organization',
         gender: undefined,
         phone: undefined,
         email: undefined,
