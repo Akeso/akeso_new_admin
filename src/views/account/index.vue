@@ -16,9 +16,9 @@
             :show-file-list="false"
             :on-success="uploadSuccess"
             :before-upload="beforeUpload"
-            :action="uploadUrl"
-            :data="uploadData">
-            <img v-if="user.avatar" :src="user.avatar" class="avatar">
+            :data="uploadData"
+            :action="uploadUrl">
+            <img v-if="user.avatarUrl" :src="user.avatarUrl" class="avatar">
             <el-button type="primary">上传头像</el-button>
           </el-upload>
         </el-col>
@@ -51,11 +51,11 @@
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
         <el-col :span="2" :offset="1">
-          <span class="item-title">邮箱</span>
+          <span class="item-title">账号</span>
         </el-col>
         <el-col :span="18" class="item-value">
           <el-input v-model="user.email" :disabled="emailDisable" style="width: 30%;"/>
-          <a class="item-operate" @click="editSumbit('email')">{{ emailDisable == true ? '修改' : '确认' }}</a>
+          <!--<a class="item-operate" @click="editSumbit('email')">{{ emailDisable == true ? '修改' : '确认' }}</a>-->
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -63,7 +63,8 @@
           <span class="item-title">地址</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.locationStreet || '无' }}</span>
+          <el-input v-model="user.address" :disabled="addressDisable" style="width: 30%;"/>
+          <a class="item-operate" @click="editSumbit('address')">{{ addressDisable == true ? '修改' : '确认' }}</a>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -80,7 +81,8 @@
           <span class="item-title">简介</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span>{{ user.description || '无' }}</span>
+          <el-input v-model="user.description" :disabled="descriptionDisable" style="width: 30%;"/>
+          <a class="item-operate" @click="editSumbit('description')">{{ descriptionDisable == true ? '修改' : '确认' }}</a>
         </el-col>
       </el-row>
       <div class="code-box">
@@ -104,28 +106,33 @@ export default {
   },
   data() {
     return {
-      uploadUrl: '/api/common/uploads',
+      uploadUrl: '/api/common/uploads/avatar',
       uploadData: {
-        asset_type: 'AwardLogo'
+        authenticationToken: this.$store.state.user.authenticationToken
       },
       user: {
         id: undefined,
         name: undefined,
+        avatarUrl: undefined,
         principal: undefined,
         email: undefined,
-        phone: undefined
+        phone: undefined,
+        address: undefined
       },
       exportVisible: false,
       avatar: avatar,
       nameDisable: true,
       principalDisable: true,
       emailDisable: true,
-      phoneDisable: true
+      phoneDisable: true,
+      addressDisable: true,
+      descriptionDisable: true
     }
   },
   computed: {
     ...mapGetters([
       'id',
+      'authenticationToken',
       'baseType'
     ]),
     htmlTitle: function() {
@@ -136,8 +143,9 @@ export default {
     this.getData()
   },
   methods: {
-    uploadSuccess() {
-      console.log('upload success.')
+    uploadSuccess(res, file) {
+      this.$store.commit('updateUserInfo', res.data)
+      this.user = res.data
     },
     beforeUpload() {
       console.log('before upload.')
@@ -147,12 +155,14 @@ export default {
         this.nameDisable = !this.nameDisable
       } else if (field === 'principal') {
         this.principalDisable = !this.principalDisable
-      } else if (field === 'email') {
-        this.emailDisable = !this.emailDisable
       } else if (field === 'phone') {
         this.phoneDisable = !this.phoneDisable
+      } else if (field === 'address') {
+        this.addressDisable = !this.addressDisable
+      } else if (field === 'description') {
+        this.descriptionDisable = !this.descriptionDisable
       }
-      if (this.nameDisable && this.principalDisable && this.emailDisable && this.phoneDisable) {
+      if (this.nameDisable && this.principalDisable && this.phoneDisable && this.addressDisable && this.descriptionDisable) {
         updateData(this.user).then(response => {
           this.$store.commit('updateUserInfo', response.data)
           this.user = response.data
@@ -190,6 +200,11 @@ export default {
   #pdfDom >>> #canvas {
     width: 240px !important;
     height: 240px !important;
+  }
+  .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
   }
   .code-box{
     height: 1px;
