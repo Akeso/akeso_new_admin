@@ -1,14 +1,10 @@
 <template>
   <div id="pdfDom" style="text-align: center;">
     <div class="container-doctor">
-      <!--<div class="header">
-        <img src="" alt="">
-      </div>-->
       <div class="doctor">
         <div class="avatar">
-          <img :src="user.avatar ? user.avatar : avatar" alt="" class="img">
+          <img :src="user.avatarUrl ? user.avatarUrl : avatar" alt="" class="img">
         </div>
-        <h1 class="title">{{ user.organizationTitle }}</h1>
         <div class="name">
           <span>{{ user.name }}</span>
         </div>
