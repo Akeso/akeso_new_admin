@@ -109,27 +109,6 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/myopia',
-    component: Layout,
-    redirect: '/myopia/high_warn',
-    name: 'myopia',
-    meta: { title: 'myopia', icon: 'example' },
-    children: [
-      // {
-      //   path: 'classwarn',
-      //   name: 'classWarn',
-      //   component: () => import('@/views/myopia/class_warn'),
-      //   meta: { title: 'class_warn', icon: 'table' }
-      // },
-      {
-        path: 'highwarn',
-        name: 'highWarn',
-        component: () => import('@/views/myopia/high_warn'),
-        meta: { title: 'high_warn', icon: 'table' }
-      }
-    ]
-  },
-  {
     path: '/intelligent_data',
     component: Layout,
     redirect: '/intelligent_data/class_warn',
@@ -147,6 +126,27 @@ export const constantRouterMap = [
         name: 'sorting',
         component: () => import('@/views/intelligent_data/sorting'),
         meta: { title: 'sorting', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/myopia',
+    component: Layout,
+    redirect: '/myopia/high_warn',
+    name: 'myopia',
+    meta: { title: 'myopia', icon: 'example' },
+    children: [
+      // {
+      //   path: 'classwarn',
+      //   name: 'classWarn',
+      //   component: () => import('@/views/myopia/class_warn'),
+      //   meta: { title: 'class_warn', icon: 'table' }
+      // },
+      {
+        path: 'highwarn',
+        name: 'highWarn',
+        component: () => import('@/views/myopia/high_warn'),
+        meta: { title: 'high_warn', icon: 'table' }
       }
     ]
   },
@@ -216,6 +216,7 @@ export const constantRouterMap = [
   {
     path: '/system_setting',
     component: Layout,
+    only: true,
     redirect: '/system_setting/devices',
     name: 'systemSetting',
     meta: { title: 'systemSetting', icon: 'example' },

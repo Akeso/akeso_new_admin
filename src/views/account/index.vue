@@ -11,8 +11,16 @@
 
       <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
         <el-col :span="6">
-          <img :src="user.avatar?user.avatar:avatar" style="width: 100%; height:100%">
-          <!--<img src="https://www.baidu.com/img/bd_logo1.png?where=super" style="width: 100%;">-->
+          <!--<img :src="user.avatar?user.avatar:avatar" style="width: 100%; height:100%">-->
+          <el-upload
+            :show-file-list="false"
+            :on-success="uploadSuccess"
+            :before-upload="beforeUpload"
+            :action="uploadUrl"
+            :data="uploadData">
+            <img v-if="user.avatar" :src="user.avatar" class="avatar">
+            <el-button type="primary">上传头像</el-button>
+          </el-upload>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -96,6 +104,10 @@ export default {
   },
   data() {
     return {
+      uploadUrl: '/api/common/uploads',
+      uploadData: {
+        asset_type: 'AwardLogo'
+      },
       user: {
         id: undefined,
         name: undefined,
@@ -124,6 +136,12 @@ export default {
     this.getData()
   },
   methods: {
+    uploadSuccess() {
+      console.log('upload success.')
+    },
+    beforeUpload() {
+      console.log('before upload.')
+    },
     editSumbit(field) {
       if (field === 'name') {
         this.nameDisable = !this.nameDisable
