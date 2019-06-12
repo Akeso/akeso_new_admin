@@ -174,7 +174,7 @@ export default {
     height: 240px !important;
   }
   .code-box{
-    height: 1px;
+    /*height: 1px;*/
     overflow: hidden;
   }
 </style>
