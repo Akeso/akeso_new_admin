@@ -87,6 +87,8 @@ export default {
   }
   .avatar{
     text-align: center;
+    height: 100px;
+    margin-bottom: 16px;
   }
   .img{
     width:100px;
