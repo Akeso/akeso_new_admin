@@ -118,6 +118,7 @@ export default {
     },
     handleFilterClear() {
       this.listQuery.name = ''
+      this.listQuery.parentPhone = ''
       this.listQuery.startDate = ''
       this.listQuery.endDate = ''
     }
