@@ -179,7 +179,7 @@ export const constantRouterMap = [
   {
     path: '/frequency',
     component: Layout,
-    only: true,
+    // only: true,
     children: [
       {
         path: 'frequency',
