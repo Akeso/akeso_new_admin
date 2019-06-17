@@ -11,7 +11,9 @@ export default{
         canvas: c,
         logging: true,
         width: document.querySelector('#pdfDom').width,
-        height: document.querySelector('#pdfDom').height
+        height: document.querySelector('#pdfDom').height,
+        allowTaint: false,
+        useCORS: true
       }
       c.width = document.querySelector('#pdfDom').width * 2
       c.height = document.querySelector('#pdfDom').height * 2

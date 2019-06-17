@@ -3,7 +3,9 @@
     <div class="container-doctor">
       <div class="doctor">
         <div class="avatar">
-          <img :src="user.avatarUrl ? user.avatarUrl : avatar" alt="" class="img">
+          <div class="img-avatar">
+            <img :src="user.avatarUrl ? user.avatarUrl : avatar" alt="" class="img">
+          </div>
         </div>
         <div class="name">
           <span>{{ user.name }}</span>
@@ -90,11 +92,13 @@ export default {
     height: 100px;
     margin-bottom: 16px;
   }
+  .img-avatar{
+    display: inline-block;
+  }
   .img{
     width:100px;
     height: 100px;
     border-radius: 50%;
-    background: #fff;
   }
   .name{
     font-size: 22px;
