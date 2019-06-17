@@ -12,8 +12,8 @@ module.exports = {
     proxyTable: {
       '/api': {
         // target: 'http://staging.akeso.com.cn/',  //目标接口域名
-        // target: 'http://akeso.com.cn/',  //目标接口域名
-        target: 'http://localhost:3000/',  //目标接口域名
+        target: 'http://akeso.com.cn/',  //目标接口域名
+        // target: 'http://localhost:3000/',  //目标接口域名
         changeOrigin: true,  //是否跨域
         pathRewrite: {
           '^/api': '/api'   //重写接口
