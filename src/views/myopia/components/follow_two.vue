@@ -28,6 +28,14 @@
         label="上月眼健康评分"
         min-width="80"/>
       <el-table-column
+        prop="outTime"
+        label="户外活动"
+        min-width="80"/>
+      <el-table-column
+        prop="nearworkBurdenDay"
+        label="视负荷"
+        min-width="80"/>
+      <el-table-column
         prop="lastFollowAt"
         label="上次随访时间"
         min-width="80"/>

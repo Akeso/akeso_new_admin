@@ -15,7 +15,7 @@
       </div>
       <QRcode v-if="baseType !== 'admin'"/>
       <p class="sub-title">我是儿童视力健康的守门人</p>
-      <p class="sub-title">请扫码绑定我成为您的家庭视光师</p>
+      <p class="sub-title">请扫码绑定我成为您的{{ baseType === 'doctor' ? '家庭视光师' : '眼健康管理中心' }}</p>
     </div>
   </div>
 </template>
