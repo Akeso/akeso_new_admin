@@ -24,6 +24,7 @@ export default {
     analytics: 'analytics',
     sorting: 'sorting',
     intelligent: 'intelligent',
+    group_report: 'group report',
     showChild: 'show child',
     frequency: 'frequency',
     feedback: 'feedback',

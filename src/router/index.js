@@ -116,6 +116,12 @@ export const constantRouterMap = [
     meta: { title: 'intelligentData', icon: 'example' },
     children: [
       {
+        path: 'group_report',
+        name: 'groupReport',
+        component: () => import('@/views/intelligent_data/group_report'),
+        meta: { title: 'group_report', icon: 'table' }
+      },
+      {
         path: 'analytics',
         name: 'analytics',
         component: () => import('@/views/intelligent_data/analytics'),

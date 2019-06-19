@@ -64,6 +64,7 @@
           min-width="120" >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
+            <el-button type="text" size="small" @click="handleClickSkilled(scope.row)">擅长业务</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -75,14 +76,16 @@
     </el-card>
     <NewDoctor ref="newDoctor" @create-success="getList"/>
     <EditDoctor ref="editDoctor" @update-success="getList"/>
+    <Skilled ref="skilled" @update-success="getList"/>
   </div>
 </template>
 <script>
 import { fetchList, deleteItem } from '@/api/doctors'
 import NewDoctor from './components/new_doctor'
 import EditDoctor from './components/edit_doctor'
+import Skilled from './components/skilled'
 export default {
-  components: { NewDoctor, EditDoctor },
+  components: { NewDoctor, EditDoctor, Skilled },
   data() {
     return {
       list: null,
@@ -105,6 +108,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickSkilled(val) {
+      this.$refs.skilled.show(val)
+    },
     handleClickEdit(val) {
       this.$refs.editDoctor.handleShow(val)
     },
