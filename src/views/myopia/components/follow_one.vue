@@ -29,11 +29,11 @@
         min-width="80"/>
       <el-table-column
         prop="outTime"
-        label="户外活动"
+        label="户外活动(分钟/天)"
         min-width="80"/>
       <el-table-column
         prop="nearworkBurdenDay"
-        label="视负荷"
+        label="视负荷(D/天)"
         min-width="80"/>
       <el-table-column
         prop="lastFollowAt"
