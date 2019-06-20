@@ -1,5 +1,5 @@
 {
-  "name": "vue-admin-template",
+  "name": "akeso_new_admin",
   "version": "3.8.0",
   "license": "MIT",
   "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
@@ -42,6 +42,7 @@
     "babel-plugin-transform-vue-jsx": "3.7.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-stage-2": "6.24.1",
+    "caniuse-lite": "^1.0.30000975",
     "chalk": "2.4.1",
     "compression-webpack-plugin": "2.0.0",
     "copy-webpack-plugin": "4.5.2",
