@@ -4,7 +4,8 @@
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
-      :on-exceed="handleExceed"
+      :on-success="handleSuccess"
+      :limit="1"
       class="upload-demo"
       action="/api/common/excels/upload_report">
       <el-button size="small" type="primary">点击上传</el-button>
@@ -60,7 +61,9 @@ export default {
     handlePreview(file) {
       console.log(file)
     },
-    handleExceed(files, fileList) {
+    handleSuccess(res, file) {
+      console.log('res => ', res)
+      console.log('file => ', file)
     },
     beforeRemove(file, fileList) {
     }
