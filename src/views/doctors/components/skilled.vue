@@ -39,12 +39,14 @@ export default {
     }
   },
   created() {
-    fetchList().then(res => {
-      this.dataOptions = res.data
-      console.log('data => ', this.dataOptions)
-    })
   },
   methods: {
+    getServiceList() {
+      fetchList().then(res => {
+        this.dataOptions = res.data
+        console.log('data => ', this.dataOptions)
+      })
+    },
     handleClickCancel() {
       this.resetData()
       this.dialogFormVisible = false
@@ -64,6 +66,7 @@ export default {
       console.log('checkBox => ', this.checkedOptions)
     },
     show(val) {
+      this.getServiceList()
       this.temp = JSON.parse(JSON.stringify(val))
       this.dialogFormVisible = true
     },

@@ -136,7 +136,6 @@ export default {
     }
   },
   created() {
-    this.getProvinceData()
   },
   methods: {
     handleClickCancel() {
@@ -161,6 +160,7 @@ export default {
       })
     },
     show() {
+      this.getProvinceData()
       this.dialogFormVisible = true
     },
     resetData() {
