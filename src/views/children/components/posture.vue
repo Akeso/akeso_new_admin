@@ -5,7 +5,7 @@
       <el-tooltip effect="light" placement="right">
         <div slot="content">
           该数值指孩子近距离用眼时低头、歪头过度时<br>
-          智能眼镜提醒矫正姿势的次数。
+          智能眼镜提醒矫正姿势的时间。
         </div>
         <i class="el-icon-question"/>
       </el-tooltip>
@@ -53,7 +53,7 @@ export default {
       },
       tooltip: {
         trigger: 'axis',
-        formatter: '{b}<br />不良用眼姿势：{c} 次'
+        formatter: '{b}<br />不良用眼姿势：{c} 分钟'
       },
       xAxis: {
         type: 'category',
