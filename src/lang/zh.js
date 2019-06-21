@@ -34,18 +34,10 @@ export default {
     messages: '消息盒子',
     channels: '健康咨询',
     versions: '版本管理',
+    app_files: '蓝牙文件',
     awards: '奖品管理',
     wx_organizations: '机构管理',
-    weapp: '步步兑换活动',
-    // - - - 这里是例子的分界线 - - -
-    Nested: 'Nested',
-    Menu1: 'Menu1',
-    'Menu1-1': 'Menu1-1',
-    'Menu1-2': 'Menu1-2',
-    'Menu1-2-1': 'Menu1-2-1',
-    'Menu1-2-2': 'Menu1-2-2',
-    'Menu1-3': 'Menu1-3',
-    'menu2': 'Menu2'
+    weapp: '步步兑换活动'
   },
   device: {
     deviceType: '镜腿型号'
