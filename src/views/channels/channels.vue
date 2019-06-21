@@ -36,6 +36,7 @@
           label="咨询医生"
           min-width="100"/>
         <el-table-column
+          v-if="baseType != 'admin'"
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
@@ -52,6 +53,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import { fetchList } from '@/api/channels'
 import Channel from '../components/channel'
 export default {
@@ -75,6 +77,11 @@ export default {
         sortOrder: undefined
       }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'baseType'
+    ])
   },
   created() {
     this.getList()
