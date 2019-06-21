@@ -64,7 +64,7 @@ export default {
         ]
       },
       yAxis: {
-        name: '次',
+        name: '分钟',
         nameLocation: 'end',
         nameTextStyle: {
           align: 'right'

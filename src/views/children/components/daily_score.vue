@@ -39,7 +39,7 @@
               <span style="font-size: 14px; background: #d71f1f; padding: 8px 12px; border-radius:25px; color: #fff;">总减分{{ healthScore.downScoreMax }}</span>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-              <span style="font-size: 16px;">戴镜时间{{ healthScore.wearTime }}</span>
+              <span style="font-size: 16px;">戴镜时间{{ healthScore.wearTime }}分钟 </span>
             </div>
           </el-col>
           <el-col :span="19">

@@ -40,8 +40,8 @@
           label="详细地址"
           min-width="120"/>
         <el-table-column
-          prop="childrenCount"
-          label="孩子数量"
+          prop="locationStreet"
+          label="位置"
           min-width="80"/>
         <el-table-column
           prop="phone"
@@ -64,6 +64,7 @@
           min-width="120" >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
+            <el-button type="text" size="small" @click="handleClickLocation(scope.row)">修改位置</el-button>
             <el-button type="text" size="small" @click="handleClickSkilled(scope.row)">擅长业务</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
@@ -77,6 +78,7 @@
     <NewDoctor ref="newDoctor" @create-success="getList"/>
     <EditDoctor ref="editDoctor" @update-success="getList"/>
     <Skilled ref="skilled" @update-success="getList"/>
+    <Location ref="location" @update-success="getList"/>
   </div>
 </template>
 <script>
@@ -84,8 +86,9 @@ import { fetchList, deleteItem } from '@/api/doctors'
 import NewDoctor from './components/new_doctor'
 import EditDoctor from './components/edit_doctor'
 import Skilled from './components/skilled'
+import Location from './components/location'
 export default {
-  components: { NewDoctor, EditDoctor, Skilled },
+  components: { NewDoctor, EditDoctor, Skilled, Location },
   data() {
     return {
       list: null,
@@ -108,6 +111,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickLocation(val) {
+      this.$refs.location.show(val)
+    },
     handleClickSkilled(val) {
       this.$refs.skilled.show(val)
     },

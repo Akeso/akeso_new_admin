@@ -240,6 +240,12 @@ export const constantRouterMap = [
         meta: { title: 'versions', icon: 'bug' }
       },
       {
+        path: 'app_files',
+        name: 'AppFiles',
+        component: () => import('@/views/app_files/index'),
+        meta: { title: 'app_files', icon: 'bug' }
+      },
+      {
         path: 'feedback',
         name: 'Feedback',
         component: () => import('@/views/feedback/feedback'),

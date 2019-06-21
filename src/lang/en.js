@@ -34,7 +34,8 @@ export default {
     devices: 'device manage',
     messages: 'messages',
     channels: 'channels',
-    versions: 'Version'
+    versions: 'Version',
+    app_files: 'App Files'
   },
   device: {
     deviceType: 'Device Type'

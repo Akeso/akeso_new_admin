@@ -47,3 +47,11 @@ export function deleteItem(query) {
     data: query
   })
 }
+
+export function updateLocation(query) {
+  return request({
+    url: '/api/a1/doctors/update_location',
+    method: 'post',
+    data: query
+  })
+}
