@@ -21,6 +21,48 @@
         <el-col :span="4">男生</el-col>
         <el-col :span="4">女生</el-col>
       </el-row>
+      <el-row :gutter="32">
+        <el-col :xs="24" :sm="24" :lg="12">
+          <echarts-legend/>
+          <div class="chart-wrapper">
+            <bar-chart/>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="24" :lg="12">
+          <echarts-legend/>
+          <div class="chart-wrapper">
+            <bar-chart/>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="32">
+        <el-col :xs="24" :sm="24" :lg="12">
+          <echarts-legend/>
+          <div class="chart-wrapper">
+            <bar-chart/>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="24" :lg="12">
+          <echarts-legend/>
+          <div class="chart-wrapper">
+            <bar-chart/>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="32">
+        <el-col :xs="24" :sm="24" :lg="12">
+          <echarts-legend/>
+          <div class="chart-wrapper">
+            <bar-chart/>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="24" :lg="12">
+          <echarts-legend/>
+          <div class="chart-wrapper">
+            <bar-chart/>
+          </div>
+        </el-col>
+      </el-row>
     </el-card>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
@@ -46,8 +88,10 @@
 </template>
 <script>
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
+import BarChart from './components/BarChart'
+import echartsLegend from './components/echarts-legend'
 export default {
-  components: { UploadExcelComponent },
+  components: { UploadExcelComponent, BarChart, echartsLegend },
   data() {
     return {
       multiple: false,
@@ -70,8 +114,20 @@ export default {
   }
 }
 </script>
-<style>
+<style scope>
   .box-container{
     padding: 10px;
+  }
+  .chart-wrapper{
+    overflow: hidden;
+  }
+  .b-green{
+    background:#54CE50;
+  }
+  .b-yellow{
+    background: #F5A623;
+  }
+  .b-red{
+    background: #D0021B;
   }
 </style>
