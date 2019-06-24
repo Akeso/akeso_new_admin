@@ -10,7 +10,9 @@
         <div class="name">
           <span>{{ user.name }}</span>
         </div>
-        <!--<p class="title-info">这里写擅长</p>-->
+        <div v-if="user.serviceNames !== undefined && user.serviceNames.length > 0 ? 1 : 0" class="title-info">
+          <span>业务擅长：</span><span v-for="(item, i) in user.serviceNames" :key="i">{{ item }}；</span>
+        </div>
         <p class="info">{{ user.description }}</p>
       </div>
       <QRcode v-if="baseType !== 'admin'"/>
@@ -47,7 +49,8 @@ export default {
           address: undefined,
           jobTitle: '视光师',
           workingYears: 0,
-          description: '简介'
+          description: '简介',
+          serviceNames: Array
         }
       }
     }
@@ -117,6 +120,10 @@ export default {
     font-size: 16px;
     font-weight: 400;
     text-align: left;
+    padding-top: 10px;
+  }
+  .title-info span{
+    line-height: 26px;
   }
   .info{
     font-size: 16px;
