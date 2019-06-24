@@ -13,9 +13,9 @@
             <!--<div class="btn-user">-->
             <!--<el-button type="success">编辑用户信息</el-button>-->
             <!--</div>-->
-            <div class="btn-user">
-              <el-button type="success" @click="handleClickContactUser">联系用户</el-button>
-            </div>
+            <!--<div class="btn-user">-->
+            <!--<el-button type="success" @click="handleClickContactUser">联系用户</el-button>-->
+            <!--</div>-->
             <div class="btn-user">
               <el-button type="success" @click="handleClickChannel">健康咨询</el-button>
             </div>
