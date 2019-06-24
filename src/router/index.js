@@ -195,18 +195,18 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/messages',
-    component: Layout,
-    children: [
-      {
-        path: 'messages',
-        name: 'Messages',
-        component: () => import('@/views/messages/messages'),
-        meta: { title: 'messages', icon: 'bug' }
-      }
-    ]
-  },
+  // {
+  //   path: '/messages',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'messages',
+  //       name: 'Messages',
+  //       component: () => import('@/views/messages/messages'),
+  //       meta: { title: 'messages', icon: 'bug' }
+  //     }
+  //   ]
+  // },
   {
     path: '/channels',
     component: Layout,
