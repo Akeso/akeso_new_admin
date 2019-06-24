@@ -51,6 +51,14 @@
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
         <el-col :span="2" :offset="1">
+          <span class="item-title">业务擅长</span>
+        </el-col>
+        <el-col :span="18" class="item-value">
+          <span>{{ user.serviceNames }}</span>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" style="margin-bottom: 20px;">
+        <el-col :span="2" :offset="1">
           <span class="item-title">账号</span>
         </el-col>
         <el-col :span="18" class="item-value">
