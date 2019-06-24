@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-tag type="success">上月眼健康评分 ＞100分，用眼行为优秀，可进行随访，加强与用户粘性</el-tag>
+    <el-tag type="success">{{ month }}月眼健康评分 ＞100分，用眼行为优秀，可进行随访，加强与用户粘性</el-tag>
     <el-table
       :data="list"
       border
@@ -77,20 +77,34 @@ import FollowLogs from './follow_logs'
 import Channel from '../../components/channel'
 export default {
   components: { NewFollow, FollowLogs, Channel },
+  props: {
+    date: {
+      type: String,
+      default: new Date()
+    }
+  },
   data() {
     return {
       list: null,
       total: null,
       todayCount: 0,
       listLoading: true,
+      month: '',
       listQuery: {
         page: 1,
         limit: 20,
         importance: undefined,
         sortProp: '',
         sortOrder: '',
-        type: 'three'
+        type: 'three',
+        month: this.date
       }
+    }
+  },
+  watch: {
+    'date': function(newVal, oldVal) {
+      this.listQuery.month = newVal
+      this.getList()
     }
   },
   created() {
@@ -112,6 +126,7 @@ export default {
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
+        this.month = response.data.month
       })
     },
     handleColumnSort: function() {
