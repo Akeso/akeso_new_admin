@@ -136,7 +136,7 @@
           <td class="td-20 title-font">异常描述</td>
         </tr>
         <tr>
-          <td rowspan="3" class="title-font">近视健康因子情况</td>
+          <td rowspan="3" class="title-font">近视健康因素情况</td>
           <td class="title-font">户外时间/天</td>
           <td>{{ wholeData.outTimeAvg }}分钟</td>
           <td>≥120分钟</td>
@@ -155,7 +155,7 @@
           <td/>
         </tr>
         <tr>
-          <td rowspan="3" class="title-font">近视危险因子情况</td>
+          <td rowspan="3" class="title-font">近视危险因素情况</td>
           <td class="title-font">近距离用眼时长/天</td>
           <td>{{ wholeData.nearworkDayAvg }}分钟</td>
           <td>≤240分钟</td>
@@ -175,7 +175,7 @@
         </tr>
         <tr>
           <td class="title-font">初步提示</td>
-          <td colspan="4">若想达到近视防控效果最大化，请多去户外运动，沐浴光照，三项健康因子全部达到参考值；同时避免错误用眼习惯增加近视风险，将导致近视加深的近视危险因子下降到参考值以下。</td>
+          <td colspan="4">若想达到近视防控效果最大化，请多去户外运动，沐浴光照，三项健康因素全部达到参考值；同时避免错误用眼习惯增加近视风险，将导致近视加深的近视危险因素下降到参考值以下。</td>
         </tr>
       </table>
     </el-row>
