@@ -11,7 +11,7 @@
           <span>{{ user.name }}</span>
         </div>
         <div v-if="user.serviceNames !== undefined && user.serviceNames.length > 0 ? 1 : 0" class="title-info">
-          <span>业务擅长：</span><span v-for="(item, i) in user.serviceNames" :key="i">{{ item }}；</span>
+          <span class="tit-name">业务擅长：</span><span v-for="(item, i) in user.serviceNames" :key="i">{{ item }}；</span>
         </div>
         <p class="info">{{ user.description }}</p>
       </div>
@@ -29,7 +29,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import QRcode from '@/components/QRCode'
-import avatar from '@/assets/images/header.png'
+import avatar from '@/assets/images/header-avatar.png'
 export default {
   name: 'PdfCode',
   components: {
@@ -71,7 +71,7 @@ export default {
 
 <style scoped>
   .container-doctor{
-    width:400px;
+    width:460px;
     margin: 30px auto;
     padding: 30px 0;
   }
@@ -113,11 +113,15 @@ export default {
     margin:14px 0;
     font-size: 21px;
   }
+  .tit-name{
+    font-weight: 400;
+    color: #f8c555;
+  }
   .c-blue{
     color: rgb(64, 158, 255);
   }
   .title-info{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     text-align: left;
     padding-top: 10px;
@@ -126,7 +130,7 @@ export default {
     line-height: 26px;
   }
   .info{
-    font-size: 16px;
+    font-size: 20px;
     line-height: 26px;
     text-align: left;
     font-weight: normal;

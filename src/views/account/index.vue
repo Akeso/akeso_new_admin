@@ -181,7 +181,9 @@ export default {
       showData({ id: this.id }).then(response => {
         this.exportVisible = true
         this.user = response.data
-        console.log(this.user)
+        this.user.description = this.user.description.replace(/[\u0391-\uFFE5]/g, 'aa').length > 200 ? this.user.description.slice(0, 200) + '...' : this.user.description
+        // this.user = this.user
+        console.log(this.user, this.user.description.length)
       })
     }
   }
