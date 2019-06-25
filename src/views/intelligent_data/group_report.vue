@@ -31,7 +31,7 @@
         <el-col :xs="24" :sm="24" :lg="12">
           <echarts-legend/>
           <div class="chart-wrapper">
-            <bar-chart/>
+            <sunshine-bar-chart/>
           </div>
         </el-col>
       </el-row>
@@ -89,9 +89,10 @@
 <script>
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
 import BarChart from './components/BarChart'
+import SunshineBarChart from './components/SunshineBarChart'
 import echartsLegend from './components/echarts-legend'
 export default {
-  components: { UploadExcelComponent, BarChart, echartsLegend },
+  components: { UploadExcelComponent, BarChart, echartsLegend, SunshineBarChart },
   data() {
     return {
       multiple: false,

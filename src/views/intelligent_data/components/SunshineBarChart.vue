@@ -71,7 +71,7 @@ export default {
         xAxis: [{
           type: 'category',
           name: '分钟',
-          data: ['80', '160', '240'],
+          data: ['10', '20', '30'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,14 +81,14 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
-                case '80':
-                  name = '0 ~ 80 分钟'
+                case '10':
+                  name = '0 ~ 10 W lux'
                   break
-                case '160':
-                  name = '80 ~ 160 分钟'
+                case '20':
+                  name = '10 ~ 20 W lux'
                   break
-                case '240':
-                  name = '160 分钟以上 '
+                case '30':
+                  name = '20 W lux以上'
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -99,21 +99,21 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
-              '80': {
+              '10': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '160': {
+              '20': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '240': {
+              '30': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
