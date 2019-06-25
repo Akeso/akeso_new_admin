@@ -7,7 +7,7 @@ export default{
       var titleName = this.htmlTitle
       var c = document.createElement('canvas')
       var opts = {
-        scale: 2,
+        scale: 3,
         canvas: c,
         logging: true,
         width: document.querySelector('#pdfDom').width,
@@ -15,9 +15,9 @@ export default{
         allowTaint: false,
         useCORS: true
       }
-      c.width = document.querySelector('#pdfDom').width * 2
-      c.height = document.querySelector('#pdfDom').height * 2
-      c.getContext('2d').scale(2, 2)
+      c.width = document.querySelector('#pdfDom').width * 3
+      c.height = document.querySelector('#pdfDom').height * 3
+      c.getContext('2d').scale(3, 3)
       html2Canvas(document.querySelector('#pdfDom'), opts).then(function(canvas) {
         const contentWidth = canvas.width
         const contentHeight = canvas.height
