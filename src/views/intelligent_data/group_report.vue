@@ -165,7 +165,7 @@
     </el-card>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span style="font-weight: bold;">眼健康行为模式风险分析报告(健康因子)</span>
+        <span style="font-weight: bold;">眼健康行为模式风险分析报告(健康因素)</span>
       </div>
       <el-row>
         <el-col :span="4">总人数</el-col>
@@ -175,7 +175,7 @@
     </el-card>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span style="font-weight: bold;">眼健康行为模式风险分析报告(危险因子)</span>
+        <span style="font-weight: bold;">眼健康行为模式风险分析报告(危险因素)</span>
       </div>
       <el-row>
         <el-col :span="4">总人数</el-col>
