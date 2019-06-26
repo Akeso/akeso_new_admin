@@ -83,6 +83,12 @@ export default {
             shadowBlur: 10,
             shadowOffsetX: 0,
             shadowColor: 'rgba(0, 0, 0, 0.5)'
+          },
+          normal: {
+            color: function(params) {
+              var colorList = ['#27ADFF', '#D0021B']
+              return colorList[params.dataIndex]
+            }
           }
         }
       }
