@@ -22,7 +22,7 @@ export default {
     },
     height: {
       type: String,
-      default: '400px'
+      default: '300px'
     }
   },
   data() {
@@ -65,13 +65,13 @@ export default {
           top: '10%',
           left: '2%',
           right: '10%',
-          bottom: '10%',
+          bottom: '12%',
           containLabel: true
         },
         xAxis: [{
           type: 'category',
           name: '分钟',
-          data: ['80', '160', '240'],
+          data: ['30', '60', '90', '120'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,14 +81,17 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
-                case '80':
-                  name = '0 ~ 80 分钟'
+                case '30':
+                  name = '0 ~ 30 分钟'
                   break
-                case '160':
-                  name = '80 ~ 160 分钟'
+                case '60':
+                  name = '30 ~ 60 分钟'
                   break
-                case '240':
-                  name = '160 分钟以上 '
+                case '90':
+                  name = '60 ~ 90 分钟 '
+                  break
+                case '120':
+                  name = '90 分钟以上 '
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -99,21 +102,28 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
-              '80': {
+              '30': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '160': {
+              '60': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '240': {
+              '90': {
+                height: 40,
+                align: 'center',
+                backgroundColor: {
+                  image: echartsIcon
+                }
+              },
+              '120': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
@@ -138,14 +148,14 @@ export default {
           name: '男生',
           type: 'bar',
           // stack: 'vistors',
-          barWidth: '50',
-          data: [79, 52, 100],
+          barWidth: '30',
+          data: [39, 31, 20, 10],
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16]
+                var data = [20, 25, 16, 20]
                 return data[params.dataIndex] + '人'
               }
             }
@@ -154,7 +164,7 @@ export default {
             normal: {
               color: function(params) {
                 // build a color map as your need.
-                var colorList = ['#54CE50', '#F5A623', '#D0021B']
+                var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
                 return colorList[params.dataIndex]
               }
             }
@@ -164,14 +174,14 @@ export default {
           name: '女生',
           type: 'bar',
           // stack: 'vistors',
-          barWidth: '50',
-          data: [80, 20, 66],
+          barWidth: '30',
+          data: [19, 10, 16, 20],
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16]
+                var data = [20, 25, 16, 30]
                 return data[params.dataIndex] + '人'
               }
             }
@@ -180,7 +190,7 @@ export default {
             normal: {
               color: function(params) {
                 // build a color map as your need.
-                var colorList = ['#54CE50', '#F5A623', '#D0021B']
+                var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
                 return colorList[params.dataIndex]
               }
             }

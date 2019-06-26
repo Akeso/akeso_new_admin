@@ -70,8 +70,8 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          name: 'lux',
-          data: ['10', '20', '30', '40'],
+          name: '步数',
+          data: ['1800', '3600', '5400', '7200'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,17 +81,17 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
-                case '10':
-                  name = '0 ~ 8 W lux'
+                case '1800':
+                  name = '0 ~ 1800 步'
                   break
-                case '20':
-                  name = '8 ~ 16 W lux'
+                case '3600':
+                  name = '1800 ~ 3600 步'
                   break
-                case '30':
-                  name = '16 ~ 24 W lux以上'
+                case '5400':
+                  name = '3600 ~ 5400 步'
                   break
-                case '40':
-                  name = '24 W lux以上'
+                case '7200':
+                  name = '5400 步以上'
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -102,28 +102,28 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
-              '10': {
+              '1800': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '20': {
+              '3600': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '30': {
+              '5400': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '40': {
+              '7200': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
@@ -149,13 +149,13 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [79, 52, 100, 20],
+          data: [39, 31, 20, 10],
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16, 10]
+                var data = [20, 25, 16, 20]
                 return data[params.dataIndex] + '人'
               }
             }
@@ -175,7 +175,7 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [80, 20, 66, 40],
+          data: [19, 10, 16, 20],
           label: {
             normal: {
               show: true,
