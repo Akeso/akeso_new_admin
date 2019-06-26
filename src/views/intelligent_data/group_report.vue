@@ -159,7 +159,6 @@
           <div class="info-con b-gray">
             <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
           </div>
-          <drag-table />
         </el-col>
       </el-row>
     </el-card>
@@ -193,7 +192,6 @@ import StepBarChart from './components/StepBarChart'
 import BadEyeBarChart from './components/BadEyeBarChart'
 import BadPostureBarChart from './components/BadPostureBarChart'
 import EyestrainBarChart from './components/EyestrainBarChart'
-import dragTable from './components/tab'
 import echartsLegend from './components/echarts-legend'
 import QRcode from '@/components/QRCode'
 export default {
@@ -206,7 +204,6 @@ export default {
     BadEyeBarChart,
     BadPostureBarChart,
     EyestrainBarChart,
-    dragTable,
     QRcode
   },
   data() {
