@@ -216,6 +216,7 @@
   </div>
 </template>
 <script>
+import { fetchExcelReport } from '@/api/reports'
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
 import BarChart from './components/BarChart'
 import SunshineBarChart from './components/SunshineBarChart'
@@ -246,6 +247,9 @@ export default {
       selectSection: {
         startDate: new Date(),
         endDate: new Date()
+      },
+      info: {
+        id: undefined
       }
     }
   },
@@ -264,11 +268,17 @@ export default {
     handleSuccess(res, file) {
       console.log('res => ', res)
       console.log('file => ', file)
+      this.info = res.data
     },
     beforeRemove(file, fileList) {
     },
     handleClick() {
       console.log(111)
+      console.log('info => ', this.info)
+      const ppp = { excel_roll_id: this.info.id, start_date: this.selectSection.startDate, end_date: this.selectSection.endDate }
+      fetchExcelReport(ppp).then(res => {
+        console.log('res => ', res.data)
+      })
     },
     downloadExc() {
       window.location.href = 'http://akeso.com.cn/template/report_template.xlsx'

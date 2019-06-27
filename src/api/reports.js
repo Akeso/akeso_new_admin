@@ -64,3 +64,10 @@ export function fetchStepCount(query) {
   })
 }
 
+export function fetchExcelReport(query) {
+  return request({
+    url: '/api/a1/reports/excel_report',
+    method: 'get',
+    params: query
+  })
+}
