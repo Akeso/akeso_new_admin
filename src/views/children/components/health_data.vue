@@ -18,28 +18,28 @@
             <el-menu-item index="monthly_score">
               <span slot="title">健康月报</span>
             </el-menu-item>
-            <el-menu-item index="out_time">
-              <span slot="title">户外时间</span>
-            </el-menu-item>
-            <el-menu-item index="lux_take">
-              <span slot="title">光照摄入</span>
-            </el-menu-item>
-            <el-menu-item index="posture">
-              <span slot="title">用眼姿势</span>
-            </el-menu-item>
-            <el-menu-item index="step_count">
-              <span slot="title">运动步数</span>
-            </el-menu-item>
+            <!--<el-menu-item index="out_time">-->
+            <!--<span slot="title">户外时间</span>-->
+            <!--</el-menu-item>-->
+            <!--<el-menu-item index="lux_take">-->
+            <!--<span slot="title">光照摄入</span>-->
+            <!--</el-menu-item>-->
+            <!--<el-menu-item index="posture">-->
+            <!--<span slot="title">用眼姿势</span>-->
+            <!--</el-menu-item>-->
+            <!--<el-menu-item index="step_count">-->
+            <!--<span slot="title">运动步数</span>-->
+            <!--</el-menu-item>-->
           </el-menu>
         </el-col>
         <el-col :span="21">
           <DailyScore v-if="menuItemIndex === 'daily_score'" :user-id="userId"/>
           <WeeklyScore v-if="menuItemIndex === 'weekly_score'" :user-id="userId"/>
           <MonthlyScore v-if="menuItemIndex === 'monthly_score'" :user-id="userId"/>
-          <OutTime v-if="menuItemIndex === 'out_time'" :user-id="userId"/>
-          <LuxTake v-if="menuItemIndex === 'lux_take'" :user-id="userId"/>
-          <Posture v-if="menuItemIndex === 'posture'" :user-id="userId"/>
-          <StepCount v-if="menuItemIndex === 'step_count'" :user-id="userId"/>
+          <!--<OutTime v-if="menuItemIndex === 'out_time'" :user-id="userId"/>-->
+          <!--<LuxTake v-if="menuItemIndex === 'lux_take'" :user-id="userId"/>-->
+          <!--<Posture v-if="menuItemIndex === 'posture'" :user-id="userId"/>-->
+          <!--<StepCount v-if="menuItemIndex === 'step_count'" :user-id="userId"/>-->
         </el-col>
       </el-row>
     </el-tab-pane>
