@@ -1,16 +1,47 @@
 <template>
   <div class="box-container">
-    <el-upload
-      :on-preview="handlePreview"
-      :on-remove="handleRemove"
-      :before-remove="beforeRemove"
-      :on-success="handleSuccess"
-      :limit="1"
-      class="upload-demo"
-      action="/api/common/excels/upload_report">
-      <el-button size="small" type="primary">点击上传</el-button>
-      <div slot="tip" class="el-upload__tip">只能上传.xlsx, .xls文件</div>
-    </el-upload>
+    <el-row :gutter="20">
+      <el-col :xs="24" :sm="24" :lg="10">
+        <el-upload
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :before-remove="beforeRemove"
+          :on-success="handleSuccess"
+          :limit="1"
+          class="upload-demo"
+          accept=".xlsx, .xls"
+          action="/api/common/excels/upload_report">
+          <div class="overflow">
+            <el-button size="small" type="primary" class="left">上传Excel</el-button>
+            <el-button size="small" class="left m-l-2" @click.stop="downloadExc">下载Excel模板</el-button>
+            <div slot="tip" class="el-upload__tip c-red left tit-btn">只能上传.xlsx, .xls文件</div>
+          </div>
+        </el-upload>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20" class="m-t-2">
+      <el-col>
+        选择日期
+        <el-date-picker
+          :clearable="false"
+          v-model="selectSection.startDate"
+          type="date"
+          style="width: 150px;"
+          format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd"
+          placeholder="选择日期"/>
+        至
+        <el-date-picker
+          :clearable="false"
+          v-model="selectSection.endDate"
+          type="date"
+          style="width: 150px;"
+          format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd"
+          placeholder="选择日期"/>
+        <el-button class="filter-item" type="primary" @click="handleClick">生成报告</el-button>
+      </el-col>
+    </el-row>
     <el-card id="pdfDom" class="box-card">
       <div class="clearfix header">
         <h1>学生用眼健康因素监测报告</h1>
@@ -209,7 +240,13 @@ export default {
   data() {
     return {
       multiple: false,
-      fileName: ''
+      fileName: '',
+      selectDate: '',
+      // selectSection: [new Date(), new Date()],
+      selectSection: {
+        startDate: new Date(),
+        endDate: new Date()
+      }
     }
   },
   computed: {
@@ -229,6 +266,13 @@ export default {
       console.log('file => ', file)
     },
     beforeRemove(file, fileList) {
+    },
+    handleClick() {
+      console.log(111)
+    },
+    downloadExc() {
+      window.location.href = 'http://akeso.com.cn/template/report_template.xlsx'
+      // window.open('http://akeso.com.cn/template/report_template.xlsx')
     }
   }
 }
@@ -260,6 +304,26 @@ export default {
   }
   .c-blue{
     color: #27adff;
+  }
+  .c-red{
+    color: red;
+  }
+  .tit-btn{
+    font-size: 14px;
+    margin-left:16px;
+  }
+  .overflow{
+    overflow: hidden;
+  }
+  .m-t-2{
+    margin-top:14px;
+    margin-bottom: 20px;
+  }
+  .m-l-2{
+    margin-left:20px;
+  }
+  .filter-item{
+    margin-left:14px;
   }
   .title-header{
     padding: 10px 16px;
