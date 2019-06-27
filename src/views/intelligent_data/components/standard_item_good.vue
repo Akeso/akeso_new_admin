@@ -86,7 +86,7 @@ export default {
           },
           normal: {
             color: function(params) {
-              var colorList = ['#D0021B', '#27ADFF']
+              var colorList = ['#27ADFF', '#D0021B']
               return colorList[params.dataIndex]
             }
           }
