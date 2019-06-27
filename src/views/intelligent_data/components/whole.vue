@@ -124,48 +124,48 @@
       <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
         <tr>
           <td class="td-20"/>
-          <td class="td-20 title-font">监测项目</td>
-          <td class="td-20 title-font">监测结果</td>
-          <td class="td-20 title-font">建议参考值</td>
-          <td class="td-20 title-font">异常描述</td>
+          <td class="td-20 title-font" style="width: 30%;">监测项目</td>
+          <td class="td-20 title-font" style="width: 20%;">监测结果</td>
+          <td class="td-20 title-font" style="width: 20%;">建议参考值</td>
+          <td class="td-20 title-font" style="width: 10%;">达标情况</td>
         </tr>
         <tr>
           <td rowspan="3" class="title-font">近视健康因素情况</td>
-          <td class="title-font">户外时间/天</td>
+          <td class="title-font">户外时间120分钟/天</td>
           <td>{{ wholeData.outTimeAvg }}分钟</td>
-          <td>≥120分钟</td>
-          <td/>
+          <td>≥80分钟</td>
+          <td>{{ outTimeCondition(wholeData.outTimeAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">阳光摄入/天</td>
+          <td class="title-font">阳光摄入36万lux/天</td>
           <td>{{ wholeData.luxDayAvg }}lux</td>
-          <td>≥30万lux</td>
-          <td/>
+          <td>≥24万lux</td>
+          <td>{{ luxDayCondition(wholeData.luxDayAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">运动步数/天</td>
+          <td class="title-font">运动步数12000步/天</td>
           <td>{{ wholeData.stepCountAvg }}步</td>
-          <td>≥10000步</td>
-          <td/>
+          <td>≥8000步</td>
+          <td>{{ stepCountCondition(wholeData.stepCountAvg) }}</td>
         </tr>
         <tr>
           <td rowspan="3" class="title-font">近视危险因素情况</td>
-          <td class="title-font">近距离用眼时长/天</td>
+          <td class="title-font">近距离用眼时长260分钟/天</td>
           <td>{{ wholeData.nearworkDayAvg }}分钟</td>
-          <td>≤240分钟</td>
-          <td/>
+          <td>≤160分钟</td>
+          <td>{{ nearworkDayCondition(wholeData.nearworkDayAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">不良用眼姿态/天</td>
+          <td class="title-font">不良用眼姿态90次/天</td>
           <td>{{ wholeData.badPostureTimesAvg }}次</td>
-          <td>≤90次</td>
-          <td/>
+          <td>≤60次</td>
+          <td>{{ badPostureTimesCondition(wholeData.badPostureTimesAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">颈椎与用眼负荷/天</td>
+          <td class="title-font">颈椎与用眼负荷720D/天</td>
           <td>{{ wholeData.nearworkBurdenDayAvg }}D</td>
-          <td>≤750D</td>
-          <td/>
+          <td>≤480D</td>
+          <td>{{ nearworkBurdenDayCondition(wholeData.nearworkBurdenDayAvg) }}</td>
         </tr>
         <tr>
           <td class="title-font">初步提示</td>
@@ -179,6 +179,7 @@
 import { fetchWhole } from '@/api/summary'
 import StandardItemGood from './standard_item_good'
 import StandardItemBad from './standard_item_bad'
+import { outTimeCondition, luxDayCondition, stepCountCondition, nearworkBurdenDayCondition, nearworkDayCondition, badPostureTimesCondition } from '@/utils/standard'
 const dateOptions = [
   { key: 'first', label: '近一周' },
   { key: 'second', label: '近一个月' },
@@ -197,7 +198,13 @@ export default {
         startDate: new Date(),
         endDate: new Date()
       },
-      wholeData: {}
+      wholeData: {},
+      outTimeCondition: outTimeCondition,
+      luxDayCondition: luxDayCondition,
+      stepCountCondition: stepCountCondition,
+      nearworkBurdenDayCondition: nearworkBurdenDayCondition,
+      nearworkDayCondition: nearworkDayCondition,
+      badPostureTimesCondition: badPostureTimesCondition
     }
   },
   created() {
