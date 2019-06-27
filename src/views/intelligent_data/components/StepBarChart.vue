@@ -70,8 +70,8 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          name: '分钟',
-          data: ['30', '60', '90', '120'],
+          name: '步数',
+          data: ['1800', '3600', '5400', '7200'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,17 +81,17 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
-                case '30':
-                  name = '0 ~ 30 分钟'
+                case '1800':
+                  name = '0 ~ 1800 步'
                   break
-                case '60':
-                  name = '30 ~ 60 分钟'
+                case '3600':
+                  name = '1800 ~ 3600 步'
                   break
-                case '90':
-                  name = '60 ~ 90 分钟 '
+                case '5400':
+                  name = '3600 ~ 5400 步'
                   break
-                case '120':
-                  name = '90 分钟以上 '
+                case '7200':
+                  name = '5400 步以上'
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -102,28 +102,28 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
-              '30': {
+              '1800': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '60': {
+              '3600': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '90': {
+              '5400': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '120': {
+              '7200': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {

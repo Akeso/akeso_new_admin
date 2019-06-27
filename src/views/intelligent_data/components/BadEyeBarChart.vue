@@ -70,8 +70,8 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          name: '分钟',
-          data: ['30', '60', '90', '120'],
+          name: 'D',
+          data: ['180', '360', '540', '720'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,17 +81,17 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
-                case '30':
-                  name = '0 ~ 30 分钟'
+                case '180':
+                  name = '0 ~ 180 D'
                   break
-                case '60':
-                  name = '30 ~ 60 分钟'
+                case '360':
+                  name = '180 ~ 360 D'
                   break
-                case '90':
-                  name = '60 ~ 90 分钟 '
+                case '540':
+                  name = '360 ~ 540 D '
                   break
-                case '120':
-                  name = '90 分钟以上 '
+                case '720':
+                  name = '540 D以上 '
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -102,28 +102,28 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
-              '30': {
+              '180': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '60': {
+              '360': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '90': {
+              '540': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '120': {
+              '720': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {

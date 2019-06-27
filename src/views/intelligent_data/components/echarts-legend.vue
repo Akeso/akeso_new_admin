@@ -1,9 +1,10 @@
 <template>
   <div class="list">
     <ul class="echarts-list">
-      <li><span class="b-green" />优秀</li>
-      <li><span class="b-yellow" />一般</li>
-      <li><span class="b-red" />较差</li>
+      <li><span class="b-blue" />优</li>
+      <li><span class="b-green" />良</li>
+      <li><span class="b-yellow" />中</li>
+      <li><span class="b-red" />差</li>
     </ul>
   </div>
 </template>

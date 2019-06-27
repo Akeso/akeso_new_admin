@@ -70,8 +70,8 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          name: '分钟',
-          data: ['30', '60', '90', '120'],
+          name: 'lux',
+          data: ['10', '20', '30', '40'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,17 +81,17 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
+                case '10':
+                  name = '0 ~ 8 W lux'
+                  break
+                case '20':
+                  name = '8 ~ 16 W lux'
+                  break
                 case '30':
-                  name = '0 ~ 30 分钟'
+                  name = '16 ~ 24 W lux以上'
                   break
-                case '60':
-                  name = '30 ~ 60 分钟'
-                  break
-                case '90':
-                  name = '60 ~ 90 分钟 '
-                  break
-                case '120':
-                  name = '90 分钟以上 '
+                case '40':
+                  name = '24 W lux以上'
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -102,6 +102,20 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
+              '10': {
+                height: 40,
+                align: 'center',
+                backgroundColor: {
+                  image: echartsIcon
+                }
+              },
+              '20': {
+                height: 40,
+                align: 'center',
+                backgroundColor: {
+                  image: echartsIcon
+                }
+              },
               '30': {
                 height: 40,
                 align: 'center',
@@ -109,21 +123,7 @@ export default {
                   image: echartsIcon
                 }
               },
-              '60': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '90': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '120': {
+              '40': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
@@ -149,13 +149,13 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [39, 31, 20, 10],
+          data: [79, 52, 100, 20],
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16, 20]
+                var data = [20, 25, 16, 10]
                 return data[params.dataIndex] + '人'
               }
             }
@@ -175,7 +175,7 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [19, 10, 16, 20],
+          data: [80, 20, 66, 40],
           label: {
             normal: {
               show: true,

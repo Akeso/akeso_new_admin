@@ -71,7 +71,7 @@ export default {
         xAxis: [{
           type: 'category',
           name: '分钟',
-          data: ['30', '60', '90', '120'],
+          data: ['60', '120', '180', '240'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,17 +81,17 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
-                case '30':
-                  name = '0 ~ 30 分钟'
-                  break
                 case '60':
-                  name = '30 ~ 60 分钟'
-                  break
-                case '90':
-                  name = '60 ~ 90 分钟 '
+                  name = '0 ~ 60 分钟'
                   break
                 case '120':
-                  name = '90 分钟以上 '
+                  name = '60 ~ 120 分钟'
+                  break
+                case '180':
+                  name = '120 ~ 180 分钟 '
+                  break
+                case '240':
+                  name = '180 分钟以上 '
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -102,13 +102,6 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
-              '30': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
               '60': {
                 height: 40,
                 align: 'center',
@@ -116,14 +109,21 @@ export default {
                   image: echartsIcon
                 }
               },
-              '90': {
+              '120': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
                   image: echartsIcon
                 }
               },
-              '120': {
+              '180': {
+                height: 40,
+                align: 'center',
+                backgroundColor: {
+                  image: echartsIcon
+                }
+              },
+              '240': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {

@@ -70,8 +70,8 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          name: '分钟',
-          data: ['30', '60', '90', '120'],
+          name: '次',
+          data: ['20', '40', '60', '80'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -81,17 +81,17 @@ export default {
               console.log('value', value)
               var name = ''
               switch (value) {
-                case '30':
-                  name = '0 ~ 30 分钟'
+                case '20':
+                  name = '0 ~ 20 次'
+                  break
+                case '40':
+                  name = '20 ~ 40 次'
                   break
                 case '60':
-                  name = '30 ~ 60 分钟'
+                  name = '40 ~ 60 次'
                   break
-                case '90':
-                  name = '60 ~ 90 分钟 '
-                  break
-                case '120':
-                  name = '90 分钟以上 '
+                case '80':
+                  name = '60 次以上'
                   break
               }
               return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
@@ -102,7 +102,14 @@ export default {
                 lineHeight: 20,
                 align: 'center'
               },
-              '30': {
+              '20': {
+                height: 40,
+                align: 'center',
+                backgroundColor: {
+                  image: echartsIcon
+                }
+              },
+              '40': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
@@ -116,14 +123,7 @@ export default {
                   image: echartsIcon
                 }
               },
-              '90': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '120': {
+              '80': {
                 height: 40,
                 align: 'center',
                 backgroundColor: {
