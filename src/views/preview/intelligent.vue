@@ -67,17 +67,11 @@
           prop="lastUploadAt"
           label="最近同步时间"
           min-width="120"/>
-        <!--<el-table-column-->
-        <!--prop="createdAt"-->
-        <!--label="日报情况"-->
-        <!--min-width="180"/>-->
         <el-table-column
           label="操作"
           min-width="80" >
           <template slot-scope="scope">
-            <router-link :to="'/preview/child/'+scope.row.id">
-              <el-button type="text" size="small">查看</el-button>
-            </router-link>
+            <el-button type="text" size="small" @click="handleClickChannel(scope.row)">联系用户</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -86,11 +80,14 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <Channel ref="channel"/>
   </div>
 </template>
 <script>
 import { fetchIntelligentChildren } from '@/api/children'
+import Channel from '../components/channel'
 export default {
+  components: { Channel },
   data() {
     return {
       list: null,
@@ -111,6 +108,11 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickChannel(val) {
+      if (val) {
+        this.$refs.channel.handleShow(val.id)
+      }
+    },
     getList() {
       fetchIntelligentChildren(this.listQuery).then(response => {
         this.list = response.data.items

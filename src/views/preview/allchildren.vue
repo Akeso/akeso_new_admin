@@ -23,9 +23,14 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
-          prop="name"
           label="姓名"
-          min-width="60"/>
+          min-width="60">
+          <template slot-scope="scope">
+            <router-link :to="'/preview/child/'+scope.row.id">
+              <el-button type="text" size="small">{{ scope.row.name }}</el-button>
+            </router-link>
+          </template>
+        </el-table-column>
         <el-table-column
           prop="age"
           label="年龄"
@@ -55,9 +60,7 @@
           label="操作"
           min-width="80" >
           <template slot-scope="scope">
-            <router-link :to="'/preview/child/'+scope.row.id">
-              <el-button type="text" size="small">查看</el-button>
-            </router-link>
+            <el-button type="text" size="small" @click="handleClickChannel(scope.row)">联系用户</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -66,11 +69,14 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <Channel ref="channel"/>
   </div>
 </template>
 <script>
 import { fetchList } from '@/api/children'
+import Channel from '../components/channel'
 export default {
+  components: { Channel },
   data() {
     return {
       list: null,
@@ -90,6 +96,11 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickChannel(val) {
+      if (val) {
+        this.$refs.channel.handleShow(val.id)
+      }
+    },
     getList() {
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items

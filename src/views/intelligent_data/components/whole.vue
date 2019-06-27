@@ -101,27 +101,21 @@
         <StandardItemGood :title="'户外时间'" :done-count="wholeData.outTimeCount" :total-count="wholeData.totalCount" :done-percent="wholeData.outTimePercent"/>
       </el-col>
       <el-col :span="12">
-        <StandardItemGood :title="'阳光摄入量'" :done-count="wholeData.luxDayCount" :total-count="wholeData.totalCount" :done-percent="wholeData.luxDayPercent"/>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="12">
-        <StandardItemGood :title="'运动步数'" :done-count="wholeData.stepCountCount" :total-count="wholeData.totalCount" :done-percent="wholeData.stepCountPercent"/>
-      </el-col>
-      <!--<el-col :span="12">-->
-      <!--<StandardItemGood :title="'护眼光照时间'" :done-count="wholeData.protectLuxTimeCount" :total-count="wholeData.totalCount" :done-percent="wholeData.protectLuxTimePercent"/>-->
-      <!--</el-col>-->
-    </el-row>
-
-    <el-row :gutter="10">
-      <el-col :span="12">
         <StandardItemBad :title="'近距离用眼时长'" :done-count="wholeData.nearworkDayCount" :total-count="wholeData.totalCount" :done-percent="wholeData.nearworkDayPercent"/>
+      </el-col>
+    </el-row>
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <StandardItemGood :title="'阳光摄入量'" :done-count="wholeData.luxDayCount" :total-count="wholeData.totalCount" :done-percent="wholeData.luxDayPercent"/>
       </el-col>
       <el-col :span="12">
         <StandardItemBad :title="'不良用眼姿势'" :done-count="wholeData.badPostureTimesCount" :total-count="wholeData.totalCount" :done-percent="wholeData.badPostureTimesPercent"/>
       </el-col>
     </el-row>
     <el-row :gutter="10">
+      <el-col :span="12">
+        <StandardItemGood :title="'运动步数'" :done-count="wholeData.stepCountCount" :total-count="wholeData.totalCount" :done-percent="wholeData.stepCountPercent"/>
+      </el-col>
       <el-col :span="12">
         <StandardItemBad :title="'颈椎与用眼负荷'" :done-count="wholeData.nearworkBurdenDayCount" :total-count="wholeData.totalCount" :done-percent="wholeData.nearworkBurdenDayPercent"/>
       </el-col>
