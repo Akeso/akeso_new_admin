@@ -80,7 +80,8 @@ export default {
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           },
           formatter: function(params) {
-            return params[0].name + '<br/>' + params[0].seriesName + '占比' + ' : ' + params[0].value + '%' + '<br/>' + params[1].seriesName + '占比' + ' : ' + params[1].value + '%'
+            // params[0].name + '<br/>' +
+            return params[0].seriesName + '占比' + ' : ' + params[0].value + '%' //  + '<br/>' + params[1].seriesName + '占比' + ' : ' + params[1].value + '%'
           }
         },
         grid: {
@@ -166,7 +167,7 @@ export default {
           boundaryGap: [0.2, 0.2]
         }],
         series: [{
-          name: '男生',
+          name: '人数',
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
@@ -191,33 +192,35 @@ export default {
             }
           },
           animationDuration
-        }, {
-          name: '女生',
-          type: 'bar',
-          // stack: 'vistors',
-          barWidth: '30',
-          data: nearworkBurdenDayData.femalePercents,
-          label: {
-            normal: {
-              show: true,
-              position: 'top',
-              formatter: function(params) {
-                var data = nearworkBurdenDayData.femaleCounts
-                return data[params.dataIndex] + '人'
-              }
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: function(params) {
-                // build a color map as your need.
-                var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
-                return colorList[params.dataIndex]
-              }
-            }
-          },
-          animationDuration
-        }]
+        }
+        // {
+        //   name: '女生',
+        //   type: 'bar',
+        //   // stack: 'vistors',
+        //   barWidth: '30',
+        //   data: nearworkBurdenDayData.femalePercents,
+        //   label: {
+        //     normal: {
+        //       show: true,
+        //       position: 'top',
+        //       formatter: function(params) {
+        //         var data = nearworkBurdenDayData.femaleCounts
+        //         return data[params.dataIndex] + '人'
+        //       }
+        //     }
+        //   },
+        //   itemStyle: {
+        //     normal: {
+        //       color: function(params) {
+        //         // build a color map as your need.
+        //         var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
+        //         return colorList[params.dataIndex]
+        //       }
+        //     }
+        //   },
+        //   animationDuration
+        // }
+        ]
       })
     }
   }
