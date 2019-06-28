@@ -78,6 +78,14 @@ export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 
+export function FormatDay(time) {
+  var timer = new Date(time)
+  var years = timer.getFullYear()
+  var Month = (timer.getMonth() + 1 < 10 ? '0' + (timer.getMonth() + 1) : timer.getMonth() + 1)
+  var day = timer.getDate() < 10 ? '0' + timer.getDate() : timer.getDate()
+  return years + '-' + Month + '-' + day
+}
+
 export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
