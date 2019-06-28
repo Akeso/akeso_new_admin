@@ -28,10 +28,8 @@ export default {
       type: Object,
       default() {
         return {
-          maleCounts: [0, 0, 0, 0],
-          malePercents: [0, 0, 0, 0],
-          femaleCounts: [0, 0, 0, 0],
-          femalePercents: [0, 0, 0, 0]
+          counts: [0, 0, 0, 0],
+          percents: [0, 0, 0, 0]
         }
       }
     }
@@ -80,7 +78,7 @@ export default {
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           },
           formatter: function(params) {
-            return params[0].name + '<br/>' + params[0].seriesName + '占比' + ' : ' + params[0].value + '%' + '<br/>' + params[1].seriesName + '占比' + ' : ' + params[1].value + '%'
+            return params[0].seriesName + ' : ' + params[0].name + '<br/>' + '占比' + ' : ' + params[0].value + '%'
           }
         },
         grid: {
@@ -166,43 +164,17 @@ export default {
           boundaryGap: [0.2, 0.2]
         }],
         series: [{
-          name: '男生',
+          name: '人数',
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: stepCountData.malePercents,
+          data: stepCountData.percents,
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = stepCountData.maleCounts
-                return data[params.dataIndex] + '人'
-              }
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: function(params) {
-                // build a color map as your need.
-                var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
-                return colorList[params.dataIndex]
-              }
-            }
-          },
-          animationDuration
-        }, {
-          name: '女生',
-          type: 'bar',
-          // stack: 'vistors',
-          barWidth: '30',
-          data: stepCountData.femalePercents,
-          label: {
-            normal: {
-              show: true,
-              position: 'top',
-              formatter: function(params) {
-                var data = stepCountData.femaleCounts
+                var data = stepCountData.counts
                 return data[params.dataIndex] + '人'
               }
             }
