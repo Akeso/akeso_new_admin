@@ -81,6 +81,7 @@ export default {
 }
 .tab-thead{
   margin-top:24px;
+  margin-bottom: 36px;
 }
 .tab-thead >>> .el-table thead{
   color: #fff;
