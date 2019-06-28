@@ -91,7 +91,7 @@ export default {
         xAxis: [{
           type: 'category',
           name: '分钟',
-          data: ['60', '120', '180', '240'],
+          data: nearworkDayData.counts, // ['60', '120', '180', '240'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -113,43 +113,43 @@ export default {
               //     name = '180 分钟以上 '
               //     break
               // }
-              return '{' + value + '| }\n{value|' + '' + '}' // name  + value + '分钟'
+              // return '{' + value + '| }\n{value|' + '' + '}' // name  + value + '分钟'
             },
-            margin: 10,
-            rich: {
-              value: {
-                lineHeight: 20,
-                align: 'center'
-              },
-              '60': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '120': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '180': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '240': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              }
-            }
+            margin: 10
+            // rich: {
+            //   value: {
+            //     lineHeight: 20,
+            //     align: 'center'
+            //   },
+            //   '60': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '120': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '180': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '240': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   }
+            // }
           }
         }],
         yAxis: [{

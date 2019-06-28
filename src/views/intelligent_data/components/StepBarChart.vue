@@ -91,7 +91,7 @@ export default {
         xAxis: [{
           type: 'category',
           name: '步数',
-          data: ['1800', '3600', '5400', '7200'],
+          data: stepCountData.counts, // ['1800', '3600', '5400', '7200'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -113,43 +113,43 @@ export default {
               //     name = '5400 步以上'
               //     break
               // }
-              return '{' + value + '| }\n{value|' + '' + '}' // + value + '分钟'
+              // return '{' + value + '| }\n{value|' + '' + '}' // + value + '分钟'
             },
-            margin: 10,
-            rich: {
-              value: {
-                lineHeight: 20,
-                align: 'center'
-              },
-              '1800': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '3600': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '5400': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '7200': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              }
-            }
+            margin: 10
+            // rich: {
+            //   value: {
+            //     lineHeight: 20,
+            //     align: 'center'
+            //   },
+            //   '1800': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '3600': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '5400': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '7200': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   }
+            // }
           }
         }],
         yAxis: [{

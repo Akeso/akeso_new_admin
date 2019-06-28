@@ -91,7 +91,7 @@ export default {
         xAxis: [{
           type: 'category',
           name: '次',
-          data: ['20', '40', '60', '80'],
+          data: badPostureTimesData.counts, // ['20', '40', '60', '80'],
           axisTick: {
             // alignWithLabel: true
           },
@@ -114,43 +114,43 @@ export default {
               //     name = '60 次以上'
               //     break
               // }
-              return '{' + value + '| }\n{value|' + '' + '}' // + value + '分钟'
+              // return '{' + value + '| }\n{value|' + '' + '}' // + value + '分钟'
             },
-            margin: 10,
-            rich: {
-              value: {
-                lineHeight: 20,
-                align: 'center'
-              },
-              '20': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '40': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '60': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              },
-              '80': {
-                height: 40,
-                align: 'center',
-                backgroundColor: {
-                  image: echartsIcon
-                }
-              }
-            }
+            margin: 10
+            // rich: {
+            //   value: {
+            //     lineHeight: 20,
+            //     align: 'center'
+            //   },
+            //   '20': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '40': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '60': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   },
+            //   '80': {
+            //     height: 40,
+            //     align: 'center',
+            //     backgroundColor: {
+            //       image: echartsIcon
+            //     }
+            //   }
+            // }
           }
         }],
         yAxis: [{

@@ -3,48 +3,55 @@
     <el-row>
       <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
         <tr>
-          <td rowspan="4" class="td-20 title-font">近视健康因素情况</td>
-          <td class="td-20 title-font tab-header" style="width: 30%;">监测项目</td>
+          <td rowspan="4" class="td-20 title-font">健康因素</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">监测项目</td>
+          <td class="td-20 title-font tab-header" style="width: 20%;">标准值</td>
+          <td class="td-20 title-font tab-header" style="width: 20%;">建议达标值</td>
           <td class="td-20 title-font tab-header" style="width: 20%;">监测结果</td>
-          <td class="td-20 title-font tab-header" style="width: 20%;">建议参考值</td>
-          <td class="td-20 title-font tab-header" style="width: 10%;">达标情况</td>
+          <td class="td-20 title-font tab-header" style="width: 10%;">评分</td>
         </tr>
         <tr>
-          <td class="title-font">户外时间120分钟/天</td>
-          <td>111分钟</td>
-          <td>≥80分钟</td>
-          <td>111</td>
+          <td class="title-font">户外时间</td>
+          <td>120分钟/天</td>
+          <td>≥80分钟/天</td>
+          <td>54分钟/天</td>
+          <td>中</td>
         </tr>
         <tr>
-          <td class="title-font">阳光摄入36万lux/天</td>
-          <td>lux</td>
-          <td>≥24万lux</td>
-          <td>111</td>
+          <td class="title-font">阳光摄入</td>
+          <td>36W lux/天</td>
+          <td>≥24W lux/天</td>
+          <td>28W lux/天</td>
+          <td>良</td>
         </tr>
         <tr>
-          <td class="title-font">运动步数12000步/天</td>
-          <td>111步</td>
-          <td>≥8000步</td>
-          <td>1</td>
+          <td class="title-font">运动步数</td>
+          <td>12000步/天</td>
+          <td>≥8000步/天</td>
+          <td>5000步/天</td>
+          <td>良</td>
         </tr>
         <tr>
-          <td rowspan="3" class="title-font">近视危险因素情况</td>
-          <td class="title-font">近距离用眼时长260分钟/天</td>
-          <td>11分钟</td>
-          <td>≤160分钟</td>
-          <td>22</td>
+          <td rowspan="3" class="title-font">危险因素</td>
+          <td class="title-font">颈椎与用眼负荷</td>
+          <td>720D/天</td>
+          <td>≤480D/天</td>
+          <td>580D/天</td>
+          <td>差</td>
         </tr>
         <tr>
-          <td class="title-font">不良用眼姿态90次/天</td>
-          <td>22次</td>
-          <td>≤60次</td>
-          <td>1</td>
+          <td class="title-font">不良用眼姿态</td>
+          <td>90次/天</td>
+          <td>≤60次/天</td>
+          <td>64次/天</td>
+          <td>良</td>
         </tr>
         <tr>
-          <td class="title-font">颈椎与用眼负荷720D/天</td>
-          <td>1D</td>
-          <td>≤480D</td>
-          <td>333</td>
+          <td class="title-font">近距离用眼时间</td>
+          <td>240分钟/天</td>
+          <td>≤160分钟/天</td>
+          <td>220分钟/天</td>
+          <td>差</td>
         </tr>
         <!--<tr>
           <td class="title-font">初步提示</td>
