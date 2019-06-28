@@ -54,35 +54,35 @@
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.luxDayPercent" status="success" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.outTimeLux }}/300000lux</el-col>
+      <el-col :span="3" class="text-standard-font">{{ healthScore.outTimeLux }}/360000lux</el-col>
     </el-row>
     <el-row class="margin-bottom">
       <el-col :span="3" class="text-center text-standard-font">运动步数</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.stepCountPercent" status="success" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.stepCount }}/10000步</el-col>
+      <el-col :span="3" class="text-standard-font">{{ healthScore.stepCount }}/12000步</el-col>
     </el-row>
     <el-row class="margin-bottom">
       <el-col :span="3" class="text-center text-standard-font">用眼负荷</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkBurdenPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/750D</el-col>
+      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/720D</el-col>
     </el-row>
     <el-row class="margin-bottom">
       <el-col :span="3" class="text-center text-standard-font">近距离用眼时间</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkTotal }}/240分钟</el-col>
+      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkTotal }}/260分钟</el-col>
     </el-row>
     <el-row class="margin-bottom">
       <el-col :span="3" class="text-center text-standard-font">不良姿势提醒</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.badPostureTimesPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.badPostureTimes }}/90次</el-col>
+      <el-col :span="3" class="text-standard-font">{{ healthScore.badPostureTimes }}/45次</el-col>
     </el-row>
     <HealthItem :text="textOutTime" :hours="hourOutTime"/>
     <HealthItem :text="textLux" :hours="hourLux"/>

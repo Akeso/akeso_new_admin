@@ -162,7 +162,7 @@
         </tr>
         <tr>
           <td class="title-font">不良用眼姿态</td>
-          <td class="title-font">90次/天</td>
+          <td class="title-font">45次/天</td>
           <td>≤60次</td>
           <td>{{ wholeData.badPostureTimesAvg }}次</td>
           <td>{{ badPostureTimesCondition(wholeData.badPostureTimesAvg) }}</td>
