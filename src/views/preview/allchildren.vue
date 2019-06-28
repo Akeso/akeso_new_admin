@@ -40,10 +40,6 @@
           label="性别"
           min-width="50"/>
         <el-table-column
-          prop="schoolName"
-          label="学校名称"
-          min-width="90"/>
-        <el-table-column
           prop="locationString"
           label="地区"
           min-width="120"/>
