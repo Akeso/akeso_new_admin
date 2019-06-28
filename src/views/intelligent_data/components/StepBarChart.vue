@@ -23,6 +23,17 @@ export default {
     height: {
       type: String,
       default: '300px'
+    },
+    stepCount: {
+      type: Object,
+      default() {
+        return {
+          maleCounts: [0, 0, 0, 0],
+          malePercents: [0, 0, 0, 0],
+          femaleCounts: [0, 0, 0, 0],
+          femalePercents: [0, 0, 0, 0]
+        }
+      }
     }
   },
   data() {
@@ -31,8 +42,19 @@ export default {
       echartsIcon: echartsIcon
     }
   },
+  watch: {
+    stepCount: {
+      handler(newV, oldV) {
+        if (newV) {
+          this.initChart(newV)
+        } else {
+          this.initChart(oldV)
+        }
+      }
+    }
+  },
   mounted() {
-    this.initChart()
+    this.initChart(this.stepCount)
     this.__resizeHandler = debounce(() => {
       if (this.chart) {
         this.chart.resize()
@@ -49,7 +71,7 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart() {
+    initChart(stepCountData) {
       this.chart = echarts.init(this.$el, 'macarons')
       this.chart.setOption({
         tooltip: {
@@ -65,7 +87,7 @@ export default {
           top: '10%',
           left: '2%',
           right: '10%',
-          bottom: '12%',
+          bottom: '8%',
           containLabel: true
         },
         xAxis: [{
@@ -78,23 +100,22 @@ export default {
           axisLabel: {
             interval: 0,
             formatter: function(value) {
-              console.log('value', value)
-              var name = ''
-              switch (value) {
-                case '1800':
-                  name = '0 ~ 1800 步'
-                  break
-                case '3600':
-                  name = '1800 ~ 3600 步'
-                  break
-                case '5400':
-                  name = '3600 ~ 5400 步'
-                  break
-                case '7200':
-                  name = '5400 步以上'
-                  break
-              }
-              return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
+              // var name = ''
+              // switch (value) {
+              //   case '1800':
+              //     name = '0 ~ 1800 步'
+              //     break
+              //   case '3600':
+              //     name = '1800 ~ 3600 步'
+              //     break
+              //   case '5400':
+              //     name = '3600 ~ 5400 步'
+              //     break
+              //   case '7200':
+              //     name = '5400 步以上'
+              //     break
+              // }
+              return '{' + value + '| }\n{value|' + '' + '}' // + value + '分钟'
             },
             margin: 10,
             rich: {
@@ -149,13 +170,13 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [39, 31, 20, 10],
+          data: stepCountData.malePercents,
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16, 20]
+                var data = stepCountData.maleCounts
                 return data[params.dataIndex] + '人'
               }
             }
@@ -175,13 +196,13 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [19, 10, 16, 20],
+          data: stepCountData.femalePercents,
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16, 30]
+                var data = stepCountData.femaleCounts
                 return data[params.dataIndex] + '人'
               }
             }

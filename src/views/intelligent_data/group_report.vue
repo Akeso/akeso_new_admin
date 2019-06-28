@@ -46,13 +46,13 @@
       <div class="clearfix header">
         <h1>学生用眼健康因素监测报告</h1>
         <div class="header-info">
-          <span>学校：育才街小学</span>
-          <span>班级：三年级（2）班</span>
-          <span>人数：169人</span>
+          <span>学校：{{ infoData.school }}</span>
+          <span>班级：{{ infoData.clasGrade }}</span>
+          <span>人数：{{ infoData.totalCount }}人</span>
         </div>
         <div class="header-info">
-          <span>男生：89人</span>
-          <span>女生：80人</span>
+          <span>男生：{{ infoData.maleCount }}人</span>
+          <span>女生：{{ infoData.femaleCount }}人</span>
         </div>
         <div class="header-info">
           <span>测评时间：2019.5.28 - 2019.6.28</span>
@@ -61,7 +61,7 @@
         </div>
       </div>
       <el-row>
-        <el-col class="info b-oblue c-blue">文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容</el-col>
+        <el-col class="info b-oblue c-blue">为积极响应国家号召，紧跟习近平总书记和教育部等八部委联合印发的《综合防控儿童青少年近视实施方案》中“一增一减”（即增加户外活动时间，减少用眼负担）的重要指导政策，建立以在校学生为主体，基于可穿戴健康设备的青少年用眼健康体质大数据监测，通过家庭学生共同参与方式进行健康教育及预防近视健康行为促进行动。该报告将协助当地政府掌握当地近视情况，落实国家近视防控工作，帮助医生确定近视度数增长主因，为学生提供个性化精准近视防控诊疗方案，帮助学校和父母更有针对性地采取行动，为儿童青少年视力健康发育的全过程、全周期提供保障，切实有效降低当地在校学生近视率。</el-col>
       </el-row>
       <!--<el-row>
         <el-col :span="4">总人数</el-col>
@@ -81,11 +81,13 @@
               </div>
               <echarts-legend/>
               <div class="chart-wrapper">
-                <bar-chart/>
+                <bar-chart :out-time = "outTime"/>
               </div>
               <div class="info-con b-gray">
                 <h3 class="c-blue">班级不良用眼姿势平均值90次/天</h3>
-                <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
+                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
+                <h3 class="c-blue">未达标率为xx%</h3>
+                <p>未达标的学生建议培养户外运动爱好，在课间，上学放学路上及周末有意识增加户外时间，尽量争取每天不少于2小时的户外时间；已达标的学生请给予鼓励，同时在户外活动时注意防晒和安全。</p>
               </div>
               <div class="b-bottom" />
             </el-col>
@@ -98,11 +100,13 @@
               </div>
               <echarts-legend/>
               <div class="chart-wrapper">
-                <sunshine-bar-chart/>
+                <sunshine-bar-chart :lux-day="luxDay"/>
               </div>
-              <div class="info-con b-gray">
-                <h3 class="c-blue">班级阳光摄入量平均值24W lux/天</h3>
-                <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
+              <div class="info-con b-gray" style="height: 238px;">
+                <h3 class="c-blue">户外阳光摄入量平均值XX分钟/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
+                <h3 class="c-blue">未达标率为xx%</h3>
+                <p>未达标的学生建议有意识地在课间，上学路上及周末去户外沐浴阳光；已达标的学生在给予鼓励的同时，在阳光过强时请提醒佩戴太阳帽或太阳镜等避免紫外线对眼睛与皮肤的伤害。</p>
               </div>
               <div class="b-bottom" />
             </el-col>
@@ -115,11 +119,13 @@
               </div>
               <echarts-legend/>
               <div class="chart-wrapper">
-                <step-bar-chart/>
+                <step-bar-chart :step-count = "stepCount"/>
               </div>
-              <div class="info-con b-gray">
-                <h3 class="c-blue">班级运动步数平均值3800步/天</h3>
-                <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
+              <div class="info-con b-gray" style="height: 236px;">
+                <h3 class="c-blue">运动步数平均值XX步/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
+                <h3 class="c-blue">未达标率为xx%</h3>
+                <p>未达标的学生建议培养运动类的兴趣爱好，增加户外运动课程，如球类运动等；已达标的学生请给予鼓励的同时，提醒户外运动时需注意安全。</p>
               </div>
               <div class="b-bottom" />
             </el-col>
@@ -137,11 +143,13 @@
               </div>
               <echarts-legend/>
               <div class="chart-wrapper">
-                <bad-eye-bar-chart/>
+                <bad-eye-bar-chart :nearwork-burden-day="nearworkBurdenDay"/>
               </div>
               <div class="info-con b-gray">
-                <h3 class="c-blue">班级颈椎与用眼负担平均值360D/天</h3>
-                <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
+                <h3 class="c-blue">颈椎与用眼负担平均值XXD/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
+                <h3 class="c-blue">未达标率为xx%</h3>
+                <p>未达标的学生建议依从智能设备的提醒，连续用眼30分钟后及时抬头远眺，避免因近视关键因素的累积，导致不可逆的近视发生发展，影响眼睛正常发育。已达标的学生请给予鼓励的同时，建议积极参与户外活动，放松眼睛与大脑。</p>
               </div>
               <div class="b-bottom" />
             </el-col>
@@ -154,11 +162,13 @@
               </div>
               <echarts-legend/>
               <div class="chart-wrapper">
-                <bad-posture-bar-chart/>
+                <bad-posture-bar-chart :bad-posture-times="badPostureTimes"/>
               </div>
               <div class="info-con b-gray">
-                <h3 class="c-blue">班级不良用眼姿势平均值90次/天</h3>
-                <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
+                <h3 class="c-blue">不良用眼姿势平均值XX次/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
+                <h3 class="c-blue">未达标率为xx%</h3>
+                <p>针对未达标的学生，首先需要学校老师与家长的积极配合，同时督促孩子依从智能设备针对错误用眼姿势带来的提醒，及时纠正错误用眼行为，保证读写坐姿正确，规范用眼距离。针对达标的学生还需提醒用眼姿势正确不仅局限在课堂和书桌前，也不要趴着、躺着或在过暗过亮的环境下看书。</p>
               </div>
               <div class="b-bottom" />
             </el-col>
@@ -171,11 +181,13 @@
               </div>
               <echarts-legend/>
               <div class="chart-wrapper">
-                <eyestrain-bar-chart/>
+                <eyestrain-bar-chart :nearwork-day="nearworkDay"/>
               </div>
               <div class="info-con b-gray">
-                <h3 class="c-blue">班级近距用眼时间平均值90次/天</h3>
-                <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
+                <h3 class="c-blue">近距用眼时间平均值XX分钟/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
+                <h3 class="c-blue">未达标率为xx%</h3>
+                <p>针对未达标的学生，需要学校老师与家长积极配合，督促学生依从智能设备的提醒，眼睛与书本（电子产品）保持33厘米的距离，多去户外看远，使眼睛能够远近交替使用。针对达标的学生还需教会孩子在更多场景中合理用眼，不要趴或躺着看书、不要过多地使用手机、ipad等电子产品。</p>
               </div>
               <div class="b-bottom" />
             </el-col>
@@ -250,6 +262,19 @@ export default {
       },
       info: {
         id: undefined
+      },
+      outTime: { },
+      luxDay: { },
+      stepCount: {},
+      nearworkBurdenDay: {},
+      badPostureTimes: {},
+      nearworkDay: {},
+      infoData: {
+        school: '某某学校',
+        clasGrade: '某某班级',
+        totalCount: 0,
+        maleCount: 0,
+        femaleCount: 0
       }
     }
   },
@@ -278,6 +303,13 @@ export default {
       const ppp = { excel_roll_id: this.info.id, start_date: this.selectSection.startDate, end_date: this.selectSection.endDate }
       fetchExcelReport(ppp).then(res => {
         console.log('res => ', res.data)
+        this.outTime = res.data.outTime
+        this.luxDay = res.data.luxDay
+        this.stepCount = res.data.stepCount
+        this.nearworkBurdenDay = res.data.nearworkBurdenDay // 颈椎与用眼负担
+        this.nearworkDay = res.data.nearworkDay // 近距用眼时间
+        this.badPostureTimes = res.data.badPostureTimes // 不良姿势
+        this.infoData = res.data.info
       })
     },
     downloadExc() {
@@ -393,7 +425,7 @@ export default {
   }
   .info-con h3{
     margin: 0;
-    padding-bottom: 16px;
+    padding-bottom: 8px;
   }
   .info-con p{
     line-height: 22px;

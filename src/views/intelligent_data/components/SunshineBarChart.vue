@@ -23,6 +23,17 @@ export default {
     height: {
       type: String,
       default: '300px'
+    },
+    luxDay: {
+      type: Object,
+      default() {
+        return {
+          maleCounts: [0, 0, 0, 0],
+          malePercents: [0, 0, 0, 0],
+          femaleCounts: [0, 0, 0, 0],
+          femalePercents: [0, 0, 0, 0]
+        }
+      }
     }
   },
   data() {
@@ -31,8 +42,19 @@ export default {
       echartsIcon: echartsIcon
     }
   },
+  watch: {
+    luxDay: {
+      handler(newV, oldV) {
+        if (newV) {
+          this.initChart(newV)
+        } else {
+          this.initChart(oldV)
+        }
+      }
+    }
+  },
   mounted() {
-    this.initChart()
+    this.initChart(this.luxDay)
     this.__resizeHandler = debounce(() => {
       if (this.chart) {
         this.chart.resize()
@@ -49,7 +71,7 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart() {
+    initChart(luxDayData) {
       this.chart = echarts.init(this.$el, 'macarons')
       this.chart.setOption({
         tooltip: {
@@ -65,7 +87,7 @@ export default {
           top: '10%',
           left: '2%',
           right: '10%',
-          bottom: '12%',
+          bottom: '8%',
           containLabel: true
         },
         xAxis: [{
@@ -78,23 +100,22 @@ export default {
           axisLabel: {
             interval: 0,
             formatter: function(value) {
-              console.log('value', value)
-              var name = ''
-              switch (value) {
-                case '10':
-                  name = '0 ~ 8 W lux'
-                  break
-                case '20':
-                  name = '8 ~ 16 W lux'
-                  break
-                case '30':
-                  name = '16 ~ 24 W lux以上'
-                  break
-                case '40':
-                  name = '24 W lux以上'
-                  break
-              }
-              return '{' + value + '| }\n{value|' + name + '}' // + value + '分钟'
+              // var name = ''
+              // switch (value) {
+              //   case '10':
+              //     name = '0 ~ 8 W lux'
+              //     break
+              //   case '20':
+              //     name = '8 ~ 16 W lux'
+              //     break
+              //   case '30':
+              //     name = '16 ~ 24 W lux以上'
+              //     break
+              //   case '40':
+              //     name = '24 W lux以上'
+              //     break
+              // }
+              return '{' + value + '| }\n{value|' + '' + '}' // + value + '分钟'
             },
             margin: 10,
             rich: {
@@ -149,13 +170,13 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [79, 52, 100, 20],
+          data: luxDayData.malePercents,
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16, 10]
+                var data = luxDayData.maleCounts
                 return data[params.dataIndex] + '人'
               }
             }
@@ -175,13 +196,13 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: [80, 20, 66, 40],
+          data: luxDayData.femalePercents,
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = [20, 25, 16, 30]
+                var data = luxDayData.femaleCounts
                 return data[params.dataIndex] + '人'
               }
             }
