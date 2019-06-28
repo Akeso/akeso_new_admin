@@ -119,7 +119,7 @@
               <div class="chart-wrapper">
                 <step-bar-chart :step-count = "stepCount"/>
               </div>
-              <div class="info-con b-gray" style="height: 236px;">
+              <div class="info-con b-gray" style="height: 208px;">
                 <h3 class="c-blue">运动步数平均值{{ stepCount.average }}步/天</h3>
                 <h3 class="c-blue">当前班级整体达标率为{{ stepCount.upRate }}%</h3>
                 <p>未达标的学生建议培养运动类的兴趣爱好，增加户外运动课程，如球类运动等；已达标的学生请给予鼓励的同时，提醒户外运动时需注意安全。</p>
