@@ -76,11 +76,11 @@ export function badPostureTimesCondition(val) {
   if (val === 0) {
     return '无'
   }
-  if (val <= 30) {
+  if (val <= 15) {
     return '优'
-  } else if (val <= 60) {
+  } else if (val <= 30) {
     return '良'
-  } else if (val <= 90) {
+  } else if (val <= 45) {
     return '中'
   }
   return '差'
