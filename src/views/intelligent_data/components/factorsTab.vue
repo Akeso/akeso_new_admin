@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="">
     <el-row>
       <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
         <tr>
@@ -115,14 +115,6 @@ export default {
 }
 </script>
 
-<style>
-.sortable-ghost{
-  opacity: .8;
-  color: #fff!important;
-  background: #42b983!important;
-}
-</style>
-
 <style scoped>
 .icon-star{
   margin-right:2px;
@@ -136,19 +128,18 @@ export default {
   margin-top: 15px;
 }
 .table-cls{
-    margin-top: 20px;
-    width: 100%;
-    border:.5px solid #979797;
-    border-left: 0.5px solid #979797;
-    border-top: .5px;
-  }
-  .table-cls td{
-    border-right: 0.5px solid #979797;
-    border-bottom: 0.5px;
-    border-left: 0.5px;
-  }
-  .tab-header{
-    background: #27adff;
-    color: #fff;
-  }
+  width: 100%;
+  border:.5px solid #979797;
+  border-left: 0.5px solid #979797;
+  border-top: .5px;
+}
+.table-cls td{
+  border-right: 0.5px solid #979797;
+  border-bottom: 0.5px;
+  border-left: 0.5px;
+}
+.tab-header{
+  background: #27adff;
+  color: #fff;
+}
 </style>
