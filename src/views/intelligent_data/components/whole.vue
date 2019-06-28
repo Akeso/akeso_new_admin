@@ -124,52 +124,59 @@
       <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
         <tr>
           <td class="td-20"/>
-          <td class="td-20 title-font" style="width: 30%;">监测项目</td>
-          <td class="td-20 title-font" style="width: 20%;">监测结果</td>
-          <td class="td-20 title-font" style="width: 20%;">建议参考值</td>
-          <td class="td-20 title-font" style="width: 10%;">达标情况</td>
+          <td class="td-20 title-font" style="width: 15%;">监测项目</td>
+          <td class="td-20 title-font" style="width: 15%;">标准值</td>
+          <td class="td-20 title-font" style="width: 15%;">建议达标值</td>
+          <td class="td-20 title-font" style="width: 15%;">监测结果</td>
+          <td class="td-20 title-font" style="width: 10%;">评分</td>
         </tr>
         <tr>
           <td rowspan="3" class="title-font">近视健康因素情况</td>
-          <td class="title-font">户外时间120分钟/天</td>
-          <td>{{ wholeData.outTimeAvg }}分钟</td>
+          <td class="title-font">户外时间</td>
+          <td class="title-font">120分钟/天</td>
           <td>≥80分钟</td>
+          <td>{{ wholeData.outTimeAvg }}分钟</td>
           <td>{{ outTimeCondition(wholeData.outTimeAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">阳光摄入36万lux/天</td>
-          <td>{{ wholeData.luxDayAvg }}lux</td>
+          <td class="title-font">阳光摄入</td>
+          <td class="title-font">36万lux/天</td>
           <td>≥24万lux</td>
+          <td>{{ wholeData.luxDayAvg }}lux</td>
           <td>{{ luxDayCondition(wholeData.luxDayAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">运动步数12000步/天</td>
-          <td>{{ wholeData.stepCountAvg }}步</td>
+          <td class="title-font">运动步数</td>
+          <td class="title-font">12000步/天</td>
           <td>≥8000步</td>
+          <td>{{ wholeData.stepCountAvg }}步</td>
           <td>{{ stepCountCondition(wholeData.stepCountAvg) }}</td>
         </tr>
         <tr>
           <td rowspan="3" class="title-font">近视危险因素情况</td>
-          <td class="title-font">近距离用眼时长260分钟/天</td>
-          <td>{{ wholeData.nearworkDayAvg }}分钟</td>
+          <td class="title-font">近距离用眼时长</td>
+          <td class="title-font">260分钟/天</td>
           <td>≤160分钟</td>
+          <td>{{ wholeData.nearworkDayAvg }}分钟</td>
           <td>{{ nearworkDayCondition(wholeData.nearworkDayAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">不良用眼姿态90次/天</td>
-          <td>{{ wholeData.badPostureTimesAvg }}次</td>
+          <td class="title-font">不良用眼姿态</td>
+          <td class="title-font">90次/天</td>
           <td>≤60次</td>
+          <td>{{ wholeData.badPostureTimesAvg }}次</td>
           <td>{{ badPostureTimesCondition(wholeData.badPostureTimesAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">颈椎与用眼负荷720D/天</td>
-          <td>{{ wholeData.nearworkBurdenDayAvg }}D</td>
+          <td class="title-font">颈椎与用眼负荷</td>
+          <td class="title-font">720D/天</td>
           <td>≤480D</td>
+          <td>{{ wholeData.nearworkBurdenDayAvg }}D</td>
           <td>{{ nearworkBurdenDayCondition(wholeData.nearworkBurdenDayAvg) }}</td>
         </tr>
         <tr>
           <td class="title-font">初步提示</td>
-          <td colspan="4">若想达到近视防控效果最大化，请多去户外运动，沐浴光照，三项健康因素全部达到参考值；同时避免错误用眼习惯增加近视风险，将导致近视加深的近视危险因素下降到参考值以下。</td>
+          <td colspan="5">若想达到近视防控效果最大化，请多去户外运动，沐浴光照，三项健康因素全部达到参考值；同时避免错误用眼习惯增加近视风险，将导致近视加深的近视危险因素下降到参考值以下。</td>
         </tr>
       </table>
     </el-row>

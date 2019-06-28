@@ -84,9 +84,8 @@
                 <bar-chart :out-time = "outTime"/>
               </div>
               <div class="info-con b-gray">
-                <h3 class="c-blue">班级不良用眼姿势平均值90次/天</h3>
-                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
-                <h3 class="c-blue">未达标率为xx%</h3>
+                <h3 class="c-blue">户外时间平均值为{{ outTime.average }}分钟/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为{{ outTime.upRate }}%</h3>
                 <p>未达标的学生建议培养户外运动爱好，在课间，上学放学路上及周末有意识增加户外时间，尽量争取每天不少于2小时的户外时间；已达标的学生请给予鼓励，同时在户外活动时注意防晒和安全。</p>
               </div>
               <div class="b-bottom" />
@@ -103,9 +102,8 @@
                 <sunshine-bar-chart :lux-day="luxDay"/>
               </div>
               <div class="info-con b-gray" style="height: 238px;">
-                <h3 class="c-blue">户外阳光摄入量平均值XX分钟/天</h3>
-                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
-                <h3 class="c-blue">未达标率为xx%</h3>
+                <h3 class="c-blue">户外阳光摄入量平均值{{ luxDay.average }}分钟/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为{{ luxDay.upRate }}%</h3>
                 <p>未达标的学生建议有意识地在课间，上学路上及周末去户外沐浴阳光；已达标的学生在给予鼓励的同时，在阳光过强时请提醒佩戴太阳帽或太阳镜等避免紫外线对眼睛与皮肤的伤害。</p>
               </div>
               <div class="b-bottom" />
@@ -122,9 +120,8 @@
                 <step-bar-chart :step-count = "stepCount"/>
               </div>
               <div class="info-con b-gray" style="height: 236px;">
-                <h3 class="c-blue">运动步数平均值XX步/天</h3>
-                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
-                <h3 class="c-blue">未达标率为xx%</h3>
+                <h3 class="c-blue">运动步数平均值{{ stepCount.average }}步/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为{{ stepCount.upRate }}%</h3>
                 <p>未达标的学生建议培养运动类的兴趣爱好，增加户外运动课程，如球类运动等；已达标的学生请给予鼓励的同时，提醒户外运动时需注意安全。</p>
               </div>
               <div class="b-bottom" />
@@ -146,9 +143,8 @@
                 <bad-eye-bar-chart :nearwork-burden-day="nearworkBurdenDay"/>
               </div>
               <div class="info-con b-gray">
-                <h3 class="c-blue">颈椎与用眼负担平均值XXD/天</h3>
-                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
-                <h3 class="c-blue">未达标率为xx%</h3>
+                <h3 class="c-blue">颈椎与用眼负担平均值{{ nearworkBurdenDay.average }}D/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为{{ nearworkBurdenDay.upRate }}%</h3>
                 <p>未达标的学生建议依从智能设备的提醒，连续用眼30分钟后及时抬头远眺，避免因近视关键因素的累积，导致不可逆的近视发生发展，影响眼睛正常发育。已达标的学生请给予鼓励的同时，建议积极参与户外活动，放松眼睛与大脑。</p>
               </div>
               <div class="b-bottom" />
@@ -165,9 +161,8 @@
                 <bad-posture-bar-chart :bad-posture-times="badPostureTimes"/>
               </div>
               <div class="info-con b-gray">
-                <h3 class="c-blue">不良用眼姿势平均值XX次/天</h3>
-                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
-                <h3 class="c-blue">未达标率为xx%</h3>
+                <h3 class="c-blue">不良用眼姿势平均值{{ badPostureTimes.average }}次/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为{{ badPostureTimes.upRate }}%</h3>
                 <p>针对未达标的学生，首先需要学校老师与家长的积极配合，同时督促孩子依从智能设备针对错误用眼姿势带来的提醒，及时纠正错误用眼行为，保证读写坐姿正确，规范用眼距离。针对达标的学生还需提醒用眼姿势正确不仅局限在课堂和书桌前，也不要趴着、躺着或在过暗过亮的环境下看书。</p>
               </div>
               <div class="b-bottom" />
@@ -184,9 +179,8 @@
                 <eyestrain-bar-chart :nearwork-day="nearworkDay"/>
               </div>
               <div class="info-con b-gray">
-                <h3 class="c-blue">近距用眼时间平均值XX分钟/天</h3>
-                <h3 class="c-blue">当前班级整体达标率为xx%</h3>
-                <h3 class="c-blue">未达标率为xx%</h3>
+                <h3 class="c-blue">近距用眼时间平均值{{ nearworkDay.average }}分钟/天</h3>
+                <h3 class="c-blue">当前班级整体达标率为{{ nearworkDay.upRate }}%</h3>
                 <p>针对未达标的学生，需要学校老师与家长积极配合，督促学生依从智能设备的提醒，眼睛与书本（电子产品）保持33厘米的距离，多去户外看远，使眼睛能够远近交替使用。针对达标的学生还需教会孩子在更多场景中合理用眼，不要趴或躺着看书、不要过多地使用手机、ipad等电子产品。</p>
               </div>
               <div class="b-bottom" />
@@ -296,12 +290,30 @@ export default {
       info: {
         id: undefined
       },
-      outTime: { },
-      luxDay: { },
-      stepCount: {},
-      nearworkBurdenDay: {},
-      badPostureTimes: {},
-      nearworkDay: {},
+      outTime: {
+        average: 0,
+        upRate: 0
+      },
+      luxDay: {
+        average: 0,
+        upRate: 0
+      },
+      stepCount: {
+        average: 0,
+        upRate: 0
+      },
+      nearworkBurdenDay: {
+        average: 0,
+        upRate: 0
+      },
+      badPostureTimes: {
+        average: 0,
+        upRate: 0
+      },
+      nearworkDay: {
+        average: 0,
+        upRate: 0
+      },
       infoData: {
         school: '某某学校',
         clasGrade: '某某班级',
