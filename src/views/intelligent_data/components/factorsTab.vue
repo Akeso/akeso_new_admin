@@ -14,44 +14,44 @@
           <td class="title-font">户外时间</td>
           <td>120分钟/天</td>
           <td>≥80分钟/天</td>
-          <td>54分钟/天</td>
-          <td>中</td>
+          <td class="c-blue">54分钟/天</td>
+          <td class="c-blue">中</td>
         </tr>
         <tr>
           <td class="title-font">阳光摄入</td>
           <td>36W lux/天</td>
           <td>≥24W lux/天</td>
-          <td>28W lux/天</td>
-          <td>良</td>
+          <td class="c-blue">28W lux/天</td>
+          <td class="c-blue">良</td>
         </tr>
         <tr>
           <td class="title-font">运动步数</td>
           <td>12000步/天</td>
           <td>≥8000步/天</td>
-          <td>5000步/天</td>
-          <td>良</td>
+          <td class="c-blue">5000步/天</td>
+          <td class="c-blue">良</td>
         </tr>
         <tr>
           <td rowspan="3" class="title-font">危险因素</td>
           <td class="title-font">颈椎与用眼负荷</td>
           <td>720D/天</td>
           <td>≤480D/天</td>
-          <td>580D/天</td>
-          <td>差</td>
+          <td class="c-blue">580D/天</td>
+          <td class="c-blue">差</td>
         </tr>
         <tr>
           <td class="title-font">不良用眼姿态</td>
           <td>90次/天</td>
           <td>≤60次/天</td>
-          <td>64次/天</td>
-          <td>良</td>
+          <td class="c-blue">64次/天</td>
+          <td class="c-blue">良</td>
         </tr>
         <tr>
           <td class="title-font">近距离用眼时间</td>
           <td>240分钟/天</td>
           <td>≤160分钟/天</td>
-          <td>220分钟/天</td>
-          <td>差</td>
+          <td class="c-blue">220分钟/天</td>
+          <td class="c-blue">差</td>
         </tr>
         <!--<tr>
           <td class="title-font">初步提示</td>
