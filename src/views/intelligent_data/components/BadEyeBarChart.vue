@@ -189,7 +189,35 @@ export default {
             }
           },
           animationDuration
-        }]
+        }
+        // {
+        //   name: '女生',
+        //   type: 'bar',
+        //   // stack: 'vistors',
+        //   barWidth: '30',
+        //   data: nearworkBurdenDayData.femalePercents,
+        //   label: {
+        //     normal: {
+        //       show: true,
+        //       position: 'top',
+        //       formatter: function(params) {
+        //         var data = nearworkBurdenDayData.femaleCounts
+        //         return data[params.dataIndex] + '人'
+        //       }
+        //     }
+        //   },
+        //   itemStyle: {
+        //     normal: {
+        //       color: function(params) {
+        //         // build a color map as your need.
+        //         var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
+        //         return colorList[params.dataIndex]
+        //       }
+        //     }
+        //   },
+        //   animationDuration
+        // }
+        ]
       })
     }
   }
