@@ -101,7 +101,7 @@
               <div class="chart-wrapper">
                 <sunshine-bar-chart :lux-day="luxDay"/>
               </div>
-              <div class="info-con b-gray" style="height: 238px;">
+              <div class="info-con b-gray" style="height: 208px;">
                 <h3 class="c-blue">户外阳光摄入量平均值{{ luxDay.average }}分钟/天</h3>
                 <h3 class="c-blue">当前班级整体达标率为{{ luxDay.upRate }}%</h3>
                 <p>未达标的学生建议有意识地在课间，上学路上及周末去户外沐浴阳光；已达标的学生在给予鼓励的同时，在阳光过强时请提醒佩戴太阳帽或太阳镜等避免紫外线对眼睛与皮肤的伤害。</p>
@@ -197,6 +197,7 @@
           <div class="info-con b-gray">
             <p>优代表说了上面的前奏之后，接下来就是纳入正题了，就是开篇说的state的玩法。回到store文件的index.js里面，我们先声明一个state变量，并赋值一个空对象给它，里面随便定义两个初始属性值；</p>
           </div>
+          <high-ris-tabel/>
         </el-col>
       </el-row>
     </el-card>
@@ -215,6 +216,7 @@ import echartsLegend from './components/echarts-legend'
 import QRcode from '@/components/QRCode'
 import { FormatDay } from '@/utils/index'
 import factorsTab from './components/factorsTab'
+import highRisTabel from './components/tabel'
 export default {
   components: {
     UploadExcelComponent,
@@ -226,7 +228,8 @@ export default {
     BadPostureBarChart,
     EyestrainBarChart,
     QRcode,
-    factorsTab
+    factorsTab,
+    highRisTabel
   },
   data() {
     return {
