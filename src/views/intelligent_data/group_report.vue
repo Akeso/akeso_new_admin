@@ -46,13 +46,13 @@
       <div class="clearfix header">
         <h1>学生用眼健康因素监测报告</h1>
         <div class="header-info">
-          <span>学校：育才街小学</span>
-          <span>班级：三年级（2）班</span>
-          <span>人数：169人</span>
+          <span>学校：{{ infoData.school }}</span>
+          <span>班级：{{ infoData.clasGrade }}</span>
+          <span>人数：{{ infoData.totalCount }}人</span>
         </div>
         <div class="header-info">
-          <span>男生：89人</span>
-          <span>女生：80人</span>
+          <span>男生：{{ infoData.maleCount }}人</span>
+          <span>女生：{{ infoData.femaleCount }}人</span>
         </div>
         <div class="header-info">
           <span>测评时间：2019.5.28 - 2019.6.28</span>
@@ -268,7 +268,14 @@ export default {
       stepCount: {},
       nearworkBurdenDay: {},
       badPostureTimes: {},
-      nearworkDay: {}
+      nearworkDay: {},
+      infoData: {
+        school: '某某学校',
+        clasGrade: '某某班级',
+        totalCount: 0,
+        maleCount: 0,
+        femaleCount: 0
+      }
     }
   },
   computed: {
@@ -302,6 +309,7 @@ export default {
         this.nearworkBurdenDay = res.data.nearworkBurdenDay // 颈椎与用眼负担
         this.nearworkDay = res.data.nearworkDay // 近距用眼时间
         this.badPostureTimes = res.data.badPostureTimes // 不良姿势
+        this.infoData = res.data.info
       })
     },
     downloadExc() {
