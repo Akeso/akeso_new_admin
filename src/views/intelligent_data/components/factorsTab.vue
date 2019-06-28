@@ -14,44 +14,44 @@
           <td class="title-font">户外时间</td>
           <td>120分钟/天</td>
           <td>≥80分钟/天</td>
-          <td class="c-blue">54分钟/天</td>
-          <td class="c-blue">中</td>
+          <td class="c-blue">{{ outTime }}分钟/天</td>
+          <td class="c-blue">{{ outTimeCondition(outTime) }}</td>
         </tr>
         <tr>
           <td class="title-font">阳光摄入</td>
           <td>36W lux/天</td>
           <td>≥24W lux/天</td>
-          <td class="c-blue">28W lux/天</td>
-          <td class="c-blue">良</td>
+          <td class="c-blue">{{ luxDay }}lux/天</td>
+          <td class="c-blue">{{ luxDayCondition(luxDay) }}</td>
         </tr>
         <tr>
           <td class="title-font">运动步数</td>
           <td>12000步/天</td>
           <td>≥8000步/天</td>
-          <td class="c-blue">5000步/天</td>
-          <td class="c-blue">良</td>
+          <td class="c-blue">{{ stepCount }}步/天</td>
+          <td class="c-blue">{{ stepCountCondition(stepCount) }}</td>
         </tr>
         <tr>
           <td rowspan="3" class="title-font">危险因素</td>
           <td class="title-font">颈椎与用眼负荷</td>
           <td>720D/天</td>
           <td>≤480D/天</td>
-          <td class="c-blue">580D/天</td>
-          <td class="c-blue">差</td>
+          <td class="c-blue">{{ nearworkBurdenDay }}D/天</td>
+          <td class="c-blue">{{ nearworkBurdenDayCondition(nearworkBurdenDay) }}</td>
         </tr>
         <tr>
           <td class="title-font">不良用眼姿态</td>
           <td>90次/天</td>
           <td>≤60次/天</td>
-          <td class="c-blue">64次/天</td>
-          <td class="c-blue">良</td>
+          <td class="c-blue">{{ badPostureTimes }}次/天</td>
+          <td class="c-blue">{{ badPostureTimesCondition(badPostureTimes) }}</td>
         </tr>
         <tr>
           <td class="title-font">近距离用眼时间</td>
           <td>240分钟/天</td>
           <td>≤160分钟/天</td>
-          <td class="c-blue">220分钟/天</td>
-          <td class="c-blue">差</td>
+          <td class="c-blue">{{ nearworkDay }}分钟/天</td>
+          <td class="c-blue">{{ nearworkDayCondition(nearworkDay) }}</td>
         </tr>
         <!--<tr>
           <td class="title-font">初步提示</td>
@@ -65,9 +65,34 @@
 <script>
 // import { fetchList } from '@/api/article'
 // import Sortable from 'sortablejs'
-
+import { outTimeCondition, luxDayCondition, stepCountCondition, nearworkBurdenDayCondition, nearworkDayCondition, badPostureTimesCondition } from '@/utils/standard'
 export default {
-  name: 'DragTable',
+  props: {
+    outTime: {
+      type: Number,
+      default: 0
+    },
+    stepCount: {
+      type: Number,
+      default: 0
+    },
+    luxDay: {
+      type: Number,
+      default: 0
+    },
+    nearworkBurdenDay: {
+      type: Number,
+      default: 0
+    },
+    nearworkDay: {
+      type: Number,
+      default: 0
+    },
+    badPostureTimes: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       list: null,
@@ -79,7 +104,13 @@ export default {
       },
       // sortable: null,
       oldList: [],
-      newList: []
+      newList: [],
+      outTimeCondition: outTimeCondition,
+      luxDayCondition: luxDayCondition,
+      stepCountCondition: stepCountCondition,
+      nearworkBurdenDayCondition: nearworkBurdenDayCondition,
+      nearworkDayCondition: nearworkDayCondition,
+      badPostureTimesCondition: badPostureTimesCondition
     }
   },
   created() {

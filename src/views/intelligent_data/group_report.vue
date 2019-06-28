@@ -188,7 +188,7 @@
           </el-row>
         </el-col>
       </el-row>
-      <factors-tab />
+      <factors-tab :out-time="outTime.average" :step-count="stepCount.average" :lux-day="luxDay.average" :nearwork-day="nearworkDay.average" :nearwork-burden-day="nearworkBurdenDay.average" :bad-posture-times="badPostureTimes.average"/>
       <el-row>
         <el-col class="item-name"><span class="border-left"/><span>本班级近视高危人群</span></el-col>
       </el-row>
