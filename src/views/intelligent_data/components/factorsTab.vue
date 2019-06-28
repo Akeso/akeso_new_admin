@@ -40,9 +40,9 @@
           <td class="c-blue">{{ nearworkBurdenDayCondition(nearworkBurdenDay) }}</td>
         </tr>
         <tr>
-          <td class="title-font">不良用眼姿态</td>
-          <td>90次/天</td>
-          <td>≤60次/天</td>
+          <td class="title-font">不良用眼姿势</td>
+          <td>45次/天</td>
+          <td>≤30次/天</td>
           <td class="c-blue">{{ badPostureTimes }}次/天</td>
           <td class="c-blue">{{ badPostureTimesCondition(badPostureTimes) }}</td>
         </tr>
@@ -167,14 +167,16 @@ export default {
 }
 .table-cls{
   width: 100%;
-  border:.5px solid #979797;
-  border-left: 0.5px solid #979797;
+  border:.5px solid #ebeef5;
+  border-left: 0.5px solid #ebeef5;
   border-top: .5px;
 }
-.table-cls td{
-  border-right: 0.5px solid #979797;
+.table-cls td,.table-cls tr{
+  border-right: 0.5px solid #ebeef5;
   border-bottom: 0.5px;
   border-left: 0.5px;
+  border-top: 0.5px solid #ebeef5;
+  border-color:#ebeef5;
 }
 .tab-header{
   background: #27adff;

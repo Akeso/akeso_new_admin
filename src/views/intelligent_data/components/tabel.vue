@@ -1,36 +1,36 @@
 <template>
   <div class="tab-thead">
     <!-- Note that row-key is necessary to get a correct row order. -->
-    <el-table row-key="id" border fit highlight-current-row style="width: 100%">
+    <el-table :data="riskChildren" row-key="id" border fit highlight-current-row style="width: 100%">
 
-      <el-table-column align="center" label="姓名" width="100px">
+      <el-table-column prop="name" align="center" label="姓名" width="100px">
         <template slot-scope="scope">
-          <span>姓名</span>
+          <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="" align="center" label="是否近视">
+      <!--<el-table-column width="100px" align="center" label="是否近视">
         <template slot-scope="scope">
-          <span/>
+          <span>{{ scope.row.name }}</span>
         </template>
-      </el-table-column>
+      </el-table-column>-->
 
       <el-table-column min-width="" align="center" label="手机号">
         <template slot-scope="scope">
-          <span>是否近视</span>
+          <span>{{ scope.row.phone }}</span>
         </template>
       </el-table-column>
 
       <el-table-column width="" align="center" label="户外时间">
         <template slot-scope="scope">
-          <span>手机号</span>
+          <span>{{ scope.row.outTime }} 分钟/天</span>
         </template>
       </el-table-column>
 
       <el-table-column width="" align="center" label="近距离用眼时间">
         <template slot-scope="scope">
           <!--<svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="icon-star"/>-->
-          <span>户外时间</span>
+          <span>{{ scope.row.nearworkDay }} 分钟/天</span>
         </template>
       </el-table-column>
 
@@ -48,6 +48,16 @@
 
 export default {
   name: 'DragTable',
+  props: {
+    riskChildren: {
+      type: Array,
+      default() {
+        return {
+
+        }
+      }
+    }
+  },
   data() {
     return {
     }
@@ -86,7 +96,7 @@ export default {
 .tab-thead >>> .el-table thead{
   color: #fff;
 }
-.tab-thead >>> .el-table tr,.tab-thead >>> .el-table th{
+.tab-thead >>> .el-table thead tr,.tab-thead >>> .el-table thead th{
   background: #27adff;
 }
 </style>
