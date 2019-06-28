@@ -128,7 +128,7 @@
           <td class="td-20 title-font" style="width: 15%;">标准值</td>
           <td class="td-20 title-font" style="width: 15%;">建议达标值</td>
           <td class="td-20 title-font" style="width: 15%;">监测结果</td>
-          <td class="td-20 title-font" style="width: 10%;">达标情况</td>
+          <td class="td-20 title-font" style="width: 10%;">评分</td>
         </tr>
         <tr>
           <td rowspan="3" class="title-font">近视健康因素情况</td>
