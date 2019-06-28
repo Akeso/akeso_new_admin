@@ -28,10 +28,8 @@ export default {
       type: Object,
       default() {
         return {
-          maleCounts: [0, 0, 0, 0],
-          malePercents: [0, 0, 0, 0],
-          femaleCounts: [0, 0, 0, 0],
-          femalePercents: [0, 0, 0, 0]
+          counts: [0, 0, 0, 0],
+          percents: [0, 0, 0, 0]
         }
       }
     }
@@ -80,8 +78,7 @@ export default {
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           },
           formatter: function(params) {
-            // params[0].name + '<br/>' +
-            return params[0].seriesName + '占比' + ' : ' + params[0].value + '%' //  + '<br/>' + params[1].seriesName + '占比' + ' : ' + params[1].value + '%'
+            return params[0].seriesName + ' : ' + params[0].name + '<br/>' + '占比' + ' : ' + params[0].value + '%'
           }
         },
         grid: {
@@ -171,13 +168,13 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           barWidth: '30',
-          data: nearworkBurdenDayData.malePercents,
+          data: nearworkBurdenDayData.percents,
           label: {
             normal: {
               show: true,
               position: 'top',
               formatter: function(params) {
-                var data = nearworkBurdenDayData.maleCounts
+                var data = nearworkBurdenDayData.counts
                 return data[params.dataIndex] + '人'
               }
             }
