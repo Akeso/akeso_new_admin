@@ -161,7 +161,7 @@ export default {
       fetchDaily({ child_id: this.userId, selectDate: this.selectDate }).then(response => {
         this.healthScore = response.data
         this.hourOutTime = response.data.outTimeHour
-        this.hourLux = response.data.outLuxHour
+        this.hourLux = response.data.luxHour
         this.hourStepCount = response.data.stepCountHour
         this.hourBurden = response.data.nearworkBurdenHour
         this.hourNearwork = response.data.nearworkHour
