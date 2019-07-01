@@ -163,7 +163,6 @@ export default {
         nearworkDayPercent: 0,
         suggest: ''
       },
-      // 以上是单项指标，以下是图表样式
       selectDate: new Date()
     }
   },

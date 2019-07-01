@@ -22,92 +22,75 @@
         <span>健康月报</span>
       </div>
       <el-row>
-        <el-col :span="14">
-          <el-tag>健康月报</el-tag>
-          <ve-histogram :color="colorHistogram" :x-axis="xAxisHistogram" :y-axis="yAxisHistogram" :series="seriesHistogram"/>
-          <ve-radar :title="titleRadarGood" :tooltip="tooltipRadarGood" :radar="radarRadarGood" :series="seriesRadarGood"/>
-          <ve-radar :title="titleRadarBad" :tooltip="tooltipRadarBad" :radar="radarRadarBad" :series="seriesRadarBad"/>
-        </el-col>
-        <el-col :span="10">
-          <el-row>
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <span>得分情况</span>
-              </div>
-              <p style="font-size: 20px; font-weight: bold;">本月平均分 {{ monthData.healthIndex }}</p>
-              <p>总戴镜时间 {{ monthData.wearTime }}</p>
-              <p>累计保护因素 {{ monthData.upElement }}</p>
-              <p>累计危险因素 {{ monthData.downElement }}</p>
-            </el-card>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>得分情况</span>
+          </div>
+          <p style="font-size: 20px; font-weight: bold;">本月平均分 {{ monthData.healthIndex }}</p>
+          <el-row :gutter="20">
+            <el-col :span="8"><span>总戴镜时间 {{ monthData.wearTime }}</span></el-col>
+            <el-col :span="8"><span>累计保护因素 {{ monthData.upElement }}</span></el-col>
+            <el-col :span="8"><span>累计危险因素 {{ monthData.downElement }}</span></el-col>
           </el-row>
-          <el-row>
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <span>加分项</span>
-              </div>
-              <label for="">户外时间/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.outTimePercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ monthData.outTime }}</span>
-                </div>
-              </el-progress>
-              <label for="">阳光摄入量/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.luxDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ monthData.luxDay }}</span>
-                </div>
-              </el-progress>
-              <label for="">运动步数/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.stepCountPercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ monthData.stepCount }}</span>
-                </div>
-              </el-progress>
-            </el-card>
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <span>减分项</span>
-              </div>
-              <label for="">用眼负荷/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.nearworkBurdenDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ monthData.nearworkBurdenDay }}</span>
-                </div>
-              </el-progress>
-              <label for="">不良姿势提醒/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.badPostureTimesPercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ monthData.badPostureTimes }}</span>
-                </div>
-              </el-progress>
-              <label for="">近距离用眼时间/天</label>
-              <el-progress :stroke-width="14" :percentage="monthData.nearworkDayPercent" :show-text="true" :status="statusText" class="progress-l-r">
-                <div>
-                  <span>{{ monthData.nearworkDay }}</span>
-                </div>
-              </el-progress>
-            </el-card>
-          </el-row>
-          <el-row>
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <span>医生建议</span>
-                <el-button style="float: right; padding: 3px 0" type="text">编辑建议</el-button>
-              </div>
-              <div>
-                {{ monthData.suggest }}
-              </div>
-            </el-card>
-          </el-row>
-        </el-col>
+        </el-card>
       </el-row>
+      <el-row style="margin-top: 20px;" class="margin-bottom">
+        <el-col :span="3" class="text-center text-standard-font">户外时间</el-col>
+        <el-col :span="16">
+          <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.outTimePercent" status="success" class="progress-l-r"/>
+        </el-col>
+        <el-col :span="4" class="text-standard-font">{{ monthData.outTime }}/120分钟</el-col>
+      </el-row>
+      <el-row class="margin-bottom">
+        <el-col :span="3" class="text-center text-standard-font">光照摄入</el-col>
+        <el-col :span="16">
+          <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.luxDayPercent" status="success" class="progress-l-r"/>
+        </el-col>
+        <el-col :span="3" class="text-standard-font">{{ monthData.luxDay }}/360000lux</el-col>
+      </el-row>
+      <el-row class="margin-bottom">
+        <el-col :span="3" class="text-center text-standard-font">运动步数</el-col>
+        <el-col :span="16">
+          <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.stepCountPercent" status="success" class="progress-l-r"/>
+        </el-col>
+        <el-col :span="3" class="text-standard-font">{{ monthData.stepCount }}/12000步</el-col>
+      </el-row>
+      <el-row class="margin-bottom">
+        <el-col :span="3" class="text-center text-standard-font">用眼负荷</el-col>
+        <el-col :span="16">
+          <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
+        </el-col>
+        <el-col :span="3" class="text-standard-font">{{ monthData.nearworkBurdenDay }}/720D</el-col>
+      </el-row>
+      <el-row class="margin-bottom">
+        <el-col :span="3" class="text-center text-standard-font">近距离用眼时间</el-col>
+        <el-col :span="16">
+          <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkDayPercent" status="exception" class="progress-l-r"/>
+        </el-col>
+        <el-col :span="3" class="text-standard-font">{{ monthData.nearworkDay }}/260分钟</el-col>
+      </el-row>
+      <el-row class="margin-bottom">
+        <el-col :span="3" class="text-center text-standard-font">不良姿势提醒</el-col>
+        <el-col :span="16">
+          <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
+        </el-col>
+        <el-col :span="3" class="text-standard-font">{{ monthData.badPostureTimes }}/45次</el-col>
+      </el-row>
+      <MonthHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
+      <MonthHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
+      <MonthHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
+      <MonthHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
+      <MonthHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
+      <MonthHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
     </el-card>
   </div>
 </template>
 
 <script>
 import { fetchMonthly } from '@/api/reports'
+import MonthHealthItem from '../components/month_health_item'
 export default {
+  components: { MonthHealthItem },
   props: {
     userId: {
       type: String,
@@ -116,6 +99,49 @@ export default {
   },
   data() {
     return {
+      timeArray: [
+        '2019-01-01', '2019-01-02', '2019-01-03', '2019-01-04', '2019-01-05', '2019-01-06', '2019-01-07',
+        '2019-01-08', '2019-01-09', '2019-01-10', '2019-01-11', '2019-01-12', '2019-01-13', '2019-01-14',
+        '2019-01-15', '2019-01-16', '2019-01-17', '2019-01-18', '2019-01-19', '2019-01-20', '2019-01-21',
+        '2019-01-22', '2019-01-23', '2019-01-24', '2019-01-25', '2019-01-26', '2019-01-27', '2019-01-28',
+        '2019-01-29', '2019-01-30'
+      ],
+      textOutTime: {
+        title: '户外时间',
+        des: '该数值指当天孩子在户外走路、玩耍、运动等累积的时间。该数值与白天户外光照强度及户外紫外线有关，傍晚及夜晚在室外不算户外时间。',
+        unit: '分钟'
+      },
+      textLux: {
+        title: '光照摄入',
+        des: '总光照摄入，记录一天中暴露在所有光照的总和。白天总光照摄入，记录7:00-19:00这段时间内暴露的光照总和。白天平均光照摄入，单位分钟内的白天总光照摄入的平均值。夜晚总光照摄入，记录19:00-7:00这段时间内暴露的光照总和。夜晚平均光照摄入，单位分钟内的夜晚总光照摄入的平均值。',
+        unit: 'lux勒克斯'
+      },
+      textStepCount: {
+        title: '运动步数',
+        des: '该数值指孩子当天任何运动步数的总和。',
+        unit: '步数'
+      },
+      textBurden: {
+        title: '用眼负荷',
+        des: '用眼负荷定义：室内状态下不同的低头角度（视物距离）的时间对应关系 放松：抬头或0-14度=0.5D，轻：15-29度=2D，中：30-44度=3D。',
+        unit: 'D'
+      },
+      textNearwork: {
+        title: '近距离用眼时间',
+        des: '该数值指孩子看书、手机、电脑、玩乐高等近距离用眼的时间。采集计算标准： 室内情况下，低头角度大于等于15度累积的时间。',
+        unit: '分钟'
+      },
+      textBadPosture: {
+        title: '不良姿势提醒',
+        des: ' 该数值指孩子近距离用眼时低头、歪头过度时智能眼镜提醒矫正姿势的次数。采集计算标准： 室内情况下，当低头超过30度或歪头超过20度时镜腿提醒的次数累积总和。',
+        unit: '次数'
+      },
+      outTimeArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      luxDayArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      stepCountArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      nearworkBurdenDayArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      nearworkDayArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      badPostureTimesArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       monthData: {
         healthIndex: 0,
         wearTime: 0,
@@ -137,170 +163,7 @@ export default {
         nearworkDayPercent: 0,
         suggest: ''
       },
-      // 以上是单项指标，以下是图表样式
-      selectDate: new Date(),
-      statusText: 'text',
-      colorHistogram: ['#26c281'],
-      xAxisHistogram: {
-        type: 'category',
-        boundaryGap: true,
-        data: []
-      },
-      yAxisHistogram: {
-        type: 'value'
-      },
-      seriesHistogram: {
-        name: '分数',
-        type: 'bar',
-        barWidth: '40%',
-        label: {
-          // normal: {
-          show: true,
-          formatter: '{c}',
-          position: 'top',
-          fontSize: 12,
-          fontWeight: 'bold',
-          color: '#000000'
-        },
-        data: [],
-        itemStyle: {
-          normal: {
-            color: function(params) {
-              console.log('params => ', params.data)
-              const item = params.data
-              if (item >= 120) {
-                return '#26c281'
-              } else if (item < 120 && item >= 80) {
-                return 'orange'
-              } else {
-                return '#ef4836'
-              }
-            }
-          }
-        }
-      },
-      titleRadarGood: {
-        text: '保护因素分析'
-      },
-      indicatorGood: [],
-      tooltipRadarGood: {
-      },
-      radarRadarGood: {
-        indicator: [
-          { text: '户外时间' },
-          { text: '运动步数' },
-          { text: '户外阳光摄入' }
-        ],
-        center: ['50%', '50%'],
-        radius: '60%',
-        startAngle: 90,
-        splitNumber: 2,
-        shape: 'circle',
-        name: {
-          formatter: '【{value}】',
-          textStyle: {
-            color: '#72ACD1'
-          }
-        },
-        splitArea: {
-          areaStyle: {
-            color: ['#eeeeee', '#ffffff'],
-            shadowColor: 'rgba(0, 0, 0, 0.3)'
-          }
-        },
-        axisLine: {
-          lineStyle: {
-            color: '#bbbbbb'
-          }
-        },
-        splitLine: {
-          lineStyle: {
-            color: '#d4d4d4'
-          }
-        }
-      },
-      seriesRadarGood: {
-        type: 'radar',
-        data: [
-          {
-            value: [120, 10000, 300000],
-            name: '标准值',
-            symbol: 'rect',
-            symbolSize: 5,
-            lineStyle: {
-              color: '#8e8e8e',
-              type: 'dashed'
-            }
-          },
-          {
-            value: [],
-            name: '实际值',
-            lineStyle: {
-              color: '#00a600'
-            }
-          }
-        ]
-      },
-      titleRadarBad: {
-        text: '危险因素分析'
-      },
-      tooltipRadarBad: {},
-      radarRadarBad: {
-        indicator: [
-          { text: '户外时间' },
-          { text: '运动步数' },
-          { text: '户外阳光摄入' }
-        ],
-        center: ['50%', '50%'],
-        radius: '60%',
-        startAngle: 90,
-        splitNumber: 2,
-        shape: 'circle',
-        name: {
-          formatter: '【{value}】',
-          textStyle: {
-            color: '#72ACD1'
-          }
-        },
-        splitArea: {
-          areaStyle: {
-            color: ['#adadad', '#f0f0f0'],
-            shadowColor: 'rgba(0, 0, 0, 0.3)'
-          }
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'rgba(255, 255, 255, 0.5)'
-          }
-        },
-        splitLine: {
-          lineStyle: {
-            color: 'rgba(255, 255, 255, 0.5)'
-          }
-        }
-      },
-      seriesRadarBad: {
-        type: 'radar',
-        data: [
-          {
-            value: [750, 240, 90],
-            name: '标准值',
-            symbol: 'rect',
-            symbolSize: 5,
-            lineStyle: {
-              color: '#8e8e8e',
-              type: 'dashed'
-            }
-          },
-          {
-            value: [],
-            name: '实际值',
-            lineStyle: {
-              color: '#ff0000'
-            }
-          }
-        ]
-      }
+      selectDate: new Date()
     }
   },
   computed: {
@@ -314,12 +177,13 @@ export default {
   methods: {
     getData() {
       fetchMonthly({ child_id: this.userId, date: this.selectDate }).then(response => {
-        this.xAxisHistogram.data = response.data.timeArray
-        this.seriesHistogram.data = response.data.healthIndexArray
-        this.radarRadarGood.indicator = response.data.goodIndicator
-        this.seriesRadarGood.data[1].value = response.data.goodValues
-        this.radarRadarBad.indicator = response.data.badIndicator
-        this.seriesRadarBad.data[1].value = response.data.badValues
+        this.timeArray = response.data.timeArray
+        this.outTimeArray = response.data.outTimeArray
+        this.luxDayArray = response.data.luxDayArray
+        this.stepCountArray = response.data.stepCountArray
+        this.nearworkBurdenDayArray = response.data.nearworkBurdenDayArray
+        this.nearworkDayArray = response.data.nearworkDayArray
+        this.badPostureTimesArray = response.data.badPostureTimesArray
         this.monthData = response.data
       })
     },
