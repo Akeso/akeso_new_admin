@@ -75,7 +75,7 @@
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkTotal }}/260分钟</el-col>
+      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkDay }}/260分钟</el-col>
     </el-row>
     <el-row class="margin-bottom">
       <el-col :span="3" class="text-center text-standard-font">不良姿势提醒</el-col>
