@@ -183,7 +183,8 @@ export default {
             normal: {
               color: function(params) {
                 // build a color map as your need.
-                var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
+                // var colorList = ['#D0021B', '#F5A623', '#54CE50', '#27adff']
+                var colorList = ['#27adff', '#54CE50', '#F5A623', '#D0021B']
                 return colorList[params.dataIndex]
               }
             }

@@ -9,11 +9,11 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column width="100px" align="center" label="是否近视">
+      <el-table-column width="100px" align="center" label="是否近视">
         <template slot-scope="scope">
-          <span>{{ scope.row.name }}</span>
+          <span>{{ scope.row.visionState === 1 ? '否' : '是' }}</span>
         </template>
-      </el-table-column>-->
+      </el-table-column>
 
       <el-table-column min-width="" align="center" label="手机号">
         <template slot-scope="scope">
