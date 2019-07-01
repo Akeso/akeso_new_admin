@@ -271,8 +271,8 @@ export default {
         upRate: 0
       },
       infoData: {
-        school: '某某学校',
-        clasGrade: '某某班级',
+        school: '——',
+        clasGrade: '——',
         totalCount: 0,
         maleCount: 0,
         femaleCount: 0
