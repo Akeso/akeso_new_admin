@@ -111,10 +111,10 @@ const optionsData = [
   { key: 'wearTime', label: '戴镜时间' },
   { key: 'outTime', label: '户外时间' },
   { key: 'luxDay', label: '阳光摄入' },
+  { key: 'stepCount', label: '步数' },
   { key: 'nearworkDay', label: '近距离用眼时间' },
   { key: 'nearworkBurdenDay', label: '用眼负荷' },
-  { key: 'badPostureTimes', label: '不良姿势提醒' },
-  { key: 'stepCount', label: '步数' }
+  { key: 'badPostureTimes', label: '不良姿势提醒' }
 ]
 const checkedData = ['healthIndex', 'wearTime', 'outTime', 'luxDay', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
 export default {
