@@ -319,7 +319,7 @@ export default {
       })
     },
     downloadExc() {
-      window.location.href = 'http://akeso.com.cn/template/report_template.xlsx'
+      window.location.href = 'https://akeso.com.cn/template/report_template.xlsx'
       // window.open('http://akeso.com.cn/template/report_template.xlsx')
     }
   }
