@@ -55,20 +55,16 @@
           <div class="header-info">
             <span class="item">男生：{{ infoData.maleCount }}人</span>
             <span class="item">女生：{{ infoData.femaleCount }}人</span>
+            <span class="item">近视：{{ infoData.visionBadCount }}人</span>
+            <span class="item">非近视：{{ infoData.visionGoodCount }}人</span>
           </div>
           <div class="header-info">
             <span>测评时间：{{ infoStart }} - {{ infoEnd }}</span>
-            <!--<p class="right no-margin" @click="getPdf()">导出PDF</p>-->
           </div>
         </div>
         <el-row>
           <el-col class="info b-oblue c-blue">为积极响应国家号召，紧跟习近平总书记和教育部等八部委联合印发的《综合防控儿童青少年近视实施方案》中“一增一减”（即增加户外活动时间，减少用眼负担）的重要指导政策，建立以在校学生为主体，基于可穿戴健康设备的青少年用眼健康体质大数据监测，通过家庭学生共同参与方式进行健康教育及预防近视健康行为促进行动。该报告将协助当地政府掌握当地近视情况，落实国家近视防控工作，帮助医生确定近视度数增长主因，为学生提供个性化精准近视防控诊疗方案，帮助学校和父母更有针对性地采取行动，为儿童青少年视力健康发育的全过程、全周期提供保障，切实有效降低当地在校学生近视率。</el-col>
         </el-row>
-        <!--<el-row>
-          <el-col :span="4">总人数</el-col>
-          <el-col :span="4">男生</el-col>
-          <el-col :span="4">女生</el-col>
-        </el-row>-->
         <el-row :gutter="32">
           <el-col :xs="24" :sm="24" :lg="12">
             <el-row>
@@ -77,8 +73,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">户外时间</p>
-                  <p class="right">参考值120分钟/天</p>
+                  <p class="left">户外时间120分钟/天</p>
+                  <p class="right">参考值80分钟/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -95,8 +91,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">户外阳光摄入量</p>
-                  <p class="right">23Wlux/天</p>
+                  <p class="left">户外阳光摄入量36Wlux/天</p>
+                  <p class="right">参考值24Wlux/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -113,8 +109,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">运动步数</p>
-                  <p class="right">参考值5400步/天</p>
+                  <p class="left">运动步数12000步/天</p>
+                  <p class="right">参考值8000步/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -136,8 +132,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">颈椎与用眼负担</p>
-                  <p class="right">参考值720D/天</p>
+                  <p class="left">颈椎与用眼负担720D/天</p>
+                  <p class="right">参考值480D/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -154,8 +150,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">不良用眼姿势</p>
-                  <p class="right">参考值45次/天</p>
+                  <p class="left">不良用眼姿势45次/太难</p>
+                  <p class="right">参考值30次/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -172,8 +168,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">近距用眼时间</p>
-                  <p class="right">参考值240分钟/天</p>
+                  <p class="left">近距用眼时间240分钟/天</p>
+                  <p class="right">参考值160分钟/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -271,11 +267,13 @@ export default {
         upRate: 0
       },
       infoData: {
-        school: '某某学校',
-        clasGrade: '某某班级',
+        school: '——',
+        clasGrade: '——',
         totalCount: 0,
         maleCount: 0,
-        femaleCount: 0
+        femaleCount: 0,
+        visionBadCount: 0,
+        visionGoodCount: 0
       },
       infoStart: '', // FormatDay(new Date()), // this.selectSection.startDate
       infoEnd: '', // FormatDay(new Date())
@@ -319,7 +317,7 @@ export default {
       })
     },
     downloadExc() {
-      window.location.href = 'http://akeso.com.cn/template/report_template.xlsx'
+      window.location.href = 'https://akeso.com.cn/template/report_template.xlsx'
       // window.open('http://akeso.com.cn/template/report_template.xlsx')
     }
   }
@@ -351,7 +349,7 @@ export default {
     background: #f0f0f0;
   }
   .c-blue{
-    color: #27adff;
+    color: #1197ff;
   }
   .c-red{
     color: red;
@@ -410,12 +408,10 @@ export default {
     border-bottom: 1px solid #ebeef5;
     margin-bottom: 20px;
   }
-  .no-margin{
-    margin: 0;
-  }
   .info{
-    padding: 20px;
-    font-size: 18px;
+    padding: 16px;
+    line-height: 24px;
+    font-size: 16px;
   }
   .item-name{
     font-size: 26px;

@@ -64,12 +64,6 @@
         sortable="custom"
         min-width="80"/>
       <el-table-column
-        v-if="hasOptions('protectLuxTime')"
-        prop="protectLuxTime"
-        label="护眼光照时间(分钟)"
-        sortable="custom"
-        min-width="80"/>
-      <el-table-column
         v-if="hasOptions('luxDay')"
         prop="luxDay"
         label="阳光摄入(Lux)"
@@ -116,14 +110,13 @@ const optionsData = [
   { key: 'healthIndex', label: '健康评分' },
   { key: 'wearTime', label: '戴镜时间' },
   { key: 'outTime', label: '户外时间' },
-  { key: 'protectLuxTime', label: '护眼光照时间' },
   { key: 'luxDay', label: '阳光摄入' },
   { key: 'nearworkDay', label: '近距离用眼时间' },
   { key: 'nearworkBurdenDay', label: '用眼负荷' },
   { key: 'badPostureTimes', label: '不良姿势提醒' },
   { key: 'stepCount', label: '步数' }
 ]
-const checkedData = ['healthIndex', 'wearTime', 'outTime', 'protectLuxTime', 'luxDay', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
+const checkedData = ['healthIndex', 'wearTime', 'outTime', 'luxDay', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
 export default {
   data() {
     return {
