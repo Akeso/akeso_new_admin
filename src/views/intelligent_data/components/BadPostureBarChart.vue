@@ -22,7 +22,7 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '150px'
     },
     badPostureTimes: {
       type: Object,
