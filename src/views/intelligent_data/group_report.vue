@@ -91,8 +91,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">户外阳光摄入量36Wlux/天</p>
-                  <p class="right">参考值24Wlux/天</p>
+                  <p class="left">户外阳光摄入量36Wlux/天 </p>
+                  <p class="right">参考值24Wlux/天 </p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
