@@ -66,12 +66,12 @@
           <el-col class="info b-oblue c-blue">为积极响应国家号召，紧跟习近平总书记和教育部等八部委联合印发的《综合防控儿童青少年近视实施方案》中“一增一减”（即增加户外活动时间，减少用眼负担）的重要指导政策，建立以在校学生为主体，基于可穿戴健康设备的青少年用眼健康体质大数据监测，通过家庭学生共同参与方式进行健康教育及预防近视健康行为促进行动。该报告将协助当地政府掌握当地近视情况，落实国家近视防控工作，帮助医生确定近视度数增长主因，为学生提供个性化精准近视防控诊疗方案，帮助学校和父母更有针对性地采取行动，为儿童青少年视力健康发育的全过程、全周期提供保障，切实有效降低当地在校学生近视率。</el-col>
         </el-row>
         <el-row :gutter="32">
-          <el-col :xs="24" :sm="24" :lg="12">
+          <el-col :xs="24" :sm="24" :lg="24">
             <el-row>
               <el-col class="item-name"><span class="border-left"/><span>健康因素</span></el-col>
             </el-row>
             <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="24">
+              <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
                   <p class="left">户外时间120分钟/天</p>
                   <p class="right">参考值80分钟/天</p>
@@ -87,9 +87,7 @@
                 </div>
                 <div class="b-bottom" />
               </el-col>
-            </el-row>
-            <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="24">
+              <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
                   <p class="left">户外阳光摄入量36Wlux/天 </p>
                   <p class="right">参考值24Wlux/天 </p>
@@ -105,9 +103,7 @@
                 </div>
                 <div class="b-bottom" />
               </el-col>
-            </el-row>
-            <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="24">
+              <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
                   <p class="left">运动步数12000步/天</p>
                   <p class="right">参考值8000步/天</p>
@@ -125,12 +121,14 @@
               </el-col>
             </el-row>
           </el-col>
-          <el-col :xs="24" :sm="24" :lg="12">
+        </el-row>
+        <el-row :gutter="32">
+          <el-col :xs="24" :sm="24" :lg="24">
             <el-row>
               <el-col class="item-name"><span class="border-left"/><span>危险因素</span></el-col>
             </el-row>
             <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="24">
+              <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
                   <p class="left">颈椎与用眼负担720D/天</p>
                   <p class="right">参考值480D/天</p>
@@ -146,9 +144,7 @@
                 </div>
                 <div class="b-bottom" />
               </el-col>
-            </el-row>
-            <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="24">
+              <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
                   <p class="left">不良用眼姿势45次/太难</p>
                   <p class="right">参考值30次/天</p>
@@ -164,9 +160,7 @@
                 </div>
                 <div class="b-bottom" />
               </el-col>
-            </el-row>
-            <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="24">
+              <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
                   <p class="left">近距用眼时间240分钟/天</p>
                   <p class="right">参考值160分钟/天</p>
@@ -376,7 +370,7 @@ export default {
     background: #e0f3ff;
     color:#27adff;
     overflow: hidden;
-    font-size: 18px;
+    font-size: 14px;
     border-radius: 4px;
   }
   .title-header p{
@@ -444,6 +438,5 @@ export default {
   .b-bottom{
     border-bottom: 1px solid #ebeef5;
     margin-top: 20px;
-    margin-bottom: 20px;
   }
 </style>
