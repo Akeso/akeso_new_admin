@@ -15,3 +15,11 @@ export function updateItem(query) {
     data: query
   })
 }
+
+export function createItem(query) {
+  return request({
+    url: '/api/a1/server_app_files',
+    method: 'post',
+    data: query
+  })
+}
