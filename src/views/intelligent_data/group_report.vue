@@ -233,7 +233,6 @@ export default {
       multiple: false,
       fileName: '',
       selectDate: '',
-      // selectSection: [new Date(), new Date()],
       selectSection: {
         startDate: new Date(),
         endDate: new Date()

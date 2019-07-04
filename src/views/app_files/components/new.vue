@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" title="修改蓝牙文件">
+  <el-dialog :visible.sync="dialogFormVisible" title="新增蓝牙文件">
     <el-form :model="form">
       <el-form-item :label-width="formLabelWidth" label="镜腿版本">
         <el-input v-model="form.deviceType" autocomplete="off"/>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { updateItem } from '@/api/server_app_files'
+import { createItem } from '@/api/server_app_files'
 // /api/common/uploads/server_app_files
 export default {
   data() {
@@ -36,7 +36,6 @@ export default {
       dialogFormVisible: false,
       formLabelWidth: '120px',
       form: {
-        id: undefined,
         deviceType: undefined,
         des: undefined,
         version: undefined,
@@ -45,11 +44,7 @@ export default {
     }
   },
   methods: {
-    show: function(val) {
-      this.form.id = val.id
-      this.form.deviceType = val.deviceType
-      this.form.des = val.des
-      this.form.version = val.version
+    show: function() {
       this.dialogFormVisible = true
     },
     handleSuccess(res, file) {
@@ -57,7 +52,7 @@ export default {
       this.form.file_id = res.data.id
     },
     handClickSubmit: function() {
-      updateItem(this.form).then(response => {
+      createItem(this.form).then(response => {
         this.$emit('updateVersionSuccess')
         this.dialogFormVisible = false
       })

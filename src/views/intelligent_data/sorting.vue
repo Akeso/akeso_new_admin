@@ -13,23 +13,28 @@
         <el-checkbox v-for="item in options" :label="item.key" :key="item.key">{{ item.label }}</el-checkbox>
       </el-checkbox-group>
     </el-card>
-    <el-row>
-      <div style="padding: 10px 0px 10px 0px;">
-        <span>选择日期</span>
+    <el-row style="margin: 10px 0px 10px 0px;">
+      <el-col>
+        选择日期
         <el-date-picker
-          v-model="listQuery.selectDate"
           :clearable="false"
+          v-model="listQuery.startDate"
           type="date"
+          style="width: 150px;"
+          format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd"
           placeholder="选择日期"/>
-        <el-select v-model="listQuery.period" placeholder="请选择">
-          <el-option
-            v-for="item in periodOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"/>
-        </el-select>
+        至
+        <el-date-picker
+          :clearable="false"
+          v-model="listQuery.endDate"
+          type="date"
+          style="width: 150px;"
+          format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd"
+          placeholder="选择日期"/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
-      </div>
+      </el-col>
     </el-row>
     <el-table
       :data="list"
@@ -41,7 +46,7 @@
         min-width="60">
         <template slot-scope="scope">
           <router-link :to="'/preview/child/'+scope.row.childId">
-            <el-button type="text" size="small">{{ scope.row.childName }}</el-button>
+            <el-button type="text" size="small">{{ scope.row.name }}</el-button>
           </router-link>
         </template>
       </el-table-column>
@@ -94,7 +99,7 @@
         sortable="custom"
         min-width="60"/>
       <el-table-column
-        prop="effectiveDays"
+        prop="daysCount"
         label="同步天数"
         sortable="custom"
         min-width="80"/>
@@ -111,10 +116,10 @@ const optionsData = [
   { key: 'wearTime', label: '戴镜时间' },
   { key: 'outTime', label: '户外时间' },
   { key: 'luxDay', label: '阳光摄入' },
+  { key: 'stepCount', label: '步数' },
   { key: 'nearworkDay', label: '近距离用眼时间' },
   { key: 'nearworkBurdenDay', label: '用眼负荷' },
-  { key: 'badPostureTimes', label: '不良姿势提醒' },
-  { key: 'stepCount', label: '步数' }
+  { key: 'badPostureTimes', label: '不良姿势提醒' }
 ]
 const checkedData = ['healthIndex', 'wearTime', 'outTime', 'luxDay', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
 export default {
@@ -132,21 +137,21 @@ export default {
         page: 1,
         limit: 20,
         importance: undefined,
-        selectDate: new Date(),
-        period: 'day',
+        startDate: new Date(),
+        endDate: new Date(),
         sortProp: '',
         sortOrder: ''
-      },
-      periodOptions: [{
-        value: 'day',
-        label: '日'
-      }, {
-        value: 'week',
-        label: '周'
-      }, {
-        value: 'month',
-        label: '月'
-      }]
+      }
+      // periodOptions: [{
+      //   value: 'day',
+      //   label: '日'
+      // }, {
+      //   value: 'week',
+      //   label: '周'
+      // }, {
+      //   value: 'month',
+      //   label: '月'
+      // }]
     }
   },
   created() {

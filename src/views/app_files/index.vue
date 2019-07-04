@@ -5,11 +5,19 @@
         <span>蓝牙文件</span>
       </div>
 
+      <div class="filter-container">
+        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+      </div>
+
       <el-table
         :data="list"
         border
         style="width: 100%"
         @sort-change="handleColumnSort">
+        <el-table-column
+          prop="deviceType"
+          label="镜腿版本"
+          min-width="40"/>
         <el-table-column
           prop="version"
           label="版本号"
@@ -40,13 +48,15 @@
       </div>
     </el-card>
     <Edit ref="edit" @updateVersionSuccess="getList"/>
+    <New ref="new" @updateVersionSuccess="getList"/>
   </div>
 </template>
 <script>
 import { fetchList } from '@/api/server_app_files'
 import Edit from './components/edit'
+import New from './components/new'
 export default {
-  components: { Edit },
+  components: { Edit, New },
   filters: {
     stateFilter(status) {
       const statusMap = {
@@ -71,6 +81,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickNew() {
+      this.$refs.new.show()
+    },
     handleClick(val) {
       this.$refs.edit.show(val)
     },
