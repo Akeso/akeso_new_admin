@@ -22,7 +22,7 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '150px'
     },
     luxDay: {
       type: Object,
@@ -82,9 +82,9 @@ export default {
           }
         },
         grid: {
-          top: '10%',
+          top: '18%',
           left: '2%',
-          right: '10%',
+          right: '15%',
           bottom: '8%',
           containLabel: true
         },

@@ -46,93 +46,98 @@
       <el-button class="pdf-item right" type="primary" @click="getPdf()">生成PDF</el-button>
       <el-card id="pdfDom" class="box-card">
         <div class="clearfix header">
-          <h1>青少年校园用眼健康因素监测报告</h1>
+          <h1>学生用眼健康因素监测报告</h1>
           <div class="header-info">
             <span class="item">学校：{{ infoData.school }}</span>
             <span class="item">班级：{{ infoData.clasGrade }}</span>
             <span class="item">人数：{{ infoData.totalCount }}人</span>
+          </div>
+          <div class="header-info">
             <span class="item">男生：{{ infoData.maleCount }}人</span>
             <span class="item">女生：{{ infoData.femaleCount }}人</span>
           </div>
           <div class="header-info">
-            <span class="item">近视：{{ infoData.visionBadCount }}人</span>
-            <span class="item">非近视：{{ infoData.visionGoodCount }}人</span>
             <span>测评时间：{{ infoStart }} - {{ infoEnd }}</span>
+            <!--<p class="right no-margin" @click="getPdf()">导出PDF</p>-->
           </div>
         </div>
         <el-row>
           <el-col class="info b-oblue c-blue">为积极响应国家号召，紧跟习近平总书记和教育部等八部委联合印发的《综合防控儿童青少年近视实施方案》中“一增一减”（即增加户外活动时间，减少用眼负担）的重要指导政策，建立以在校学生为主体，基于可穿戴健康设备的青少年用眼健康体质大数据监测，通过家庭学生共同参与方式进行健康教育及预防近视健康行为促进行动。该报告将协助当地政府掌握当地近视情况，落实国家近视防控工作，帮助医生确定近视度数增长主因，为学生提供个性化精准近视防控诊疗方案，帮助学校和父母更有针对性地采取行动，为儿童青少年视力健康发育的全过程、全周期提供保障，切实有效降低当地在校学生近视率。</el-col>
         </el-row>
+        <!--<el-row>
+          <el-col :span="4">总人数</el-col>
+          <el-col :span="4">男生</el-col>
+          <el-col :span="4">女生</el-col>
+        </el-row>-->
         <el-row :gutter="32">
-          <el-col :xs="24" :sm="24" :lg="24">
+          <el-col :xs="24" :sm="24" :lg="12">
             <el-row>
               <el-col class="item-name"><span class="border-left"/><span>健康因素</span></el-col>
             </el-row>
             <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="8">
+              <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">户外时间120分钟/天</p>
-                  <p class="right">参考值80分钟/天</p>
+                  <p class="left">户外时间</p>
+                  <p class="right">参考值120分钟/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
                   <bar-chart :out-time = "outTime"/>
                 </div>
                 <div class="info-con b-gray">
-                  <h3 class="c-blue">户外时间平均值为{{ outTime.average }} 分钟/天 </h3>
+                  <h3 class="c-blue">户外时间平均值为{{ outTime.average }}分钟/天</h3>
                   <h3 class="c-blue">当前班级整体达标率为{{ outTime.upRate }}%</h3>
-                  <p>未达标的学生建议培养户外运动爱好，利用好碎片时间去户外运动。</p>
-                  <p>已达标的学生请给予鼓励，同时在户外活动时注意防晒和安全。</p>
+                  <p>未达标的学生建议培养户外运动爱好，在课间，上学放学路上及周末有意识增加户外时间，尽量争取每天不少于2小时的户外时间；已达标的学生请给予鼓励，同时在户外活动时注意防晒和安全。</p>
                 </div>
-                <!--<div class="b-bottom" />-->
+                <div class="b-bottom" />
               </el-col>
-              <el-col :xs="24" :sm="24" :lg="8">
+            </el-row>
+            <el-row :gutter="32">
+              <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">户外阳光摄入量36Wlux/天 </p>
-                  <p class="right">参考值24Wlux/天 </p>
+                  <p class="left">户外阳光摄入量</p>
+                  <p class="right">23Wlux/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
                   <sunshine-bar-chart :lux-day="luxDay"/>
                 </div>
-                <div class="info-con b-gray">
-                  <h3 class="c-blue">户外阳光摄入量平均值{{ luxDay.average }}lux/天</h3>
+                <div class="info-con b-gray" style="height: 208px;">
+                  <h3 class="c-blue">户外阳光摄入量平均值{{ luxDay.average }}Wlux/天</h3>
                   <h3 class="c-blue">当前班级整体达标率为{{ luxDay.upRate }}%</h3>
-                  <p>未达标的学生请有意识地在课间，上学路上及周末去户外沐浴阳光。</p>
-                  <p>已达标的学生佩戴太阳帽或太阳镜避免紫外线对眼睛与皮肤的伤害。</p>
+                  <p>未达标的学生建议有意识地在课间，上学路上及周末去户外沐浴阳光；已达标的学生在给予鼓励的同时，在阳光过强时请提醒佩戴太阳帽或太阳镜等避免紫外线对眼睛与皮肤的伤害。</p>
                 </div>
-                <!--<div class="b-bottom" />-->
+                <div class="b-bottom" />
               </el-col>
-              <el-col :xs="24" :sm="24" :lg="8">
+            </el-row>
+            <el-row :gutter="32">
+              <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">运动步数12000步/天</p>
-                  <p class="right">参考值8000步/天</p>
+                  <p class="left">运动步数</p>
+                  <p class="right">参考值5400步/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
                   <step-bar-chart :step-count = "stepCount"/>
                 </div>
-                <div class="info-con b-gray">
+                <div class="info-con b-gray" style="height: 208px;">
                   <h3 class="c-blue">运动步数平均值{{ stepCount.average }}步/天</h3>
                   <h3 class="c-blue">当前班级整体达标率为{{ stepCount.upRate }}%</h3>
-                  <p>未达标的学生建议培养运动类的兴趣爱好，如球类运动等；</p>
-                  <p>已达标的学生请给予鼓励的同时，提醒户外运动时需注意安全。</p>
+                  <p>未达标的学生建议培养运动类的兴趣爱好，增加户外运动课程，如球类运动等；已达标的学生请给予鼓励的同时，提醒户外运动时需注意安全。</p>
                 </div>
-                <!--<div class="b-bottom" />-->
+                <div class="b-bottom" />
               </el-col>
             </el-row>
           </el-col>
-        </el-row>
-        <el-row :gutter="32">
-          <el-col :xs="24" :sm="24" :lg="24">
+          <el-col :xs="24" :sm="24" :lg="12">
             <el-row>
               <el-col class="item-name"><span class="border-left"/><span>危险因素</span></el-col>
             </el-row>
             <el-row :gutter="32">
-              <el-col :xs="24" :sm="24" :lg="8">
+              <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">颈椎与用眼负担720D/天</p>
-                  <p class="right">参考值480D/天</p>
+                  <p class="left">颈椎与用眼负担</p>
+                  <p class="right">参考值720D/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -141,15 +146,16 @@
                 <div class="info-con b-gray">
                   <h3 class="c-blue">颈椎与用眼负担平均值{{ nearworkBurdenDay.average }}D/天</h3>
                   <h3 class="c-blue">当前班级整体达标率为{{ nearworkBurdenDay.upRate }}%</h3>
-                  <p>未达标的学生请依从智能设备提醒，每用眼30分钟及时休息眼睛。</p>
-                  <p>已达标的学生建议积极参与户外活动，注意放松眼睛与颈椎。</p>
+                  <p>未达标的学生建议依从智能设备的提醒，连续用眼30分钟后及时抬头远眺，避免因近视关键因素的累积，导致不可逆的近视发生发展，影响眼睛正常发育。已达标的学生请给予鼓励的同时，建议积极参与户外活动，放松眼睛与大脑。</p>
                 </div>
                 <div class="b-bottom" />
               </el-col>
-              <el-col :xs="24" :sm="24" :lg="8">
+            </el-row>
+            <el-row :gutter="32">
+              <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">不良用眼姿势45次/太难</p>
-                  <p class="right">参考值30次/天</p>
+                  <p class="left">不良用眼姿势</p>
+                  <p class="right">参考值45次/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -158,15 +164,16 @@
                 <div class="info-con b-gray">
                   <h3 class="c-blue">不良用眼姿势平均值{{ badPostureTimes.average }}次/天</h3>
                   <h3 class="c-blue">当前班级整体达标率为{{ badPostureTimes.upRate }}%</h3>
-                  <p>未达标的学生请依从智能设备的闪灯+震动提醒，规范用眼距离。</p>
-                  <p>已达标的学生还需记得不要趴着、躺着或在过暗过亮的环境下看书。</p>
+                  <p>针对未达标的学生，首先需要学校老师与家长的积极配合，同时督促孩子依从智能设备针对错误用眼姿势带来的提醒，及时纠正错误用眼行为，保证读写坐姿正确，规范用眼距离。针对达标的学生还需提醒用眼姿势正确不仅局限在课堂和书桌前，也不要趴着、躺着或在过暗过亮的环境下看书。</p>
                 </div>
                 <div class="b-bottom" />
               </el-col>
-              <el-col :xs="24" :sm="24" :lg="8">
+            </el-row>
+            <el-row :gutter="32">
+              <el-col :xs="24" :sm="24" :lg="24">
                 <div class="title-header">
-                  <p class="left">近距用眼时间240分钟/天</p>
-                  <p class="right">参考值160分钟/天</p>
+                  <p class="left">近距用眼时间</p>
+                  <p class="right">参考值240分钟/天</p>
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -175,8 +182,7 @@
                 <div class="info-con b-gray">
                   <h3 class="c-blue">近距用眼时间平均值{{ nearworkDay.average }}分钟/天</h3>
                   <h3 class="c-blue">当前班级整体达标率为{{ nearworkDay.upRate }}%</h3>
-                  <p>未达标的学生需多看远，使眼睛能够远近交替使用，降低近视风险。</p>
-                  <p>达标的学生还需学习在更多场景中合理用眼，同时鼓励户外运动。</p>
+                  <p>针对未达标的学生，需要学校老师与家长积极配合，督促学生依从智能设备的提醒，眼睛与书本（电子产品）保持33厘米的距离，多去户外看远，使眼睛能够远近交替使用。针对达标的学生还需教会孩子在更多场景中合理用眼，不要趴或躺着看书、不要过多地使用手机、ipad等电子产品。</p>
                 </div>
                 <div class="b-bottom" />
               </el-col>
@@ -184,7 +190,7 @@
           </el-col>
         </el-row>
         <factors-tab :out-time="outTime.average" :step-count="stepCount.average" :lux-day="luxDay.average" :nearwork-day="nearworkDay.average" :nearwork-burden-day="nearworkBurdenDay.average" :bad-posture-times="badPostureTimes.average"/>
-        <el-row style="margin-top:50px;">
+        <el-row>
           <el-col class="item-name"><span class="border-left"/><span>本班级近视高危人群</span></el-col>
         </el-row>
         <el-row>
@@ -232,6 +238,7 @@ export default {
       multiple: false,
       fileName: '',
       selectDate: '',
+      // selectSection: [new Date(), new Date()],
       selectSection: {
         startDate: new Date(),
         endDate: new Date()
@@ -264,13 +271,11 @@ export default {
         upRate: 0
       },
       infoData: {
-        school: '——',
-        clasGrade: '——',
+        school: '某某学校',
+        clasGrade: '某某班级',
         totalCount: 0,
         maleCount: 0,
-        femaleCount: 0,
-        visionBadCount: 0,
-        visionGoodCount: 0
+        femaleCount: 0
       },
       infoStart: '', // FormatDay(new Date()), // this.selectSection.startDate
       infoEnd: '', // FormatDay(new Date())
@@ -314,17 +319,13 @@ export default {
       })
     },
     downloadExc() {
-      window.location.href = 'https://akeso.com.cn/template/report_template.xlsx'
+      window.location.href = 'http://akeso.com.cn/template/report_template.xlsx'
       // window.open('http://akeso.com.cn/template/report_template.xlsx')
     }
   }
 }
 </script>
 <style scope>
-  h1{
-    text-align: center;
-    margin: 0.3em 0 0.5em;
-  }
   .box-container{
     padding: 10px;
   }
@@ -350,7 +351,7 @@ export default {
     background: #f0f0f0;
   }
   .c-blue{
-    color: #1197ff;
+    color: #27adff;
   }
   .c-red{
     color: red;
@@ -377,7 +378,7 @@ export default {
     background: #e0f3ff;
     color:#27adff;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 4px;
   }
   .title-header p{
@@ -390,7 +391,6 @@ export default {
     float: right;
   }
   .header-info{
-    text-align: center;
     padding-bottom: 10px;
   }
   .header-info span.item{
@@ -403,22 +403,24 @@ export default {
   .pdf-item{
     position: absolute;
     right: 30px;
-    top: 94px;
+    top: 130px;
   }
   .header{
     padding-bottom: 10px;
     border-bottom: 1px solid #ebeef5;
     margin-bottom: 20px;
   }
+  .no-margin{
+    margin: 0;
+  }
   .info{
-    padding: 10px;
-    line-height: 24px;
-    font-size: 16px;
+    padding: 20px;
+    font-size: 18px;
   }
   .item-name{
     font-size: 26px;
     font-weight: 500;
-    padding: 16px 0 14px;
+    padding: 30px 0 24px;
   }
   .item-name span.border-left{
     display: inline-block;
@@ -432,20 +434,20 @@ export default {
     vertical-align: middle;
   }
   .info-con{
-    padding: 10px 14px;
+    margin-top:10px;
+    padding: 20px 20px;
   }
   .info-con h3{
-    font-size: 15px;
     margin: 0;
     padding-bottom: 8px;
   }
   .info-con p{
     line-height: 22px;
-    font-size: 14px;
     margin: 0;
   }
   .b-bottom{
     border-bottom: 1px solid #ebeef5;
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 </style>

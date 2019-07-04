@@ -18,9 +18,9 @@
     overflow: hidden;
   }
   .echarts-list{
-    padding-bottom: 0;
     margin-bottom: 0;
     float: right;
+    padding: 0;
   }
   .echarts-list li{
     margin-left:20px;
