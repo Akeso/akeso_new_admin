@@ -64,8 +64,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'test@akeso.cn',
-        password: 'akeso_110'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],

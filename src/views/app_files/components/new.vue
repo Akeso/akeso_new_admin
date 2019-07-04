@@ -45,11 +45,7 @@ export default {
     }
   },
   methods: {
-    show: function(val) {
-      this.form.id = val.id
-      this.form.deviceType = val.deviceType
-      this.form.des = val.des
-      this.form.version = val.version
+    show: function() {
       this.dialogFormVisible = true
     },
     handleSuccess(res, file) {
