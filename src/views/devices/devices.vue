@@ -144,9 +144,12 @@ export default {
       this.getList()
     },
     handleFilter() {
+      this.listQuery.page = 1
       this.getList()
     },
     handleFilterClear() {
+      this.listQuery.page = 1
+      this.listQuery.limit = 20
       this.listQuery.macAddress = ''
       this.listQuery.state = ''
       this.listQuery.deviceType = ''
