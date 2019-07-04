@@ -59,9 +59,10 @@
             <span class="item">非近视：{{ infoData.visionGoodCount }}人</span>
             <span>测评时间：{{ infoStart }} - {{ infoEnd }}</span>
           </div>
+          <div class="score">{{ healthScore }}</div>
         </div>
         <el-row>
-          <el-col class="info b-oblue c-blue">为积极响应国家号召，紧跟习近平总书记和教育部等八部委联合印发的《综合防控儿童青少年近视实施方案》中“一增一减”（即增加户外活动时间，减少用眼负担）的重要指导政策，建立以在校学生为主体，基于可穿戴健康设备的青少年用眼健康体质大数据监测，通过家庭学生共同参与方式进行健康教育及预防近视健康行为促进行动。该报告将协助当地政府掌握当地近视情况，落实国家近视防控工作，帮助医生确定近视度数增长主因，为学生提供个性化精准近视防控诊疗方案，帮助学校和父母更有针对性地采取行动，为儿童青少年视力健康发育的全过程、全周期提供保障，切实有效降低当地在校学生近视率。</el-col>
+          <el-col class="info-guide">为积极响应国家号召，紧跟习近平总书记和教育部等八部委联合印发的《综合防控儿童青少年近视实施方案》中“一增一减”（即增加户外活动时间，减少用眼负担）的重要指导政策，建立以在校学生为主体，基于可穿戴健康设备的青少年用眼健康体质大数据监测，通过家庭学生共同参与方式进行健康教育及预防近视健康行为促进行动。该报告将协助当地政府掌握当地近视情况，落实国家近视防控工作，帮助医生确定近视度数增长主因，为学生提供个性化精准近视防控诊疗方案，帮助学校和父母更有针对性地采取行动，为儿童青少年视力健康发育的全过程、全周期提供保障，切实有效降低当地在校学生近视率。</el-col>
         </el-row>
         <el-row :gutter="32">
           <el-col :xs="24" :sm="24" :lg="24">
@@ -275,7 +276,8 @@ export default {
       },
       infoStart: '', // FormatDay(new Date()), // this.selectSection.startDate
       infoEnd: '', // FormatDay(new Date())
-      riskChildren: []
+      riskChildren: [],
+      healthScore: '无'
     }
   },
   computed: {
@@ -312,6 +314,7 @@ export default {
         this.infoStart = FormatDay(this.selectSection.startDate)
         this.infoEnd = FormatDay(this.selectSection.endDate)
         this.riskChildren = res.data.riskChildren
+        this.healthScore = res.data.healthScore
       })
     },
     downloadExc() {
@@ -324,7 +327,11 @@ export default {
 <style scope>
   h1{
     text-align: center;
-    margin: 0.3em 0 0.5em;
+    margin: -20px -20px 0.5em;
+    background: #27adff;
+    color: #fff;
+    font-size: 38px;
+    padding: 20px 0 10px;
   }
   .box-container{
     padding: 10px;
@@ -403,13 +410,17 @@ export default {
   }
   .pdf-item{
     position: absolute;
-    right: 30px;
+    left: 30px;
     top: 94px;
   }
   .header{
     padding-bottom: 10px;
     border-bottom: 1px solid #ebeef5;
     margin-bottom: 20px;
+  }
+  .info-guide{
+    line-height: 24px;
+    font-size: 16px;
   }
   .info{
     padding: 10px;
@@ -448,5 +459,18 @@ export default {
   .b-bottom{
     border-bottom: 1px solid #ebeef5;
     margin-top: 20px;
+  }
+  .score{
+    position: absolute;
+    right: 30px;
+    top: 74px;
+    width:70px;
+    height: 80px;
+    background: url(../../assets/images/score.png) no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    line-height: 80px;
   }
 </style>
