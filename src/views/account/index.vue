@@ -55,6 +55,7 @@
         </el-col>
         <el-col :span="18" class="item-value">
           <span>{{ user.serviceNames }}</span>
+          <a class="item-operate" @click="handleClickService">修改</a>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-bottom: 20px;">
@@ -97,6 +98,7 @@
         <PdfCode :user="user"/>
       </div>
     </el-card>
+    <Services ref="services" @update-success="getData"/>
   </div>
 </template>
 
@@ -105,12 +107,13 @@ import { updateData } from '@/api/accounts'
 import { showData } from '@/api/doctors'
 import { mapGetters } from 'vuex'
 import PdfCode from './components/pdf'
+import Services from './components/services'
 import QRcode from '@/components/QRCode'
 import avatar from '@/assets/images/header.png'
 
 export default {
   components: {
-    QRcode, PdfCode
+    QRcode, PdfCode, Services
   },
   data() {
     return {
@@ -125,7 +128,8 @@ export default {
         principal: undefined,
         email: undefined,
         phone: undefined,
-        address: undefined
+        address: undefined,
+        serviceIds: undefined
       },
       exportVisible: false,
       avatar: avatar,
@@ -151,6 +155,9 @@ export default {
     this.getData()
   },
   methods: {
+    handleClickService() {
+      this.$refs.services.show(this.user)
+    },
     uploadSuccess(res, file) {
       this.$store.commit('updateUserInfo', res.data)
       this.user = res.data
