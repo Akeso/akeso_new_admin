@@ -77,7 +77,7 @@
     </el-card>
     <NewDoctor ref="newDoctor" @create-success="getList"/>
     <EditDoctor ref="editDoctor" @update-success="getList"/>
-    <Skilled ref="skilled" @update-success="getList"/>
+    <Services ref="services" @update-success="getList"/>
     <Location ref="location" @update-success="getList"/>
   </div>
 </template>
@@ -85,10 +85,10 @@
 import { fetchList, deleteItem } from '@/api/doctors'
 import NewDoctor from './components/new_doctor'
 import EditDoctor from './components/edit_doctor'
-import Skilled from './components/skilled'
+import Services from './components/services'
 import Location from './components/location'
 export default {
-  components: { NewDoctor, EditDoctor, Skilled, Location },
+  components: { NewDoctor, EditDoctor, Services, Location },
   data() {
     return {
       list: null,
@@ -115,7 +115,7 @@ export default {
       this.$refs.location.show(val)
     },
     handleClickSkilled(val) {
-      this.$refs.skilled.show(val)
+      this.$refs.services.show(val)
     },
     handleClickEdit(val) {
       this.$refs.editDoctor.handleShow(val)
