@@ -54,7 +54,7 @@
           <span class="item-title">业务擅长</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span v-for="item in user.serviceNames" :key="item">{{ item }} </span>
+          <span v-for="item in user.serviceNames" :key="item">{{ item }}  </span>
           <a class="item-operate" @click="handleClickService">修改</a>
         </el-col>
       </el-row>

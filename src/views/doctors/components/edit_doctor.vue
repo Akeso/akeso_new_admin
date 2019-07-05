@@ -13,6 +13,15 @@
             :value="item.key"/>
         </el-select>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="类别">
+        <el-select v-model="temp.cate" placeholder="请选择" style="width: 130px;">
+          <el-option
+            v-for="item in cateNames"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"/>
+        </el-select>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
         <el-input v-model="temp.principal" class="filter-item" placeholder="负责人" style="width: 50%;"/>
       </el-form-item>
@@ -41,6 +50,12 @@ const base_types = [
   { key: 'organization', value: '机构' },
   { key: 'doctor', value: '医生' }
 ]
+const cates1 = [
+  { key: 'care_center', value: '视光中心' }, { key: 'eye_care', value: '眼科中心' }, { key: 'eye_hospital', value: '眼科医院' }
+]
+const cates2 = [
+  { key: 'doctor_a', value: '主任医师' }, { key: 'doctor_b', value: '副主任医师' }, { key: 'doctor_c', value: '主治医生' }, { key: 'doctor_d', value: '眼科医生' }, { key: 'doctor_e', value: '视光师' }
+]
 export default {
   data() {
     return {
@@ -68,6 +83,11 @@ export default {
       base_types: base_types
     }
   },
+  computed: {
+    cateNames() {
+      return this.temp.baseType === 'organization' ? cates1 : cates2
+    }
+  },
   created() {
   },
   methods: {
@@ -76,7 +96,6 @@ export default {
     },
     handleShow(val) {
       this.temp = JSON.parse(JSON.stringify(val))
-      console.log('temp => ', this.temp)
       this.dialogVisible = true
     },
     handleClickSubmit() {
