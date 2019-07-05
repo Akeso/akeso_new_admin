@@ -43,7 +43,7 @@
       </el-col>
     </el-row>
     <el-row class="position">
-      <el-button class="pdf-item right" type="primary" @click="getPdf()">生成PDF</el-button>
+      <el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>
       <el-card id="pdfDom" class="box-card">
         <div class="clearfix header">
           <h1>青少年校园用眼健康因素监测报告</h1>
@@ -185,18 +185,23 @@
           </el-col>
         </el-row>
         <factors-tab :out-time="outTime.average" :step-count="stepCount.average" :lux-day="luxDay.average" :nearwork-day="nearworkDay.average" :nearwork-burden-day="nearworkBurdenDay.average" :bad-posture-times="badPostureTimes.average"/>
-        <el-row style="margin-top:50px;">
-          <el-col class="item-name"><span class="border-left"/><span>本班级近视高危人群</span></el-col>
-        </el-row>
-        <el-row>
-          <el-col>
-            <div class="info-con b-gray">
-              <p>通过智能设备对在校学生用眼行为的监测，我们将户外时间“中”以下和近距用眼“中”以下的学生定义为近视高危人群，由于用眼习惯较差，未来发展成高度近视的风险极高。建议学校与家长对该群体进行重点关注、科学指导、及时干预，定期去正规医院进行检查，同时建立屈光档案追踪视力发展情况，定制个性化精准的近视防控解决方案。</p>
-            </div>
-            <high-ris-tabel :risk-children="riskChildren"/>
-          </el-col>
-        </el-row>
       </el-card>
+      <el-row class="position">
+        <el-button class="pdf-itemt right" type="primary" @click="getPdfs('#pdfT', '高危人群报告')">生成PDF</el-button>
+        <el-card id="pdfT" class="box-card position">
+          <el-row>
+            <el-col class="item-name"><span class="border-left"/><span>本班级近视高危人群</span></el-col>
+          </el-row>
+          <el-row>
+            <el-col>
+              <div class="info-con b-gray">
+                <p>通过智能设备对在校学生用眼行为的监测，我们将户外时间“中”以下和近距用眼“中”以下的学生定义为近视高危人群，由于用眼习惯较差，未来发展成高度近视的风险极高。建议学校与家长对该群体进行重点关注、科学指导、及时干预，定期去正规医院进行检查，同时建立屈光档案追踪视力发展情况，定制个性化精准的近视防控解决方案。</p>
+              </div>
+              <high-ris-tabel :risk-children="riskChildren"/>
+            </el-col>
+          </el-row>
+        </el-card>
+      </el-row>
     </el-row>
   </div>
 </template>
@@ -411,6 +416,12 @@ export default {
     position: absolute;
     left: 30px;
     top: 94px;
+  }
+  .pdf-itemt{
+    position: absolute;
+    right: 30px;
+    top: 40px;
+    z-index: 1;
   }
   .header{
     padding-bottom: 10px;

@@ -20,9 +20,10 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 import htmlToPdf from '@/utils/htmlToPdf'
+import htmlToPdfObj from '@/utils/htmlToPdfObj'
 
 Vue.use(htmlToPdf)
-
+Vue.use(htmlToPdfObj)
 Vue.component(VeLine.name, VeLine)
 
 Vue.use(ElementUI, {
