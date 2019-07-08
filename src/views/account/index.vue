@@ -7,6 +7,7 @@
 
       <el-row style="margin: 10px;">
         <el-button v-if="exportVisible" class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出医生二维码</el-button>
+        <el-button v-if="exportVisible" class="filter-item" type="primary" @click="handleModifyPassword">修改密码</el-button>
       </el-row>
 
       <el-row type="flex" justify="space-around" style="margin-bottom: 10px;">
@@ -54,7 +55,7 @@
           <span class="item-title">业务擅长</span>
         </el-col>
         <el-col :span="18" class="item-value">
-          <span v-for="item in user.serviceNames" :key="item">{{ item }} </span>
+          <span v-for="item in user.serviceNames" :key="item">{{ item }}  </span>
           <a class="item-operate" @click="handleClickService">修改</a>
         </el-col>
       </el-row>
@@ -99,6 +100,7 @@
       </div>
     </el-card>
     <Services ref="services" @update-success="getData"/>
+    <EditPassword ref="edit_password"/>
   </div>
 </template>
 
@@ -108,12 +110,13 @@ import { showData } from '@/api/doctors'
 import { mapGetters } from 'vuex'
 import PdfCode from './components/pdf'
 import Services from './components/services'
+import EditPassword from './components/edit_password'
 import QRcode from '@/components/QRCode'
 import avatar from '@/assets/images/header.png'
 
 export default {
   components: {
-    QRcode, PdfCode, Services
+    QRcode, PdfCode, Services, EditPassword
   },
   data() {
     return {
@@ -155,6 +158,9 @@ export default {
     this.getData()
   },
   methods: {
+    handleModifyPassword() {
+      this.$refs.edit_password.handleShow()
+    },
     handleClickService() {
       this.$refs.services.show(this.user)
     },

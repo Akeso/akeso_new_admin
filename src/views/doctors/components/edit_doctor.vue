@@ -13,6 +13,15 @@
             :value="item.key"/>
         </el-select>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="类别">
+        <el-select v-model="temp.cate" placeholder="请选择" style="width: 130px;">
+          <el-option
+            v-for="item in cateNames"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"/>
+        </el-select>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
         <el-input v-model="temp.principal" class="filter-item" placeholder="负责人" style="width: 50%;"/>
       </el-form-item>
@@ -21,6 +30,13 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="email" label="登录账号">
         <el-input v-model="temp.email" clearable style="width: 50%;"/>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" prop="password" label="登录密码">
+        <el-input v-model="temp.password" type="password" style="width: 50%;"/>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" prop="password_confirmation" label="确认密码">
+        <el-input v-model="temp.password_confirmation" type="password" style="width: 50%;"/>
+        <el-alert v-if="passwork_valid" title="两次输入密码不一致" type="error"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="详细地址">
         <el-input v-model="temp.address" clearable style="width: 50%;"/>
@@ -41,11 +57,18 @@ const base_types = [
   { key: 'organization', value: '机构' },
   { key: 'doctor', value: '医生' }
 ]
+const cates1 = [
+  { key: 'care_center', value: '视光中心' }, { key: 'eye_care', value: '眼科中心' }, { key: 'eye_hospital', value: '眼科医院' }
+]
+const cates2 = [
+  { key: 'doctor_a', value: '主任医师' }, { key: 'doctor_b', value: '副主任医师' }, { key: 'doctor_c', value: '主治医生' }, { key: 'doctor_d', value: '眼科医生' }, { key: 'doctor_e', value: '视光师' }
+]
 export default {
   data() {
     return {
       dialogVisible: false,
       formLabelWidth: '100px',
+      passwork_valid: false,
       temp: {
         id: undefined,
         name: undefined,
@@ -68,6 +91,11 @@ export default {
       base_types: base_types
     }
   },
+  computed: {
+    cateNames() {
+      return this.temp.baseType === 'organization' ? cates1 : cates2
+    }
+  },
   created() {
   },
   methods: {
@@ -76,12 +104,15 @@ export default {
     },
     handleShow(val) {
       this.temp = JSON.parse(JSON.stringify(val))
-      console.log('temp => ', this.temp)
       this.dialogVisible = true
     },
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
+          if (this.temp.password !== this.temp.password_confirmation) {
+            this.passwork_valid = true
+            return
+          }
           this.$confirm('确定修改该账号信息吗？, 是否继续?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',

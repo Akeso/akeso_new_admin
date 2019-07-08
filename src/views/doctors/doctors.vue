@@ -58,7 +58,7 @@
         <el-table-column
           prop="baseTypeVal"
           label="账户类型"
-          min-width="80"/>
+          min-width="60"/>
         <el-table-column
           label="操作"
           min-width="120" >
