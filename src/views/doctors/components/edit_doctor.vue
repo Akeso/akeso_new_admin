@@ -31,6 +31,13 @@
       <el-form-item :label-width="formLabelWidth" prop="email" label="登录账号">
         <el-input v-model="temp.email" clearable style="width: 50%;"/>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" prop="password" label="登录密码">
+        <el-input v-model="temp.password" type="password" style="width: 50%;"/>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" prop="password_confirmation" label="确认密码">
+        <el-input v-model="temp.password_confirmation" type="password" style="width: 50%;"/>
+        <el-alert v-if="passwork_valid" title="两次输入密码不一致" type="error"/>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="详细地址">
         <el-input v-model="temp.address" clearable style="width: 50%;"/>
       </el-form-item>
@@ -61,6 +68,7 @@ export default {
     return {
       dialogVisible: false,
       formLabelWidth: '100px',
+      passwork_valid: false,
       temp: {
         id: undefined,
         name: undefined,
@@ -101,6 +109,10 @@ export default {
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
+          if (this.temp.password !== this.temp.password_confirmation) {
+            this.passwork_valid = true
+            return
+          }
           this.$confirm('确定修改该账号信息吗？, 是否继续?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
