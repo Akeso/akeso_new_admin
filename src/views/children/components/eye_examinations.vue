@@ -2,6 +2,7 @@
   <div>
     <div v-if="shengji">
       正在升级中，敬请期待哦！
+      <el-button type="success" @click="handleAddfiles">新增</el-button>
     </div>
     <el-table
       v-else
@@ -32,12 +33,17 @@
         </template>
       </el-table-column>
     </el-table>
+    <create-modal ref="modal" />
   </div>
 </template>
 
 <script>
 import { fetchList } from '@/api/eye_examinations'
+import createModal from './create_modal'
 export default {
+  components: {
+    createModal
+  },
   props: {
     userId: {
       type: String,
@@ -58,6 +64,10 @@ export default {
       fetchList({ child_id: this.userId }).then(response => {
         this.tableData = response.data.items
       })
+    },
+    handleAddfiles: function() {
+      console.log(111)
+      this.$refs.modal.show()
     }
   }
 }
