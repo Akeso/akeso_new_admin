@@ -15,7 +15,9 @@
     </el-row>
     <el-row style="margin: 10px;">
       <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF</el-button>
-      <el-button class="filter-item" type="primary" icon="el-icon-download" @click="handleClickExcel()">导出Excel</el-button>
+      <el-button class="filter-item" type="primary" icon="el-icon-download">
+        <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">导出Excel</a>
+      </el-button>
     </el-row>
     <el-card id="pdfDom" class="box-card">
       <div slot="header" class="clearfix">
@@ -103,6 +105,7 @@ export default {
   },
   data() {
     return {
+      downloadUrl: '/api/a1/excels/weekly',
       timeArray: ['2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01'],
       textOutTime: {
         title: '户外时间',
@@ -189,12 +192,6 @@ export default {
     },
     changeDate() {
       this.getData()
-    },
-    handleClickExcel() {
-      this.$message({
-        message: '努力开发中,敬请期待!',
-        type: 'warning'
-      })
     }
   }
 }
