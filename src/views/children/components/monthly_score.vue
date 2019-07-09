@@ -15,7 +15,9 @@
     </el-row>
     <el-row style="margin: 10px;">
       <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF</el-button>
-      <el-button class="filter-item" type="primary" icon="el-icon-download" >导出Excel</el-button>
+      <el-button class="filter-item" type="primary" icon="el-icon-download">
+        <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">导出Excel</a>
+      </el-button>
     </el-row>
     <el-card id="pdfDom" class="box-card">
       <div slot="header" class="clearfix">
@@ -99,6 +101,7 @@ export default {
   },
   data() {
     return {
+      downloadUrl: '/api/a1/excels/monthly',
       timeArray: [
         '2019-01-01', '2019-01-02', '2019-01-03', '2019-01-04', '2019-01-05', '2019-01-06', '2019-01-07',
         '2019-01-08', '2019-01-09', '2019-01-10', '2019-01-11', '2019-01-12', '2019-01-13', '2019-01-14',
