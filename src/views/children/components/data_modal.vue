@@ -1,14 +1,9 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="创建档案名称" width="50%;" style="text-align:center;">
-    <el-form :model="temp" style="width: 90%; margin-left:20px;">
-      <el-row :gutter="20" style="margin-bottom: 20px;">
-        <el-col :span="6" :offset="0" style="line-height:36px;">
-          <span class="item-title">填写档案名称：</span>
-        </el-col>
-        <el-col :span="14" class="item-value">
-          <el-input v-model="title"/>
-        </el-col>
-      </el-row>
+    <el-form :model="temp" style="">
+      <div>
+        <optometric-data v-if="state == 'optometry'"/>
+      </div>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="handleClickCancel">取 消</el-button>
@@ -19,12 +14,10 @@
 
 <script>
 import { fetchList, updateMerchant } from '@/api/services'
+import optometricData from './optometric_data'
 export default {
-  props: {
-    userId: {
-      type: String,
-      default: ''
-    }
+  components: {
+    optometricData
   },
   data() {
     return {
@@ -39,7 +32,8 @@ export default {
       },
       loading: false,
       dataOptions: [],
-      checkedOptions: []
+      checkedOptions: [],
+      state: ''
     }
   },
   created() {
@@ -72,6 +66,7 @@ export default {
     show(val) {
       // this.getServiceList()
       // this.temp = JSON.parse(JSON.stringify(val))
+      this.state = val
       this.dialogFormVisible = true
     },
     resetData() {
