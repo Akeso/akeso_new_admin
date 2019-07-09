@@ -220,6 +220,9 @@ export default {
 .text >>> .el-checkbox__input.is-checked+.el-checkbox__label {
   color: #606266;
 }
+.el-checkbox{
+  display: inline-block;
+}
 .add-text input{
   height: 32px;
 }
