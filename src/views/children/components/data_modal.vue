@@ -1,7 +1,7 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="创建档案名称" width="50%;" style="text-align:center;">
     <el-form :model="temp" style="">
-      <div>
+      <div class="box-con">
         <optometric-data v-if="state == 'optometry'"/>
       </div>
     </el-form>
@@ -82,5 +82,9 @@ export default {
 <style>
   .el-checkbox {
     display: block;
+  }
+  .box-con{
+    max-height: 400px;
+    overflow-y:scroll;
   }
 </style>
