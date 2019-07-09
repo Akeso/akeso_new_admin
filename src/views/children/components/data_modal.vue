@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="创建档案名称" width="50%;" style="text-align:center;">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="创建档案名称" style="text-align:center;">
     <el-form :model="temp" style="">
       <div class="box-con">
         <optometric-data v-if="state == 'optometry'"/>
@@ -84,7 +84,49 @@ export default {
     display: block;
   }
   .box-con{
-    max-height: 400px;
+    max-height: 65vh;
     overflow-y:scroll;
   }
+  .icon-star{
+  margin-right:2px;
+}
+.drag-handler{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.show-d{
+  margin-top: 15px;
+}
+.table-cls{
+  width: 100%;
+  border:.5px solid #ebeef5;
+  border-left: 0.5px solid #ebeef5;
+  border-top: .5px;
+}
+.table-cls td,.table-cls tr,.table-cls th{
+  border-right: 0.5px solid #ebeef5;
+  border-bottom: 0.5px;
+  border-left: 0.5px;
+  border-top: 0.5px solid #ebeef5;
+  border-color:#ebeef5;
+}
+.table-cls td{
+  padding: 6px;
+}
+.table-cls td input{
+  height: 32px;
+  width:100%;
+}
+.table-cls td select{
+  width: 100%;
+  height: 32px;
+}
+.tab-header{
+  background: #27adff;
+  color: #fff;
+}
+.text-left{
+  text-align: left;
+}
 </style>

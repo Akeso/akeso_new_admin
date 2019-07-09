@@ -13,6 +13,8 @@
       </el-col>
     </el-row>
     <eyesightTested />
+    <odlMirrorDegree />
+    <hitomi />
   </div>
 </template>
 
@@ -21,9 +23,13 @@
 // import Sortable from 'sortablejs'
 // import { } from '@/utils/standard'
 import eyesightTested from './optometric_data_eyesight_tested'
+import odlMirrorDegree from './optometric_data_old_mirror_degree'
+import hitomi from './optometric_data_hitomi'
 export default {
   components: {
-    eyesightTested
+    eyesightTested,
+    odlMirrorDegree,
+    hitomi
   },
   props: {
     outTime: {

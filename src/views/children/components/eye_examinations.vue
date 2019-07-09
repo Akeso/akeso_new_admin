@@ -38,7 +38,7 @@
       </el-table-column>
     </el-table>
     <create-modal ref="modal" :user-id= "userId"/>
-    <dataModal ref="dataModal" />
+    <dataModal ref="dataModal" class="modal-w" />
   </div>
 </template>
 
@@ -102,5 +102,9 @@ export default {
 }
 .right{
   float: right;
+}
+.modal-w >>> .el-dialog{
+  width: 80%;
+  margin-top:5vh !important;
 }
 </style>

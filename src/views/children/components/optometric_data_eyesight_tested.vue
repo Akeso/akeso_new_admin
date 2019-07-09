@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr>
-            <td class="title-font tab-header">右眼OD</td>
+            <td class="title-font -tab-header">右眼OD</td>
             <td>
               <select class="label" name="">
                 <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
@@ -33,7 +33,7 @@
             </td>
           </tr>
           <tr>
-            <td class="title-font tab-header">左眼OS</td>
+            <td class="title-font -tab-header">左眼OS</td>
             <td>
               <select class="label" name="">
                 <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
@@ -51,7 +51,7 @@
             </td>
           </tr>
           <tr>
-            <td class="title-font tab-header">双眼OU</td>
+            <td class="title-font -tab-header">双眼OU</td>
             <td>
               <select class="label" name="">
                 <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
@@ -87,14 +87,6 @@ export default {
   },
   data() {
     return {
-      list: null,
-      total: null,
-      listLoading: true,
-      listQuery: {
-        page: 1,
-        limit: 10
-      },
-      // sortable: null,
       oldList: [],
       newList: [],
       selectDate: new Date(),
@@ -111,45 +103,4 @@ export default {
 </script>
 
 <style scoped>
-.icon-star{
-  margin-right:2px;
-}
-.drag-handler{
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-.show-d{
-  margin-top: 15px;
-}
-.table-cls{
-  width: 100%;
-  border:.5px solid #ebeef5;
-  border-left: 0.5px solid #ebeef5;
-  border-top: .5px;
-}
-.table-cls td,.table-cls tr,.table-cls th{
-  border-right: 0.5px solid #ebeef5;
-  border-bottom: 0.5px;
-  border-left: 0.5px;
-  border-top: 0.5px solid #ebeef5;
-  border-color:#ebeef5;
-}
-.table-cls td{
-  padding: 6px;
-}
-.table-cls td input{
-  height: 32px;
-}
-.table-cls td select{
-  width: 100%;
-  height: 32px;
-}
-.tab-header{
-  background: #27adff;
-  color: #fff;
-}
-.text-left{
-  text-align: left;
-}
 </style>
