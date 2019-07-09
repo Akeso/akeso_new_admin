@@ -3,6 +3,7 @@
     <el-form :model="temp" style="">
       <div class="box-con">
         <optometric-data v-if="state == 'optometry'"/>
+        <review-data v-if="state == 'review'" />
       </div>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -15,9 +16,11 @@
 <script>
 import { fetchList, updateMerchant } from '@/api/services'
 import optometricData from './optometric_data'
+import reviewData from './review_data'
 export default {
   components: {
-    optometricData
+    optometricData,
+    reviewData
   },
   data() {
     return {
@@ -114,9 +117,16 @@ export default {
 .modal-w .table-cls td{
   padding: 6px;
 }
-.modal-w .table-cls td input{
+.modal-w .table-cls td .label input{
   height: 32px;
   width:100%;
+  box-sizing:border-box;
+}
+.modal-w .table-cls td .about input{
+  height: 32px;
+  width:70%;
+  box-sizing:border-box;
+  margin-left:10px;
 }
 .modal-w .table-cls td select{
   width: 100%;
