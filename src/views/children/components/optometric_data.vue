@@ -61,45 +61,4 @@ export default {
 </script>
 
 <style scoped>
-.icon-star{
-  margin-right:2px;
-}
-.drag-handler{
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-.show-d{
-  margin-top: 15px;
-}
-.table-cls{
-  width: 100%;
-  border:.5px solid #ebeef5;
-  border-left: 0.5px solid #ebeef5;
-  border-top: .5px;
-}
-.table-cls td,.table-cls tr,.table-cls th{
-  border-right: 0.5px solid #ebeef5;
-  border-bottom: 0.5px;
-  border-left: 0.5px;
-  border-top: 0.5px solid #ebeef5;
-  border-color:#ebeef5;
-}
-.table-cls td{
-  padding: 6px;
-}
-.table-cls td input{
-  height: 32px;
-}
-.table-cls td select{
-  width: 100%;
-  height: 32px;
-}
-.tab-header{
-  background: #27adff;
-  color: #fff;
-}
-.text-left{
-  text-align: left;
-}
 </style>

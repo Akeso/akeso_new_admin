@@ -1,18 +1,7 @@
 <template>
   <div class="">
-    <el-row style="margin-bottom: 10px; text-align:left;">
-      <el-col>
-        <label for="">复查验光检查日期： </label>
-        <el-date-picker
-          :editable="false"
-          :clearable="false"
-          v-model="selectDate"
-          type="date"
-          placeholder="选择日期"
-          value-format="yyyy-MM-dd"/>
-      </el-col>
-    </el-row>
-    <reviewTab />
+    <subjectiveTab />
+    <objectiveTab />
   </div>
 </template>
 
@@ -20,10 +9,12 @@
 // import { fetchList } from '@/api/article'
 // import Sortable from 'sortablejs'
 // import { } from '@/utils/standard'
-import reviewTab from './review_tab'
+import objectiveTab from './ocular_objective'
+import subjectiveTab from './ocular_subjective'
 export default {
   components: {
-    reviewTab
+    objectiveTab,
+    subjectiveTab
   },
   props: {
     outTime: {
@@ -43,7 +34,6 @@ export default {
       // sortable: null,
       oldList: [],
       newList: [],
-      selectDate: new Date(),
       num1: 0
     }
   },

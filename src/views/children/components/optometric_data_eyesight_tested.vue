@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="" style="width: 60%;">
     <el-row>
       <el-col>
         <h3 class="text-left">视力检查</h3>

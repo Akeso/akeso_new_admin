@@ -4,6 +4,7 @@
       <div class="box-con">
         <optometric-data v-if="state == 'optometry'"/>
         <review-data v-if="state == 'review'" />
+        <ocular-examination v-if="state == 'eye'" />
       </div>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -17,10 +18,12 @@
 import { fetchList, updateMerchant } from '@/api/services'
 import optometricData from './optometric_data'
 import reviewData from './review_data'
+import ocularExamination from './ocular_examination_data'
 export default {
   components: {
     optometricData,
-    reviewData
+    reviewData,
+    ocularExamination
   },
   data() {
     return {

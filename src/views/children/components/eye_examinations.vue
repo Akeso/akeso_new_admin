@@ -15,24 +15,24 @@
       <el-table-column
         prop="createFileTime"
         label="建档时间"
-        min-width="80"/>
+        min-width="60"/>
       <el-table-column
         prop="childName"
         label="档案名称"
-        min-width="180"/>
+        min-width="100"/>
       <el-table-column
         prop="organizationTitle"
         label="所属机构"
-        min-width="180"/>
+        min-width="140"/>
       <el-table-column
         label="操作"
-        min-width="180"
+        min-width="260"
       >
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="handleData('optometry')">验光数据</el-button>
           <el-button type="text" size="small" @click="handleData('visual')">视功能检查</el-button>
           <el-button type="text" size="small" @click="handleData('review')">复查验光</el-button>
-          <el-button type="text" size="small" @click="handleData('eye')">眼部检查</el-button>
+          <el-button type="text" size="small" @click="handleData('eye')">眼部检查(主观、客观)</el-button>
           <el-button type="text" size="small" @click="handleData('all')">查看全部</el-button>
         </template>
       </el-table-column>
