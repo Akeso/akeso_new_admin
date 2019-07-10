@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { fetchList, updateMerchant } from '@/api/services'
+import { fetchList, createArchives } from '@/api/eye_examinations'
 export default {
   props: {
     userId: {
@@ -46,9 +46,8 @@ export default {
   },
   methods: {
     getServiceList() {
-      fetchList().then(res => {
-        this.dataOptions = res.data
-        console.log('data => ', this.dataOptions)
+      fetchList({ child_id: this.userId }).then(res => {
+        this.$emit('handleDateList', res.data)
       })
     },
     handleClickCancel() {
@@ -56,13 +55,17 @@ export default {
       this.dialogFormVisible = false
     },
     handleClickSubmit() {
-      updateMerchant({ id: this.temp.id, service_ids: this.temp.serviceIds }).then(res => {
+      if (this.title === '') return
+      createArchives({ child_id: this.userId, name: this.title }).then(res => {
         this.dialogFormVisible = false
-        this.$emit('update-success')
-        this.$message({
-          type: 'success',
-          message: '修改成功!'
-        })
+        console.log('创建', res)
+        this.title = ''
+        this.getServiceList()
+        // this.$emit('update-success')
+        // this.$message({
+        //   type: 'success',
+        //   message: '修改成功!'
+        // })
       })
     },
     handleChangeData(val) {

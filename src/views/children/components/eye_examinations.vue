@@ -17,11 +17,11 @@
         label="建档时间"
         min-width="60"/>
       <el-table-column
-        prop="childName"
+        prop="name"
         label="档案名称"
         min-width="100"/>
       <el-table-column
-        prop="organizationTitle"
+        prop="belongTo"
         label="所属机构"
         min-width="140"/>
       <el-table-column
@@ -37,7 +37,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <create-modal ref="modal" :user-id= "userId"/>
+    <create-modal ref="modal" :user-id= "userId" @handleDateList="handleList"/>
     <dataModal ref="dataModal" class="modal-w" />
   </div>
 </template>
@@ -60,23 +60,19 @@ export default {
   data() {
     return {
       shengji: true,
-      tableData: [{
-        createFileTime: '2018-08-08',
-        childName: 'name'
-      }, {
-        createFileTime: '2018-08-08',
-        childName: 'name'
-      }]
+      tableData: []
     }
   },
   created() {
     this.getList()
   },
+  mounted: function() {
+  },
   methods: {
     getList: function() {
       fetchList({ child_id: this.userId }).then(response => {
         console.log('response=>>', response)
-        // this.tableData = response.data.items
+        this.tableData = response.data.items
       })
     },
     handleAddfiles: function() {
@@ -86,6 +82,10 @@ export default {
     handleData: function(str) {
       console.log(222)
       this.$refs.dataModal.show(str)
+    },
+    handleList: function(data) {
+      console.log('监听子集传值', data)
+      this.tableData = data.items
     }
   }
 }
