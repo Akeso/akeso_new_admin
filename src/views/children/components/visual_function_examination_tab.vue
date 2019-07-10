@@ -90,17 +90,17 @@
           <td class="title-font">散开储备力BI(△)</td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>-/5—9/3—5</td>
@@ -109,17 +109,17 @@
           <td class="title-font">集合储备力BO(△)</td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>7—19/5—23/8—12</td>
@@ -238,17 +238,17 @@
           <td class="title-font">散开储备力BI(△)</td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>11—15/19—23/10—16</td>
@@ -257,17 +257,17 @@
           <td class="title-font">集合储备力BO(△)</td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>14—24/18—24/7—15</td>
@@ -321,13 +321,13 @@
           <td class="title-font">破裂点</td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td class="title-font">恢复点</td>
           <td>
             <label class="label" for="startValInput">
-              <input v-model.number="num1" type="text" name="startValInput" >
+              <input v-model.number="num1" type="number" name="startValInput" >
             </label>
           </td>
           <td>8/11</td>
