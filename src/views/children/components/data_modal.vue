@@ -3,6 +3,7 @@
     <el-form :model="temp" style="">
       <div class="box-con">
         <optometric-data v-if="state == 'optometry'"/>
+        <visual-data v-if="state == 'visual'" />
         <review-data v-if="state == 'review'" />
         <ocular-examination v-if="state == 'eye'" />
       </div>
@@ -19,9 +20,11 @@ import { fetchList, updateMerchant } from '@/api/services'
 import optometricData from './optometric_data'
 import reviewData from './review_data'
 import ocularExamination from './ocular_examination_data'
+import visualData from './visual_function_examination_data'
 export default {
   components: {
     optometricData,
+    visualData,
     reviewData,
     ocularExamination
   },
@@ -117,6 +120,9 @@ export default {
   border-top: 0.5px solid #ebeef5;
   border-color:#ebeef5;
 }
+.modal-w .table-cls tr{
+  height: 40px;
+}
 .modal-w .table-cls td{
   padding: 6px;
 }
@@ -127,7 +133,7 @@ export default {
 }
 .modal-w .table-cls td .about input{
   height: 32px;
-  width:70%;
+  width:62%;
   box-sizing:border-box;
   margin-left:10px;
 }
@@ -141,5 +147,8 @@ export default {
 }
 .text-left{
   text-align: left;
+}
+.title-font{
+  font-weight: 600;
 }
 </style>
