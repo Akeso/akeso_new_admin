@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="创建档案名称" style="text-align:center;">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" :title="stateName" style="text-align:center;">
     <el-form :model="temp" style="">
       <div class="box-con">
         <optometric-data v-if="state == 'optometry'"/>
@@ -42,7 +42,8 @@ export default {
       loading: false,
       dataOptions: [],
       checkedOptions: [],
-      state: ''
+      state: '',
+      stateName: ''
     }
   },
   created() {
@@ -76,6 +77,23 @@ export default {
       // this.getServiceList()
       // this.temp = JSON.parse(JSON.stringify(val))
       this.state = val
+      switch (val) {
+        case 'optometry':
+          this.stateName = '验光数据档案'
+          break
+        case 'visual':
+          this.stateName = '视功能检查档案'
+          break
+        case 'review':
+          this.stateName = '复查验光档案'
+          break
+        case 'eye':
+          this.stateName = '眼部检查（主观、客观）档案'
+          break
+        case 'all':
+          this.stateName = '全部档案'
+          break
+      }
       this.dialogFormVisible = true
     },
     resetData() {
