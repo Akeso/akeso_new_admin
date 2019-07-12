@@ -29,7 +29,7 @@
         min-width="260"
       >
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleData('optometry')">验光数据</el-button>
+          <el-button type="text" size="small" @click="handleData('optometry', scope.row.id)">验光数据{{ scope.row.id }}</el-button>
           <el-button type="text" size="small" @click="handleData('visual')">视功能检查</el-button>
           <el-button type="text" size="small" @click="handleData('review')">复查验光</el-button>
           <el-button type="text" size="small" @click="handleData('eye')">眼部检查(主观、客观)</el-button>
@@ -38,12 +38,12 @@
       </el-table-column>
     </el-table>
     <create-modal ref="modal" :user-id= "userId" @handleDateList="handleList"/>
-    <dataModal ref="dataModal" class="modal-w" />
+    <dataModal ref="dataModal" :user-id= "userId" class="modal-w" />
   </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/eye_examinations'
+import { fetchList, QueryOptometricData } from '@/api/eye_examinations'
 import createModal from './create_modal'
 import dataModal from './data_modal'
 export default {
@@ -60,7 +60,8 @@ export default {
   data() {
     return {
       shengji: true,
-      tableData: []
+      tableData: [],
+      optometricData: {}
     }
   },
   created() {
@@ -76,16 +77,27 @@ export default {
       })
     },
     handleAddfiles: function() {
-      console.log(111)
       this.$refs.modal.show()
     },
-    handleData: function(str) {
-      console.log(222)
-      this.$refs.dataModal.show(str)
+    handleData: function(str, id) {
+      switch (str) {
+        case 'optometry':
+          this.QueryOptometricData(str, id)
+          break
+      }
     },
     handleList: function(data) {
       console.log('监听子集传值', data)
       this.tableData = data.items
+    },
+    // 获取验光数据
+    QueryOptometricData: function(str, id) {
+      QueryOptometricData({ eye_examination_id: id }).then(response => {
+        this.$refs.dataModal.show(str, id)
+        const resData = response.data
+        resData.eye_examination_id = id
+        this.$store.commit('handleData', resData)
+      })
     }
   }
 }

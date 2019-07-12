@@ -2,7 +2,7 @@
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" :title="stateName" style="text-align:center;">
     <el-form :model="temp" style="">
       <div class="box-con">
-        <optometric-data v-if="state == 'optometry'"/>
+        <optometric-data v-if="state == 'optometry'" @editTestedData="handelEditTestedData"/>
         <visual-data v-if="state == 'visual'" />
         <review-data v-if="state == 'review'" />
         <ocular-examination v-if="state == 'eye'" />
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { fetchList, updateMerchant } from '@/api/services'
+import { fetchList, createEyeExaminations } from '@/api/eye_examinations'
 import optometricData from './optometric_data'
 import reviewData from './review_data'
 import ocularExamination from './ocular_examination_data'
@@ -27,6 +27,12 @@ export default {
     visualData,
     reviewData,
     ocularExamination
+  },
+  props: {
+    userId: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {
@@ -43,7 +49,9 @@ export default {
       dataOptions: [],
       checkedOptions: [],
       state: '',
-      stateName: ''
+      stateName: '',
+      listId: '', // 档案ID
+      editTestedData: {} // 验光数据视力检查
     }
   },
   created() {
@@ -60,22 +68,35 @@ export default {
       this.dialogFormVisible = false
     },
     handleClickSubmit() {
-      updateMerchant({ id: this.temp.id, service_ids: this.temp.serviceIds }).then(res => {
+      // console.log('==============', this.$store.getters.eyeExation)
+      switch (this.state) {
+        case 'optometry':
+          this.createEyeExaminations()
+          break
+      }
+    },
+    // 创建视光档案
+    createEyeExaminations: function() {
+      const data = this.$store.getters.eyeExation
+      createEyeExaminations(data).then(res => {
+        console.log('添加验光数据===》》', data)
         this.dialogFormVisible = false
-        this.$emit('update-success')
-        this.$message({
-          type: 'success',
-          message: '修改成功!'
-        })
+        // this.$emit('update-success')
+        // this.$message({
+        //   type: 'success',
+        //   message: '修改成功!'
+        // })
       })
     },
     handleChangeData(val) {
       console.log('val => ', val)
-      console.log('checkBox => ', this.checkedOptions)
+      console.log('checkBox => ', val)
     },
-    show(val) {
+    show(val, id) {
+      console.log('传值----》》》', this.userId)
       // this.getServiceList()
       // this.temp = JSON.parse(JSON.stringify(val))
+      this.listId = id
       this.state = val
       switch (val) {
         case 'optometry':
@@ -102,6 +123,12 @@ export default {
         name: undefined,
         base_type: 'organization'
       }
+    },
+    // 验光数据
+    handelEditTestedData: function(res) {
+      console.log('res==>弹窗', res)
+      res.eye_examination_id = this.listId
+      this.editTestedData = res
     }
   }
 }

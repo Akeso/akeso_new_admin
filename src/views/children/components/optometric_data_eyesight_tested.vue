@@ -17,54 +17,54 @@
           <tr>
             <td class="title-font -tab-header">右眼OD</td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.nakedEyeDistantVisualAcuityOd" class="label" name="">
+                <option v-for="(item, index) in selectData" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.wearGlassDistantVisualAcuityOd" class="label" name="">
+                <option v-for="(item, index) in selectData" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectDataList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.nakedEyeNearVisualAcuityOd" class="label" name="">
+                <option v-for="(item, index) in selectDataList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
           </tr>
           <tr>
             <td class="title-font -tab-header">左眼OS</td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.nakedEyeDistantVisualAcuityOs" class="label" name="">
+                <option v-for="(item, index) in selectData" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.wearGlassDistantVisualAcuityOs" class="label" name="">
+                <option v-for="(item, index) in selectData" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectDataList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.nakedEyeNearVisualAcuityOs" class="label" name="">
+                <option v-for="(item, index) in selectDataList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
           </tr>
           <tr>
             <td class="title-font -tab-header">双眼OU</td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.nakedEyeDistantVisualAcuityOu" class="label" name="">
+                <option v-for="(item, index) in selectData" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectData" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.wearGlassDistantVisualAcuityOu" class="label" name="">
+                <option v-for="(item, index) in selectData" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in selectDataList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getOptometricData.nakedEyeNearVisualAcuityOu" class="label" name="">
+                <option v-for="(item, index) in selectDataList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
           </tr>
@@ -95,7 +95,14 @@ export default {
       selectDataList: ['', '0.03', '0.04', '0.05', '0.06', '0.08', '0.1', '0.12', '0.15', '0.2', '0.25', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2']
     }
   },
+  computed: {
+    getOptometricData: function() {
+      // return this.$store.state.eyeExaminations.optometric
+      return this.$store.getters.eyeExation
+    }
+  },
   created() {
+    console.log('getOptometricData===???', this.getOptometricData)
   },
   methods: {
   }

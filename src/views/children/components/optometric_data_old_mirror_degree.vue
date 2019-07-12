@@ -2,7 +2,7 @@
   <div class="">
     <el-row>
       <el-col>
-        <h3 class="text-left">视力检查</h3>
+        <h3 class="text-left">旧镜度数和电脑验光检查</h3>
       </el-col>
       <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
         <thead>
@@ -20,17 +20,17 @@
             <td>右眼OD</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.currentSpectacles.sphereOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.currentSpectacles.cylinderOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.currentSpectacles.axisOd" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -38,17 +38,17 @@
             <td>左眼OS</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.currentSpectacles.sphereOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.currentSpectacles.cylinderOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.currentSpectacles.axisOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -57,17 +57,17 @@
             <td>右眼OD</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.computerOptometry.sphereOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.computerOptometry.cylinderOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.computerOptometry.axisOd" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -75,17 +75,17 @@
             <td>左眼OS</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.computerOptometry.sphereOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.computerOptometry.cylinderOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.computerOptometry.axisOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -105,6 +105,12 @@ export default {
   data() {
     return {
       num1: ''
+    }
+  },
+  computed: {
+    getOptometricData: function() {
+      // return this.$store.state.eyeExaminations.optometric
+      return this.$store.getters.eyeExation
     }
   },
   created() {

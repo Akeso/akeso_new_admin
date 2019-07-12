@@ -23,17 +23,17 @@
             <td>右眼OD</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.subjectiveRefraction.sphereOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getOptometricData.subjectiveRefraction.cylinderOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model.number="getOptometricData.subjectiveRefraction.axisOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
@@ -179,6 +179,12 @@ export default {
       baseList: ['', '底向in', '底向out', '底向up', '底向down'],
       correctList: ['', '0.1', '0.12', '0.15', '0.2', '0.25', '0.3', '0.4', '0.6', '0.8', '1.0', '1.2', '1.5', '2.0', '0.08', '0.06', '0.05', '0.04', '0.02', '数指', '手动', '光感', '无光感'],
       medicine: ['', '托吡卡胺', '环戊通', '阿托品', '其他']
+    }
+  },
+  computed: {
+    getOptometricData: function() {
+      // return this.$store.state.eyeExaminations.optometric
+      return this.$store.getters.eyeExation
     }
   },
   created() {

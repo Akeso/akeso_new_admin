@@ -6,13 +6,13 @@
         <el-date-picker
           :editable="false"
           :clearable="false"
-          v-model="selectDate"
+          v-model="getOptometricData.examination_time"
           type="date"
           placeholder="选择日期"
           value-format="yyyy-MM-dd"/>
       </el-col>
     </el-row>
-    <eyesightTested />
+    <eyesightTested/>
     <odlMirrorDegree />
     <hitomi />
   </div>
@@ -49,11 +49,21 @@ export default {
       // sortable: null,
       oldList: [],
       newList: [],
-      selectDate: new Date(),
+      // examination_time: new Date(),
       num1: 0
     }
   },
+  computed: {
+    getOptometricData: function() {
+      // return this.$store.state.eyeExaminations.optometric
+      return this.$store.getters.eyeExation
+    }
+  },
   created() {
+    // const data = this.$store.getters.eyeExation
+    // data.examination_time = this.examination_time
+    // this.$store.commit('handleData', data)
+    console.log(this.getOptometricData)
   },
   methods: {
   }
