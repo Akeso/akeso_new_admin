@@ -172,10 +172,8 @@
             <td>佩戴方式</td>
             <td colspan="7">
               <div class="text-left text">
-                <el-checkbox v-model="getRequireData.glassPrescription.wearDistance">远用</el-checkbox>
-                <el-checkbox-group class="left">
-                  <el-checkbox v-model="btn">近用</el-checkbox>
-                </el-checkbox-group>
+                <el-checkbox v-model="getRequireData.glassPrescription.wearDistance" class="left-checkbox">远用</el-checkbox>
+                <el-checkbox v-model="getRequireData.glassPrescription.wearNear">近用</el-checkbox>
                 <label class="add-text" for="startValInput">
                   <span>近附加ADD</span>
                   <input v-model="getRequireData.glassPrescription.nearlyAttachedAdd" type="number" name="startValInput" >
@@ -232,5 +230,8 @@ export default {
 }
 .add-text input{
   height: 32px;
+}
+.left-checkbox{
+  margin-left:20px;
 }
 </style>

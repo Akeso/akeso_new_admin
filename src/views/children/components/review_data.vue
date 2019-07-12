@@ -6,7 +6,7 @@
         <el-date-picker
           :editable="false"
           :clearable="false"
-          v-model="getRequireData.examination_time"
+          v-model="getRequireData.callbackExamination.examinationTime"
           type="date"
           placeholder="选择日期"
           value-format="yyyy-MM-dd"/>

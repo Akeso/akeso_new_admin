@@ -72,6 +72,9 @@ export default {
         case 'optometry':
           this.createEyeExaminations()
           break
+        case 'review':
+          this.reviewOptometry()
+          break
       }
     },
     // 创建视光档案
