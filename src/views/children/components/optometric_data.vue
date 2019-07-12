@@ -60,10 +60,6 @@ export default {
     }
   },
   created() {
-    // const data = this.$store.getters.eyeExation
-    // data.examination_time = this.examination_time
-    // this.$store.commit('handleData', data)
-    console.log(this.getOptometricData)
   },
   methods: {
   }

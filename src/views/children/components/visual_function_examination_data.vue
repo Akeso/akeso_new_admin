@@ -6,7 +6,7 @@
         <el-date-picker
           :editable="false"
           :clearable="false"
-          v-model="selectDate"
+          v-model="getData.examinationTime"
           type="date"
           placeholder="选择日期"
           value-format="yyyy-MM-dd"/>
@@ -45,6 +45,11 @@ export default {
       newList: [],
       selectDate: new Date(),
       num1: 0
+    }
+  },
+  computed: {
+    getData: function() {
+      return this.$store.getters.eyeExation
     }
   },
   created() {

@@ -99,6 +99,7 @@ export default {
     // 创建视功能检查
     visualFunctionTests: function() {
       const data = this.$store.getters.eyeExation
+      console.log('视功能检查', data)
       visualFunctionTests(data).then(res => {
         this.dialogFormVisible = false
       })

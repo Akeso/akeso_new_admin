@@ -102,7 +102,6 @@ export default {
     }
   },
   created() {
-    console.log('getOptometricData===???', this.getOptometricData)
   },
   methods: {
   }
