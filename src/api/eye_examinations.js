@@ -51,3 +51,57 @@ export function reviewOptometry(query) {
     params: query
   })
 }
+
+// 查询视功能检查 /api/a1/visual_function_tests
+export function showVisualFunctionTests(query) {
+  return request({
+    url: '/api/a1/visual_function_tests',
+    method: 'GET',
+    params: query
+  })
+}
+
+// 创建视功能检查 /api/a1/visual_function_tests
+export function visualFunctionTests(query) {
+  return request({
+    url: '/api/a1/visual_function_tests',
+    method: 'POST',
+    params: query
+  })
+}
+
+// 查询眼部检查（主观检查）
+export function showSubjectiveOcular(query) {
+  return request({
+    url: '/api/a1/subjective_ocular_examinations',
+    method: 'GET',
+    params: query
+  })
+}
+
+// 创建眼部检查（主观检查）
+export function subjectiveOcular(query) {
+  return request({
+    url: '/api/a1/subjective_ocular_examinations',
+    method: 'POST',
+    params: query
+  })
+}
+
+// 查询眼部检查（客观检查）
+export function showObjectiveOcular(query) {
+  return request({
+    url: '/api/a1/objective_ocular_examinations',
+    method: 'GET',
+    params: query
+  })
+}
+
+// 创建眼部检查（客观检查）
+export function objectiveOcular(query) {
+  return request({
+    url: '/api/a1/objective_ocular_examinations',
+    method: 'POST',
+    params: query
+  })
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <subjectiveTab />
+    <!--<subjectiveTab />-->
     <objectiveTab />
   </div>
 </template>
@@ -36,6 +36,8 @@ export default {
       newList: [],
       num1: 0
     }
+  },
+  computed: {
   },
   created() {
   },

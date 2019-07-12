@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { fetchList, QueryOptometricData, showReviewOptometry } from '@/api/eye_examinations'
+import { fetchList, QueryOptometricData, showVisualFunctionTests, showReviewOptometry, showObjectiveOcular } from '@/api/eye_examinations'
 import createModal from './create_modal'
 import dataModal from './data_modal'
 export default {
@@ -72,7 +72,6 @@ export default {
   methods: {
     getList: function() {
       fetchList({ child_id: this.userId }).then(response => {
-        console.log('response=>>', response)
         this.tableData = response.data.items
       })
     },
@@ -84,8 +83,14 @@ export default {
         case 'optometry':
           this.QueryOptometricData(str, id)
           break
+        case 'visual':
+          this.showVisualFunctionTests(str, id)
+          break
         case 'review':
           this.showReviewOptometry(str, id)
+          break
+        case 'eye':
+          this.showObjectiveOcular(str, id)
           break
       }
     },
@@ -102,10 +107,27 @@ export default {
         this.$store.commit('handleData', resData)
       })
     },
-
+    // 视功能检查
+    showVisualFunctionTests: function(str, id) {
+      showVisualFunctionTests({ eye_examination_id: id }).then(response => {
+        this.$refs.dataModal.show(str, id)
+        const resData = response.data
+        resData.eye_examination_id = id
+        this.$store.commit('handleData', resData)
+      })
+    },
     // 获取复查验光 reviewOptometry
     showReviewOptometry: function(str, id) {
       showReviewOptometry({ eye_examination_id: id }).then(response => {
+        this.$refs.dataModal.show(str, id)
+        const resData = response.data
+        resData.eye_examination_id = id
+        this.$store.commit('handleData', resData)
+      })
+    },
+    // 客观检查showObjectiveOcular
+    showObjectiveOcular: function(str, id) {
+      showObjectiveOcular({ eye_examination_id: id }).then(response => {
         this.$refs.dataModal.show(str, id)
         const resData = response.data
         resData.eye_examination_id = id

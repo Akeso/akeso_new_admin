@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { fetchList, createEyeExaminations, reviewOptometry } from '@/api/eye_examinations'
+import { fetchList, createEyeExaminations, visualFunctionTests, reviewOptometry, objectiveOcular } from '@/api/eye_examinations'
 import optometricData from './optometric_data'
 import reviewData from './review_data'
 import ocularExamination from './ocular_examination_data'
@@ -75,9 +75,15 @@ export default {
         case 'review':
           this.reviewOptometry()
           break
+        case 'visual':
+          this.visualFunctionTests()
+          break
+        case 'eye':
+          this.objectiveOcular()
+          break
       }
     },
-    // 创建视光档案
+    // 创建验光档案
     createEyeExaminations: function() {
       const data = this.$store.getters.eyeExation
       createEyeExaminations(data).then(res => {
@@ -90,10 +96,24 @@ export default {
         // })
       })
     },
+    // 创建视功能检查
+    visualFunctionTests: function() {
+      const data = this.$store.getters.eyeExation
+      visualFunctionTests(data).then(res => {
+        this.dialogFormVisible = false
+      })
+    },
     // 创建复查验光
     reviewOptometry: function() {
       const data = this.$store.getters.eyeExation
       reviewOptometry(data).then(res => {
+        this.dialogFormVisible = false
+      })
+    },
+    // 创建客观
+    objectiveOcular: function() {
+      const data = this.$store.getters.eyeExation
+      objectiveOcular(data).then(res => {
         this.dialogFormVisible = false
       })
     },

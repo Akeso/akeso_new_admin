@@ -6,7 +6,7 @@
         <el-date-picker
           :editable="false"
           :clearable="false"
-          v-model="objectiveSelectDate"
+          v-model="getData.examinationTime"
           type="date"
           placeholder="选择日期"
           value-format="yyyy-MM-dd"/>
@@ -26,12 +26,12 @@
             <td>非接触眼压（mmHg</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.intraocularPressureNonContactOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.intraocularPressureNonContactOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -40,12 +40,12 @@
             <td>眼轴长度（mm）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologyAxialLengthOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologyAxialLengthOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -53,12 +53,12 @@
             <td>角膜平坦曲率（D）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologySmoothCornealCurvatureOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologySmoothCornealCurvatureOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -66,12 +66,12 @@
             <td>角膜陡峭曲率（D）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologySteepCornealCurvatureOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologySteepCornealCurvatureOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -79,12 +79,12 @@
             <td>角膜平均曲率（D）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.cornealMeanCurvatureOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.cornealMeanCurvatureOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -92,12 +92,12 @@
             <td>中央角膜厚度（um）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologyCentralCornealThicknessOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologyCentralCornealThicknessOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -105,12 +105,12 @@
             <td>角膜直径（mm）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologyCornealDiameterOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.ocularBiologyCornealDiameterOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -118,12 +118,12 @@
             <td>前房深度（mm）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getData.ocularBiologyAnteriorChamberDepthOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getData.ocularBiologyAnteriorChamberDepthOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -131,12 +131,12 @@
             <td>瞳孔大小（mm）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getData.pupilSizeOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getData.pupilSizeOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -144,12 +144,12 @@
             <td>晶体厚度（mm）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getData.ocularBiologyCrystalThicknessOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getData.ocularBiologyCrystalThicknessOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -158,12 +158,12 @@
             <td>Schirmer试验（mm）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.schirmerTestOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.schirmerTestOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -171,12 +171,12 @@
             <td>泪膜破裂时间BUT（S）</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.schirmerBreakUpTimeOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="text" name="startValInput" >
+                <input v-model="getData.schirmerBreakUpTimeOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -200,6 +200,11 @@ export default {
       baseList: ['', '底向in', '底向out', '底向up', '底向down'],
       correctList: ['', '0.1', '0.12', '0.15', '0.2', '0.25', '0.3', '0.4', '0.6', '0.8', '1.0', '1.2', '1.5', '2.0', '0.08', '0.06', '0.05', '0.04', '0.02', '数指', '手动', '光感', '无光感'],
       medicine: ['', '托吡卡胺', '环戊通', '阿托品', '其他']
+    }
+  },
+  computed: {
+    getData: function() {
+      return this.$store.getters.eyeExation
     }
   },
   created() {
