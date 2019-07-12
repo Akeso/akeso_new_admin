@@ -30,10 +30,10 @@
       >
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="handleData('optometry', scope.row.id)">验光数据{{ scope.row.id }}</el-button>
-          <el-button type="text" size="small" @click="handleData('visual')">视功能检查</el-button>
-          <el-button type="text" size="small" @click="handleData('review')">复查验光</el-button>
-          <el-button type="text" size="small" @click="handleData('eye')">眼部检查(主观、客观)</el-button>
-          <el-button type="text" size="small" @click="handleData('all')">查看全部</el-button>
+          <el-button type="text" size="small" @click="handleData('visual', scope.row.id)">视功能检查</el-button>
+          <el-button type="text" size="small" @click="handleData('review', scope.row.id)">复查验光</el-button>
+          <el-button type="text" size="small" @click="handleData('eye', scope.row.id)">眼部检查(主观、客观)</el-button>
+          <el-button type="text" size="small" @click="handleData('all', scope.row.id)">查看全部</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { fetchList, QueryOptometricData } from '@/api/eye_examinations'
+import { fetchList, QueryOptometricData, showReviewOptometry } from '@/api/eye_examinations'
 import createModal from './create_modal'
 import dataModal from './data_modal'
 export default {
@@ -84,6 +84,9 @@ export default {
         case 'optometry':
           this.QueryOptometricData(str, id)
           break
+        case 'review':
+          this.showReviewOptometry(str, id)
+          break
       }
     },
     handleList: function(data) {
@@ -93,6 +96,16 @@ export default {
     // 获取验光数据
     QueryOptometricData: function(str, id) {
       QueryOptometricData({ eye_examination_id: id }).then(response => {
+        this.$refs.dataModal.show(str, id)
+        const resData = response.data
+        resData.eye_examination_id = id
+        this.$store.commit('handleData', resData)
+      })
+    },
+
+    // 获取复查验光 reviewOptometry
+    showReviewOptometry: function(str, id) {
+      showReviewOptometry({ eye_examination_id: id }).then(response => {
         this.$refs.dataModal.show(str, id)
         const resData = response.data
         resData.eye_examination_id = id

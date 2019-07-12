@@ -21,38 +21,38 @@
             <td>右眼OD</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.sphereOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.cylinderOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.axisOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.prismOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in baseList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.callbackExamination.baseOd" class="label" name="">
+                <option v-for="(item, index) in baseList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in correctList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.callbackExamination.correctedVisualAcuityOd" class="label" name="">
+                <option v-for="(item, index) in correctList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
               <label class="about" for="startValInput">
                 <span>R</span>
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.pupillaryDistanceOd" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -60,38 +60,38 @@
             <td>左眼OS</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.sphereOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.cylinderOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.axisOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.prismOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in baseList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.callbackExamination.baseOs" class="label" name="">
+                <option v-for="(item, index) in baseList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in correctList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.callbackExamination.correctedVisualAcuityOs" class="label" name="">
+                <option v-for="(item, index) in correctList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
               <label class="about" for="startValInput">
                 <span>L</span>
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.callbackExamination.pupillaryDistanceOs" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -100,38 +100,38 @@
             <td>右眼OD</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.sphereOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.cylinderOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.axisOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.prismOd" type="number" name="startValInput" >
               </label>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in baseList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.glassPrescription.baseOd" class="label" name="">
+                <option v-for="(item, index) in baseList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in correctList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.glassPrescription.correctedVisualAcuityOd" class="label" name="">
+                <option v-for="(item, index) in correctList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td rowspan="2">
               <label class="about" for="startValInput">
                 <span>OU</span>
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.pupillaryDistanceOu" type="number" name="startValInput" >
               </label>
             </td>
           </tr>
@@ -139,32 +139,32 @@
             <td>左眼OS</td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.sphereOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.cylinderOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.axisOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
               <label class="label" for="startValInput">
-                <input v-model.number="num1" type="number" name="startValInput" >
+                <input v-model="getRequireData.glassPrescription.prismOs" type="number" name="startValInput" >
               </label>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in baseList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.glassPrescription.baseOs" class="label" name="">
+                <option v-for="(item, index) in baseList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
             <td>
-              <select class="label" name="">
-                <option v-for="(item, index) in correctList" :key="index" value="item">{{ item }}</option>
+              <select v-model="getRequireData.glassPrescription.correctedVisualAcuityOs" class="label" name="">
+                <option v-for="(item, index) in correctList" :key="index" :value="item">{{ item }}</option>
               </select>
             </td>
           </tr>
@@ -172,13 +172,13 @@
             <td>佩戴方式</td>
             <td colspan="7">
               <div class="text-left text">
-                <el-checkbox-group v-model="formThead" class="left">
-                  <el-checkbox label="远用">远用</el-checkbox>
-                  <el-checkbox label="近用">近用</el-checkbox>
+                <el-checkbox v-model="getRequireData.glassPrescription.wearDistance">远用</el-checkbox>
+                <el-checkbox-group class="left">
+                  <el-checkbox v-model="btn">近用</el-checkbox>
                 </el-checkbox-group>
                 <label class="add-text" for="startValInput">
                   <span>近附加ADD</span>
-                  <input v-model.number="num1" type="number" name="startValInput" >
+                  <input v-model="getRequireData.glassPrescription.nearlyAttachedAdd" type="number" name="startValInput" >
                 </label>
               </div>
             </td>
@@ -199,10 +199,17 @@ export default {
   data() {
     return {
       num1: '',
+      btn: 'false',
       baseList: ['', '底向in', '底向out', '底向up', '底向down'],
       correctList: ['', '0.1', '0.12', '0.15', '0.2', '0.25', '0.3', '0.4', '0.6', '0.8', '1.0', '1.2', '1.5', '2.0', '0.08', '0.06', '0.05', '0.04', '0.02', '数指', '手动', '光感', '无光感'],
-      medicine: ['', '托吡卡胺', '环戊通', '阿托品', '其他'],
-      formThead: ['远用', '近用']
+      medicine: ['', '托吡卡胺', '环戊通', '阿托品', '其他']
+      // formThead: ['', '']
+    }
+  },
+  computed: {
+    getRequireData: function() {
+      // return this.$store.state.eyeExaminations.optometric
+      return this.$store.getters.eyeExation
     }
   },
   created() {

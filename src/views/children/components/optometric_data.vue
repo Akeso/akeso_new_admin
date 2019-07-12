@@ -6,7 +6,7 @@
         <el-date-picker
           :editable="false"
           :clearable="false"
-          v-model="getOptometricData.examination_time"
+          v-model="getOptometricData.examinationTime"
           type="date"
           placeholder="选择日期"
           value-format="yyyy-MM-dd"/>
