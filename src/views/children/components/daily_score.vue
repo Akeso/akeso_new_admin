@@ -89,7 +89,7 @@
     <HealthItem :text="textStepCount" :hours="hourStepCount"/>
     <HealthItem :text="textBurden" :hours="hourBurden"/>
     <HealthItem :text="textNearwork" :hours="hourNearwork"/>
-    <HealthItem :text="textBadPosture" :hours="hourBadPosture"/>
+    <HealthItem :text="textBadPosture" :hours="hourBadPostureTimes"/>
   </el-card>
 </template>
 
@@ -146,7 +146,7 @@ export default {
       hourStepCount: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       hourBurden: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       hourNearwork: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      hourBadPosture: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      hourBadPostureTimes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       selectDate: new Date(),
       healthScore: {}
     }
@@ -165,7 +165,7 @@ export default {
         this.hourStepCount = response.data.stepCountHour
         this.hourBurden = response.data.nearworkBurdenHour
         this.hourNearwork = response.data.nearworkHour
-        this.hourBadPosture = response.data.badPostureHour
+        this.hourBadPostureTimes = response.data.badPostureTimesHour
       })
     },
     changeDate() {
