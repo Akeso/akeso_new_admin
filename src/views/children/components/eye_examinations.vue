@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { fetchList, QueryOptometricData, showVisualFunctionTests, showReviewOptometry, showObjectiveOcular } from '@/api/eye_examinations'
+import { fetchList, QueryOptometricData, showVisualFunctionTests, showReviewOptometry, showObjectiveOcular, showSubjectiveOcular } from '@/api/eye_examinations'
 import createModal from './create_modal'
 import dataModal from './data_modal'
 export default {
@@ -61,7 +61,10 @@ export default {
     return {
       shengji: true,
       tableData: [],
-      optometricData: {}
+      optometricData: {},
+      resData: {
+        showSubjectiveOcular: { }
+      }
     }
   },
   created() {
@@ -91,6 +94,7 @@ export default {
           break
         case 'eye':
           this.showObjectiveOcular(str, id)
+          this.showSubjectiveOcular(str, id)
           break
       }
     },
@@ -123,6 +127,15 @@ export default {
         const resData = response.data
         resData.eye_examination_id = id
         this.$store.commit('handleData', resData)
+      })
+    },
+    // 主观检查 showSubjectiveOcular
+    showSubjectiveOcular: function(str, id) {
+      showSubjectiveOcular({ eye_examination_id: id }).then(response => {
+        this.$refs.dataModal.show(str, id)
+        const resData = response.data
+        resData.eye_examination_id = id
+        this.$store.commit('handleSubject', this.resData)
       })
     },
     // 客观检查showObjectiveOcular

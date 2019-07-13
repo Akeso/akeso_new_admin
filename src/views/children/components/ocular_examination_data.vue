@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <!--<subjectiveTab />-->
+    <subjectiveTab />
     <objectiveTab />
   </div>
 </template>

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { fetchList, createEyeExaminations, visualFunctionTests, reviewOptometry, objectiveOcular } from '@/api/eye_examinations'
+import { fetchList, createEyeExaminations, visualFunctionTests, reviewOptometry, subjectiveOcular, objectiveOcular } from '@/api/eye_examinations'
 import optometricData from './optometric_data'
 import reviewData from './review_data'
 import ocularExamination from './ocular_examination_data'
@@ -108,6 +108,13 @@ export default {
     reviewOptometry: function() {
       const data = this.$store.getters.eyeExation
       reviewOptometry(data).then(res => {
+        this.dialogFormVisible = false
+      })
+    },
+    // 创建主观
+    subjectiveOcular: function() {
+      const data = this.$store.getters.Subject
+      subjectiveOcular(data).then(res => {
         this.dialogFormVisible = false
       })
     },
