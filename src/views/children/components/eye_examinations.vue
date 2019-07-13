@@ -135,7 +135,7 @@ export default {
         this.$refs.dataModal.show(str, id)
         const resData = response.data
         resData.eye_examination_id = id
-        this.$store.commit('handleSubject', this.resData)
+        this.$store.commit('handleSubject', resData)
       })
     },
     // 客观检查showObjectiveOcular
