@@ -29,7 +29,7 @@
         min-width="260"
       >
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleData('optometry', scope.row.id)">验光数据{{ scope.row.id }}</el-button>
+          <el-button type="text" size="small" @click="handleData('optometry', scope.row.id)">验光数据</el-button>
           <el-button type="text" size="small" @click="handleData('visual', scope.row.id)">视功能检查</el-button>
           <el-button type="text" size="small" @click="handleData('review', scope.row.id)">复查验光</el-button>
           <el-button type="text" size="small" @click="handleData('eye', scope.row.id)">眼部检查(主观、客观)</el-button>
