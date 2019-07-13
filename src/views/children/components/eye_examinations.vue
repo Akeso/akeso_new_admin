@@ -29,10 +29,10 @@
         min-width="260"
       >
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleData('optometry', scope.row.id)">验光数据{{ scope.row.id }}</el-button>
+          <el-button type="text" size="small" @click="handleData('optometry', scope.row.id)">验光数据</el-button>
           <el-button type="text" size="small" @click="handleData('visual', scope.row.id)">视功能检查</el-button>
           <el-button type="text" size="small" @click="handleData('review', scope.row.id)">复查验光</el-button>
-          <el-button type="text" size="small" @click="handleData('eye', scope.row.id)">眼部检查(主观、客观)</el-button>
+          <el-button type="text" size="small" @click="handleData('eye', scope.row.id)">眼部检查</el-button>
           <el-button type="text" size="small" @click="handleData('all', scope.row.id)">查看全部</el-button>
         </template>
       </el-table-column>
@@ -94,7 +94,7 @@ export default {
           break
         case 'eye':
           this.showObjectiveOcular(str, id)
-          this.showSubjectiveOcular(str, id)
+          // this.showSubjectiveOcular(str, id)
           break
       }
     },

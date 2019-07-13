@@ -56,7 +56,7 @@
             <!--<select v-model="getData.stereoTests" class="label" name="">
               <option v-for="(item, index) in Stereoscopy" :key="index" :value="item">{{ item }}</option>
             </select>-->
-            <el-checkbox v-model="getData.stereoTests">立体视检查</el-checkbox>
+            <el-checkbox v-model="getData.isStereoTests">立体视检查</el-checkbox>
           </td>
           <td colspan="2"/>
           <td>40~2000</td>
