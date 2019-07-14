@@ -33,7 +33,7 @@
           <el-button type="text" size="small" @click="handleData('visual', scope.row.id)">视功能检查</el-button>
           <el-button type="text" size="small" @click="handleData('review', scope.row.id)">复查验光</el-button>
           <el-button type="text" size="small" @click="handleData('eye', scope.row.id)">眼部检查</el-button>
-          <el-button type="text" size="small" @click="handleData('all', scope.row.id)">查看全部</el-button>
+          <!--<el-button type="text" size="small" @click="handleData('all', scope.row.id)">查看全部</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -117,6 +117,7 @@ export default {
         this.$refs.dataModal.show(str, id)
         const resData = response.data
         resData.eye_examination_id = id
+        resData.isStereoTests = resData.isStereoTests ? resData.isStereoTests : false
         this.$store.commit('handleData', resData)
       })
     },
