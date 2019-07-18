@@ -155,7 +155,7 @@
         <tr>
           <td rowspan="3" class="title-font">近视危险因素情况</td>
           <td class="title-font">近距离用眼时长</td>
-          <td class="title-font">260分钟/天</td>
+          <td class="title-font">240分钟/天</td>
           <td>≤160分钟</td>
           <td>{{ wholeData.nearworkDayAvg }}分钟</td>
           <td>{{ nearworkDayCondition(wholeData.nearworkDayAvg) }}</td>
@@ -163,7 +163,7 @@
         <tr>
           <td class="title-font">不良用眼姿态</td>
           <td class="title-font">45次/天</td>
-          <td>≤60次</td>
+          <td>≤30次</td>
           <td>{{ wholeData.badPostureTimesAvg }}次</td>
           <td>{{ badPostureTimesCondition(wholeData.badPostureTimesAvg) }}</td>
         </tr>
