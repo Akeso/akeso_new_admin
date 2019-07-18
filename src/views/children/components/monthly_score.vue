@@ -85,6 +85,7 @@
       <MonthHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
       <MonthHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
     </el-card>
+
   </div>
 </template>
 
