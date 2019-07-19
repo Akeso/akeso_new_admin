@@ -136,9 +136,11 @@
           </ul>-->
         </div>
         <el-row style="margin:0 10px;">
-          <el-col :span="16" style="padding-right:10px;">
-            <WeekHealthItemPdf :hours="healthIndexArray" :times="timeArray" style="margin-top: -30px; marign-right:10px;"/>
-            <div class="assess-box">
+          <el-col :span="16">
+            <div style="padding-right:10px;">
+              <WeekHealthItemPdf :hours="healthIndexArray" :times="timeArray" style="margin-top: -30px;"/>
+            </div>
+            <div class="assess-box" style="padding-right:10px;">
               该数值指当天孩子健康用眼得分情况。
             </div>
           </el-col>
