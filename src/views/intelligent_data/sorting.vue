@@ -34,13 +34,18 @@
           value-format="yyyy-MM-dd"
           placeholder="选择日期"/>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-phone" @click="handleClickSendMessages">批量发送消息</el-button>
       </el-col>
     </el-row>
     <el-table
       :data="list"
       border
       style="width: 100%"
-      @sort-change="handleColumnSort">
+      @sort-change="handleColumnSort"
+      @selection-change="handleSelectionChange">
+      <el-table-column
+        type="selection"
+        width="55"/>
       <el-table-column
         label="姓名"
         min-width="60">
@@ -141,23 +146,31 @@ export default {
         endDate: new Date(),
         sortProp: '',
         sortOrder: ''
-      }
-      // periodOptions: [{
-      //   value: 'day',
-      //   label: '日'
-      // }, {
-      //   value: 'week',
-      //   label: '周'
-      // }, {
-      //   value: 'month',
-      //   label: '月'
-      // }]
+      },
+      multipleSelection: []
     }
   },
   created() {
     this.getList()
   },
   methods: {
+    handleClickSendMessages() {
+      if (this.multipleSelection.length === 0) {
+        this.$message({
+          message: '请选择要批量发送的用户！',
+          type: 'warning'
+        })
+        return
+      }
+      this.multipleSelection.forEach(row => {
+        console.log('row => ', row.childId)
+        // this.$refs.multipleTable.toggleRowSelection(row);
+      })
+      console.log('批量发送消息')
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    },
     handleFilter() {
       this.getList()
     },
