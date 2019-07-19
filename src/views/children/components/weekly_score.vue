@@ -123,7 +123,7 @@
             </li>
           </ul>
         </div>
-        <div class="weekly-contents">
+        <!--<div class="weekly-contents">
           <h2 class="c-blue">本周评价得分 {{ weekData.healthIndex }}</h2>
           <ul class="weekle-list">
             <li>总戴镜时间 <span class="c-blue">{{ weekData.wearTime }}</span></li>
@@ -132,8 +132,6 @@
             <li>周一到周五平均分 <span class="c-blue">{{ weekData.weekScoreAvg }}</span></li>
             <li>周六周日平均分 <span class="c-blue">{{ weekData.weekendScoreAvg }}</span></li>
           </ul>
-          <!--<ul class="weekle-list next"> 1
-          </ul>-->
         </div>
         <el-row style="margin:0 10px;">
           <el-col :span="16">
@@ -190,7 +188,7 @@
               <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
             </el-row>
           </el-col>
-        </el-row>
+        </el-row>-->
       </div>
     </div>
   </div>
@@ -328,6 +326,7 @@ export default {
   width: 800px;
   position: absolute;
   top: 20px;
+  left:0px;
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
