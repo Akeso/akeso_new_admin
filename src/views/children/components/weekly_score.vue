@@ -331,7 +331,7 @@ export default {
   width: 100%;
   background-image: url(../../../assets/images/combined.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100%;
   text-align: center;
 }
 .avatar{
