@@ -352,7 +352,7 @@ export default {
 }
 .info{
   padding-top:20px;
-  margin: -18px 20px 0;
+  margin: -17px 1px 0;
   background: #fff;
   position: relative;
 }
