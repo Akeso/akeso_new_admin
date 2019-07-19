@@ -1,191 +1,195 @@
 <template>
   <div>
-    <el-row style="margin: 10px;">
-      <el-col>
-        <label for="">选择日期</label>
-        <el-date-picker
-          :editable="false"
-          :clearable="false"
-          v-model="selectDate"
-          type="date"
-          placeholder="选择日期"
-          value-format="yyyy-MM-dd"
-          @change="changeDate"/>
-      </el-col>
-    </el-row>
-    <el-row style="margin: 10px;">
-      <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF</el-button>
-      <el-button class="filter-item" type="primary" icon="el-icon-download">
-        <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">导出Excel</a>
-      </el-button>
-    </el-row>
-    <el-card class="box-card">
-      <div slot="header" class="clearfix">
-        <span>健康周报</span>
-      </div>
-      <el-row>
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>得分情况</span>
-          </div>
-          <p style="font-size: 20px; font-weight: bold;">本周平均分 {{ weekData.healthIndex }}</p>
-          <el-row :gutter="20">
-            <el-col :span="8"><span>总戴镜时间 {{ weekData.wearTime }}</span></el-col>
-            <el-col :span="8"><span>累计保护因素 {{ weekData.upElement }}</span></el-col>
-            <el-col :span="8"><span>累计危险因素 {{ weekData.downElement }}</span></el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8"><span>周一到周五平均分 {{ weekData.weekScoreAvg }}</span></el-col>
-            <el-col :span="8"><span>周六周日平均分 {{ weekData.weekendScoreAvg }}</span></el-col>
-          </el-row>
-        </el-card>
-      </el-row>
-      <el-row style="margin-top: 20px;" class="margin-bottom">
-        <el-col :span="3" class="text-center text-standard-font">户外时间</el-col>
-        <el-col :span="16">
-          <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.outTimePercent" status="success" class="progress-l-r"/>
+    <div style="position: relative; background:#fff; z-index:1;">
+      <el-row style="margin: 10px;">
+        <el-col>
+          <label for="">选择日期</label>
+          <el-date-picker
+            :editable="false"
+            :clearable="false"
+            v-model="selectDate"
+            type="date"
+            placeholder="选择日期"
+            value-format="yyyy-MM-dd"
+            @change="changeDate"/>
         </el-col>
-        <el-col :span="4" class="text-standard-font">{{ weekData.outTime }}/120分钟</el-col>
       </el-row>
-      <el-row class="margin-bottom">
-        <el-col :span="3" class="text-center text-standard-font">光照摄入</el-col>
-        <el-col :span="16">
-          <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.luxDayPercent" status="success" class="progress-l-r"/>
-        </el-col>
-        <el-col :span="3" class="text-standard-font">{{ weekData.luxDay }}/360000lux</el-col>
+      <el-row style="margin: 10px;">
+        <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-download">
+          <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">导出Excel</a>
+        </el-button>
       </el-row>
-      <el-row class="margin-bottom">
-        <el-col :span="3" class="text-center text-standard-font">运动步数</el-col>
-        <el-col :span="16">
-          <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.stepCountPercent" status="success" class="progress-l-r"/>
-        </el-col>
-        <el-col :span="3" class="text-standard-font">{{ weekData.stepCount }}/12000步</el-col>
-      </el-row>
-      <el-row class="margin-bottom">
-        <el-col :span="3" class="text-center text-standard-font">用眼负荷</el-col>
-        <el-col :span="16">
-          <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
-        </el-col>
-        <el-col :span="3" class="text-standard-font">{{ weekData.nearworkBurdenDay }}/720D</el-col>
-      </el-row>
-      <el-row class="margin-bottom">
-        <el-col :span="3" class="text-center text-standard-font">近距离用眼时间</el-col>
-        <el-col :span="16">
-          <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.nearworkDayPercent" status="exception" class="progress-l-r"/>
-        </el-col>
-        <el-col :span="3" class="text-standard-font">{{ weekData.nearworkDay }}/260分钟</el-col>
-      </el-row>
-      <el-row class="margin-bottom">
-        <el-col :span="3" class="text-center text-standard-font">不良姿势提醒</el-col>
-        <el-col :span="16">
-          <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
-        </el-col>
-        <el-col :span="3" class="text-standard-font">{{ weekData.badPostureTimes }}/45次</el-col>
-      </el-row>
-      <WeekHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
-      <WeekHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
-      <WeekHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
-    </el-card>
-    <div id="pdfDom" class="pdf-container">
-      <div class="header">
-        <h1>儿童用眼健康行为模式风险分析报告</h1>
-        <img :src="avatar" class="avatar" alt="">
-      </div>
-      <div class="info">
-        <ul>
-          <li>
-            <span class="title">姓名</span>
-            <span class="right-bar">名字</span>
-          </li>
-          <li>
-            <span class="title">年龄</span>
-            <span class="right-bar">12</span>
-          </li>
-          <li>
-            <span class="title">性别</span>
-            <span class="right-bar">男</span>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <span class="title">学校</span>
-            <span class="right-bar">****某某某某某某某学校</span>
-          </li>
-          <li>
-            <span class="title">检查日期</span>
-            <span class="right-bar">07/15-07/21</span>
-          </li>
-        </ul>
-      </div>
-      <div class="weekly-contents">
-        <h2 class="c-blue">本周评价得分 {{ weekData.healthIndex }}</h2>
-        <ul class="weekle-list">
-          <li>总戴镜时间 <span class="c-blue">{{ weekData.wearTime }}</span></li>
-          <li>总戴镜时间 <span class="c-blue">{{ weekData.upElement }}</span></li>
-          <li>累计危险因素 <span class="c-blue">{{ weekData.downElement }}</span></li>
-          <li>周一到周五平均分 <span class="c-blue">{{ weekData.weekScoreAvg }}</span></li>
-          <li>周六周日平均分 <span class="c-blue">{{ weekData.weekendScoreAvg }}</span></li>
-        </ul>
-        <!--<ul class="weekle-list next"> 1
-        </ul>-->
-      </div>
-      <el-row style="margin:0 10px;">
-        <el-col :span="16" style="padding-right:10px;">
-          <WeekHealthItemPdf :hours="outTimeArray" :times="timeArray" style="margin-top: -30px; marign-right:10px;"/>
-          <div class="assess-box">
-            该数值指孩子近距离用眼时低头、歪头过度时智能眼镜提醒矫正姿势的次数。采集计算标准： 室内情况下，当低头超过30度或歪头超过20度时镜腿提醒的次数累积总和。
-          </div>
-        </el-col>
-        <el-col :span="8" class="progress-bar">
-          <div class="adding-score c-green">加分项</div>
-          <el-row class="indicator-title">
-            <el-col :span="12" class="text-left text-standard-font">户外时间</el-col>
-            <el-col :span="12" class="text-standard-font text-right">{{ weekData.outTime }}/120分钟</el-col>
-          </el-row>
-          <el-row>
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>健康周报</span>
+        </div>
+        <el-row>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>得分情况</span>
+            </div>
+            <p style="font-size: 20px; font-weight: bold;">本周平均分 {{ weekData.healthIndex }}</p>
+            <el-row :gutter="20">
+              <el-col :span="8"><span>总戴镜时间 {{ weekData.wearTime }}</span></el-col>
+              <el-col :span="8"><span>累计保护因素 {{ weekData.upElement }}</span></el-col>
+              <el-col :span="8"><span>累计危险因素 {{ weekData.downElement }}</span></el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="8"><span>周一到周五平均分 {{ weekData.weekScoreAvg }}</span></el-col>
+              <el-col :span="8"><span>周六周日平均分 {{ weekData.weekendScoreAvg }}</span></el-col>
+            </el-row>
+          </el-card>
+        </el-row>
+        <el-row style="margin-top: 20px;" class="margin-bottom">
+          <el-col :span="3" class="text-center text-standard-font">户外时间</el-col>
+          <el-col :span="16">
             <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.outTimePercent" status="success" class="progress-l-r"/>
-          </el-row>
-          <el-row class="indicator-title m-t">
-            <el-col :span="12" class="text-left text-standard-font">光照摄入</el-col>
-            <el-col :span="12" class="text-standard-font text-right">{{ weekData.luxDay }}/360000lux</el-col>
-          </el-row>
-          <el-row>
+          </el-col>
+          <el-col :span="4" class="text-standard-font">{{ weekData.outTime }}/120分钟</el-col>
+        </el-row>
+        <el-row class="margin-bottom">
+          <el-col :span="3" class="text-center text-standard-font">光照摄入</el-col>
+          <el-col :span="16">
             <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.luxDayPercent" status="success" class="progress-l-r"/>
-          </el-row>
-          <el-row class="indicator-title m-t">
-            <el-col :span="12" class="text-left text-standard-font">运动步数</el-col>
-            <el-col :span="12" class="text-standard-font text-right">{{ weekData.stepCount }}/12000步</el-col>
-          </el-row>
-          <el-row>
+          </el-col>
+          <el-col :span="3" class="text-standard-font">{{ weekData.luxDay }}/360000lux</el-col>
+        </el-row>
+        <el-row class="margin-bottom">
+          <el-col :span="3" class="text-center text-standard-font">运动步数</el-col>
+          <el-col :span="16">
             <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.stepCountPercent" status="success" class="progress-l-r"/>
-          </el-row>
-          <div class="adding-score c-red m-t-1">减分项</div>
-          <el-row class="indicator-title">
-            <el-col :span="12" class="text-left text-standard-font">用眼负荷</el-col>
-            <el-col :span="12" class="text-standard-font text-right">{{ weekData.nearworkBurdenDay }}/720D</el-col>
-          </el-row>
-          <el-row>
+          </el-col>
+          <el-col :span="3" class="text-standard-font">{{ weekData.stepCount }}/12000步</el-col>
+        </el-row>
+        <el-row class="margin-bottom">
+          <el-col :span="3" class="text-center text-standard-font">用眼负荷</el-col>
+          <el-col :span="16">
             <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
-          </el-row>
-          <el-row class="indicator-title m-t">
-            <el-col :span="12" class="text-left text-standard-font">近距离用眼时间</el-col>
-            <el-col :span="12" class="text-standard-font text-right">{{ weekData.nearworkDay }}/260分钟</el-col>
-          </el-row>
-          <el-row>
+          </el-col>
+          <el-col :span="3" class="text-standard-font">{{ weekData.nearworkBurdenDay }}/720D</el-col>
+        </el-row>
+        <el-row class="margin-bottom">
+          <el-col :span="3" class="text-center text-standard-font">近距离用眼时间</el-col>
+          <el-col :span="16">
             <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.nearworkDayPercent" status="exception" class="progress-l-r"/>
-          </el-row>
-          <el-row class="indicator-title m-t">
-            <el-col :span="12" class="text-left text-standard-font">不良姿势提醒</el-col>
-            <el-col :span="12" class="text-standard-font text-right">{{ weekData.badPostureTimes }}/45次</el-col>
-          </el-row>
-          <el-row>
+          </el-col>
+          <el-col :span="3" class="text-standard-font">{{ weekData.nearworkDay }}/260分钟</el-col>
+        </el-row>
+        <el-row class="margin-bottom">
+          <el-col :span="3" class="text-center text-standard-font">不良姿势提醒</el-col>
+          <el-col :span="16">
             <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
-          </el-row>
-        </el-col>
-      </el-row>
+          </el-col>
+          <el-col :span="3" class="text-standard-font">{{ weekData.badPostureTimes }}/45次</el-col>
+        </el-row>
+        <WeekHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
+        <WeekHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
+        <WeekHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
+        <WeekHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
+        <WeekHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
+        <WeekHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+      </el-card>
+    </div>
+    <div id="pdfDom" class="pdf-container" style="position: absolute; top: 20px;">
+      <div class="clear">
+        <div class="header">
+          <h1>儿童用眼健康行为模式风险分析报告</h1>
+          <img :src="avatar" class="avatar" alt="">
+        </div>
+        <div class="info">
+          <ul>
+            <li>
+              <span class="title">姓名</span>
+              <span class="right-bar">名字</span>
+            </li>
+            <li>
+              <span class="title">年龄</span>
+              <span class="right-bar">12</span>
+            </li>
+            <li>
+              <span class="title">性别</span>
+              <span class="right-bar">男</span>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <span class="title">学校</span>
+              <span class="right-bar">****某某某某某某某学校</span>
+            </li>
+            <li>
+              <span class="title">检查日期</span>
+              <span class="right-bar">07/15-07/21</span>
+            </li>
+          </ul>
+        </div>
+        <div class="weekly-contents">
+          <h2 class="c-blue">本周评价得分 {{ weekData.healthIndex }}</h2>
+          <ul class="weekle-list">
+            <li>总戴镜时间 <span class="c-blue">{{ weekData.wearTime }}</span></li>
+            <li>总戴镜时间 <span class="c-blue">{{ weekData.upElement }}</span></li>
+            <li>累计危险因素 <span class="c-blue">{{ weekData.downElement }}</span></li>
+            <li>周一到周五平均分 <span class="c-blue">{{ weekData.weekScoreAvg }}</span></li>
+            <li>周六周日平均分 <span class="c-blue">{{ weekData.weekendScoreAvg }}</span></li>
+          </ul>
+          <!--<ul class="weekle-list next"> 1
+          </ul>-->
+        </div>
+        <el-row style="margin:0 10px;">
+          <el-col :span="16" style="padding-right:10px;">
+            <WeekHealthItemPdf :hours="outTimeArray" :times="timeArray" style="margin-top: -30px; marign-right:10px;"/>
+            <div class="assess-box">
+              该数值指孩子近距离用眼时低头、歪头过度时智能眼镜提醒矫正姿势的次数。采集计算标准： 室内情况下，当低头超过30度或歪头超过20度时镜腿提醒的次数累积总和。
+            </div>
+          </el-col>
+          <el-col :span="8" class="progress-bar">
+            <div class="adding-score c-green">加分项</div>
+            <el-row class="indicator-title">
+              <el-col :span="12" class="text-left text-standard-font">户外时间</el-col>
+              <el-col :span="12" class="text-standard-font text-right">{{ weekData.outTime }}/120分钟</el-col>
+            </el-row>
+            <el-row>
+              <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.outTimePercent" status="success" class="progress-l-r"/>
+            </el-row>
+            <el-row class="indicator-title m-t">
+              <el-col :span="12" class="text-left text-standard-font">光照摄入</el-col>
+              <el-col :span="12" class="text-standard-font text-right">{{ weekData.luxDay }}/360000lux</el-col>
+            </el-row>
+            <el-row>
+              <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.luxDayPercent" status="success" class="progress-l-r"/>
+            </el-row>
+            <el-row class="indicator-title m-t">
+              <el-col :span="12" class="text-left text-standard-font">运动步数</el-col>
+              <el-col :span="12" class="text-standard-font text-right">{{ weekData.stepCount }}/12000步</el-col>
+            </el-row>
+            <el-row>
+              <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.stepCountPercent" status="success" class="progress-l-r"/>
+            </el-row>
+            <div class="adding-score c-red m-t-1">减分项</div>
+            <el-row class="indicator-title">
+              <el-col :span="12" class="text-left text-standard-font">用眼负荷</el-col>
+              <el-col :span="12" class="text-standard-font text-right">{{ weekData.nearworkBurdenDay }}/720D</el-col>
+            </el-row>
+            <el-row>
+              <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
+            </el-row>
+            <el-row class="indicator-title m-t">
+              <el-col :span="12" class="text-left text-standard-font">近距离用眼时间</el-col>
+              <el-col :span="12" class="text-standard-font text-right">{{ weekData.nearworkDay }}/260分钟</el-col>
+            </el-row>
+            <el-row>
+              <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.nearworkDayPercent" status="exception" class="progress-l-r"/>
+            </el-row>
+            <el-row class="indicator-title m-t">
+              <el-col :span="12" class="text-left text-standard-font">不良姿势提醒</el-col>
+              <el-col :span="12" class="text-standard-font text-right">{{ weekData.badPostureTimes }}/45次</el-col>
+            </el-row>
+            <el-row>
+              <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
+            </el-row>
+          </el-col>
+        </el-row>
+      </div>
     </div>
   </div>
 </template>
@@ -303,8 +307,9 @@ export default {
 }
 .pdf-container{
   width: 800px;
-  height: 1px;
 }
+.clear:after{ display:block; content:""; clear:both;}
+.clear{ zoom:1;}
 .header{
   height: 280px;
   width: 100%;
