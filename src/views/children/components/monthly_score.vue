@@ -91,7 +91,7 @@
       <div class="clear">
         <div class="header">
           <h1>儿童用眼健康行为模式风险分析报告</h1>
-          <!--<img :src="avatar" class="avatar" alt="">-->
+          <img :src="avatar" class="avatar" alt="">
         </div>
         <div class="info">
           <ul>
@@ -317,6 +317,7 @@ export default {
   .el-progress__text {
     display: none !important;
   }
+  /*样式*/
 .pdf-container{
   width: 800px;
   position: absolute;
