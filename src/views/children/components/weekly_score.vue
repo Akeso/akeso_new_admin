@@ -101,25 +101,25 @@
           <ul>
             <li>
               <span class="title">姓名</span>
-              <span class="right-bar">名字</span>
+              <span class="right-bar">{{ child.name }}</span>
             </li>
             <li>
               <span class="title">年龄</span>
-              <span class="right-bar">12</span>
+              <span class="right-bar">{{ child.age }}</span>
             </li>
             <li>
               <span class="title">性别</span>
-              <span class="right-bar">男</span>
+              <span class="right-bar">{{ child.gender }}</span>
             </li>
           </ul>
           <ul>
-            <li>
-              <span class="title">学校</span>
-              <span class="right-bar">****某某某某某某某学校</span>
-            </li>
+            <!--<li>-->
+            <!--<span class="title">学校</span>-->
+            <!--<span class="right-bar">****某某某某某某某学校</span>-->
+            <!--</li>-->
             <li>
               <span class="title">检查日期</span>
-              <span class="right-bar">07/15-07/21</span>
+              <span class="right-bar">{{ startDate }} 到 {{ endDate }}</span>
             </li>
           </ul>
         </div>
@@ -137,9 +137,9 @@
         </div>
         <el-row style="margin:0 10px;">
           <el-col :span="16" style="padding-right:10px;">
-            <WeekHealthItemPdf :hours="outTimeArray" :times="timeArray" style="margin-top: -30px; marign-right:10px;"/>
+            <WeekHealthItemPdf :hours="healthIndexArray" :times="timeArray" style="margin-top: -30px; marign-right:10px;"/>
             <div class="assess-box">
-              该数值指孩子近距离用眼时低头、歪头过度时智能眼镜提醒矫正姿势的次数。采集计算标准： 室内情况下，当低头超过30度或歪头超过20度时镜腿提醒的次数累积总和。
+              该数值指当天孩子健康用眼得分情况。
             </div>
           </el-col>
           <el-col :span="8" class="progress-bar">
@@ -205,6 +205,12 @@ export default {
     userId: {
       type: String,
       default: ''
+    },
+    child: {
+      type: Object,
+      default: function() {
+        return {}
+      }
     }
   },
   data() {
@@ -212,6 +218,11 @@ export default {
       avatar,
       downloadUrl: '/api/a1/excels/weekly',
       timeArray: ['2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01'],
+      textHealthIndex: {
+        title: '健康评分',
+        des: '该数值指当天孩子健康用眼得分情况。',
+        unit: '分'
+      },
       textOutTime: {
         title: '户外时间',
         des: '该数值指当天孩子在户外走路、玩耍、运动等累积的时间。该数值与白天户外光照强度及户外紫外线有关，傍晚及夜晚在室外不算户外时间。',
@@ -242,6 +253,7 @@ export default {
         des: ' 该数值指孩子近距离用眼时低头、歪头过度时智能眼镜提醒矫正姿势的次数。采集计算标准： 室内情况下，当低头超过30度或歪头超过20度时镜腿提醒的次数累积总和。',
         unit: '次数'
       },
+      healthIndexArray: [0, 0, 0, 0, 0, 0, 0],
       outTimeArray: [0, 0, 0, 0, 0, 0, 0],
       luxDayArray: [0, 0, 0, 0, 0, 0, 0],
       stepCountArray: [0, 0, 0, 0, 0, 0, 0],
@@ -271,7 +283,9 @@ export default {
         nearworkDayPercent: 0,
         suggest: ''
       },
-      selectDate: new Date()
+      selectDate: new Date(),
+      startDate: '',
+      endDate: ''
     }
   },
   computed: {
@@ -286,12 +300,15 @@ export default {
     getData() {
       fetchWeekly({ child_id: this.userId, date: this.selectDate }).then(response => {
         this.timeArray = response.data.timeArray
+        this.healthIndexArray = response.data.healthIndexArray
         this.outTimeArray = response.data.outTimeArray
         this.luxDayArray = response.data.luxDayArray
         this.stepCountArray = response.data.stepCountArray
         this.nearworkBurdenDayArray = response.data.nearworkBurdenDayArray
         this.nearworkDayArray = response.data.nearworkDayArray
         this.badPostureTimesArray = response.data.badPostureTimesArray
+        this.startDate = response.data.startDate
+        this.endDate = response.data.endDate
         this.weekData = response.data
       })
     },

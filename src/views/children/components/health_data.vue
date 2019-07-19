@@ -34,8 +34,8 @@
         </el-col>
         <el-col :span="21">
           <DailyScore v-if="menuItemIndex === 'daily_score'" :user-id="userId"/>
-          <WeeklyScore v-if="menuItemIndex === 'weekly_score'" :user-id="userId"/>
-          <MonthlyScore v-if="menuItemIndex === 'monthly_score'" :user-id="userId"/>
+          <WeeklyScore v-if="menuItemIndex === 'weekly_score'" :user-id="userId" :child="child"/>
+          <MonthlyScore v-if="menuItemIndex === 'monthly_score'" :user-id="userId" :child="child"/>
           <!--<OutTime v-if="menuItemIndex === 'out_time'" :user-id="userId"/>-->
           <!--<LuxTake v-if="menuItemIndex === 'lux_take'" :user-id="userId"/>-->
           <!--<Posture v-if="menuItemIndex === 'posture'" :user-id="userId"/>-->
@@ -80,13 +80,20 @@ export default {
   data() {
     return {
       tabName: this.defaultTabName,
-      menuItemIndex: 'daily_score'
+      menuItemIndex: 'daily_score',
+      child: {}
     }
   },
   computed: {
     showFirst: function() {
       return this.tabName === 'first'
     }
+  },
+  created() {
+    this.eventBus.$on('updateChild', (data) => {
+      console.log('data => ', data)
+      this.child = data
+    })
   },
   methods: {
     handleClick(tab, event) {

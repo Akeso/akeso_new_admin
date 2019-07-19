@@ -161,6 +161,7 @@ export default {
       fetchChild({ id: this.childId }).then(response => {
         this.loadSuccess = true
         this.child = response.data
+        this.eventBus.$emit('updateChild', this.child)
       })
     },
     clickToShow() {

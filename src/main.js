@@ -19,8 +19,12 @@ import i18n from './lang' // Internationalization
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import eventBus from '@/utils/event_bus.js'
+
 import htmlToPdf from '@/utils/htmlToPdf'
 import htmlToPdfObj from '@/utils/htmlToPdfObj'
+
+Vue.prototype.eventBus = eventBus.eventBus
 
 Vue.use(htmlToPdf)
 Vue.use(htmlToPdfObj)
