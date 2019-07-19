@@ -93,7 +93,7 @@
     </div>
     <div id="pdfDom" class="pdf-container" style="">
       <div class="clear">
-        <div class="header">
+        <div class="header-box">
           <h1>儿童用眼健康行为模式风险分析报告</h1>
           <img :src="avatar" class="avatar" alt="">
         </div>
@@ -328,7 +328,7 @@ export default {
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
-.header{
+.header-box{
   height: 280px;
   /*width: 100%;
   background-image: url(../../../assets/images/combined.png);
