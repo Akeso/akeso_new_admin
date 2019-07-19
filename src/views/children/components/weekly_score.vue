@@ -91,7 +91,7 @@
         <WeekHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
       </el-card>
     </div>
-    <div id="pdfDom" class="pdf-container" style="position: absolute; top: 20px;">
+    <div id="pdfDom" class="pdf-container" style="">
       <div class="clear">
         <div class="header">
           <h1>儿童用眼健康行为模式风险分析报告</h1>
@@ -307,6 +307,8 @@ export default {
 }
 .pdf-container{
   width: 800px;
+  position: absolute;
+  top: 20px;
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
