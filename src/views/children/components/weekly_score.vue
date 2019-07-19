@@ -93,9 +93,9 @@
     </div>
     <div id="pdfDom" class="pdf-container" style="">
       <div class="clear">
-        <div class="header-box">
+        <div class="header">
           <h1>儿童用眼健康行为模式风险分析报告</h1>
-          <!--<img :src="avatar" class="avatar" alt="">-->
+          <img :src="avatar" class="avatar" alt="">
         </div>
         <div class="info">
           <ul>
@@ -328,20 +328,23 @@ export default {
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
-.header-box{
+.header{
   height: 280px;
-  /*width: 100%;
+  width: 100%;
   background-image: url(../../../assets/images/combined.png);
   background-repeat: no-repeat;
-  background-size: 100%;*/
+  background-size: 100%;
   text-align: center;
-  background:#1197ff;
+  position: relative;
 }
 .avatar{
   width:120px;
   height: 120px;
   display: inline-block;
-  margin-top: 60px;
+  position: absolute;
+  left: 50%;
+  top: 160px;
+  margin-left: -60px;
 }
 .header h1{
   margin: 0;
