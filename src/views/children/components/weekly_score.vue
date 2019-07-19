@@ -92,12 +92,11 @@
       </el-card>
     </div>
     <div id="pdfDom" class="pdf-container" style="">
-      <div style="height:50px; background:red;">1</div>
       <div class="clear">
-        <!--<div class="header">
+        <div class="header">
           <h1>儿童用眼健康行为模式风险分析报告</h1>
           <img :src="avatar" class="avatar" alt="">
-        </div>-->
+        </div>
         <div class="info">
           <ul>
             <li>
@@ -330,7 +329,8 @@ export default {
 .header{
   height: 280px;
   width: 100%;
-  background: url(../../../assets/images/combined.png) no-repeat top center;
+  background-image: url(../../../assets/images/combined.png);
+  background-repeat: no-repeat;
   background-size: 100% 100%;
   text-align: center;
 }
