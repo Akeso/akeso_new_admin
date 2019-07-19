@@ -319,8 +319,8 @@ export default {
   }
   .pdf-container{
   width: 800px;
-  position: absolute;
-  top: 20px;
+  /*position: absolute;*/
+  /*top: 20px;*/
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
