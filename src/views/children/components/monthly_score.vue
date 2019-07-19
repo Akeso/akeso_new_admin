@@ -317,25 +317,31 @@ export default {
   .el-progress__text {
     display: none !important;
   }
-  .pdf-container{
+.pdf-container{
   width: 800px;
-  /*position: absolute;*/
-  /*top: 20px;*/
+  position: absolute;
+  top: 20px;
+  left: 0;
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
 .header{
   height: 280px;
   width: 100%;
-  background: url(../../../assets/images/combined.png) no-repeat top center;
-  background-size: 100% 100%;
+  background-image: url(../../../assets/images/combined.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
   text-align: center;
+  position: relative;
 }
 .avatar{
   width:120px;
   height: 120px;
   display: inline-block;
-  margin-top: 60px;
+  position: absolute;
+  left: 50%;
+  top: 120px;
+  margin-left: -60px;
 }
 .header h1{
   margin: 0;
@@ -346,7 +352,7 @@ export default {
 }
 .info{
   padding-top:20px;
-  margin: -6px 20px 0;
+  margin: -20px 20px 0;
   background: #fff;
 }
 .info ul, li{

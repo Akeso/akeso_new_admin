@@ -195,7 +195,6 @@ import { fetchWeekly } from '@/api/reports'
 import WeekHealthItem from '../components/week_health_item'
 import WeekHealthItemPdf from '../components/week_health_item_pdf'
 import avatar from '@/assets/images/child_boy.png'
-import banner from '@/assets/images/combined.png'
 export default {
   components: { WeekHealthItem, WeekHealthItemPdf },
   props: {
@@ -213,7 +212,6 @@ export default {
   data() {
     return {
       avatar,
-      banner,
       downloadUrl: '/api/a1/excels/weekly',
       timeArray: ['2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01', '2019-01-01'],
       textHealthIndex: {
@@ -322,9 +320,9 @@ export default {
 }
 .pdf-container{
   width: 800px;
-  /*position: absolute;
+  position: absolute;
   top: 20px;
-  left:0px;*/
+  left:0px;
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
@@ -343,7 +341,7 @@ export default {
   display: inline-block;
   position: absolute;
   left: 50%;
-  top: 160px;
+  top: 120px;
   margin-left: -60px;
 }
 .header h1{
@@ -355,7 +353,7 @@ export default {
 }
 .info{
   padding-top:20px;
-  margin: -6px 20px 0;
+  margin: -20px 20px 0;
   background: #fff;
 }
 .info ul, li{
