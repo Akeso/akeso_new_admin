@@ -321,7 +321,6 @@ export default {
   width: 800px;
   position: absolute;
   top: 20px;
-  left: 0;
 }
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
@@ -352,8 +351,9 @@ export default {
 }
 .info{
   padding-top:20px;
-  margin: -20px 20px 0;
+  margin: -18px 20px 0;
   background: #fff;
+  position: relative;
 }
 .info ul, li{
   padding: 0;
