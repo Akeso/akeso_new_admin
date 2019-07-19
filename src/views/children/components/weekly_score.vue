@@ -92,7 +92,8 @@
       </el-card>
     </div>
     <div id="pdfDom" class="pdf-container" style="">
-      <div class="clear">
+      <div style="height:50px; background:red;">1</div>
+      <!--<div class="clear">
         <div class="header">
           <h1>儿童用眼健康行为模式风险分析报告</h1>
           <img :src="avatar" class="avatar" alt="">
@@ -113,10 +114,6 @@
             </li>
           </ul>
           <ul>
-            <!--<li>-->
-            <!--<span class="title">学校</span>-->
-            <!--<span class="right-bar">****某某某某某某某学校</span>-->
-            <!--</li>-->
             <li>
               <span class="title">检查日期</span>
               <span class="right-bar">{{ startDate }} 到 {{ endDate }}</span>
@@ -189,7 +186,7 @@
             </el-row>
           </el-col>
         </el-row>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
