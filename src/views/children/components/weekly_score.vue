@@ -328,11 +328,11 @@ export default {
 .header{
   height: 280px;
   width: 100%;
-  background-image: url(../../../assets/images/combined.png);
+  /*background-image: url(../../../assets/images/combined.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  text-align: center;
+  background-size: 100% 100%;*/
   position: relative;
+  background: red;
 }
 .avatar{
   width:120px;
@@ -347,6 +347,7 @@ export default {
   margin: 0;
   padding-top: 32px;
   font-weight: 400;
+  text-align: center;
   color: #fff;
   font-size: 40px;
 }
