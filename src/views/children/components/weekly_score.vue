@@ -95,7 +95,7 @@
       <div class="clear">
         <div class="header">
           <h1>儿童用眼健康行为模式风险分析报告周报1111</h1>
-          <img :src="avatar" class="avatar" alt="">
+          <img :src="avatar" class="avatar-icon" alt="">
         </div>
         <!--<div class="info">
           <ul>
@@ -334,10 +334,9 @@ export default {
   position: relative;
   background: red;
 }
-.avatar{
+.avatar-icon{
   width:120px;
   height: 120px;
-  display: inline-block;
   position: absolute;
   left: 50%;
   top: 120px;
