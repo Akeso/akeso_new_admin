@@ -326,7 +326,7 @@ export default {
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
 .header{
-  height: 110px;
+  height: 120px;
   width: 100%;
   /*background-image: url(../../../assets/images/combined.png);
   background-repeat: no-repeat;
