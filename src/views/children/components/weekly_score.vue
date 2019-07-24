@@ -97,7 +97,7 @@
           <h1>儿童用眼健康行为模式风险分析报告周报1111</h1>
           <!--<img :src="avatar" class="avatar" alt="">-->
         </div>
-        <div class="info">
+        <!--<div class="info">
           <ul>
             <li>
               <span class="title">姓名</span>
@@ -184,7 +184,7 @@
               <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
             </el-row>
           </el-col>
-        </el-row>
+        </el-row>-->
       </div>
     </div>
   </div>
