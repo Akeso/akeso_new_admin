@@ -10,10 +10,10 @@
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <el-badge value="new" class="item">
-            <img :src="avatarUrl" class="user-avatar">
-            <i class="el-icon-caret-bottom"/>
-          </el-badge>
+          <!--<el-badge value="new" class="item">-->
+          <img :src="avatarUrl" class="user-avatar">
+          <i class="el-icon-caret-bottom"/>
+          <!--</el-badge>-->
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
