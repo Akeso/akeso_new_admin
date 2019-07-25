@@ -45,9 +45,14 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="childName"
           label="绑定孩子姓名"
-          min-width="120"/>
+          min-width="120">
+          <template slot-scope="scope">
+            <router-link :to="'/preview/child/'+scope.row.childId">
+              <el-button type="text" size="small">{{ scope.row.childName }}</el-button>
+            </router-link>
+          </template>
+        </el-table-column>
         <el-table-column
           prop="deviceBindAt"
           label="绑定时间"
@@ -116,8 +121,23 @@ export default {
   },
   methods: {
     handleClick(val) {
-      unbindDevice({ id: val.id }).then(response => {
-        this.getList()
+      this.$confirm('此操作将解绑镜腿, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        unbindDevice({ id: val.id }).then(response => {
+          this.$message({
+            type: 'success',
+            message: '解绑成功!'
+          })
+          this.getList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        })
       })
     },
     getList() {
