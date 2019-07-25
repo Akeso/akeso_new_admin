@@ -33,6 +33,7 @@ export default {
     systemSetting: 'Setting',
     devices: 'device manage',
     messages: 'messages',
+    removements: 'apply for doctor',
     channels: 'channels',
     versions: 'Version',
     app_files: 'App Files'
