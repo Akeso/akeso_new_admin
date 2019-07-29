@@ -8,3 +8,10 @@ export function fetchList(query) {
   })
 }
 
+export function fetchCount() {
+  return request({
+    url: '/api/a1/channels/count',
+    method: 'get'
+  })
+}
+
