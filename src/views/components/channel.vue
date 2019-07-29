@@ -6,7 +6,12 @@
         <div :class="item.source === 'merchant' ? 'header-logr' : 'header-logl'"> <img :src="avatar" alt=""></div>
         <p class="chat-title">{{ item.source === 'merchant' ? merchantName : childName }}</p>
         <div class="chat-time">{{ item.createdAt }}</div>
-        <div :class="item.source === 'merchant' ? 'chat-info' : 'chat-infol'">{{ item.content }}</div>
+        <div :class="item.source === 'merchant' ? 'chat-info' : 'chat-infol'">
+          <span>
+            {{ item.content }}
+          </span>
+          <img :src="item.imageUrl" alt="">
+        </div>
       </el-row>
     </div>
     <el-input v-model="content" type="textarea" style="width: 100%;margin-top: 20px;"/>
