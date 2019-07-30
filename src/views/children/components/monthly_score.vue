@@ -91,7 +91,7 @@
       <div class="clear">
         <div class="header">
           <h1>儿童用眼健康行为模式风险分析报告</h1>
-          <img :src="avatar" class="avatar" alt="">
+          <!--<img :src="avatar" class="avatar" alt="">-->
         </div>
         <div class="info">
           <ul>
@@ -135,7 +135,7 @@
           <el-col :span="16" style="padding-right:10px;">
             <WeekHealthItemPdf :hours="healthIndexArray" :times="timeArray" style="margin-top: -30px; marign-right:10px;"/>
             <div class="assess-box">
-              该数值指当天孩子健康用眼得分情况。
+              {{ monthData.suggest }}
             </div>
           </el-col>
           <el-col :span="8" class="progress-bar">
@@ -326,13 +326,14 @@ export default {
 .clear:after{ display:block; content:""; clear:both;}
 .clear{ zoom:1;}
 .header{
-  height: 280px;
+  height: 120px;
   width: 100%;
-  background-image: url(../../../assets/images/combined.png);
+  /*background-image: url(../../../assets/images/combined.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  text-align: center;
+  text-align: center;*/
   position: relative;
+  background: #27adff;
 }
 .avatar{
   width:120px;
