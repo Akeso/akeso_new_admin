@@ -10,7 +10,7 @@
           <span>
             {{ item.content }}
           </span>
-          <img :src="item.imageUrl" alt="">
+          <img :src="item.thumbUrl" alt="">
         </div>
       </el-row>
     </div>
