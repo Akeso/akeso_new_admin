@@ -135,7 +135,7 @@
               <WeekHealthItemPdf :hours="healthIndexArray" :times="timeArray" style="margin-top: -30px;"/>
             </div>
             <div class="assess-box" style="padding-right:10px;">
-              该数值指当天孩子健康用眼得分情况。
+              {{ weekData.suggest }}
             </div>
           </el-col>
           <el-col :span="8" class="progress-bar">
