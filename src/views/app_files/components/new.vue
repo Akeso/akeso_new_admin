@@ -1,10 +1,13 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" title="新增蓝牙文件">
     <el-form :model="form">
-      <el-form-item :label-width="formLabelWidth" label="镜腿版本">
+      <el-form-item :label-width="formLabelWidth" label="镜腿大版本名">
         <el-input v-model="form.deviceType" autocomplete="off"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="版本号">
+      <el-form-item :label-width="formLabelWidth" label="镜腿小版本名">
+        <el-input v-model="form.secondType" autocomplete="off"/>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="升级版本号">
         <el-input v-model="form.version" autocomplete="off"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="描述">
@@ -37,6 +40,7 @@ export default {
       formLabelWidth: '120px',
       form: {
         deviceType: undefined,
+        secondType: undefined,
         des: undefined,
         version: undefined,
         file_id: undefined
