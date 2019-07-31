@@ -10,9 +10,9 @@
             <div>
               <img :src="avatarUrl" class="pan-thumb">
             </div>
-            <!--<div class="btn-user">-->
-            <!--<el-button type="success">编辑用户信息</el-button>-->
-            <!--</div>-->
+            <div class="btn-user">
+              <el-button type="success" @click="handleClickEditChild">编辑用户信息</el-button>
+            </div>
             <!--<div class="btn-user">-->
             <!--<el-button type="success" @click="handleClickContactUser">联系用户</el-button>-->
             <!--</div>-->
@@ -94,6 +94,7 @@
     </el-row>
     <Contact ref="contact" :child-id="childId"/>
     <Channel ref="channel"/>
+    <EditChild ref="edit_child" />
   </div>
 </template>
 
@@ -101,8 +102,9 @@
 import { fetchChild, unbindDoctor } from '@/api/children'
 import Contact from './contact'
 import Channel from '../../components/channel'
+import EditChild from '../../components/edit_child'
 export default {
-  components: { Contact, Channel },
+  components: { Contact, Channel, EditChild },
   props: {
     childId: {
       type: String,
@@ -129,6 +131,9 @@ export default {
     this.getInformation()
   },
   methods: {
+    handleClickEditChild() {
+      this.$refs.edit_child.handleShow(this.child)
+    },
     handleClickChannel() {
       if (this.childId) {
         this.$refs.channel.handleShow(this.childId)
