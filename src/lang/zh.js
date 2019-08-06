@@ -33,6 +33,7 @@ export default {
     devices: '镜腿设备',
     messages: '消息盒子',
     channels: '健康咨询',
+    popular_science_centers: '科普文章',
     removements: '解绑申请',
     versions: '版本管理',
     app_files: '蓝牙文件',

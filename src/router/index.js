@@ -195,6 +195,18 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/popular_science_centers',
+    component: Layout,
+    children: [
+      {
+        path: 'popular_science_centers',
+        name: 'PopularScienceCenters',
+        component: () => import('@/views/popular_science_centers/popular_science_centers'),
+        meta: { title: 'popular_science_centers', icon: 'bug' }
+      }
+    ]
+  },
+  {
     path: '/removements',
     component: Layout,
     children: [
