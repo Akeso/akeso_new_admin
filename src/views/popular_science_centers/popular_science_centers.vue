@@ -27,7 +27,7 @@
           label="Logo"
           min-width="50">
           <template slot-scope="scope">
-            <img :src="scope.row.avatarUrl" style="width: 50px; height: 50px;" alt="">
+            <img :src="scope.row.avatar_url" style="width: 50px; height: 50px;" alt="">
           </template>
         </el-table-column>
         <el-table-column
@@ -35,14 +35,14 @@
           label="发表机构"
           min-width="60"/>
         <el-table-column
-          prop="createdAt"
+          prop="created_at"
           label="发布时间"
           min-width="60"/>
         <el-table-column
           label="状态"
           min-width="40">
           <template slot-scope="scope">
-            <el-tag>{{ scope.row.isRelease ? '已发布' : '未发布' }}</el-tag>
+            <el-tag>{{ scope.row.is_release ? '已发布' : '未发布' }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
@@ -51,7 +51,7 @@
           <template slot-scope="scope">
             <el-button type="text" size="small">预览</el-button>
             <el-button type="text" size="small">发布</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
             <el-button type="text" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -61,14 +61,16 @@
       </div>
     </el-card>
     <New ref="create" />
+    <Edit ref="edit_center" />
   </div>
 </template>
 <script>
 import { fetchArticleTypes } from '@/api/article_types'
 import { fetchList } from '@/api/popular_science_centers'
 import New from './components/new'
+import Edit from './components/edit'
 export default {
-  components: { New },
+  components: { New, Edit },
   data() {
     return {
       article_types: [],
@@ -88,6 +90,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickEdit(val) {
+      this.$refs.edit_center.show(val)
+    },
     handleClickCreate() {
       this.$refs.create.show()
     },

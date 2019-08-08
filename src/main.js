@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VCharts from 'v-charts'
 import VeLine from 'v-charts/lib/line.common'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import Cookies from 'js-cookie'
 
@@ -35,6 +36,7 @@ Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
 Vue.use(VCharts)
+Vue.use(CKEditor)
 
 Vue.config.productionTip = false
 

@@ -62,8 +62,10 @@ export default {
         this.dialogFormVisible = false
       })
     },
-    show() {
+    show(val) {
       this.article_types = this.$store.state.articleTypes.article_types
+      Object.assign(this.temp, val)
+      console.log('temp => ', this.temp)
       this.dialogFormVisible = true
     },
     resetData() {
