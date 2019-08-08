@@ -197,6 +197,7 @@ export const constantRouterMap = [
   {
     path: '/popular_science_centers',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'popular_science_centers',
