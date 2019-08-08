@@ -32,7 +32,10 @@ export default {
     return {
       editor: ClassicEditor,
       editorConfig: {
-        // The configuration of the editor.
+        // toolbar: ['heading', 'imageUpload', 'bold', 'italic', 'imageStyle:full', 'link', 'undo', 'redo'],
+        ckfinder: {
+          uploadUrl: '/api/common/ckeditors'
+        }
       },
       dialogFormVisible: false,
       formLabelWidth: '120px',
