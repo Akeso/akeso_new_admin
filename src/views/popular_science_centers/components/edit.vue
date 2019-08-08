@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增文章" width="70%">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="编辑文章" width="70%">
     <el-form ref="ruleForm" :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="标题">
         <el-input v-model="temp.title" autocomplete="off" clearable style="width: 50%;" placeholder="标题"/>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { createItem } from '@/api/popular_science_centers'
+import { updateItem } from '@/api/popular_science_centers'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 export default {
   data() {
@@ -38,6 +38,7 @@ export default {
       formLabelWidth: '120px',
       article_types: [],
       temp: {
+        id: undefined,
         title: undefined,
         description: undefined,
         category: undefined,
@@ -54,11 +55,12 @@ export default {
       this.dialogFormVisible = false
     },
     handleClickSubmit() {
-      createItem(this.temp).then(res => {
+      updateItem(this.temp).then(res => {
         this.$message({
-          message: '创建成功',
+          message: '保存成功',
           type: 'success'
         })
+        this.$emit('updateSuccess')
         this.dialogFormVisible = false
       })
     },

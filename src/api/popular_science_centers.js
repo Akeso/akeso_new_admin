@@ -15,3 +15,11 @@ export function createItem(query) {
     data: query
   })
 }
+
+export function updateItem(query) {
+  return request({
+    url: '/api/a1/popular_science_centers/' + query.id,
+    method: 'put',
+    data: query
+  })
+}

@@ -60,8 +60,8 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
-    <New ref="create" />
-    <Edit ref="edit_center" />
+    <New ref="create" @createSuccess="getList"/>
+    <Edit ref="edit_center" @updateSuccess="getList"/>
   </div>
 </template>
 <script>

@@ -33,6 +33,7 @@ export default {
       editor: ClassicEditor,
       editorConfig: {
         // toolbar: ['heading', 'imageUpload', 'bold', 'italic', 'imageStyle:full', 'link', 'undo', 'redo'],
+        height: 500,
         ckfinder: {
           uploadUrl: '/api/common/ckeditors'
         }
@@ -62,6 +63,7 @@ export default {
           message: '创建成功',
           type: 'success'
         })
+        this.$emit('createSuccess')
         this.dialogFormVisible = false
       })
     },

@@ -209,6 +209,7 @@ export const constantRouterMap = [
   {
     path: '/removements',
     component: Layout,
+    only: true,
     children: [
       {
         path: 'removements',
