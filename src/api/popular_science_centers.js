@@ -30,3 +30,11 @@ export function deleteItem(query) {
     method: 'delete'
   })
 }
+
+export function releaseItem(query) {
+  return request({
+    url: '/api/a1/popular_science_centers/release',
+    method: 'post',
+    data: query
+  })
+}

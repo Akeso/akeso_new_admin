@@ -55,7 +55,7 @@
           min-width="60" >
           <template slot-scope="scope">
             <el-button type="text" size="small">预览</el-button>
-            <el-button type="text" size="small">发布</el-button>
+            <el-button type="text" size="small" @click="handleClickRelease(scope.row)">{{ scope.row.is_release ? '撤销发布' : '发布' }}</el-button>
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
@@ -72,7 +72,7 @@
 </template>
 <script>
 import { fetchArticleTypes } from '@/api/article_types'
-import { fetchList, deleteItem } from '@/api/popular_science_centers'
+import { fetchList, deleteItem, releaseItem } from '@/api/popular_science_centers'
 import New from './components/new'
 import Edit from './components/edit'
 import Avatar from './components/avatar'
@@ -97,23 +97,45 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickRelease(val) {
+      var str = val.is_release ? '确定取消发布吗？' : '确定要发布该文章吗？'
+      var res_str = val.is_release ? '取消发布成功' : '发布成功'
+      this.$confirm(str, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        releaseItem(val).then(res => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: res_str
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
     handleClickDelete(val) {
-      deleteItem(val).then(res => {
-        this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+      this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteItem(val).then(res => {
           this.getList()
           this.$message({
             type: 'success',
             message: '删除成功!'
           })
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
         })
       })
     },
