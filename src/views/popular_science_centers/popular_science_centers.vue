@@ -36,7 +36,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="badPostureTimes"
+          prop="merchant_name"
           label="发表机构"
           min-width="60"/>
         <el-table-column
