@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="编辑文章" width="70%">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="编辑文章" width="70%" @close="resetData">
     <el-form ref="ruleForm" :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="标题">
         <el-input v-model="temp.title" autocomplete="off" clearable style="width: 50%;" placeholder="标题"/>
@@ -34,6 +34,7 @@ export default {
       editorConfig: {
         // The configuration of the editor.
       },
+      uploadUrl: '/api/a1/popular_science_centers',
       dialogFormVisible: false,
       formLabelWidth: '120px',
       article_types: [],
@@ -72,6 +73,7 @@ export default {
     },
     resetData() {
       this.temp = {
+        id: undefined,
         title: undefined,
         description: undefined,
         category: undefined,
@@ -81,3 +83,8 @@ export default {
   }
 }
 </script>
+<style>
+  .ck-editor__editable {
+    min-height: 200px;
+  }
+</style>

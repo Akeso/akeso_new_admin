@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增文章" width="70%">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增文章" width="70%" @close="resetData">
     <el-form ref="ruleForm" :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="标题">
         <el-input v-model="temp.title" autocomplete="off" clearable style="width: 50%;" placeholder="标题"/>
@@ -33,9 +33,11 @@ export default {
       editor: ClassicEditor,
       editorConfig: {
         // toolbar: ['heading', 'imageUpload', 'bold', 'italic', 'imageStyle:full', 'link', 'undo', 'redo'],
-        height: 500,
         ckfinder: {
           uploadUrl: '/api/common/ckeditors'
+        },
+        rect: {
+          height: 500
         }
       },
       dialogFormVisible: false,
@@ -82,3 +84,31 @@ export default {
   }
 }
 </script>
+<style>
+.ck-editor__editable {
+  min-height: 200px;
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+</style>

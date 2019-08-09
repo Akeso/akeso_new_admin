@@ -23,3 +23,10 @@ export function updateItem(query) {
     data: query
   })
 }
+
+export function deleteItem(query) {
+  return request({
+    url: '/api/a1/popular_science_centers/' + query.id,
+    method: 'delete'
+  })
+}

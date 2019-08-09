@@ -24,10 +24,15 @@
           label="标题"
           min-width="180"/>
         <el-table-column
+          prop="category_name"
+          label="类型"
+          min-width="60"/>
+        <el-table-column
           label="Logo"
           min-width="50">
           <template slot-scope="scope">
             <img :src="scope.row.avatar_url" style="width: 50px; height: 50px;" alt="">
+            <el-button type="text" size="small" @click="handleClickAvatar(scope.row)">修改Logo</el-button>
           </template>
         </el-table-column>
         <el-table-column
@@ -52,7 +57,7 @@
             <el-button type="text" size="small">预览</el-button>
             <el-button type="text" size="small">发布</el-button>
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
-            <el-button type="text" size="small">删除</el-button>
+            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -62,15 +67,17 @@
     </el-card>
     <New ref="create" @createSuccess="getList"/>
     <Edit ref="edit_center" @updateSuccess="getList"/>
+    <Avatar ref="avatar_center" @updateSuccess="getList"/>
   </div>
 </template>
 <script>
 import { fetchArticleTypes } from '@/api/article_types'
-import { fetchList } from '@/api/popular_science_centers'
+import { fetchList, deleteItem } from '@/api/popular_science_centers'
 import New from './components/new'
 import Edit from './components/edit'
+import Avatar from './components/avatar'
 export default {
-  components: { New, Edit },
+  components: { New, Edit, Avatar },
   data() {
     return {
       article_types: [],
@@ -90,6 +97,30 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickDelete(val) {
+      deleteItem(val).then(res => {
+        this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+      })
+    },
+    handleClickAvatar(val) {
+      console.log('val => ', val)
+      this.$refs.avatar_center.show(val)
+    },
     handleClickEdit(val) {
       this.$refs.edit_center.show(val)
     },
