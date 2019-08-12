@@ -6,26 +6,21 @@
 
     <div class="right-menu">
 
+      <channel id="screenfull" class="right-menu-item hover-effect" />
+
       <lang-select class="international right-menu-item"/>
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <el-badge value="new" class="item">
-            <img :src="avatarUrl" class="user-avatar">
-            <i class="el-icon-caret-bottom"/>
-          </el-badge>
+          <!--<el-badge value="new" class="item">-->
+          <img :src="avatarUrl" class="user-avatar">
+          <i class="el-icon-caret-bottom"/>
+          <!--</el-badge>-->
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>
               {{ $t('navbar.dashboard') }}
-            </el-dropdown-item>
-          </router-link>
-          <router-link to="/channels/channels">
-            <el-dropdown-item>
-              <el-badge value="new" class="item">
-                <span @click="logout">消息</span>
-              </el-badge>
             </el-dropdown-item>
           </router-link>
           <el-dropdown-item divided style="margin-top: 5px;">
@@ -42,9 +37,10 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import LangSelect from '@/components/LangSelect'
+import Channel from '@/components/Channel'
 
 export default {
-  components: { Breadcrumb, Hamburger, LangSelect },
+  components: { Breadcrumb, Hamburger, LangSelect, Channel },
   computed: {
     ...mapGetters([
       'sidebar',

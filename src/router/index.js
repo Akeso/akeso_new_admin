@@ -156,19 +156,6 @@ export const constantRouterMap = [
       }
     ]
   },
-  // {
-  //   path: '/organizations',
-  //   component: Layout,
-  //   only: true,
-  //   children: [
-  //     {
-  //       path: 'organizations',
-  //       name: 'Organizations',
-  //       component: () => import('@/views/organizations/organizations'),
-  //       meta: { title: 'organizations', icon: 'people' }
-  //     }
-  //   ]
-  // },
   {
     path: '/doctors',
     component: Layout,
@@ -195,18 +182,6 @@ export const constantRouterMap = [
       }
     ]
   },
-  // {
-  //   path: '/messages',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'messages',
-  //       name: 'Messages',
-  //       component: () => import('@/views/messages/messages'),
-  //       meta: { title: 'messages', icon: 'bug' }
-  //     }
-  //   ]
-  // },
   {
     path: '/channels',
     component: Layout,
@@ -216,6 +191,31 @@ export const constantRouterMap = [
         name: 'Channels',
         component: () => import('@/views/channels/channels'),
         meta: { title: 'channels', icon: 'bug' }
+      }
+    ]
+  },
+  {
+    path: '/popular_science_centers',
+    component: Layout,
+    children: [
+      {
+        path: 'popular_science_centers',
+        name: 'PopularScienceCenters',
+        component: () => import('@/views/popular_science_centers/popular_science_centers'),
+        meta: { title: 'popular_science_centers', icon: 'bug' }
+      }
+    ]
+  },
+  {
+    path: '/removements',
+    component: Layout,
+    only: true,
+    children: [
+      {
+        path: 'removements',
+        name: 'Removements',
+        component: () => import('@/views/removements/removements'),
+        meta: { title: 'removements', icon: 'bug' }
       }
     ]
   },

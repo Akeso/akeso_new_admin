@@ -33,6 +33,8 @@ export default {
     systemSetting: 'Setting',
     devices: 'device manage',
     messages: 'messages',
+    popular_science_centers: 'popular science centers',
+    removements: 'apply for doctor',
     channels: 'channels',
     versions: 'Version',
     app_files: 'App Files'

@@ -16,12 +16,16 @@
         @sort-change="handleColumnSort">
         <el-table-column
           prop="deviceType"
-          label="镜腿版本"
-          min-width="40"/>
+          label="镜腿大版本名"
+          min-width="60"/>
+        <el-table-column
+          prop="secondType"
+          label="镜腿小版本名"
+          min-width="60"/>
         <el-table-column
           prop="version"
-          label="版本号"
-          min-width="40"/>
+          label="升级版本号"
+          min-width="50"/>
         <el-table-column
           prop="fileName"
           label="文件名"
@@ -29,14 +33,14 @@
         <el-table-column
           prop="fileSize"
           label="文件大小(B)"
-          min-width="40"/>
+          min-width="50"/>
         <el-table-column
           prop="createdAt"
           label="创建时间"
           min-width="60"/>
         <el-table-column
           label="操作"
-          min-width="60" >
+          min-width="40" >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClick(scope.row)">编辑</el-button>
           </template>

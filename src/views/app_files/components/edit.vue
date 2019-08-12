@@ -1,10 +1,13 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" title="修改蓝牙文件">
     <el-form :model="form">
-      <el-form-item :label-width="formLabelWidth" label="镜腿版本">
+      <el-form-item :label-width="formLabelWidth" label="镜腿大版本名">
         <el-input v-model="form.deviceType" autocomplete="off"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="版本号">
+      <el-form-item :label-width="formLabelWidth" label="镜腿小版本名">
+        <el-input v-model="form.secondType" autocomplete="off"/>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="升级版本号">
         <el-input v-model="form.version" autocomplete="off"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="描述">
@@ -38,6 +41,7 @@ export default {
       form: {
         id: undefined,
         deviceType: undefined,
+        secondType: undefined,
         des: undefined,
         version: undefined,
         file_id: undefined
@@ -48,6 +52,7 @@ export default {
     show: function(val) {
       this.form.id = val.id
       this.form.deviceType = val.deviceType
+      this.form.secondType = val.secondType
       this.form.des = val.des
       this.form.version = val.version
       this.dialogFormVisible = true

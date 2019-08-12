@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>镜腿设备</span>
+        <span>申请解绑记录</span>
       </div>
 
       <el-row>
@@ -12,14 +12,6 @@
         <el-input v-model="listQuery.childName" label="孩子姓名" placeholder="姓名" style="width: 120px;" class="filter-item" clearable/>
       </el-row>
       <el-row style="margin-top: 10px;">
-        镜腿型号：
-        <el-select v-model="listQuery.deviceType" :placeholder="$t('device.deviceType')" clearable class="filter-item" style="width: 120px">
-          <el-option v-for="item in deviceTypeOptions" :key="item.key" :label="item.value" :value="item.key"/>
-        </el-select>
-        绑定状态：
-        <el-select v-model="listQuery.state" style="width: 120px" class="filter-item" @change="handleFilter">
-          <el-option v-for="item in stateOptions" :key="item.key" :label="item.value" :value="item.key"/>
-        </el-select>
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
       </el-row>
@@ -30,21 +22,6 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
-          prop="macAddress"
-          label="MAC地址"
-          min-width="160"/>
-        <el-table-column
-          prop="deviceType"
-          label="型号"
-          min-width="60"/>
-        <el-table-column
-          label="绑定状态"
-          min-width="90">
-          <template slot-scope="scope">
-            <el-tag :type="scope.row.state | stateFilter">{{ scope.row.stateName }}</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column
           label="绑定孩子姓名"
           min-width="120">
           <template slot-scope="scope">
@@ -54,13 +31,20 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="deviceBindAt"
-          label="绑定时间"
-          min-width="120"/>
-        <el-table-column
           prop="createdAt"
-          label="创建时间"
-          min-width="120"/>
+          label="申请时间"
+          min-width="160"/>
+        <el-table-column
+          prop="doctorName"
+          label="绑定机构"
+          min-width="140"/>
+        <el-table-column
+          label="状态"
+          min-width="90">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.state | stateFilter">{{ scope.row.state | stateFilterVal }}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column
           label="操作"
           min-width="60" >
@@ -77,32 +61,28 @@
   </div>
 </template>
 <script>
-import { fetchList, unbindDevice } from '@/api/devices'
-const deviceTypeOptions = [
-  { key: '', value: '全部' },
-  { key: 'v1', value: '一代' },
-  { key: 'v2', value: '二代' },
-  { key: 'v3', value: '三代' }
-]
-const stateOptions = [
-  { key: '', value: '全部' },
-  { key: 'bind', value: '已绑定' },
-  { key: 'unbind', value: '未绑定' }
-]
+import { fetchList } from '@/api/removements'
+import { unbind } from '@/api/removements'
+
 export default {
   filters: {
     stateFilter(status) {
       const statusMap = {
-        bind: 'success',
-        unbind: 'info'
+        pending: 'success',
+        done: 'info'
+      }
+      return statusMap[status]
+    },
+    stateFilterVal(status) {
+      const statusMap = {
+        pending: '申请中',
+        done: '完成'
       }
       return statusMap[status]
     }
   },
   data() {
     return {
-      deviceTypeOptions,
-      stateOptions,
       list: null,
       total: null,
       listLoading: true,
@@ -121,23 +101,19 @@ export default {
   },
   methods: {
     handleClick(val) {
-      this.$confirm('此操作将解绑镜腿, 是否继续?', '提示', {
+      this.$confirm('确定要解绑该用户绑定的医生吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        unbindDevice({ id: val.id }).then(response => {
+        unbind({ id: val.id }).then(res => {
           this.$message({
-            type: 'success',
-            message: '解绑成功!'
+            message: '解绑成功',
+            type: 'success'
           })
           this.getList()
         })
       }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消'
-        })
       })
     },
     getList() {
