@@ -389,7 +389,7 @@ export default {
     background: #e0f3ff;
     color:#27adff;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 14px;
     border-radius: 4px;
   }
   .title-header p{
