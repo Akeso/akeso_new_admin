@@ -72,8 +72,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
-                  <p class="left">户外时间120分钟/天</p>
-                  <p class="right">参考值80分钟/天</p>
+                  <p class="left">户外时间参考值120分钟/天</p>
+                  <!--<p class="right">户外时间80分钟/天</p>-->
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -89,8 +89,8 @@
               </el-col>
               <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
-                  <p class="left">户外阳光摄入量36Wlux/天 </p>
-                  <p class="right">参考值24Wlux/天 </p>
+                  <p class="left">户外阳光摄入量建议36Wlux/天 </p>
+                  <!--<p class="right">参考值24Wlux/天 </p>-->
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -106,8 +106,8 @@
               </el-col>
               <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
-                  <p class="left">运动步数12000步/天</p>
-                  <p class="right">参考值8000步/天</p>
+                  <p class="left">运动步数建议12000步/天</p>
+                  <!--<p class="right">参考值8000步/天</p>-->
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -132,8 +132,8 @@
             <el-row :gutter="32">
               <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
-                  <p class="left">颈椎与用眼负担720D/天</p>
-                  <p class="right">参考值480D/天</p>
+                  <p class="left">颈椎与用眼负担建议720D/天</p>
+                  <!--<p class="right">参考值480D/天</p>-->
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -149,8 +149,8 @@
               </el-col>
               <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
-                  <p class="left">不良用眼姿势45次/天</p>
-                  <p class="right">参考值30次/天</p>
+                  <p class="left">不良用眼姿势建议45次/天</p>
+                  <!--<p class="right">参考值30次/天</p>-->
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -166,8 +166,8 @@
               </el-col>
               <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
-                  <p class="left">近距用眼时间240分钟/天</p>
-                  <p class="right">参考值160分钟/天</p>
+                  <p class="left">近距用眼时间建议240分钟/天</p>
+                  <!--<p class="right">参考值160分钟/天</p>-->
                 </div>
                 <echarts-legend/>
                 <div class="chart-wrapper">
@@ -389,7 +389,7 @@ export default {
     background: #e0f3ff;
     color:#27adff;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 12px;
     border-radius: 4px;
   }
   .title-header p{
@@ -455,6 +455,7 @@ export default {
   }
   .info-con{
     padding: 10px 14px;
+    height: 170px;
   }
   .info-con h3{
     font-size: 15px;
