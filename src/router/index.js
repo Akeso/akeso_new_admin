@@ -116,10 +116,10 @@ export const constantRouterMap = [
     meta: { title: 'intelligentData', icon: 'example' },
     children: [
       {
-        path: 'group_report',
-        name: 'groupReport',
-        component: () => import('@/views/intelligent_data/group_report'),
-        meta: { title: 'group_report', icon: 'table' }
+        path: 'sorting',
+        name: 'sorting',
+        component: () => import('@/views/intelligent_data/sorting'),
+        meta: { title: 'sorting', icon: 'table' }
       },
       {
         path: 'analytics',
@@ -128,10 +128,10 @@ export const constantRouterMap = [
         meta: { title: 'analytics', icon: 'table' }
       },
       {
-        path: 'sorting',
-        name: 'sorting',
-        component: () => import('@/views/intelligent_data/sorting'),
-        meta: { title: 'sorting', icon: 'table' }
+        path: 'group_report',
+        name: 'groupReport',
+        component: () => import('@/views/intelligent_data/group_report'),
+        meta: { title: 'group_report', icon: 'table' }
       }
     ]
   },
@@ -172,7 +172,7 @@ export const constantRouterMap = [
   {
     path: '/frequency',
     component: Layout,
-    // only: true,
+    only: true,
     children: [
       {
         path: 'frequency',

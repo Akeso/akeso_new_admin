@@ -54,7 +54,7 @@
           label="操作"
           min-width="60" >
           <template slot-scope="scope">
-            <el-button type="text" size="small">预览</el-button>
+            <!--<el-button type="text" size="small">预览</el-button>-->
             <el-button type="text" size="small" @click="handleClickRelease(scope.row)">{{ scope.row.is_release ? '撤销发布' : '发布' }}</el-button>
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>

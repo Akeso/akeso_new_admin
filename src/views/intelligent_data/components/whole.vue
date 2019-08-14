@@ -87,7 +87,7 @@
           <td class="title-font">
             <el-tooltip placement="top" effect="light">
               <div slot="content">该值代表在选择的时间段内，智能儿童<br>的每日近距离用眼未超过建议的参考值情况与<br>所有智能儿童近距离用眼情况的比值，<br>该值越大，说明儿童的用眼情况越好。</div>
-              <span>近距用眼不良未超标率</span>
+              <span>近距用眼不良正常率</span>
             </el-tooltip>
           </td>
           <td>
