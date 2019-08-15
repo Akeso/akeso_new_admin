@@ -24,11 +24,13 @@ import eventBus from '@/utils/event_bus.js'
 
 import htmlToPdf from '@/utils/htmlToPdf'
 import htmlToPdfObj from '@/utils/htmlToPdfObj'
+import generateShow from '@/utils/i18n'
 
 Vue.prototype.eventBus = eventBus.eventBus
 
 Vue.use(htmlToPdf)
 Vue.use(htmlToPdfObj)
+Vue.use(generateShow)
 Vue.component(VeLine.name, VeLine)
 
 Vue.use(ElementUI, {

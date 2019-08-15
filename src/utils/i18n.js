@@ -8,3 +8,17 @@ export function generateTitle(title) {
   }
   return title
 }
+
+export default{
+  install(Vue, options) {
+    Vue.prototype.generateShow = function(name) {
+      const hasKey = this.$te(name)
+      const translatedTitle = this.$t(name) // $t :this method from vue-i18n, inject in @/lang/index.js
+
+      if (hasKey) {
+        return translatedTitle
+      }
+      return name
+    }
+  }
+}

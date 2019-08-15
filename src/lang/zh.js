@@ -1,4 +1,8 @@
 export default {
+  common: {
+    allchildren: '全部儿童',
+    name: '姓名'
+  },
   login: {
     logIn: '登录',
     username: '账号',

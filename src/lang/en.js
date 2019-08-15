@@ -1,4 +1,8 @@
 export default {
+  common: {
+    allchildren: 'All Children',
+    name: 'Name'
+  },
   login: {
     logIn: 'Log in',
     username: 'Username',
