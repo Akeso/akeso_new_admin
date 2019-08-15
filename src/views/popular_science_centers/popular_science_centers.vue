@@ -48,7 +48,7 @@
           min-width="50">
           <template slot-scope="scope">
             <el-tag>{{ scope.row.state | stateFilter }}</el-tag>
-            <el-button v-if="isAdmin" type="text" size="small" @click="handleClickChangeState(scope.row)">{{ scope.row.state | stateOperateFilter }}</el-button>
+            <el-button v-if="isAdmin && !scope.row.is_release" type="text" size="small" @click="handleClickChangeState(scope.row)">{{ scope.row.state | stateOperateFilter }}</el-button>
           </template>
         </el-table-column>
         <el-table-column
