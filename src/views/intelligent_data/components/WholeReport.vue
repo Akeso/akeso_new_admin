@@ -27,9 +27,9 @@
       <!--<el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>-->
       <el-card id="pdfDom" class="box-card">
         <div class="clearfix header">
-          <h1>用眼健康因素监测报告</h1>
+          <h1>青少年用眼健康因素监测报告</h1>
           <div class="header-info">
-            <!--<span class="item">学校：{{ infoData.school }}</span>-->
+            <span class="item">机构：{{ name }}</span>
             <!--<span class="item">班级：{{ infoData.clasGrade }}</span>-->
             <span class="item">人数：{{ infoData.totalCount }}人</span>
             <span class="item">男生：{{ infoData.maleCount }}人</span>
@@ -188,6 +188,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import { fetchWholeReport } from '@/api/reports'
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
 import BarChart from './BarChart'
@@ -252,8 +253,6 @@ export default {
         upRate: 0
       },
       infoData: {
-        school: '——',
-        clasGrade: '——',
         totalCount: 0,
         maleCount: 0,
         femaleCount: 0,
@@ -267,6 +266,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['name']),
     htmlTitle: function() {
       return '导出报告'
     }
