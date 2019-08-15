@@ -21,7 +21,7 @@ export default {
     high_warn: '预警随访',
     intelligentData: '智能数据',
     analytics: '群体分析',
-    group_report: '生成报告',
+    group_report: '校园报告',
     sorting: '数据查询',
     intelligent: '智能儿童',
     showChild: '儿童详情',
