@@ -1,15 +1,15 @@
 <template>
   <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="编辑儿童信息" width="70%">
-    <el-form ref="ruleForm" :rules="rules" :model="temp" label-position="right" label-width="100px" style="width: 60%; margin-left:80px;">
+    <el-form ref="ruleForm" :model="temp" label-position="right" label-width="100px" style="width: 60%; margin-left:80px;">
       <el-form-item label="孩子姓名" prop="name">
         <el-input v-model="temp.name" class="filter-item" placeholder="输入孩子姓名"/>
       </el-form-item>
-      <el-form-item label="家长姓名">
-        <el-input v-model="temp.parent_name" class="filter-item" placeholder="输入家长姓名"/>
-      </el-form-item>
-      <el-form-item label="联系方式" prop="phone">
-        <el-input v-model="temp.phone" class="filter-item" placeholder="输入家长电话"/>
-      </el-form-item>
+      <!--<el-form-item label="家长姓名">-->
+      <!--<el-input v-model="temp.parent_name" class="filter-item" placeholder="输入家长姓名"/>-->
+      <!--</el-form-item>-->
+      <!--<el-form-item label="联系方式" prop="phone">-->
+      <!--<el-input v-model="temp.phone" class="filter-item" placeholder="输入家长电话"/>-->
+      <!--</el-form-item>-->
       <el-form-item label="孩子性别" prop="gender">
         <el-select v-model="temp.gender" class="filter-item">
           <el-option v-for="item in genderOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
@@ -29,10 +29,9 @@
       <el-form-item label="体重" prop="type">
         <el-input v-model="temp.weight" class="filter-item" placeholder="输入体重"/>
       </el-form-item>
-      <el-form-item label="民族" prop="type">
-        <el-input v-model="temp.nation" class="filter-item" placeholder="输入民族"/>
-      </el-form-item>
       <el-form-item label="地区" prop="type">
+        {{ temp.locationString }}
+        <br>
         <!--<el-input v-model="temp.name" class="filter-item" placeholder="输入孩子姓名"/>-->
         <el-select v-model="temp.province_code" placeholder="请选择" style="width: 130px;">
           <el-option
@@ -64,7 +63,7 @@
   </el-dialog>
 </template>
 <script>
-import { createChild } from '@/api/children'
+import { updateChild } from '@/api/children'
 import { fetchChinaData } from '@/api/china_map'
 const genderOptions = [
   { key: 'male', display_name: '男' },
@@ -75,6 +74,7 @@ export default {
     return {
       dialogVisible: false,
       temp: {
+        id: undefined,
         name: undefined,
         parent_name: undefined,
         phone: undefined,
@@ -87,16 +87,8 @@ export default {
         city_code: undefined,
         district_code: undefined
       },
+      aa: undefined,
       genderOptions: genderOptions,
-      rules: {
-        name: [
-          { required: true, message: '请输入姓名', trigger: 'blur' },
-          { min: 1, max: 6, message: '长度在 1 到 6 个字符', trigger: 'blur' }
-        ],
-        phone: [
-          { required: true, message: '请输入手机号', trigger: 'blur' }
-        ]
-      },
       provinceData: [],
       cityData: [],
       districtData: []
@@ -113,33 +105,25 @@ export default {
       this.temp.district_code = undefined
     }
   },
+  created() {
+  },
   methods: {
     handlerClickCancel() {
       this.$refs['ruleForm'].resetFields()
-      this.temp = {
-        name: undefined,
-        parent_name: undefined,
-        phone: undefined,
-        gender: 'male',
-        birthday: new Date(),
-        height: undefined,
-        weight: undefined,
-        nation: undefined,
-        province_code: undefined,
-        city_code: undefined,
-        district_code: undefined
-      }
+      this.resetData()
       this.dialogVisible = false
     },
     handleShow(val) {
+      console.log('aaaaaaaaaaaaaa => ', val)
+      this.temp = Object.assign(this.temp, val)
       this.dialogVisible = true
-      this.temp = val
-      // this.getProvinceData()
+      this.getProvinceData()
     },
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
-          createChild(this.temp).then(response => {
+          updateChild(this.temp).then(res => {
+            this.eventBus.$emit('updateChildInformation', res.data)
             this.dialogVisible = false
           })
         } else {
@@ -161,7 +145,26 @@ export default {
       fetchChinaData({ city_code: val }).then(response => {
         this.districtData = response.data
       })
+    },
+    resetData() {
+      this.temp = {
+        name: undefined,
+        parent_name: undefined,
+        phone: undefined,
+        gender: 'male',
+        birthday: new Date(),
+        height: undefined,
+        weight: undefined,
+        province_code: undefined,
+        city_code: undefined,
+        district_code: undefined
+      }
     }
   }
 }
 </script>
+<style>
+  .filter-item {
+    margin-left: 0px !important;
+  }
+</style>

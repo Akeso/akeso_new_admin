@@ -3,13 +3,13 @@
     <div style="position: relative; background:#fff; z-index:1;">
       <el-row style="margin: 10px;">
         <el-col>
-          <label for="">选择日期</label>
+          <label for="">选择月份</label>
           <el-date-picker
             :editable="false"
             :clearable="false"
             v-model="selectDate"
-            type="date"
-            placeholder="选择日期"
+            type="month"
+            placeholder="选择月份"
             value-format="yyyy-MM-dd"
             @change="changeDate"/>
         </el-col>

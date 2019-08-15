@@ -45,3 +45,11 @@ export function unbindDoctor(query) {
     method: 'get'
   })
 }
+
+export function updateChild(query) {
+  return request({
+    url: '/api/a1/children/' + query.id,
+    method: 'put',
+    data: query
+  })
+}

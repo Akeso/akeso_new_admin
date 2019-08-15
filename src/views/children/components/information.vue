@@ -13,9 +13,6 @@
             <div class="btn-user">
               <el-button type="success" @click="handleClickEditChild">编辑用户信息</el-button>
             </div>
-            <!--<div class="btn-user">-->
-            <!--<el-button type="success" @click="handleClickContactUser">联系用户</el-button>-->
-            <!--</div>-->
             <div class="btn-user">
               <el-button type="success" @click="handleClickChannel">健康咨询</el-button>
             </div>
@@ -30,7 +27,7 @@
                   <td style="width: 20%;">姓名</td>
                   <td style="width: 15%">{{ child.name }}</td>
                   <td style="width: 15%">性别</td>
-                  <td style="width: 15%">{{ child.gender }}</td>
+                  <td style="width: 15%">{{ child.gender | genderFilter }}</td>
                   <td style="width: 20%">年龄</td>
                   <td>{{ child.age }}</td>
                 </tr>
@@ -105,6 +102,15 @@ import Channel from '../../components/channel'
 import EditChild from '../../components/edit_child'
 export default {
   components: { Contact, Channel, EditChild },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女'
+      }
+      return statusMap[status]
+    }
+  },
   props: {
     childId: {
       type: String,
@@ -129,6 +135,9 @@ export default {
   created() {
     this.loadSuccess = false
     this.getInformation()
+    this.eventBus.$on('updateChildInformation', (data) => {
+      this.child = data
+    })
   },
   methods: {
     handleClickEditChild() {
@@ -137,11 +146,6 @@ export default {
     handleClickChannel() {
       if (this.childId) {
         this.$refs.channel.handleShow(this.childId)
-      }
-    },
-    handleClickContactUser() {
-      if (this.childId) {
-        this.$refs.contact.handleShow()
       }
     },
     handleClickUnbindDoctor() {
