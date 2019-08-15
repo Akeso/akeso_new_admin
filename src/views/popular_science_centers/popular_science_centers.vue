@@ -41,11 +41,19 @@
           min-width="60"/>
         <el-table-column
           prop="created_at"
-          label="发布时间"
+          label="创建时间"
           min-width="60"/>
         <el-table-column
-          label="状态"
-          min-width="40">
+          label="审核状态"
+          min-width="50">
+          <template slot-scope="scope">
+            <el-tag>{{ scope.row.state | stateFilter }}</el-tag>
+            <el-button v-if="isAdmin" type="text" size="small" @click="handleClickChangeState(scope.row)">{{ scope.row.state | stateOperateFilter }}</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="发布状态"
+          min-width="50">
           <template slot-scope="scope">
             <el-tag>{{ scope.row.is_release ? '已发布' : '未发布' }}</el-tag>
           </template>
@@ -55,9 +63,11 @@
           min-width="60" >
           <template slot-scope="scope">
             <!--<el-button type="text" size="small">预览</el-button>-->
-            <el-button type="text" size="small" @click="handleClickRelease(scope.row)">{{ scope.row.is_release ? '撤销发布' : '发布' }}</el-button>
-            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
-            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button v-if="isAdmin" type="text" size="small" @click="handleClickRelease(scope.row)">{{ scope.row.is_release ? '撤销发布' : '发布' }}</el-button>
+            <div v-if="!scope.row.is_release && scope.row.state == 'pending'">
+              <el-button type="text" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
+              <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -72,12 +82,28 @@
 </template>
 <script>
 import { fetchArticleTypes } from '@/api/article_types'
-import { fetchList, deleteItem, releaseItem } from '@/api/popular_science_centers'
+import { fetchList, deleteItem, releaseItem, changeItemState } from '@/api/popular_science_centers'
 import New from './components/new'
 import Edit from './components/edit'
 import Avatar from './components/avatar'
 export default {
   components: { New, Edit, Avatar },
+  filters: {
+    stateFilter(status) {
+      const statusMap = {
+        pending: '审核中',
+        passed: '审核通过'
+      }
+      return statusMap[status]
+    },
+    stateOperateFilter(status) {
+      const statusMap = {
+        pending: '通过',
+        passed: '取消'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       article_types: [],
@@ -92,13 +118,40 @@ export default {
       }
     }
   },
+  computed: {
+    isAdmin: function() {
+      return this.$store.getters.baseType === 'admin'
+    }
+  },
   created() {
     this.getArticleTypes()
     this.getList()
   },
   methods: {
+    handleClickChangeState(val) {
+      var str = val.state === 'passed' ? '确定取消审核该文章吗？' : '确定要审核通过该文章吗？'
+      var res_str = val.state === 'passed' ? '取消审核成功' : '审核通过成功'
+      this.$confirm(str, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        changeItemState(val).then(res => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: res_str
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })
+      })
+    },
     handleClickRelease(val) {
-      var str = val.is_release ? '确定取消发布吗？' : '确定要发布该文章吗？'
+      var str = val.is_release ? '确定取消发布该文章吗？' : '确定要发布该文章吗？'
       var res_str = val.is_release ? '取消发布成功' : '发布成功'
       this.$confirm(str, '提示', {
         confirmButtonText: '确定',
@@ -115,7 +168,7 @@ export default {
       }).catch(() => {
         this.$message({
           type: 'info',
-          message: '已取消删除'
+          message: '已取消操作'
         })
       })
     },

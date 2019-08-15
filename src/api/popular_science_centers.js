@@ -38,3 +38,11 @@ export function releaseItem(query) {
     data: query
   })
 }
+
+export function changeItemState(query) {
+  return request({
+    url: '/api/a1/popular_science_centers/change_state',
+    method: 'get',
+    params: query
+  })
+}
