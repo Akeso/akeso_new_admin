@@ -53,3 +53,11 @@ export function updateChild(query) {
     data: query
   })
 }
+
+export function updateChildTags(query) {
+  return request({
+    url: '/api/a1/children/update_tags',
+    method: 'put',
+    data: query
+  })
+}
