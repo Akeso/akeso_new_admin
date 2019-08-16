@@ -3,13 +3,13 @@
     <div style="position: relative; background:#fff; z-index:1;">
       <el-row style="margin: 10px;">
         <el-col>
-          <label for="">选择日期</label>
+          <label for="">选择月份</label>
           <el-date-picker
             :editable="false"
             :clearable="false"
             v-model="selectDate"
-            type="date"
-            placeholder="选择日期"
+            type="month"
+            placeholder="选择月份"
             value-format="yyyy-MM-dd"
             @change="changeDate"/>
         </el-col>
@@ -32,7 +32,7 @@
             <p style="font-size: 20px; font-weight: bold;">本月平均分 {{ monthData.healthIndex }}</p>
             <el-row :gutter="20">
               <el-col :span="8"><span>总戴镜时间 {{ monthData.wearTime }}</span></el-col>
-              <el-col :span="8"><span>累计保护因素 {{ monthData.upElement }}</span></el-col>
+              <el-col :span="8"><span>累计健康因素 {{ monthData.upElement }}</span></el-col>
               <el-col :span="8"><span>累计危险因素 {{ monthData.downElement }}</span></el-col>
             </el-row>
           </el-card>

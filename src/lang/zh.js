@@ -1,4 +1,8 @@
 export default {
+  common: {
+    allchildren: '全部儿童',
+    name: '姓名'
+  },
   login: {
     logIn: '登录',
     username: '账号',
@@ -21,7 +25,7 @@ export default {
     high_warn: '预警随访',
     intelligentData: '智能数据',
     analytics: '群体分析',
-    group_report: '生成报告',
+    group_report: '校园报告',
     sorting: '数据查询',
     intelligent: '智能儿童',
     showChild: '儿童详情',
@@ -33,6 +37,7 @@ export default {
     devices: '镜腿设备',
     messages: '消息盒子',
     channels: '健康咨询',
+    popular_science_centers: '内容发布',
     removements: '解绑申请',
     versions: '版本管理',
     app_files: '蓝牙文件',

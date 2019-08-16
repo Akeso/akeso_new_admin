@@ -1,4 +1,8 @@
 export default {
+  common: {
+    allchildren: 'All Children',
+    name: 'Name'
+  },
   login: {
     logIn: 'Log in',
     username: 'Username',
@@ -33,6 +37,7 @@ export default {
     systemSetting: 'Setting',
     devices: 'device manage',
     messages: 'messages',
+    popular_science_centers: 'popular science centers',
     removements: 'apply for doctor',
     channels: 'channels',
     versions: 'Version',

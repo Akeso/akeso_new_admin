@@ -9,7 +9,7 @@
             <td><span class="title-font">对应占比</span></td>
           </tr>
           <tr>
-            <td><span class="title-font">未超标</span></td>
+            <td><span class="title-font">正常</span></td>
             <td>{{ doneCount }}</td>
             <td>{{ 100 - undonePercent }}%</td>
           </tr>
@@ -67,7 +67,7 @@ export default {
         x: 10,
         y: 20,
         // left: 'left',
-        data: ['未超标', '超标']
+        data: ['正常', '超标']
       },
       series: {
         name: '是否超标',
@@ -75,7 +75,7 @@ export default {
         radius: '55%',
         center: ['50%', '60%'],
         data: [
-          { value: 0, name: '未超标' },
+          { value: 0, name: '正常' },
           { value: 0, name: '超标' }
         ],
         itemStyle: {
@@ -102,7 +102,7 @@ export default {
   watch: {
     'doneCount': function() {
       this.series.data = [
-        { value: this.doneCount, name: '未超标' },
+        { value: this.doneCount, name: '正常' },
         { value: this.totalCount - this.doneCount, name: '超标' }
       ]
     }

@@ -71,3 +71,11 @@ export function fetchExcelReport(query) {
     params: query
   })
 }
+
+export function fetchWholeReport(query) {
+  return request({
+    url: '/api/a1/reports/whole_report',
+    method: 'get',
+    params: query
+  })
+}

@@ -32,7 +32,7 @@
             <p style="font-size: 20px; font-weight: bold;">本周平均分 {{ weekData.healthIndex }}</p>
             <el-row :gutter="20">
               <el-col :span="8"><span>总戴镜时间 {{ weekData.wearTime }}</span></el-col>
-              <el-col :span="8"><span>累计保护因素 {{ weekData.upElement }}</span></el-col>
+              <el-col :span="8"><span>累计健康因素 {{ weekData.upElement }}</span></el-col>
               <el-col :span="8"><span>累计危险因素 {{ weekData.downElement }}</span></el-col>
             </el-row>
             <el-row :gutter="20">

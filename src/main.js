@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VCharts from 'v-charts'
 import VeLine from 'v-charts/lib/line.common'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import Cookies from 'js-cookie'
 
@@ -23,11 +24,13 @@ import eventBus from '@/utils/event_bus.js'
 
 import htmlToPdf from '@/utils/htmlToPdf'
 import htmlToPdfObj from '@/utils/htmlToPdfObj'
+import generateShow from '@/utils/i18n'
 
 Vue.prototype.eventBus = eventBus.eventBus
 
 Vue.use(htmlToPdf)
 Vue.use(htmlToPdfObj)
+Vue.use(generateShow)
 Vue.component(VeLine.name, VeLine)
 
 Vue.use(ElementUI, {
@@ -35,6 +38,7 @@ Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
 Vue.use(VCharts)
+Vue.use(CKEditor)
 
 Vue.config.productionTip = false
 

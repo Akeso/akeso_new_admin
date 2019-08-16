@@ -6,13 +6,13 @@
     <el-row>
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-menu-item index="whole">整体分析</el-menu-item>
-        <!--<el-menu-item index="contrast">对比分析</el-menu-item>-->
+        <el-menu-item index="whole_report">整体报告</el-menu-item>
       </el-menu>
     </el-row>
     <el-row>
       <el-col>
         <Whole v-if="activeIndex === 'whole'"/>
-        <Constrast v-if="activeIndex === 'contrast'"/>
+        <WholeReport v-if="activeIndex === 'whole_report'"/>
       </el-col>
     </el-row>
   </el-card>
@@ -20,10 +20,10 @@
 
 <script>
 import Whole from './components/whole'
-import Constrast from './components/contrast'
+import WholeReport from './components/WholeReport'
 export default {
   components: {
-    Whole, Constrast
+    Whole, WholeReport
   },
   data() {
     return {

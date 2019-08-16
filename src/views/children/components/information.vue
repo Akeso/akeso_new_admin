@@ -10,18 +10,15 @@
             <div>
               <img :src="avatarUrl" class="pan-thumb">
             </div>
-            <!--<div class="btn-user">-->
-            <!--<el-button type="success">编辑用户信息</el-button>-->
-            <!--</div>-->
-            <!--<div class="btn-user">-->
-            <!--<el-button type="success" @click="handleClickContactUser">联系用户</el-button>-->
-            <!--</div>-->
+            <div class="btn-user">
+              <el-button type="success" @click="handleClickEditChild">编辑用户信息</el-button>
+            </div>
             <div class="btn-user">
               <el-button type="success" @click="handleClickChannel">健康咨询</el-button>
             </div>
-            <!--<div class="btn-user">-->
-            <!--<el-button type="success">编辑标签</el-button>-->
-            <!--</div>-->
+            <div class="btn-user">
+              <el-button type="success" @click="handleClickEditTags">编辑标签</el-button>
+            </div>
           </el-col>
           <el-col :span="18">
             <el-row>
@@ -30,7 +27,7 @@
                   <td style="width: 20%;">姓名</td>
                   <td style="width: 15%">{{ child.name }}</td>
                   <td style="width: 15%">性别</td>
-                  <td style="width: 15%">{{ child.gender }}</td>
+                  <td style="width: 15%">{{ child.gender | genderFilter }}</td>
                   <td style="width: 20%">年龄</td>
                   <td>{{ child.age }}</td>
                 </tr>
@@ -66,6 +63,13 @@
                   </td>
                 </tr>
                 <tr v-if="showMore">
+                  <td>临床标签</td>
+                  <td colspan="5">
+                    <span v-if="child.clinicalTags.length === 0"> - </span>
+                    <el-tag v-for="item in child.clinicalTags" :key="item">{{ item }}</el-tag>
+                  </td>
+                </tr>
+                <tr v-if="showMore">
                   <td>绑定设备</td>
                   <td colspan="2">{{ child.device || '-' }}</td>
                   <td>绑定医生</td>
@@ -94,6 +98,8 @@
     </el-row>
     <Contact ref="contact" :child-id="childId"/>
     <Channel ref="channel"/>
+    <EditChild ref="edit_child" />
+    <EditTags ref="edit_tags" />
   </div>
 </template>
 
@@ -101,8 +107,19 @@
 import { fetchChild, unbindDoctor } from '@/api/children'
 import Contact from './contact'
 import Channel from '../../components/channel'
+import EditChild from '../../components/edit_child'
+import EditTags from './editTags'
 export default {
-  components: { Contact, Channel },
+  components: { Contact, Channel, EditChild, EditTags },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女'
+      }
+      return statusMap[status]
+    }
+  },
   props: {
     childId: {
       type: String,
@@ -127,16 +144,20 @@ export default {
   created() {
     this.loadSuccess = false
     this.getInformation()
+    this.eventBus.$on('updateChildInformation', (data) => {
+      this.child = data
+    })
   },
   methods: {
+    handleClickEditTags() {
+      this.$refs.edit_tags.show(this.child)
+    },
+    handleClickEditChild() {
+      this.$refs.edit_child.handleShow(this.child)
+    },
     handleClickChannel() {
       if (this.childId) {
         this.$refs.channel.handleShow(this.childId)
-      }
-    },
-    handleClickContactUser() {
-      if (this.childId) {
-        this.$refs.contact.handleShow()
       }
     },
     handleClickUnbindDoctor() {
@@ -217,5 +238,8 @@ export default {
   .table-cls {
     width: 100%;
     border: 1px solid #409EFF;
+  }
+  .el-tag {
+    margin-right: 5px;
   }
 </style>

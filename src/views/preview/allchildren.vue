@@ -2,11 +2,11 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>全部儿童</span>
+        <span>{{ generateShow('common.allchildren') }}</span>
       </div>
 
       <el-row>
-        姓名:
+        {{ generateShow('common.name') }}:
         <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable />
         家长电话:
         <el-input v-model="listQuery.parentPhone" label="电话" placeholder="电话" style="width: 150px;" class="filter-item" clearable />

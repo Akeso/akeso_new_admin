@@ -1,24 +1,5 @@
 <template>
   <div class="box-container">
-    <el-row :gutter="20">
-      <el-col :xs="24" :sm="24" :lg="10">
-        <el-upload
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :before-remove="beforeRemove"
-          :on-success="handleSuccess"
-          :limit="1"
-          class="upload-demo"
-          accept=".xlsx, .xls"
-          action="/api/common/excels/upload_report">
-          <div class="overflow">
-            <el-button size="small" type="primary" class="left">上传Excel</el-button>
-            <el-button size="small" class="left m-l-2" @click.stop="downloadExc">下载Excel模板</el-button>
-            <div slot="tip" class="el-upload__tip c-red left tit-btn">只能上传.xlsx, .xls文件</div>
-          </div>
-        </el-upload>
-      </el-col>
-    </el-row>
     <el-row :gutter="20" class="m-t-2">
       <el-col>
         选择日期
@@ -43,22 +24,23 @@
       </el-col>
     </el-row>
     <el-row class="position">
-      <el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>
+      <!--<el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>-->
       <el-card id="pdfDom" class="box-card">
         <div class="clearfix header">
-          <h1>青少年校园用眼健康因素监测报告</h1>
+          <h1>青少年用眼健康因素监测报告</h1>
           <div class="header-info">
-            <span class="item">学校：{{ infoData.school }}</span>
-            <span class="item">班级：{{ infoData.clasGrade }}</span>
+            <span class="item">机构：{{ name }}</span>
+            <!--<span class="item">班级：{{ infoData.clasGrade }}</span>-->
             <span class="item">人数：{{ infoData.totalCount }}人</span>
             <span class="item">男生：{{ infoData.maleCount }}人</span>
             <span class="item">女生：{{ infoData.femaleCount }}人</span>
-          </div>
-          <div class="header-info">
-            <span class="item">近视：{{ infoData.visionBadCount }}人</span>
-            <span class="item">非近视：{{ infoData.visionGoodCount }}人</span>
             <span>测评时间：{{ infoStart }} - {{ infoEnd }}</span>
           </div>
+          <!--<div class="header-info">-->
+          <!--<span class="item">近视：{{ infoData.visionBadCount }}人</span>-->
+          <!--<span class="item">非近视：{{ infoData.visionGoodCount }}人</span>-->
+          <!--<span>测评时间：{{ infoStart }} - {{ infoEnd }}</span>-->
+          <!--</div>-->
           <div class="score">{{ healthScore }}</div>
         </div>
         <el-row>
@@ -190,7 +172,7 @@
         <el-button class="pdf-itemt right" type="primary" @click="getPdfs('#pdfT', '高危人群报告')">生成PDF</el-button>
         <el-card id="pdfT" class="box-card position">
           <el-row>
-            <el-col class="item-name"><span class="border-left"/><span>本班级近视高危人群</span></el-col>
+            <el-col class="item-name"><span class="border-left"/><span>高危人群</span></el-col>
           </el-row>
           <el-row>
             <el-col>
@@ -206,19 +188,20 @@
   </div>
 </template>
 <script>
-import { fetchExcelReport } from '@/api/reports'
+import { mapGetters } from 'vuex'
+import { fetchWholeReport } from '@/api/reports'
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
-import BarChart from './components/BarChart'
-import SunshineBarChart from './components/SunshineBarChart'
-import StepBarChart from './components/StepBarChart'
-import BadEyeBarChart from './components/BadEyeBarChart'
-import BadPostureBarChart from './components/BadPostureBarChart'
-import EyestrainBarChart from './components/EyestrainBarChart'
-import echartsLegend from './components/echarts-legend'
+import BarChart from './BarChart'
+import SunshineBarChart from './SunshineBarChart'
+import StepBarChart from './StepBarChart'
+import BadEyeBarChart from './BadEyeBarChart'
+import BadPostureBarChart from './BadPostureBarChart'
+import EyestrainBarChart from './EyestrainBarChart'
+import echartsLegend from './echarts-legend'
 import QRcode from '@/components/QRCode'
 import { FormatDay } from '@/utils/index'
-import factorsTab from './components/factorsTab'
-import highRisTabel from './components/tabel'
+import factorsTab from './factorsTab'
+import highRisTabel from './tabel'
 export default {
   components: {
     UploadExcelComponent,
@@ -270,8 +253,6 @@ export default {
         upRate: 0
       },
       infoData: {
-        school: '——',
-        clasGrade: '——',
         totalCount: 0,
         maleCount: 0,
         femaleCount: 0,
@@ -285,6 +266,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['name']),
     htmlTitle: function() {
       return '导出报告'
     }
@@ -306,7 +288,7 @@ export default {
     handleClick() {
       const ppp = { excel_roll_id: this.info.id, start_date: this.selectSection.startDate, end_date: this.selectSection.endDate }
       console.log('info => ', this.info, ppp)
-      fetchExcelReport(ppp).then(res => {
+      fetchWholeReport(ppp).then(res => {
         console.log('res => ', res.data)
         this.outTime = res.data.outTime
         this.luxDay = res.data.luxDay
@@ -477,7 +459,7 @@ export default {
     top: 74px;
     width:70px;
     height: 80px;
-    background: url(../../assets/images/score.png) no-repeat;
+    background: url(../../../assets/images/score.png) no-repeat;
     background-size: 100% 100%;
     color: #fff;
     font-size: 40px;

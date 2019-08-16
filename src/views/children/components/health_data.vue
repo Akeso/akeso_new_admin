@@ -91,7 +91,6 @@ export default {
   },
   created() {
     this.eventBus.$on('updateChild', (data) => {
-      console.log('data => ', data)
       this.child = data
     })
   },
