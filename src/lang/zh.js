@@ -1,7 +1,18 @@
 export default {
   common: {
-    allchildren: '全部儿童',
     name: '姓名'
+  },
+  home: {
+    all_children: '全部儿童',
+    intelligent_children: '智能儿童',
+    today_appoint: '今日预约建档',
+    today_warning: '今日预警随访',
+    time_section: '时段分布',
+    new_children: '新增用户量',
+    new_intelligent_children: '新增智能用户量',
+    sync_data_children: '同步数据用户',
+    user_tag_statics: '用户标签统计',
+    clinical_tag_statics: '临床标签统计'
   },
   login: {
     logIn: '登录',

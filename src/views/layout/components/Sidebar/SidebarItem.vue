@@ -1,5 +1,6 @@
 <template>
-  <div v-if="!item.hidden&&item.children&&englishShowingItem(item.children, item)&&canShow(item)" class="menu-wrapper">
+  <!--<div v-if="!item.hidden&&item.children&&englishShowingItem(item.children, item)&&canShow(item)" class="menu-wrapper">-->
+  <div v-if="!item.hidden&&item.children&&canShow(item)" class="menu-wrapper">
 
     <!--没有子菜单-->
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">

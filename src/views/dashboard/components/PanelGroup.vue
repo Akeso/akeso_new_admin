@@ -6,7 +6,7 @@
           <svg-icon icon-class="bear01" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">全部儿童</div>
+          <div class="card-panel-text">{{ generateShow('home.all_children') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.childrenCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <svg-icon icon-class="bear02" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">智能儿童</div>
+          <div class="card-panel-text">{{ generateShow('home.intelligent_children') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.deviceChildrenCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>
@@ -28,7 +28,7 @@
           <svg-icon icon-class="bear01" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">今日预约建档</div>
+          <div class="card-panel-text">{{ generateShow('home.today_appoint') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.appointCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>
@@ -39,7 +39,7 @@
           <svg-icon icon-class="bear02" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">今日预警随访</div>
+          <div class="card-panel-text">{{ generateShow('home.today_warning') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.followCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>

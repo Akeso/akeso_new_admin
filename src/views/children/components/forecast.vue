@@ -146,7 +146,7 @@ export default {
         text: '近视预测'
       },
       tooltip: {
-        trigger: 'axis'
+        // trigger: 'axis'
       },
       legend_short: {
         data: ['不采取控制', '健康数据分数影响']

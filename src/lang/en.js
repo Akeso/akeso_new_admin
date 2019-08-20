@@ -3,6 +3,18 @@ export default {
     allchildren: 'All Children',
     name: 'Name'
   },
+  home: {
+    all_children: 'all children',
+    intelligent_children: 'intelligent children',
+    today_appoint: 'today appointment',
+    today_warning: 'toay warning',
+    time_section: 'time distribution',
+    new_children: 'new children',
+    new_intelligent_children: 'new intelligent children',
+    sync_data_children: 'sync children',
+    user_tag_statics: 'user tag statics',
+    clinical_tag_statics: 'clinical tag statics'
+  },
   login: {
     logIn: 'Log in',
     username: 'Username',

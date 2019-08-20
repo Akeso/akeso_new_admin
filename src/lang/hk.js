@@ -3,6 +3,18 @@ export default {
     allchildren: '全部兒童',
     name: '姓名'
   },
+  home: {
+    all_children: '全部兒童',
+    intelligent_children: '智能兒童',
+    today_appoint: '今日預約建檔',
+    today_warning: '今日預警隨訪',
+    time_section: '時段分布',
+    new_children: '新增用戶量',
+    new_intelligent_children: '新增智能用戶量',
+    sync_data_children: '同步數據用戶',
+    user_tag_statics: '用戶標簽統計',
+    clinical_tag_statics: '臨床標簽統計'
+  },
   login: {
     logIn: '登錄',
     username: '賬號',

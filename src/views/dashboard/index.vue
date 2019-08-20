@@ -4,7 +4,7 @@
     <panel-group :statistics-data="statisticsData" @handleSetLineChartData="handleSetLineChartData" />
 
     <el-row type="flex" class="row-bg" justify="space-between">
-      <el-tag>时段分布</el-tag>
+      <el-tag>{{ generateShow('home.time_section') }}</el-tag>
       <el-date-picker
         v-model="paramsQuery.dateSection"
         :picker-options="pickerOptions2"
@@ -23,7 +23,7 @@
     <!--</el-radio-group>-->
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
-    <el-tag>用户标签统计</el-tag>
+    <el-tag>{{ generateShow('home.user_tag_statics') }}</el-tag>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
       <el-col v-for="item in userTags" :key="item.id" :span="4">
         <el-card class="box-card">
@@ -35,7 +35,7 @@
       </el-col>
     </el-row>
 
-    <el-tag>临床标签统计</el-tag>
+    <el-tag>{{ generateShow('home.clinical_tag_statics') }}</el-tag>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
       <el-col v-for="item in clinicalTags" :key="item.id" :span="3">
         <el-card class="box-card" >
