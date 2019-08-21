@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>账户信息</span>
+        <span>{{ generateShow('route.Account') }}</span>
       </div>
 
       <el-row style="margin: 10px;">

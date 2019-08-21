@@ -2,26 +2,26 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>镜腿设备</span>
+        <span>{{ generateShow('route.devices') }}</span>
       </div>
 
       <el-row>
-        MAC地址:
-        <el-input v-model="listQuery.macAddress" label="MAC地址" placeholder="地址" style="width: 180px;" class="filter-item" clearable/>
-        孩子姓名:
-        <el-input v-model="listQuery.childName" label="孩子姓名" placeholder="姓名" style="width: 120px;" class="filter-item" clearable/>
+        {{ generateShow('common.mac_address') }}:
+        <el-input v-model="listQuery.macAddress" :placeholder="generateShow('common.mac_address')" style="width: 180px;" class="filter-item" clearable/>
+        {{ generateShow('common.child_name') }}:
+        <el-input v-model="listQuery.childName" :placeholder="generateShow('common.child_name')" style="width: 120px;" class="filter-item" clearable/>
       </el-row>
       <el-row style="margin-top: 10px;">
-        镜腿型号：
+        {{ generateShow('common.device_version') }}：
         <el-select v-model="listQuery.deviceType" :placeholder="$t('device.deviceType')" clearable class="filter-item" style="width: 120px">
           <el-option v-for="item in deviceTypeOptions" :key="item.key" :label="item.value" :value="item.key"/>
         </el-select>
-        绑定状态：
+        {{ generateShow('common.bind_state') }}：
         <el-select v-model="listQuery.state" style="width: 120px" class="filter-item" @change="handleFilter">
           <el-option v-for="item in stateOptions" :key="item.key" :label="item.value" :value="item.key"/>
         </el-select>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-        <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
+        <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
       </el-row>
 
       <el-table
@@ -30,22 +30,22 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
+          :label="generateShow('common.mac_address')"
           prop="macAddress"
-          label="MAC地址"
           min-width="160"/>
         <el-table-column
+          :label="generateShow('common.device_version')"
           prop="deviceType"
-          label="型号"
           min-width="60"/>
         <el-table-column
-          label="绑定状态"
+          :label="generateShow('common.bind_state')"
           min-width="90">
           <template slot-scope="scope">
             <el-tag :type="scope.row.state | stateFilter">{{ scope.row.stateName }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
-          label="绑定孩子姓名"
+          :label="generateShow('common.child_name')"
           min-width="120">
           <template slot-scope="scope">
             <router-link :to="'/preview/child/'+scope.row.childId">
@@ -54,15 +54,15 @@
           </template>
         </el-table-column>
         <el-table-column
+          :label="generateShow('common.bind_at')"
           prop="deviceBindAt"
-          label="绑定时间"
           min-width="120"/>
         <el-table-column
+          :label="generateShow('common.created_at')"
           prop="createdAt"
-          label="创建时间"
           min-width="120"/>
         <el-table-column
-          label="操作"
+          :label="generateShow('common.operate')"
           min-width="60" >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClick(scope.row)">解绑</el-button>

@@ -1,7 +1,7 @@
 <template>
   <el-card :body-style="{ padding: '10px' }">
     <div slot="header" class="clearfix">
-      <span>{{ generateShow('common.analytics') }}</span>
+      <span>{{ generateShow('route.analytics') }}</span>
     </div>
     <el-row>
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">

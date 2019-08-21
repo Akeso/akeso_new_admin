@@ -253,28 +253,28 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/weapp',
-    component: Layout,
-    redirect: '/weapp/awards',
-    name: 'weapp',
-    only: true,
-    meta: { title: 'weapp', icon: 'example' },
-    children: [
-      {
-        path: 'awards',
-        name: 'awards',
-        component: () => import('@/views/weapp/awards.vue'),
-        meta: { title: 'awards', icon: 'table' }
-      },
-      {
-        path: 'wx_organizations',
-        name: 'wx_organizations',
-        component: () => import('@/views/weapp/organizations.vue'),
-        meta: { title: 'wx_organizations', icon: 'table' }
-      }
-    ]
-  },
+  // {
+  //   path: '/weapp',
+  //   component: Layout,
+  //   redirect: '/weapp/awards',
+  //   name: 'weapp',
+  //   only: true,
+  //   meta: { title: 'weapp', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'awards',
+  //       name: 'awards',
+  //       component: () => import('@/views/weapp/awards.vue'),
+  //       meta: { title: 'awards', icon: 'table' }
+  //     },
+  //     {
+  //       path: 'wx_organizations',
+  //       name: 'wx_organizations',
+  //       component: () => import('@/views/weapp/organizations.vue'),
+  //       meta: { title: 'wx_organizations', icon: 'table' }
+  //     }
+  //   ]
+  // },
   {
     path: '/enChildren',
     component: Layout,
