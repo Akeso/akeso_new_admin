@@ -311,9 +311,15 @@ export const constantRouterMap = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+const constantRenderMap = [
+  { path: '/render/health_report', component: () => import('@/views/renders/health_report'), hidden: true }
+]
+
+var routesMap = constantRouterMap.concat(constantRenderMap)
+
 export default new Router({
   mode: 'history', // 后端支持可开
   base: 'a',
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  routes: routesMap
 })

@@ -1,6 +1,6 @@
 export default {
   common: {
-    allchildren: '全部兒童',
+    all_children: '全部兒童',
     name: '姓名'
   },
   home: {

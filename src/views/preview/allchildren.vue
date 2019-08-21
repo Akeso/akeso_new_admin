@@ -2,19 +2,19 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>{{ generateShow('common.allchildren') }}</span>
+        <span>{{ generateShow('common.all_children') }}</span>
       </div>
 
       <el-row>
         {{ generateShow('common.name') }}:
-        <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable />
-        家长电话:
-        <el-input v-model="listQuery.parentPhone" label="电话" placeholder="电话" style="width: 150px;" class="filter-item" clearable />
-        创建时间:
-        <el-date-picker v-model="listQuery.startDate" type="date" style="width: 150px;" placeholder="开始日期"/> -
-        <el-date-picker v-model="listQuery.endDate" type="date" style="width: 150px;" placeholder="截止日期"/>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-        <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+        <el-input v-model="listQuery.name" :label="generateShow('common.name')" :placeholder="generateShow('common.name')" style="width: 100px;" class="filter-item" clearable />
+        {{ generateShow('common.parent_phone') }}:
+        <el-input v-model="listQuery.parentPhone" :label="generateShow('common.parent_phone')" :placeholder="generateShow('common.parent_phone')" style="width: 150px;" class="filter-item" clearable />
+        {{ generateShow('common.created_at') }}:
+        <el-date-picker v-model="listQuery.startDate" :placeholder="generateShow('common.start_date')" type="date" style="width: 150px;" /> -
+        <el-date-picker v-model="listQuery.endDate" :placeholder="generateShow('common.end_date')" type="date" style="width: 150px;"/>
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
+        <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
       </el-row>
 
       <el-table
@@ -23,7 +23,7 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
-          label="姓名"
+          :label="generateShow('common.name')"
           min-width="60">
           <template slot-scope="scope">
             <router-link :to="'/preview/child/'+scope.row.id">
@@ -32,31 +32,31 @@
           </template>
         </el-table-column>
         <el-table-column
+          :label="generateShow('common.age')"
           prop="age"
-          label="年龄"
           min-width="50"/>
         <el-table-column
+          :label="generateShow('common.gender')"
           prop="gender"
-          label="性别"
           min-width="50"/>
         <el-table-column
+          :label="generateShow('common.location')"
           prop="locationString"
-          label="地区"
           min-width="120"/>
         <el-table-column
+          :label="generateShow('common.phone')"
           prop="phone"
-          label="联系电话"
           min-width="100"/>
         <el-table-column
+          :label="generateShow('common.created_at')"
           prop="createdAt"
-          label="创建时间"
           sortable="custom"
           min-width="120"/>
         <el-table-column
-          label="操作"
+          :label="generateShow('common.operate')"
           min-width="80" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickChannel(scope.row)">联系用户</el-button>
+            <el-button type="text" size="small" @click="handleClickChannel(scope.row)">{{ generateShow('common.contact_user') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

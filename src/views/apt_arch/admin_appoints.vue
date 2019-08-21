@@ -2,18 +2,18 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>预约管理</span>
+        <span>{{ generateShow('route.admin_appoints') }}</span>
       </div>
 
       <el-row style="margin-bottom: 10px;">
-        预约码:
-        <el-input v-model="listQuery.code" label="预约码" placeholder="预约码" style="width: 100px;" class="filter-item" clearable/>
-        姓名:
-        <el-input v-model="listQuery.childName" label="孩子姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
-        手机号:
-        <el-input v-model="listQuery.phone" label="手机号" placeholder="手机号" style="width: 150px;" class="filter-item" clearable/>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
-        <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+        {{ generateShow('common.appointment_code') }}:
+        <el-input v-model="listQuery.code" :placeholder="generateShow('common.appointment_code')" label="预约码" style="width: 100px;" class="filter-item" clearable/>
+        {{ generateShow('common.name') }}:
+        <el-input v-model="listQuery.childName" :placeholder="generateShow('common.name')" label="姓名" style="width: 100px;" class="filter-item" clearable/>
+        {{ generateShow('common.phone') }}:
+        <el-input v-model="listQuery.phone" :placeholder="generateShow('common.phone')" label="手机号" style="width: 150px;" class="filter-item" clearable/>
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
+        <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
       </el-row>
 
       <el-table
@@ -22,36 +22,36 @@
         style="width: 100%"
         @sort-change="handleColumnSort">
         <el-table-column
+          :label="generateShow('common.appointment_date')"
           prop="date"
-          label="预约时间"
           min-width="100"/>
         <el-table-column
+          :label="generateShow('common.appointment_code')"
           prop="code"
-          label="预约码"
           min-width="80"/>
         <el-table-column
+          :label="generateShow('common.name')"
           prop="childName"
-          label="姓名"
           min-width="80"/>
         <el-table-column
+          :label="generateShow('common.gender')"
           prop="genderCn"
-          label="性别"
           min-width="60"/>
         <el-table-column
+          :label="generateShow('common.age')"
           prop="age"
-          label="年龄"
           min-width="60"/>
         <el-table-column
+          :label="generateShow('common.appointment_object')"
           prop="merchantName"
-          label="预约机构/医生"
           min-width="110"/>
         <el-table-column
+          :label="generateShow('common.appointment_state')"
           prop="stateName"
-          label="预约状态"
           min-width="80"/>
         <el-table-column
+          :label="generateShow('common.arrive_date')"
           prop="reachTime"
-          label="到店时间"
           min-width="110"/>
           <!--<el-table-column-->
           <!--label="操作"-->

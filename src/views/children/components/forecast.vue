@@ -147,6 +147,8 @@ export default {
       },
       tooltip: {
         // trigger: 'axis'
+        trigger: 'item'
+        // formatter: '{b0}: {c0}<br />{a0}: {c1}'
       },
       legend_short: {
         data: ['不采取控制', '健康数据分数影响']
@@ -190,9 +192,12 @@ export default {
           // symbol: 'none'
         },
         {
-          name: '采取控制最差',
+          name: '对比采取控制最优',
           type: 'line',
           data: [],
+          tooltip: {
+            formatter: '{b0}: {c0}<br />11111{a0}: {c0}'
+          },
           lineStyle: {
             normal: {
               color: '#b3e0b9'

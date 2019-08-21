@@ -1,12 +1,12 @@
 <template>
   <el-card :body-style="{ padding: '10px' }">
     <div slot="header" class="clearfix">
-      <span>智能分析</span>
+      <span>{{ generateShow('common.analytics') }}</span>
     </div>
     <el-row>
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="whole">整体分析</el-menu-item>
-        <el-menu-item index="whole_report">整体报告</el-menu-item>
+        <el-menu-item index="whole">{{ generateShow('common.whole_analytics') }}</el-menu-item>
+        <el-menu-item index="whole_report">{{ generateShow('common.whole_report') }}</el-menu-item>
       </el-menu>
     </el-row>
     <el-row>

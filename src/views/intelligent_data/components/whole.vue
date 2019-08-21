@@ -1,31 +1,31 @@
 <template>
   <div class="container">
     <el-row :gutter="20">
-      选择日期
+      {{ generateShow('common.select_date') }}
       <el-date-picker
         :clearable="false"
+        :placeholder="generateShow('common.start_date')"
         v-model="selectSection.startDate"
         type="date"
         style="width: 150px;"
         format="yyyy-MM-dd"
-        value-format="yyyy-MM-dd"
-        placeholder="选择日期"/>
+        value-format="yyyy-MM-dd"/>
       至
       <el-date-picker
         :clearable="false"
+        :placeholder="generateShow('common.end_date')"
         v-model="selectSection.endDate"
         type="date"
         style="width: 150px;"
         format="yyyy-MM-dd"
-        value-format="yyyy-MM-dd"
-        placeholder="选择日期"/>
-      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+        value-format="yyyy-MM-dd"/>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
     </el-row>
     <el-row style="margin-top: 10px;">
       <el-radio-group v-model="selectDate" @change="radioChange">
-        <el-radio-button label="first">近一周</el-radio-button>
-        <el-radio-button label="second">近一个月</el-radio-button>
-        <el-radio-button label="third">近三个月</el-radio-button>
+        <el-radio-button label="first">{{ generateShow('common.near_1_week') }}</el-radio-button>
+        <el-radio-button label="second">{{ generateShow('common.near_1_month') }}</el-radio-button>
+        <el-radio-button label="third">{{ generateShow('common.near_3_month') }}</el-radio-button>
       </el-radio-group>
     </el-row>
     <el-row>
