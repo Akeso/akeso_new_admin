@@ -4,7 +4,6 @@
       <div slot="header" class="clearfix">
         <span>{{ generateShow('common.all_children') }}</span>
       </div>
-
       <el-row>
         {{ generateShow('common.name') }}:
         <el-input v-model="listQuery.name" :label="generateShow('common.name')" :placeholder="generateShow('common.name')" style="width: 100px;" class="filter-item" clearable />
