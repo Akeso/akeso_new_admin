@@ -7,7 +7,7 @@
       style="width: 100%; margin-top: 10px;"
       @sort-change="handleColumnSort">
       <el-table-column
-        label="姓名"
+        :label="generateShow('common.name')"
         min-width="60">
         <template slot-scope="scope">
           <router-link :to="'/preview/child/'+scope.row.childId">
@@ -16,48 +16,48 @@
         </template>
       </el-table-column>
       <el-table-column
+        :label="generateShow('common.age')"
         prop="childAge"
-        label="年龄"
         min-width="60"/>
       <el-table-column
+        :label="generateShow('common.phone')"
         prop="phone"
-        label="联系方式"
         min-width="80"/>
       <el-table-column
+        :label="generateShow('common.healthIndex')"
         prop="healthIndex"
-        label="上月眼健康评分"
         min-width="80"/>
       <el-table-column
+        :label="generateShow('common.wearTime')"
         prop="outTime"
-        label="户外活动"
         min-width="80"/>
       <el-table-column
+        :label="generateShow('common.nearworkBurdenDay')"
         prop="nearworkBurdenDay"
-        label="视负荷"
         min-width="80"/>
       <el-table-column
+        :label="generateShow('common.last_follow_at')"
         prop="lastFollowAt"
-        label="上次随访时间"
         min-width="80"/>
       <el-table-column
+        :label="generateShow('common.last_operation')"
         prop="lastFollowType"
-        label="上次操作方式"
         min-width="80"/>
       <el-table-column
+        :label="generateShow('common.follow_state')"
         prop="followState"
-        label="随访状态"
         min-width="80">
         <template slot-scope="scope">
           {{ scope.row.followState ? '已随访' : '待随访' }}
         </template>
       </el-table-column>
       <el-table-column
-        label="操作"
+        :label="generateShow('common.operate')"
         min-width="120">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleClickChannel(scope.row)">联系用户</el-button>
+          <el-button type="text" size="small" @click="handleClickChannel(scope.row)">{{ generateShow('common.contact_user') }}</el-button>
           <el-button v-if="!scope.row.followState" type="text" size="small" @click="handleClickPhone(scope.row)">电话联系</el-button>
-          <el-button type="text" size="small" @click="handleClickLogs(scope.row)">随访记录</el-button>
+          <el-button type="text" size="small" @click="handleClickLogs(scope.row)">{{ generateShow('common.follow_logs') }}</el-button>
         </template>
       </el-table-column>
     </el-table>

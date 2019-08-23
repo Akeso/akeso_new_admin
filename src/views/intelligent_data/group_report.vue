@@ -12,41 +12,41 @@
           accept=".xlsx, .xls"
           action="/api/common/excels/upload_report">
           <div class="overflow">
-            <el-button size="small" type="primary" class="left">上传Excel</el-button>
-            <el-button size="small" class="left m-l-2" @click.stop="downloadExc">下载Excel模板</el-button>
-            <div slot="tip" class="el-upload__tip c-red left tit-btn">只能上传.xlsx, .xls文件</div>
+            <el-button size="small" type="primary" class="left">{{ generateShow('common.upload') }}Excel</el-button>
+            <el-button size="small" class="left m-l-2" @click.stop="downloadExc">{{ generateShow('common.download') }}Excel模板</el-button>
+            <div slot="tip" class="el-upload__tip c-red left tit-btn">只能{{ generateShow('common.upload') }}.xlsx, .xls文件</div>
           </div>
         </el-upload>
       </el-col>
     </el-row>
     <el-row :gutter="20" class="m-t-2">
       <el-col>
-        选择日期
+        {{ generateShow('common.select_date') }}
         <el-date-picker
           :clearable="false"
+          :placeholder="generateShow('common.start_date')"
           v-model="selectSection.startDate"
           type="date"
           style="width: 150px;"
           format="yyyy-MM-dd"
-          value-format="yyyy-MM-dd"
-          placeholder="选择日期"/>
+          value-format="yyyy-MM-dd"/>
         至
         <el-date-picker
           :clearable="false"
+          :placeholder="generateShow('common.end_date')"
           v-model="selectSection.endDate"
           type="date"
           style="width: 150px;"
           format="yyyy-MM-dd"
-          value-format="yyyy-MM-dd"
-          placeholder="选择日期"/>
-        <el-button class="filter-item" type="primary" @click="handleClick">生成报告</el-button>
+          value-format="yyyy-MM-dd"/>
+        <el-button class="filter-item" type="primary" @click="handleClick">{{ generateShow('common.generate_report') }}</el-button>
       </el-col>
     </el-row>
     <el-row class="position">
       <el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>
       <el-card id="pdfDom" class="box-card">
         <div class="clearfix header">
-          <h1>青少年校园用眼健康因素监测报告</h1>
+          <h1>{{ generateShow('common.report_title') }}</h1>
           <div class="header-info">
             <span class="item">学校：{{ infoData.school }}</span>
             <span class="item">班级：{{ infoData.clasGrade }}</span>

@@ -2,12 +2,13 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>上传频次</span>
+        <span>{{ generateShow('route.frequency') }}</span>
       </div>
 
       <div class="filter-container">
-        <el-input v-model="listQuery.childName" placeholder="搜索姓名" style="width: 200px;" class="filter-item" />
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+        {{ generateShow('common.name') }}：
+        <el-input v-model="listQuery.childName" :placeholder="generateShow('common.name')" style="width: 200px;" class="filter-item" />
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
       </div>
 
       <el-table
@@ -16,7 +17,7 @@
         style="width: 100%"
         @sort-change="handleColumnSort">
         <el-table-column
-          label="姓名"
+          :label="generateShow('common.name')"
           width="90">
           <template slot-scope="scope">
             <router-link :to="'/preview/child/'+scope.row.childId">
@@ -25,25 +26,25 @@
           </template>
         </el-table-column>
         <el-table-column
+          :label="generateShow('common.upload_time')"
           prop="uploadTime"
-          label="上传时间"
           sortable="custom"
           width="180"/>
         <el-table-column
+          :label="generateShow('common.electricity')"
           prop="electricity"
-          label="电量"
           width="90"/>
         <el-table-column
+          :label="generateShow('common.platform')"
           prop="platform"
-          label="平台"
           width="90"/>
         <el-table-column
+          :label="generateShow('common.upload_count')"
           prop="uploadCount"
-          label="上传总条数"
           width="120"/>
         <el-table-column
-          prop="daysCount"
-          label="数据分布"/>
+          :label="generateShow('common.days_count')"
+          prop="daysCount"/>
       </el-table>
 
       <div class="pagination-container">

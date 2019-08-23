@@ -2,11 +2,11 @@
   <div class="app-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>蓝牙文件</span>
+        <span>{{ generateShow('route.app_files') }}</span>
       </div>
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">{{ generateShow('common.new') }}</el-button>
       </div>
 
       <el-table
@@ -35,14 +35,14 @@
           label="文件大小(B)"
           min-width="50"/>
         <el-table-column
+          :label="generateShow('common.created_at')"
           prop="createdAt"
-          label="创建时间"
           min-width="60"/>
         <el-table-column
-          label="操作"
+          :label="generateShow('common.operate')"
           min-width="40" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClick(scope.row)">编辑</el-button>
+            <el-button type="text" size="small" @click="handleClick(scope.row)">{{ generateShow('common.modify') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

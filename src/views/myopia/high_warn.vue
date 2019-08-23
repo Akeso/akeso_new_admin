@@ -2,10 +2,10 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>预警随访</span>
+        <span>{{ generateShow('route.high_warn') }}</span>
       </div>
       <div style="margin-bottom: 10px;">
-        <span class="demonstration">月份选择：</span>
+        <span class="demonstration">{{ generateShow('common.select_date') }}：</span>
         <el-date-picker
           v-model="month"
           type="month"

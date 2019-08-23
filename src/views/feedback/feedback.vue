@@ -2,13 +2,13 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>意见反馈</span>
+        <span>{{ generateShow('route.feedback') }}</span>
       </div>
 
       <el-row>
-        家长联系电话
+        {{ generateShow('common.phone') }}
         <el-input v-model="listQuery.phone" placeholder="搜索电话" style="width: 200px;" class="filter-item" clearable/>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
       </el-row>
 
       <el-table
@@ -17,8 +17,8 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
+          :label="generateShow('common.phone')"
           prop="parentPhone"
-          label="家长联系电话"
           min-width="120"/>
         <el-table-column
           prop="content"

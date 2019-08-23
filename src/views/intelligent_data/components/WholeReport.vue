@@ -27,7 +27,7 @@
       <!--<el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>-->
       <el-card id="pdfDom" class="box-card">
         <div class="clearfix header">
-          <h1>青少年用眼健康因素监测报告</h1>
+          <h1>{{ generateShow('common.report_title') }}</h1>
           <div class="header-info">
             <span class="item">机构：{{ name }}</span>
             <!--<span class="item">班级：{{ infoData.clasGrade }}</span>-->

@@ -2,17 +2,17 @@
   <div>
     <el-card :body-style="{ padding: '0px 10px 10px 20px' }">
       <div slot="header">
-        <span>科普文章</span>
+        <span>{{ generateShow('route.popular_science_centers') }}</span>
       </div>
       <el-form :inline="true" class="demo-form-inline" style="margin-top: 20px;">
-        <el-form-item label="类型">
+        <el-form-item :label="generateShow('common.type')">
           <el-select v-model="listQuery.article_type" placeholder="全部">
             <el-option v-for="item in article_types" :label="item.name" :value="item.id" :key="item.id"/>
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="getList">搜索</el-button>
-          <el-button type="success" @click="handleClickCreate">新增</el-button>
+          <el-button type="primary" @click="getList">{{ generateShow('common.search') }}</el-button>
+          <el-button type="success" @click="handleClickCreate">{{ generateShow('common.new') }}</el-button>
         </el-form-item>
       </el-form>
       <el-table
@@ -20,12 +20,12 @@
         border
         style="width: 100%">
         <el-table-column
+          :label="generateShow('common.title')"
           prop="title"
-          label="标题"
           min-width="180"/>
         <el-table-column
+          :label="generateShow('common.type')"
           prop="category_name"
-          label="类型"
           min-width="60"/>
         <el-table-column
           label="Logo"
@@ -36,15 +36,15 @@
           </template>
         </el-table-column>
         <el-table-column
+          :label="generateShow('common.publish_merchant')"
           prop="merchant_name"
-          label="发表机构"
           min-width="60"/>
         <el-table-column
+          :label="generateShow('common.created_at')"
           prop="created_at"
-          label="创建时间"
           min-width="60"/>
         <el-table-column
-          label="审核状态"
+          :label="generateShow('common.check_state')"
           min-width="50">
           <template slot-scope="scope">
             <el-tag>{{ scope.row.state | stateFilter }}</el-tag>
@@ -52,21 +52,21 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="发布状态"
+          :label="generateShow('common.publish_state')"
           min-width="50">
           <template slot-scope="scope">
             <el-tag>{{ scope.row.is_release ? '已发布' : '未发布' }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
-          label="操作"
+          :label="generateShow('common.operate')"
           min-width="60" >
           <template slot-scope="scope">
             <!--<el-button type="text" size="small">预览</el-button>-->
             <el-button v-if="isAdmin && scope.row.state == 'passed'" type="text" size="small" @click="handleClickRelease(scope.row)">{{ scope.row.is_release ? '撤销发布' : '发布' }}</el-button>
             <div v-if="!scope.row.is_release && scope.row.state == 'pending'">
-              <el-button type="text" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
-              <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+              <el-button type="text" size="small" @click="handleClickEdit(scope.row)">{{ generateShow('common.modify') }}</el-button>
+              <el-button type="text" size="small" @click="handleClickDelete(scope.row)">{{ generateShow('common.delete') }}</el-button>
             </div>
           </template>
         </el-table-column>
