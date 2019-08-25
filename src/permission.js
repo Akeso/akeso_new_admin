@@ -5,7 +5,12 @@ import 'nprogress/nprogress.css'// Progress 进度条样式
 // import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' // 验权
 
-const whiteList = ['/login', '/404', '/mobile/doctor', '/mobile/sign_in', '/mobile/child_select', '/mobile/bind_success', '/mobile/create_child'] // 不重定向白名单
+const whiteList = [
+  '/login',
+  '/404',
+  '/mobile/doctor', '/mobile/sign_in', '/mobile/child_select', '/mobile/bind_success', '/mobile/create_child',
+  '/render/health_report'
+] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   // console.log('to => ', to)
   // console.log('from => ', from)
