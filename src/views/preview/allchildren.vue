@@ -34,14 +34,19 @@
         <el-table-column
           :label="generateShow('common.age')"
           prop="age"
-          min-width="50"/>
+          min-width="40"/>
         <el-table-column
           :label="generateShow('common.gender')"
           prop="gender"
-          min-width="50"/>
+          sortable
+          min-width="40">
+          <template slot-scope="scope">
+            <el-button type="text" size="small">{{ scope.row.gender | genderFilter }}</el-button>
+          </template>
+        </el-table-column>
         <el-table-column
           :label="generateShow('common.location')"
-          prop="locationString"
+          prop="location_string"
           min-width="120"/>
         <el-table-column
           :label="generateShow('common.phone')"
@@ -49,8 +54,8 @@
           min-width="100"/>
         <el-table-column
           :label="generateShow('common.created_at')"
-          prop="createdAt"
-          sortable="custom"
+          prop="created_at"
+          sortable
           min-width="120"/>
         <el-table-column
           :label="generateShow('common.operate')"
@@ -73,6 +78,16 @@ import { fetchList } from '@/api/children'
 import Channel from '../components/channel'
 export default {
   components: { Channel },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女',
+        unknown: '未知'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       list: null,
@@ -82,9 +97,11 @@ export default {
         page: 1,
         limit: 20,
         name: '',
-        parentPhone: undefined,
-        startDate: '',
-        endDate: ''
+        parent_phone: undefined,
+        start_date: '',
+        end_date: '',
+        sort_prop: '',
+        sort_order: ''
       }
     }
   },
@@ -116,8 +133,9 @@ export default {
       this.getList()
     },
     handleColumnSort(val) {
-      this.listQuery.sortProp = val.prop
-      this.listQuery.sortOrder = val.order
+      console.log('val => ', val)
+      this.listQuery.sort_prop = val.prop
+      this.listQuery.sort_order = val.order
       this.getList()
     },
     handleFilter() {

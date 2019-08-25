@@ -21,7 +21,7 @@
         label="档案名称"
         min-width="100"/>
       <el-table-column
-        prop="belongTo"
+        prop="doctorName"
         label="所属机构"
         min-width="140"/>
       <el-table-column
