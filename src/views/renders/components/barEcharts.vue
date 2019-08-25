@@ -1,0 +1,159 @@
+<template>
+  <div :class="className" :style="{height:height,width:width}"/>
+</template>
+
+<script>
+import echarts from 'echarts'
+require('echarts/theme/macarons') // echarts theme
+import { debounce } from '@/utils'
+import echartsIcon from '@/assets/images/gender.png'
+
+const animationDuration = 6000
+
+export default {
+  props: {
+    className: {
+      type: String,
+      default: 'chart'
+    },
+    width: {
+      type: String,
+      default: '100%'
+    },
+    height: {
+      type: String,
+      default: '300px'
+    },
+    grateData: {
+      type: Object,
+      default() {
+        return {
+          counts: [0, 0, 0, 0],
+          percents: [0, 0, 0, 0]
+        }
+      }
+    }
+  },
+  data() {
+    return {
+      chart: null,
+      echartsIcon: echartsIcon
+    }
+  },
+  watch: {
+    grateData: {
+      handler(newV, oldV) {
+        if (newV) {
+          this.initChart(newV)
+        } else {
+          this.initChart(oldV)
+        }
+      }
+    }
+  },
+  mounted() {
+    this.initChart(this.grateData)
+    this.__resizeHandler = debounce(() => {
+      if (this.chart) {
+        this.chart.resize()
+      }
+    }, 100)
+    window.addEventListener('resize', this.__resizeHandler)
+  },
+  beforeDestroy() {
+    if (!this.chart) {
+      return
+    }
+    window.removeEventListener('resize', this.__resizeHandler)
+    this.chart.dispose()
+    this.chart = null
+  },
+  methods: {
+    initChart(grateData) {
+      this.chart = echarts.init(this.$el, 'macarons')
+      this.chart.setOption({
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          }
+          // formatter: function(params) {
+          //   return params[0].seriesName + ' : ' + params[0].name + '<br/>' + '占比' + ' : ' + params[0].value + '%'
+          // }
+        },
+        grid: {
+          top: '10%',
+          left: '2%',
+          right: '10%',
+          bottom: '8%',
+          containLabel: true
+        },
+        xAxis: [{
+          type: 'category',
+          name: '时间',
+          data: ['08-01', '08-02', '08-03', '08-04', '08-05', '08-06', '08-07', '08-08', '08-09', '08-10', '08-11', '08-12', '08-13', '08-14', '08-15',
+            '08-16', '08-17', '08-18', '08-19', '08-20', '08-21', '08-22', '08-23', '08-24', '08-25', '08-26', '08-27',
+            '08-28', '08-29', '08-30', '08-31'
+          ],
+          axisTick: {
+            // alignWithLabel: true
+          },
+          axisLabel: {
+            // interval: 0,
+            // formatter: function(value) {
+            // },
+            margin: 10
+          }
+        }],
+        yAxis: [{
+          type: 'value',
+          axisTick: {
+            show: false
+          },
+          scale: true,
+          name: '单位：分',
+          max: 200,
+          min: 0
+          // boundaryGap: [0.2, 0.2]
+        }],
+        series: [{
+          name: '人数',
+          type: 'bar',
+          // stack: 'vistors',
+          // barWidth: '10',
+          data: ['30', '60', '90', '120', '200', '80', '160', '100', '10', '70', '90', '120', '140', '168'],
+          label: {
+            normal: {
+              show: true,
+              position: 'top'
+              // formatter: function(params) {
+              //   var data = outData.counts
+              //   return data[params.dataIndex] + '人'
+              // }
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: function(params) {
+                // build a color map as your need.
+                var colorList = ''
+                if (params.value <= 50) {
+                  colorList = '#c82557'
+                } else if (params.value > 50 && params.value <= 100) {
+                  colorList = '#f5a623'
+                } else if (params.value > 100 && params.value <= 150) {
+                  colorList = '#54ce50'
+                } else if (params.value > 150) {
+                  colorList = '#27adff'
+                }
+                return colorList
+              }
+            }
+          },
+          animationDuration
+        }]
+      })
+    }
+  }
+}
+</script>
