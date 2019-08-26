@@ -219,7 +219,7 @@
               <span class="title-text b-yellow">本月健康行为习惯 {{ report.grade | gradeFilter }} ，未来近视风险较高</span>
             </div>
             <div class="el-card__body p-2">
-              <p class="c-blue tit">指导建议：</p>
+              <p class="tit">指导建议：</p>
               <p class="info">1、请您告诉孩子每天把握课间休息时间，不要坐在教室，到户外沐浴阳光或远眺10分钟，可使眼睛得到有效放松，这是目前临床公认的预防近视发生最经济有效的措施；</p>
               <p class="info">2、对于每年近视增长较快者，除了改善读写姿势外，建议家长督促孩子非学习目的每次使用电子产品不超过15分钟，每天累计不超过1小时，完成任务可适当的奖励孩子，这是国家发布的最新近视防控教育指南。</p>
             </div>
@@ -419,6 +419,8 @@ export default {
   *{
     padding: 0;
     margin: 0;
+    font-weight: 300;
+    color: black;
   }
   .box{
     display: -webkit-flex; /* Safari */
@@ -474,6 +476,7 @@ export default {
     border-radius: 15px;
     font-size: 20px;
     padding: 0 20px;
+    font-weight: 300;
   }
   .center{
     text-align: center;
@@ -490,9 +493,11 @@ export default {
   .tit{
     font-size: 20px;
     padding-bottom: 8px;
+    font-weight: 300;
   }
   .info{
     line-height: 24px;
+    font-weight: 300;
   }
   .p-2{
     padding: 12px;
