@@ -7,7 +7,7 @@
         选择日期:
         <el-date-picker
           :clearable="false"
-          v-model="selectSection.date"
+          v-model="search.date"
           type="month"
           style="width: 150px;"
           format="yyyy-MM"
@@ -23,7 +23,7 @@
         <span>姓名：{{ child.name }}</span>
         <span>年龄：{{ child.age }}岁</span>
         <span>性别：{{ child.gender | genderFilter }}</span>
-        <span>时间：2019-08</span>
+        <span>时间：{{ search.date }}</span>
       </div>
       <el-row :gutter="20" class="m-t">
         <el-col :span="8">
@@ -246,6 +246,7 @@
 
 <script>
 import { fetchMonthlyByPhone } from '@/api/open/reports'
+import { FormatYM } from '@/utils/index'
 import icon1 from '../../assets/images/report/icon5.png'
 import icon7 from '../../assets/images/report/icon7.png'
 import icon8 from '../../assets/images/report/icon8.png'
@@ -302,7 +303,7 @@ export default {
       },
       search: {
         phone: undefined,
-        date: new Date()
+        date: FormatYM(new Date())
       },
       child: {
         name: '-',
