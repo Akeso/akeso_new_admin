@@ -42,6 +42,7 @@
         <el-table-column
           :label="generateShow('common.location')"
           prop="locationStreet"
+          sortable
           min-width="80"/>
         <el-table-column
           :label="generateShow('common.children_count')"
@@ -106,8 +107,8 @@ export default {
         phone: undefined,
         email: undefined,
         type: undefined,
-        sortProp: undefined,
-        sortOrder: undefined
+        sort_prop: undefined,
+        sort_order: undefined
       }
     }
   },
@@ -164,8 +165,8 @@ export default {
       this.getList()
     },
     handleColumnSort(val) {
-      this.listQuery.sortProp = val.prop
-      this.listQuery.sortOrder = val.order
+      this.listQuery.sort_prop = val.prop
+      this.listQuery.sort_order = val.order
       this.getList()
     },
     handleFilter() {
