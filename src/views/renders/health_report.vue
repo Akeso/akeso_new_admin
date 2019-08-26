@@ -3,11 +3,11 @@
     <div v-if="!has_child" class="box">
       <h3>没有查询到用户数据</h3>
     </div>
-    <h1 class="header-title b-blue">近视健康行为管理</h1>
+    <div class="header-title">健康用眼行为管理</div>
     <div class="p-2">
-      <div class="child-info center">
+      <div class="child-info">
         <span>姓名：{{ child.name }}</span>
-        <span>年龄：{{ child.age }}岁</span>
+        <span>年龄：{{ child.age }}</span>
         <span>性别：{{ child.gender | genderFilter }}</span>
         <span>时间：{{ search.date }}</span>
       </div>
@@ -31,22 +31,8 @@
           </div>
         </el-col>
       </el-row>
-      <el-row class="m-t">
-        <el-col :span="24">
-          <div class="el-card box-card is-always-shadow">
-            <div class="el-card__header title center">
-              <span class="title-text b-yellow">本月健康行为习惯 {{ report.grade | gradeFilter }} ，未来近视风险较高</span>
-            </div>
-            <!--<div class="el-card__body p-2">-->
-            <!--<p class="c-blue tit">指导建议：</p>-->
-            <!--<p class="info">1、请您告诉孩子每天把握课间休息时间，不要坐在教室，到户外沐浴阳光或远眺10分钟，可使眼睛得到有效放松，这是目前临床公认的预防近视发生最经济有效的措施；</p>-->
-            <!--<p class="info">2、对于每年近视增长较快者，除了改善读写姿势外，建议家长督促孩子非学习目的每次使用电子产品不超过15分钟，每天累计不超过1小时，完成任务可适当的奖励孩子，这是国家发布的最新近视防控教育指南。</p>-->
-            <!--</div>-->
-          </div>
-        </el-col>
-      </el-row>
-      <el-row class="center">
-        <el-col class="c-blue h-subtitle">基于本月孩子健康行为习惯，可对孩子未来视力做科学预测哦！</el-col>
+      <el-row>
+        <el-col class="h-subtitle">基于本月健康行为数据分析预测如下：</el-col>
         <!--<el-col>-->
         <!--<span class="b-blue c-white subtitle">点击进行近视预测，提早预防近视发展</span>-->
         <!--</el-col>-->
@@ -55,7 +41,7 @@
         <el-col :span="12">
           <div class="el-card box-card is-always-shadow">
             <div class="el-card__header title">
-              <span class="option-title c-blue">健康因子</span>
+              <span class="option-title">健康因子</span>
             </div>
             <div class="el-card__body p-2">
               <div class="header-classify">
@@ -127,7 +113,7 @@
         <el-col :span="12">
           <div class="el-card box-card is-always-shadow">
             <div class="el-card__header title">
-              <span class="option-title c-blue">危险因子</span>
+              <span class="option-title">危险因子</span>
             </div>
             <div class="el-card__body p-2">
               <div class="header-classify">
@@ -229,6 +215,9 @@
       <el-row class="m-t">
         <el-col :span="24">
           <div class="el-card box-card is-always-shadow">
+            <div class="el-card__header title center">
+              <span class="title-text b-yellow">本月健康行为习惯 {{ report.grade | gradeFilter }} ，未来近视风险较高</span>
+            </div>
             <div class="el-card__body p-2">
               <p class="c-blue tit">指导建议：</p>
               <p class="info">1、请您告诉孩子每天把握课间休息时间，不要坐在教室，到户外沐浴阳光或远眺10分钟，可使眼睛得到有效放松，这是目前临床公认的预防近视发生最经济有效的措施；</p>
@@ -260,7 +249,7 @@ export default {
       const statusMap = {
         male: '男',
         female: '女',
-        unknown: '未知'
+        unknown: '--'
       }
       return statusMap[status]
     },
@@ -464,7 +453,7 @@ export default {
   }
   .grid-content{
     text-align: center;
-    padding: 30px 0;
+    padding: 16px 0;
   }
   .grade{
     font-size: 60px;
@@ -496,7 +485,7 @@ export default {
     padding: 16px 0;
   }
   .m-t{
-    margin: 20px 0;
+    margin: 12px 0;
   }
   .tit{
     font-size: 20px;
@@ -506,18 +495,19 @@ export default {
     line-height: 24px;
   }
   .p-2{
-    padding: 20px;
+    padding: 12px;
   }
   .p-nt-2{
-    padding: 0 20px 20px;
+    padding: 0 20px 0 20px;
   }
   .header-title{
-    height: 70px;
+    height: 48px;
     line-height: 70px;
     text-align: center;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 10px;
+    font-size: 28px;
+    /*color: #fff;*/
+    font-weight: 200;
+    /*letter-spacing: 10px;*/
   }
   .subtitle{
     padding: 4px 16px;
@@ -525,8 +515,8 @@ export default {
     font-size: 18px;
   }
   .h-subtitle{
-    padding-bottom: 16px;
     font-size: 18px;
+    font-weight: 300;
   }
   .left{
     float: left;
@@ -594,7 +584,7 @@ export default {
   .child-info span{
     margin-right: 30px;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 300;
   }
   .child-info span:last-child{
     margin-right: 0;
