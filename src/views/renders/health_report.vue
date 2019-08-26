@@ -1,8 +1,8 @@
 <template>
   <div class="month-container">
     <el-row class="p-2">
-      {{ generateShow('common.name') }}:
-      <el-input v-model="search.name" :label="generateShow('common.name')" :placeholder="generateShow('common.name')" style="width: 100px;" class="filter-item" clearable />
+      <!--{{ generateShow('common.name') }}:-->
+      <!--<el-input v-model="search.name" :label="generateShow('common.name')" :placeholder="generateShow('common.name')" style="width: 100px;" class="filter-item" clearable />-->
       {{ generateShow('common.parent_phone') }}:
       <el-input v-model="search.parentPhone" :label="generateShow('common.parent_phone')" :placeholder="generateShow('common.parent_phone')" style="width: 150px;" class="filter-item" clearable />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
@@ -28,19 +28,19 @@
       <el-row :gutter="20">
         <el-col :span="8">
           <div class="grid-content el-card box-card is-always-shadow">
-            <p class="c-green grade">70</p>
+            <p class="c-green grade">{{ report.health_index }}</p>
             <span>本月平均分</span>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="grid-content el-card box-card is-always-shadow">
-            <p class="c-green grade">70</p>
+            <p class="c-green grade">{{ report.wear_time }}</p>
             <span>本月戴镜时间/分钟</span>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="grid-content el-card box-card is-always-shadow">
-            <p class="c-green grade">70</p>
+            <p class="c-green grade">{{ report.effective_days }}</p>
             <span>本月健康同步天数/天</span>
           </div>
         </el-col>
@@ -101,7 +101,7 @@
                     <p>建议240分钟/天</p>
                   </div>
                   <div class="right text-right">
-                    <p class="c-green">本月平均值8分钟</p>
+                    <p class="c-green">本月平均值{{ report.out_time }}分钟</p>
                     <span class="b-green complete-num">完成7%</span>
                   </div>
                 </div>
@@ -245,6 +245,7 @@
 </template>
 
 <script>
+import { fetchMonthlyByPhone } from '@/api/open/reports'
 import icon1 from '../../assets/images/report/icon5.png'
 import icon7 from '../../assets/images/report/icon7.png'
 import icon8 from '../../assets/images/report/icon8.png'
@@ -272,10 +273,18 @@ export default {
       search: {
         parentPhone: '',
         name: ''
+      },
+      phone: undefined,
+      report: {
+        health_index: 0
       }
     }
   },
   created() {
+    fetchMonthlyByPhone({ phone: this.phone }).then(res => {
+      console.log('res => ', res.data)
+      this.report = res.data
+    })
   },
   methods: {
     handleFilter() {
