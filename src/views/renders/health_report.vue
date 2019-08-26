@@ -3,26 +3,26 @@
     <el-row class="p-2">
       <el-col>
         {{ generateShow('common.parent_phone') }}:
-        <el-input v-model="search.parentPhone" :label="generateShow('common.parent_phone')" :placeholder="generateShow('common.parent_phone')" style="width: 150px;" class="filter-item" clearable />
+        <el-input v-model="search.phone" :label="generateShow('common.parent_phone')" :placeholder="generateShow('common.parent_phone')" style="width: 150px;" class="filter-item" clearable />
         选择日期:
         <el-date-picker
           :clearable="false"
-          v-model="selectSection.startDate"
+          v-model="selectSection.date"
           type="month"
           style="width: 150px;"
           format="yyyy-MM"
           value-format="yyyy-MM"
           placeholder="选择日期"/>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="getData">{{ generateShow('common.search') }}</el-button>
         <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
       </el-col>
     </el-row>
     <h1 class="header-title b-blue">近视健康行为管理</h1>
     <div class="p-2">
       <div class="child-info center">
-        <span>姓名：哈哈哈</span>
-        <span>年龄：18岁</span>
-        <span>性别：男</span>
+        <span>姓名：{{ child.name }}</span>
+        <span>年龄：{{ child.age }}岁</span>
+        <span>性别：{{ child.gender | genderFilter }}</span>
         <span>时间：2019-08</span>
       </div>
       <el-row :gutter="20" class="m-t">
@@ -49,7 +49,7 @@
         <el-col :span="24">
           <div class="el-card box-card is-always-shadow">
             <div class="el-card__header title center">
-              <span class="title-text b-yellow">本月健康行为习惯为中+ ，未来近视风险较高</span>
+              <span class="title-text b-yellow">本月健康行为习惯 {{ report.grade | gradeFilter }} ，未来近视风险较高</span>
             </div>
             <div class="el-card__body p-2">
               <p class="c-blue tit">指导建议：</p>
@@ -102,10 +102,10 @@
                   </div>
                   <div class="right text-right">
                     <p class="c-green">本月平均值{{ report.out_time }}分钟</p>
-                    <span class="b-green complete-num">完成7%</span>
+                    <span class="b-green complete-num">完成{{ report.out_time_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="20" color="#c82557" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.out_time_percent" color="#c82557" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -115,11 +115,11 @@
                     <p>建议36W lux/天</p>
                   </div>
                   <div class="right text-right">
-                    <p class="c-green">本月平均值1000000lux</p>
-                    <span class="b-green complete-num">完成7%</span>
+                    <p class="c-green">本月平均值{{ report.lux_day }}lux</p>
+                    <span class="b-green complete-num">完成{{ report.lux_day_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="20" color="#54ce50" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.lux_day_percent" color="#54ce50" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -129,11 +129,11 @@
                     <p>建议12000步/天</p>
                   </div>
                   <div class="right text-right">
-                    <p class="c-green">本月平均值4000步</p>
-                    <span class="b-green complete-num">完成7%</span>
+                    <p class="c-green">本月平均值{{ report.step_count }}步</p>
+                    <span class="b-green complete-num">完成{{ report.step_count_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="20" color="#27adff" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.step_count_percent" color="#27adff" class="progress-l-r m-t-progress p-l-2"/>
               </div>
             </div>
           </div>
@@ -173,11 +173,11 @@
                     <p>建议720D/天</p>
                   </div>
                   <div class="right text-right">
-                    <p class="c-red">本月平均值294D</p>
-                    <span class="b-red complete-num">风险增加59%</span>
+                    <p class="c-red">本月平均值{{ report.nearwork_burden_day }}D</p>
+                    <span class="b-red complete-num">风险增加{{ report.nearwork_burden_day_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="20" color="#c82557" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_burden_day_percent" color="#c82557" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -187,11 +187,11 @@
                     <p>建议45次/天</p>
                   </div>
                   <div class="right text-right">
-                    <p class="c-red">本月平均值9次</p>
-                    <span class="b-red complete-num">风险增加59%</span>
+                    <p class="c-red">本月平均值{{ report.bad_posture_times }}次</p>
+                    <span class="b-red complete-num">风险增加{{ report.bad_posture_times_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="20" color="#54ce50" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.bad_posture_times_percent" color="#54ce50" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -201,11 +201,11 @@
                     <p>建议240分钟/天</p>
                   </div>
                   <div class="right text-right">
-                    <p class="c-red">本月平均值400分钟</p>
-                    <span class="b-red complete-num">风险增加59%</span>
+                    <p class="c-red">本月平均值{{ report.nearwork_day }}分钟</p>
+                    <span class="b-red complete-num">风险增加{{ report.nearwork_day_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="20" color="#27adff" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_day_percent" color="#27adff" class="progress-l-r m-t-progress p-l-2"/>
               </div>
             </div>
           </div>
@@ -257,6 +257,22 @@ export default {
   components: {
     BarChart
   },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女',
+        unknown: '未知'
+      }
+      return statusMap[status]
+    },
+    gradeFilter(status) {
+      const gradeMap = {
+        a: '优', b: '良', c: '中', d: '差', e: '数据不完整', f: '无'
+      }
+      return gradeMap[status]
+    }
+  },
   data() {
     return {
       message: '这个',
@@ -269,25 +285,66 @@ export default {
       icon4,
       icon7,
       icon8,
-      grateData: {},
-      search: {
-        parentPhone: '',
-        name: ''
+      grateData: {
+        time_array: [
+          '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+          '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+          '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
+        ],
+        health_index_array: [
+          // '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+          // '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+          // '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
       },
-      phone: undefined,
+      search: {
+        phone: undefined,
+        date: new Date()
+      },
+      child: {
+        name: '-',
+        age: '-',
+        gender: 'unknown'
+      },
       report: {
-        health_index: 0
+        health_index: 0,
+        wear_time: 0,
+        effective_days: 0,
+        grade: 'e',
+        out_time: 0,
+        out_time_percent: 0,
+        lux_day: 0,
+        lux_day_percent: 0,
+        step_count: 0,
+        step_count_percent: 0,
+        nearwork_burden_day: 0,
+        nearwork_burden_day_percent: 0,
+        bad_posture_times: 0,
+        bad_posture_times_percent: 0,
+        nearwork_day: 0,
+        nearwork_day_percent: 0,
+        time_array: [
+          '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+          '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+          '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
+        ]
       }
     }
   },
   created() {
-    fetchMonthlyByPhone({ phone: this.phone }).then(res => {
-      console.log('res => ', res.data)
-      this.report = res.data
-    })
   },
   methods: {
-    handleFilter() {
+    getData() {
+      fetchMonthlyByPhone(this.search).then(res => {
+        console.log('res => ', res.data)
+        this.child = res.data.child
+        this.report = res.data.report
+        this.grateData.time_array = res.data.report.time_array
+        this.grateData.health_index_array = res.data.report.health_index_array
+      })
     },
     handleFilterClear() {
     }
