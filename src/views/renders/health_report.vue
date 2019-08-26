@@ -1,245 +1,233 @@
 <template>
-  <div class="month-container">
-    <el-row class="p-2">
-      <el-col>
-        {{ generateShow('common.parent_phone') }}:
-        <el-input v-model="search.phone" :label="generateShow('common.parent_phone')" :placeholder="generateShow('common.parent_phone')" style="width: 150px;" class="filter-item" clearable />
-        选择日期:
-        <el-date-picker
-          :clearable="false"
-          v-model="search.date"
-          type="month"
-          style="width: 150px;"
-          format="yyyy-MM"
-          value-format="yyyy-MM"
-          placeholder="选择日期"/>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="getData">{{ generateShow('common.search') }}</el-button>
-        <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
-      </el-col>
-    </el-row>
-    <h1 class="header-title b-blue">近视健康行为管理</h1>
-    <div class="p-2">
-      <div class="child-info center">
-        <span>姓名：{{ child.name }}</span>
-        <span>年龄：{{ child.age }}岁</span>
-        <span>性别：{{ child.gender | genderFilter }}</span>
-        <span>时间：{{ search.date }}</span>
+  <div>
+    <div class="month-container">
+      <div v-if="!has_child" class="box">
+        <h3>没有查询到用户数据</h3>
       </div>
-      <el-row :gutter="20" class="m-t">
-        <el-col :span="8">
-          <div class="grid-content el-card box-card is-always-shadow">
-            <p class="c-green grade">{{ report.health_index }}</p>
-            <span>本月平均分</span>
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <div class="grid-content el-card box-card is-always-shadow">
-            <p class="c-green grade">{{ report.wear_time }}</p>
-            <span>本月戴镜时间/分钟</span>
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <div class="grid-content el-card box-card is-always-shadow">
-            <p class="c-green grade">{{ report.effective_days }}</p>
-            <span>本月健康同步天数/天</span>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row class="m-t">
-        <el-col :span="24">
-          <div class="el-card box-card is-always-shadow">
-            <div class="el-card__header title center">
-              <span class="title-text b-yellow">本月健康行为习惯 {{ report.grade | gradeFilter }} ，未来近视风险较高</span>
+      <h1 class="header-title b-blue">近视健康行为管理</h1>
+      <div class="p-2">
+        <div class="child-info center">
+          <span>姓名：{{ child.name }}</span>
+          <span>年龄：{{ child.age }}岁</span>
+          <span>性别：{{ child.gender | genderFilter }}</span>
+          <span>时间：{{ search.date }}</span>
+        </div>
+        <el-row :gutter="20" class="m-t">
+          <el-col :span="8">
+            <div class="grid-content el-card box-card is-always-shadow">
+              <p class="c-green grade">{{ report.health_index }}</p>
+              <span>本月平均分</span>
             </div>
-            <div class="el-card__body p-2">
-              <p class="c-blue tit">指导建议：</p>
-              <p class="info">1、请您告诉孩子每天把握课间休息时间，不要坐在教室，到户外沐浴阳光或远眺10分钟，可使眼睛得到有效放松，这是目前临床公认的预防近视发生最经济有效的措施；</p>
-              <p class="info">2、对于每年近视增长较快者，除了改善读写姿势外，建议家长督促孩子非学习目的每次使用电子产品不超过15分钟，每天累计不超过1小时，完成任务可适当的奖励孩子，这是国家发布的最新近视防控教育指南。</p>
+          </el-col>
+          <el-col :span="8">
+            <div class="grid-content el-card box-card is-always-shadow">
+              <p class="c-green grade">{{ report.wear_time }}</p>
+              <span>本月戴镜时间/分钟</span>
             </div>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row class="center">
-        <el-col class="c-blue h-subtitle">基于本月孩子健康行为习惯，可对孩子未来视力做科学预测哦！</el-col>
-        <el-col>
-          <span class="b-blue c-white subtitle">点击进行近视预测，提早预防近视发展</span>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20" class="m-t">
-        <el-col :span="12">
-          <div class="el-card box-card is-always-shadow">
-            <div class="el-card__header title">
-              <span class="option-title c-blue">健康因子</span>
+          </el-col>
+          <el-col :span="8">
+            <div class="grid-content el-card box-card is-always-shadow">
+              <p class="c-green grade">{{ report.effective_days }}</p>
+              <span>本月健康同步天数/天</span>
             </div>
-            <div class="el-card__body p-2">
-              <div class="header-classify">
-                <p>健康行为习惯</p>
-                <ul class="list clearfix">
+          </el-col>
+        </el-row>
+        <el-row class="m-t">
+          <el-col :span="24">
+            <div class="el-card box-card is-always-shadow">
+              <div class="el-card__header title center">
+                <span class="title-text b-yellow">本月健康行为习惯 {{ report.grade | gradeFilter }} ，未来近视风险较高</span>
+              </div>
+              <div class="el-card__body p-2">
+                <p class="c-blue tit">指导建议：</p>
+                <p class="info">1、请您告诉孩子每天把握课间休息时间，不要坐在教室，到户外沐浴阳光或远眺10分钟，可使眼睛得到有效放松，这是目前临床公认的预防近视发生最经济有效的措施；</p>
+                <p class="info">2、对于每年近视增长较快者，除了改善读写姿势外，建议家长督促孩子非学习目的每次使用电子产品不超过15分钟，每天累计不超过1小时，完成任务可适当的奖励孩子，这是国家发布的最新近视防控教育指南。</p>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row class="center">
+          <el-col class="c-blue h-subtitle">基于本月孩子健康行为习惯，可对孩子未来视力做科学预测哦！</el-col>
+          <el-col>
+            <span class="b-blue c-white subtitle">点击进行近视预测，提早预防近视发展</span>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20" class="m-t">
+          <el-col :span="12">
+            <div class="el-card box-card is-always-shadow">
+              <div class="el-card__header title">
+                <span class="option-title c-blue">健康因子</span>
+              </div>
+              <div class="el-card__body p-2">
+                <div class="header-classify">
+                  <p>健康行为习惯</p>
+                  <ul class="list clearfix">
+                    <li>
+                      <span class="b-red sign" />
+                      <span>差</span>
+                    </li>
+                    <li>
+                      <span class="b-yellow sign" />
+                      <span>中</span>
+                    </li>
+                    <li>
+                      <span class="b-green sign" />
+                      <span>良</span>
+                    </li>
+                    <li>
+                      <span class="b-blue sign" />
+                      <span>优</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="item">
+                  <div class="header-item clearfix">
+                    <img :src="icon1" alt="" class="icon">
+                    <div class="left">
+                      <p>户外时间</p>
+                      <p>建议240分钟/天</p>
+                    </div>
+                    <div class="right text-right">
+                      <p class="c-green">本月平均值{{ report.out_time }}分钟</p>
+                      <span class="b-green complete-num">完成{{ report.out_time_percent }}%</span>
+                    </div>
+                  </div>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="report.out_time_percent" :color="report.out_time_percent_color" class="progress-l-r m-t-progress p-l-2"/>
+                </div>
+                <div class="item">
+                  <div class="header-item clearfix">
+                    <img :src="icon7" alt="" class="icon">
+                    <div class="left">
+                      <p>户外阳光摄入量</p>
+                      <p>建议36W lux/天</p>
+                    </div>
+                    <div class="right text-right">
+                      <p class="c-green">本月平均值{{ report.lux_day }}lux</p>
+                      <span class="b-green complete-num">完成{{ report.lux_day_percent }}%</span>
+                    </div>
+                  </div>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="report.lux_day_percent" :color="report.lux_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
+                </div>
+                <div class="item">
+                  <div class="header-item clearfix">
+                    <img :src="icon8" alt="" class="icon">
+                    <div class="left">
+                      <p>运动步数</p>
+                      <p>建议12000步/天</p>
+                    </div>
+                    <div class="right text-right">
+                      <p class="c-green">本月平均值{{ report.step_count }}步</p>
+                      <span class="b-green complete-num">完成{{ report.step_count_percent }}%</span>
+                    </div>
+                  </div>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="report.step_count_percent" :color="report.step_count_percent_color" class="progress-l-r m-t-progress p-l-2"/>
+                </div>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="12">
+            <div class="el-card box-card is-always-shadow">
+              <div class="el-card__header title">
+                <span class="option-title c-blue">危险因子</span>
+              </div>
+              <div class="el-card__body p-2">
+                <div class="header-classify">
+                  <p>近视风险</p>
+                  <ul class="list clearfix">
+                    <li>
+                      <span class="b-blue sign" />
+                      <span>低</span>
+                    </li>
+                    <li>
+                      <span class="b-green sign" />
+                      <span>中</span>
+                    </li>
+                    <li>
+                      <span class="b-yellow sign" />
+                      <span>较高</span>
+                    </li>
+                    <li>
+                      <span class="b-red sign" />
+                      <span>特高</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="item">
+                  <div class="header-item clearfix">
+                    <img :src="icon3" alt="" class="icon">
+                    <div class="left">
+                      <p>颈椎与用眼负担</p>
+                      <p>建议720D/天</p>
+                    </div>
+                    <div class="right text-right">
+                      <p class="c-red">本月平均值{{ report.nearwork_burden_day }}D</p>
+                      <span class="b-red complete-num">风险增加{{ report.nearwork_burden_day_percent }}%</span>
+                    </div>
+                  </div>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_burden_day_percent" :color="report.nearwork_burden_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
+                </div>
+                <div class="item">
+                  <div class="header-item clearfix">
+                    <img :src="icon2" alt="" class="icon">
+                    <div class="left">
+                      <p>不良用眼姿势</p>
+                      <p>建议45次/天</p>
+                    </div>
+                    <div class="right text-right">
+                      <p class="c-red">本月平均值{{ report.bad_posture_times }}次</p>
+                      <span class="b-red complete-num">风险增加{{ report.bad_posture_times_percent }}%</span>
+                    </div>
+                  </div>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="report.bad_posture_times_percent" :color="report.bad_posture_times_percent_color" class="progress-l-r m-t-progress p-l-2"/>
+                </div>
+                <div class="item">
+                  <div class="header-item clearfix">
+                    <img :src="icon4" alt="" class="icon">
+                    <div class="left">
+                      <p>近距用眼时间</p>
+                      <p>建议240分钟/天</p>
+                    </div>
+                    <div class="right text-right">
+                      <p class="c-red">本月平均值{{ report.nearwork_day }}分钟</p>
+                      <span class="b-red complete-num">风险增加{{ report.nearwork_day_percent }}%</span>
+                    </div>
+                  </div>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_day_percent" :color="report.nearwork_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
+                </div>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <div class="grid-content el-card box-card is-always-shadow">
+              <div class="clearfix echarts-tit">
+                <ul class="list right">
                   <li>
-                    <span class="b-red sign" />
-                    <span>差</span>
-                  </li>
-                  <li>
-                    <span class="b-yellow sign" />
-                    <span>中</span>
+                    <span class="b-blue sign" />
+                    <span>优</span>
                   </li>
                   <li>
                     <span class="b-green sign" />
                     <span>良</span>
                   </li>
                   <li>
-                    <span class="b-blue sign" />
-                    <span>优</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="item">
-                <div class="header-item clearfix">
-                  <img :src="icon1" alt="" class="icon">
-                  <div class="left">
-                    <p>户外时间</p>
-                    <p>建议240分钟/天</p>
-                  </div>
-                  <div class="right text-right">
-                    <p class="c-green">本月平均值{{ report.out_time }}分钟</p>
-                    <span class="b-green complete-num">完成{{ report.out_time_percent }}%</span>
-                  </div>
-                </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.out_time_percent" :color="report.out_time_percent_color" class="progress-l-r m-t-progress p-l-2"/>
-              </div>
-              <div class="item">
-                <div class="header-item clearfix">
-                  <img :src="icon7" alt="" class="icon">
-                  <div class="left">
-                    <p>户外阳光摄入量</p>
-                    <p>建议36W lux/天</p>
-                  </div>
-                  <div class="right text-right">
-                    <p class="c-green">本月平均值{{ report.lux_day }}lux</p>
-                    <span class="b-green complete-num">完成{{ report.lux_day_percent }}%</span>
-                  </div>
-                </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.lux_day_percent" :color="report.lux_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
-              </div>
-              <div class="item">
-                <div class="header-item clearfix">
-                  <img :src="icon8" alt="" class="icon">
-                  <div class="left">
-                    <p>运动步数</p>
-                    <p>建议12000步/天</p>
-                  </div>
-                  <div class="right text-right">
-                    <p class="c-green">本月平均值{{ report.step_count }}步</p>
-                    <span class="b-green complete-num">完成{{ report.step_count_percent }}%</span>
-                  </div>
-                </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.step_count_percent" :color="report.step_count_percent_color" class="progress-l-r m-t-progress p-l-2"/>
-              </div>
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="el-card box-card is-always-shadow">
-            <div class="el-card__header title">
-              <span class="option-title c-blue">危险因子</span>
-            </div>
-            <div class="el-card__body p-2">
-              <div class="header-classify">
-                <p>近视风险</p>
-                <ul class="list clearfix">
-                  <li>
-                    <span class="b-blue sign" />
-                    <span>低</span>
-                  </li>
-                  <li>
-                    <span class="b-green sign" />
+                    <span class="b-yellow sign" />
                     <span>中</span>
                   </li>
                   <li>
-                    <span class="b-yellow sign" />
-                    <span>较高</span>
-                  </li>
-                  <li>
                     <span class="b-red sign" />
-                    <span>特高</span>
+                    <span>差</span>
                   </li>
                 </ul>
               </div>
-              <div class="item">
-                <div class="header-item clearfix">
-                  <img :src="icon3" alt="" class="icon">
-                  <div class="left">
-                    <p>颈椎与用眼负担</p>
-                    <p>建议720D/天</p>
-                  </div>
-                  <div class="right text-right">
-                    <p class="c-red">本月平均值{{ report.nearwork_burden_day }}D</p>
-                    <span class="b-red complete-num">风险增加{{ report.nearwork_burden_day_percent }}%</span>
-                  </div>
-                </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_burden_day_percent" :color="report.nearwork_burden_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
-              </div>
-              <div class="item">
-                <div class="header-item clearfix">
-                  <img :src="icon2" alt="" class="icon">
-                  <div class="left">
-                    <p>不良用眼姿势</p>
-                    <p>建议45次/天</p>
-                  </div>
-                  <div class="right text-right">
-                    <p class="c-red">本月平均值{{ report.bad_posture_times }}次</p>
-                    <span class="b-red complete-num">风险增加{{ report.bad_posture_times_percent }}%</span>
-                  </div>
-                </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.bad_posture_times_percent" :color="report.bad_posture_times_percent_color" class="progress-l-r m-t-progress p-l-2"/>
-              </div>
-              <div class="item">
-                <div class="header-item clearfix">
-                  <img :src="icon4" alt="" class="icon">
-                  <div class="left">
-                    <p>近距用眼时间</p>
-                    <p>建议240分钟/天</p>
-                  </div>
-                  <div class="right text-right">
-                    <p class="c-red">本月平均值{{ report.nearwork_day }}分钟</p>
-                    <span class="b-red complete-num">风险增加{{ report.nearwork_day_percent }}%</span>
-                  </div>
-                </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_day_percent" :color="report.nearwork_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
+              <div class="chart-wrapper">
+                <bar-chart :grate-data = "grateData"/>
               </div>
             </div>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="24">
-          <div class="grid-content el-card box-card is-always-shadow">
-            <div class="clearfix echarts-tit">
-              <ul class="list right">
-                <li>
-                  <span class="b-blue sign" />
-                  <span>优</span>
-                </li>
-                <li>
-                  <span class="b-green sign" />
-                  <span>良</span>
-                </li>
-                <li>
-                  <span class="b-yellow sign" />
-                  <span>中</span>
-                </li>
-                <li>
-                  <span class="b-red sign" />
-                  <span>差</span>
-                </li>
-              </ul>
-            </div>
-            <div class="chart-wrapper">
-              <bar-chart :grate-data = "grateData"/>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
+          </el-col>
+        </el-row>
+      </div>
     </div>
   </div>
 </template>
@@ -303,6 +291,7 @@ export default {
       },
       search: {
         phone: undefined,
+        name: undefined,
         date: FormatYM(new Date())
       },
       child: {
@@ -338,15 +327,24 @@ export default {
           '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
           '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
         ]
-      }
+      },
+      has_child: false
     }
   },
   created() {
+    this.search.name = this.$route.query.name
+    this.search.phone = this.$route.query.phone
+    this.search.date = this.$route.query.date
+    this.getData()
   },
   methods: {
     getData() {
       fetchMonthlyByPhone(this.search).then(res => {
         // console.log('res => ', res.data)
+        this.has_child = res.data.has_child
+        if (!this.has_child) {
+          return
+        }
         this.child = res.data.child
         this.report = res.data.report
         this.grateData.time_array = res.data.report.time_array
@@ -423,6 +421,13 @@ export default {
   *{
     padding: 0;
     margin: 0;
+  }
+  .box{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin: 20px;
   }
   .c-green{
     color: #54ce50;
