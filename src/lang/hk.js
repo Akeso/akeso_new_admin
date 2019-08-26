@@ -94,7 +94,8 @@ export default {
     device_version: '鏡腿型號',
     bind_state: '綁定狀態',
     bind_at: '綁定時間',
-    description: '描述'
+    description: '描述',
+    children_count: '兒童數量'
   },
   home: {
     all_children: '全部兒童',

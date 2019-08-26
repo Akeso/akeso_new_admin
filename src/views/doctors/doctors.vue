@@ -44,6 +44,10 @@
           prop="locationStreet"
           min-width="80"/>
         <el-table-column
+          :label="generateShow('common.children_count')"
+          prop="childrenCount"
+          min-width="70"/>
+        <el-table-column
           :label="generateShow('common.phone')"
           prop="phone"
           min-width="100"/>
