@@ -7,7 +7,7 @@
         选择日期:
         <el-date-picker
           :clearable="false"
-          v-model="selectSection.date"
+          v-model="search.date"
           type="month"
           style="width: 150px;"
           format="yyyy-MM"
@@ -23,7 +23,7 @@
         <span>姓名：{{ child.name }}</span>
         <span>年龄：{{ child.age }}岁</span>
         <span>性别：{{ child.gender | genderFilter }}</span>
-        <span>时间：2019-08</span>
+        <span>时间：{{ search.date }}</span>
       </div>
       <el-row :gutter="20" class="m-t">
         <el-col :span="8">
@@ -105,7 +105,7 @@
                     <span class="b-green complete-num">完成{{ report.out_time_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.out_time_percent" color="#c82557" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.out_time_percent" :color="report.out_time_percent_color" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -119,7 +119,7 @@
                     <span class="b-green complete-num">完成{{ report.lux_day_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.lux_day_percent" color="#54ce50" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.lux_day_percent" :color="report.lux_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -133,7 +133,7 @@
                     <span class="b-green complete-num">完成{{ report.step_count_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.step_count_percent" color="#27adff" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.step_count_percent" :color="report.step_count_percent_color" class="progress-l-r m-t-progress p-l-2"/>
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@
                     <span class="b-red complete-num">风险增加{{ report.nearwork_burden_day_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_burden_day_percent" color="#c82557" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_burden_day_percent" :color="report.nearwork_burden_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -191,7 +191,7 @@
                     <span class="b-red complete-num">风险增加{{ report.bad_posture_times_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.bad_posture_times_percent" color="#54ce50" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.bad_posture_times_percent" :color="report.bad_posture_times_percent_color" class="progress-l-r m-t-progress p-l-2"/>
               </div>
               <div class="item">
                 <div class="header-item clearfix">
@@ -205,7 +205,7 @@
                     <span class="b-red complete-num">风险增加{{ report.nearwork_day_percent }}%</span>
                   </div>
                 </div>
-                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_day_percent" color="#27adff" class="progress-l-r m-t-progress p-l-2"/>
+                <el-progress :text-inside="true" :stroke-width="18" :percentage="report.nearwork_day_percent" :color="report.nearwork_day_percent_color" class="progress-l-r m-t-progress p-l-2"/>
               </div>
             </div>
           </div>
@@ -246,6 +246,7 @@
 
 <script>
 import { fetchMonthlyByPhone } from '@/api/open/reports'
+import { FormatYM } from '@/utils/index'
 import icon1 from '../../assets/images/report/icon5.png'
 import icon7 from '../../assets/images/report/icon7.png'
 import icon8 from '../../assets/images/report/icon8.png'
@@ -277,7 +278,7 @@ export default {
     return {
       message: '这个',
       selectSection: {
-        startDate: new Date()
+        date: new Date()
       },
       icon1,
       icon2,
@@ -302,7 +303,7 @@ export default {
       },
       search: {
         phone: undefined,
-        date: new Date()
+        date: FormatYM(new Date())
       },
       child: {
         name: '-',
@@ -316,16 +317,22 @@ export default {
         grade: 'e',
         out_time: 0,
         out_time_percent: 0,
+        out_time_percent_color: '',
         lux_day: 0,
         lux_day_percent: 0,
+        lux_day_percent_color: '',
         step_count: 0,
         step_count_percent: 0,
+        step_count_percent_color: '',
         nearwork_burden_day: 0,
         nearwork_burden_day_percent: 0,
+        nearwork_burden_day_percent_color: '',
         bad_posture_times: 0,
         bad_posture_times_percent: 0,
+        bad_posture_times_percent_color: '',
         nearwork_day: 0,
         nearwork_day_percent: 0,
+        nearwork_day_percent_color: '',
         time_array: [
           '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
           '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
@@ -339,11 +346,71 @@ export default {
   methods: {
     getData() {
       fetchMonthlyByPhone(this.search).then(res => {
-        console.log('res => ', res.data)
+        // console.log('res => ', res.data)
         this.child = res.data.child
         this.report = res.data.report
         this.grateData.time_array = res.data.report.time_array
         this.grateData.health_index_array = res.data.report.health_index_array
+        var out_time_percent = res.data.report.out_time_percent
+        var lux_day_percent = res.data.report.lux_day_percent
+        var step_count_percent = res.data.report.step_count_percent
+        var nearwork_burden_day_percent = res.data.report.nearwork_burden_day_percent
+        var bad_posture_times_percent = res.data.report.bad_posture_times_percent
+        var nearwork_day_percent = res.data.report.nearwork_day_percent
+        if (out_time_percent <= 25) {
+          this.report.out_time_percent_color = '#c82557'
+        } else if (out_time_percent > 25 && out_time_percent <= 50) {
+          this.report.out_time_percent_color = '#f5a623'
+        } else if (out_time_percent > 50 && out_time_percent <= 75) {
+          this.report.out_time_percent_color = '#54ce50'
+        } else if (out_time_percent > 75) {
+          this.report.out_time_percent_color = '#27adff'
+        }
+        if (lux_day_percent <= 25) {
+          this.report.lux_day_percent_color = '#c82557'
+        } else if (lux_day_percent > 25 && lux_day_percent <= 50) {
+          this.report.lux_day_percent_color = '#f5a623'
+        } else if (lux_day_percent > 50 && lux_day_percent <= 75) {
+          this.report.lux_day_percent_color = '#54ce50'
+        } else if (lux_day_percent > 75) {
+          this.report.lux_day_percent_color = '#27adff'
+        }
+        if (step_count_percent <= 25) {
+          this.report.step_count_percent_color = '#c82557'
+        } else if (step_count_percent > 25 && step_count_percent <= 50) {
+          this.report.step_count_percent_color = '#f5a623'
+        } else if (step_count_percent > 50 && step_count_percent <= 75) {
+          this.report.step_count_percent_color = '#54ce50'
+        } else if (step_count_percent > 75) {
+          this.report.step_count_percent_color = '#27adff'
+        }
+        if (nearwork_burden_day_percent <= 25) {
+          this.report.nearwork_burden_day_percent_color = '#27adff'
+        } else if (nearwork_burden_day_percent > 25 && nearwork_burden_day_percent <= 50) {
+          this.report.nearwork_burden_day_percent_color = '#54ce50'
+        } else if (nearwork_burden_day_percent > 50 && nearwork_burden_day_percent <= 75) {
+          this.report.nearwork_burden_day_percent_color = '#f5a623'
+        } else if (nearwork_burden_day_percent > 75) {
+          this.report.nearwork_burden_day_percent_color = '#c82557'
+        }
+        if (bad_posture_times_percent <= 25) {
+          this.report.bad_posture_times_percent_color = '#27adff'
+        } else if (bad_posture_times_percent > 25 && bad_posture_times_percent <= 50) {
+          this.report.bad_posture_times_percent_color = '#54ce50'
+        } else if (bad_posture_times_percent > 50 && bad_posture_times_percent <= 75) {
+          this.report.bad_posture_times_percent_color = '#f5a623'
+        } else if (bad_posture_times_percent > 75) {
+          this.report.bad_posture_times_percent_color = '#c82557'
+        }
+        if (nearwork_day_percent <= 25) {
+          this.report.nearwork_day_percent_color = '#27adff'
+        } else if (nearwork_day_percent > 25 && nearwork_day_percent <= 50) {
+          this.report.nearwork_day_percent_color = '#54ce50'
+        } else if (nearwork_day_percent > 50 && nearwork_day_percent <= 75) {
+          this.report.nearwork_day_percent_color = '#f5a623'
+        } else if (nearwork_day_percent > 75) {
+          this.report.nearwork_day_percent_color = '#c82557'
+        }
       })
     },
     handleFilterClear() {

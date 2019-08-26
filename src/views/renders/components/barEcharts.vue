@@ -29,14 +29,14 @@ export default {
       default() {
         return {
           time_array: [
-            '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
-            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-            '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
+            // '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+            // '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+            // '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
           ],
           health_index_array: [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
           ]
         }
       }
@@ -56,7 +56,8 @@ export default {
         } else {
           this.initChart(oldV)
         }
-      }
+      },
+      deep: true
     }
   },
   mounted() {
@@ -77,7 +78,7 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart(grateData) {
+    initChart(grateDatas) {
       this.chart = echarts.init(this.$el, 'macarons')
       this.chart.setOption({
         tooltip: {
@@ -99,7 +100,7 @@ export default {
         xAxis: [{
           type: 'category',
           name: '时间',
-          data: grateData.time_array,
+          data: grateDatas.time_array,
           axisTick: {
             // alignWithLabel: true
           },
@@ -126,7 +127,7 @@ export default {
           type: 'bar',
           // stack: 'vistors',
           // barWidth: '10',
-          data: grateData.health_index_array,
+          data: grateDatas.health_index_array,
           label: {
             normal: {
               show: true,
