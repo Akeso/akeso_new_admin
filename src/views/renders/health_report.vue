@@ -8,24 +8,31 @@
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
       <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
     </el-row>
+    <div class="report-con p-nt-2">
+      <el-row :gutter="20" class="m-t-2">
+        <el-col>
+          选择日期:
+          <el-date-picker
+            :clearable="false"
+            v-model="selectSection.startDate"
+            type="month"
+            style="width: 150px;"
+            format="yyyy-MM"
+            value-format="yyyy-MM"
+            placeholder="选择日期"/>
+          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">确认</el-button>
+        </el-col>
+      </el-row>
+    </div>
     <h1 class="header-title b-blue">近视健康行为管理</h1>
     <div class="p-2">
-      <div class="report-con m-t">
-        <el-row :gutter="20" class="m-t-2">
-          <el-col>
-            选择日期
-            <el-date-picker
-              :clearable="false"
-              v-model="selectSection.startDate"
-              type="month"
-              style="width: 150px;"
-              format="yyyy-MM"
-              value-format="yyyy-MM"
-              placeholder="选择日期"/>
-          </el-col>
-        </el-row>
+      <div class="child-info center">
+        <span>姓名：哈哈哈</span>
+        <span>年龄：18岁</span>
+        <span>性别：男</span>
+        <span>时间：2019-08</span>
       </div>
-      <el-row :gutter="20">
+      <el-row :gutter="20" class="m-t">
         <el-col :span="8">
           <div class="grid-content el-card box-card is-always-shadow">
             <p class="c-green grade">{{ report.health_index }}</p>
@@ -370,6 +377,9 @@ export default {
   .p-2{
     padding: 20px;
   }
+  .p-nt-2{
+    padding: 0 20px 20px;
+  }
   .header-title{
     height: 70px;
     line-height: 70px;
@@ -449,5 +459,13 @@ export default {
   }
   .el-button--medium {
     padding: 10px 20px;
+  }
+  .child-info span{
+    margin-right: 30px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .child-info span:last-child{
+    margin-right: 0;
   }
 </style>
