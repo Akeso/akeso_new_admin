@@ -47,7 +47,8 @@
         <el-table-column
           :label="generateShow('common.children_count')"
           prop="childrenCount"
-          min-width="70"/>
+          sortable
+          min-width="90"/>
         <el-table-column
           :label="generateShow('common.phone')"
           prop="phone"
@@ -63,7 +64,7 @@
         <el-table-column
           :label="generateShow('common.account_type')"
           prop="baseTypeVal"
-          min-width="60"/>
+          min-width="80"/>
         <el-table-column
           label="操作"
           min-width="120" >
