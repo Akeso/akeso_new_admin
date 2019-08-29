@@ -56,7 +56,7 @@ export default {
     child_in_all_percent: '智能/全部儿童占比',
     out_time_percent: '户外活动情况达标率',
     step_count_percent: '体育运动情况达标率',
-    nearwork_day_percent: '近距离用眼超标率',
+    nearwork_day_percent: '近距离用眼正常率',
     out_time_field: '户外时间',
     nearwork_day_field: '近距离用眼时长',
     lux_day_field: '阳光摄入量',
