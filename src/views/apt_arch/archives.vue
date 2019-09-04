@@ -42,10 +42,9 @@
         <el-table-column
           :label="generateShow('common.gender')"
           prop="gender"
-          sortable
           min-width="50">
           <template slot-scope="scope">
-            <el-button type="text" size="small">{{ scope.row.gender | genderFilter }}</el-button>
+            <span>{{ scope.row.gender | genderFilter }}</span>
           </template>
         </el-table-column>
         <el-table-column
@@ -59,7 +58,6 @@
         <el-table-column
           :label="generateShow('common.created_at')"
           prop="createdAt"
-          sortable="custom"
           min-width="120"/>
         <el-table-column
           label="操作"
