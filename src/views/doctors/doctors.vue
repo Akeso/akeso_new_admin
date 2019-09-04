@@ -62,9 +62,17 @@
           prop="createdAt"
           min-width="120"/>
         <el-table-column
-          :label="generateShow('common.account_type')"
-          prop="baseTypeVal"
-          min-width="80"/>
+          :label="generateShow('common.state')"
+          min-width="80">
+          <template slot-scope="scope">
+            <span>{{ scope.row.authorize | stateFileter }}</span>
+            <el-button v-if="scope.row.authorize === 'pending'" type="text" size="small" @click="handleClickAuthorize(scope.row)">{{ generateShow('common.authorize') }}</el-button>
+          </template>
+        </el-table-column>
+        <!--<el-table-column-->
+        <!--:label="generateShow('common.account_type')"-->
+        <!--prop="baseTypeVal"-->
+        <!--min-width="80"/>-->
         <el-table-column
           label="操作"
           min-width="120" >
@@ -88,13 +96,23 @@
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/doctors'
+import { fetchList, deleteItem, authorizeDoctor } from '@/api/doctors'
 import NewDoctor from './components/new_doctor'
 import EditDoctor from './components/edit_doctor'
 import Services from './components/services'
 import Location from './components/location'
 export default {
   components: { NewDoctor, EditDoctor, Services, Location },
+  filters: {
+    stateFileter(state) {
+      const stateMap = {
+        pending: '审核中',
+        pass: '审核通过',
+        reject: '审核拒绝'
+      }
+      return stateMap[state]
+    }
+  },
   data() {
     return {
       list: null,
@@ -117,6 +135,22 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickAuthorize(val) {
+      this.$confirm('确定要审核通过该账户吗?', '提示', {
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        type: 'warning'
+      }).then(() => {
+        authorizeDoctor({ id: val.id }).then(response => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '审核成功!'
+          })
+        })
+      }).catch(() => {
+      })
+    },
     handleClickLocation(val) {
       this.$refs.location.show(val)
     },
