@@ -42,11 +42,12 @@
         <el-table-column
           :label="generateShow('common.gender')"
           prop="gender"
-          min-width="50"/>
-        <!--<el-table-column-->
-        <!--prop="schoolName"-->
-        <!--label="学校名称"-->
-        <!--min-width="90"/>-->
+          sortable
+          min-width="50">
+          <template slot-scope="scope">
+            <el-button type="text" size="small">{{ scope.row.gender | genderFilter }}</el-button>
+          </template>
+        </el-table-column>
         <el-table-column
           :label="generateShow('common.location')"
           prop="locationString"
@@ -84,6 +85,16 @@ import NewArchive from './components/new_archive'
 export default {
   components: {
     NewArchive
+  },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女',
+        unknown: '未知'
+      }
+      return statusMap[status]
+    }
   },
   data() {
     return {

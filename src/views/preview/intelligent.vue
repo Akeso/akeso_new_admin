@@ -42,7 +42,12 @@
         <el-table-column
           :label="generateShow('common.gender')"
           prop="gender"
-          min-width="50"/>
+          sortable
+          min-width="60">
+          <template slot-scope="scope">
+            <el-button type="text" size="small">{{ scope.row.gender | genderFilter }}</el-button>
+          </template>
+        </el-table-column>
         <el-table-column
           :label="generateShow('common.location')"
           prop="locationString"
@@ -88,6 +93,16 @@ import { fetchIntelligentChildren } from '@/api/children'
 import Channel from '../components/channel'
 export default {
   components: { Channel },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女',
+        unknown: '未知'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       list: null,
