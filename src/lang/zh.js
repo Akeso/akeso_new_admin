@@ -96,7 +96,10 @@ export default {
     bind_at: '绑定时间',
     description: '描述',
     children_count: '儿童数量',
-    authorize: '审核'
+    authorize: '审核',
+    data_export: '数据导出',
+    query: '查询',
+    period: '周期'
   },
   home: {
     all_children: '全部儿童',
