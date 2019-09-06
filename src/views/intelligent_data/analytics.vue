@@ -3,12 +3,18 @@
     <div slot="header" class="clearfix">
       <span>{{ generateShow('route.analytics') }}</span>
     </div>
+    <!--<el-row>-->
+    <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">-->
+    <!--<el-menu-item index="whole">{{ generateShow('common.whole_analytics') }}</el-menu-item>-->
+    <!--<el-menu-item index="whole_report">{{ generateShow('common.whole_report') }}</el-menu-item>-->
+    <!--<el-menu-item index="data_export">{{ generateShow('common.data_export') }}</el-menu-item>-->
+    <!--</el-menu>-->
+    <!--</el-row>-->
     <el-row>
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="whole">{{ generateShow('common.whole_analytics') }}</el-menu-item>
-        <el-menu-item index="whole_report">{{ generateShow('common.whole_report') }}</el-menu-item>
-        <!--<el-menu-item index="data_export">{{ generateShow('common.data_export') }}</el-menu-item>-->
-      </el-menu>
+      <el-radio-group v-model="activeIndex" style="margin-bottom: 30px;">
+        <el-radio-button label="whole">{{ generateShow('common.whole_analytics') }}</el-radio-button>
+        <el-radio-button label="whole_report">{{ generateShow('common.whole_report') }}</el-radio-button>
+      </el-radio-group>
     </el-row>
     <el-row>
       <el-col>
