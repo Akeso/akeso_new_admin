@@ -25,6 +25,9 @@
             format="yyyy-MM-dd"
             value-format="yyyy-MM-dd"/>
           <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter(1)">{{ generateShow('common.query') }}</el-button>
+          <el-button class="filter-item" type="primary" icon="el-icon-download">
+            <a :href="downloadOneUrl + '?phone=' + listQuery.phone + '&start_date=' + listQuery.start_date + '&end_date=' + listQuery.end_date">导出Excel</a>
+          </el-button>
         </el-col>
       </el-row>
       <el-row style="margin: 10px 0px 10px 0px;">
@@ -37,6 +40,9 @@
             placeholder="选择日期"
             value-format="yyyy-MM-dd"/>
           <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter(2)">{{ generateShow('common.query') }}</el-button>
+          <el-button class="filter-item" type="primary" icon="el-icon-download">
+            <a :href="downloadMoreUrl + '?date=' + listQuery.date + '&authenticationToken=' + $store.getters.authenticationToken">导出Excel</a>
+          </el-button>
         </el-col>
       </el-row>
       <el-table
@@ -100,6 +106,8 @@ import { fetchReports, fetchPeriod } from '@/api/daily_eye_reports'
 export default {
   data() {
     return {
+      downloadOneUrl: '/api/a1/excels/daily_one',
+      downloadMoreUrl: '/api/a1/excels/daily_more',
       isPeriod: 1,
       list: null,
       total: null,
