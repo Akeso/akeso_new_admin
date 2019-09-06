@@ -7,14 +7,14 @@
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-menu-item index="whole">{{ generateShow('common.whole_analytics') }}</el-menu-item>
         <el-menu-item index="whole_report">{{ generateShow('common.whole_report') }}</el-menu-item>
-        <el-menu-item index="data_export">{{ generateShow('common.data_export') }}</el-menu-item>
+        <!--<el-menu-item index="data_export">{{ generateShow('common.data_export') }}</el-menu-item>-->
       </el-menu>
     </el-row>
     <el-row>
       <el-col>
         <Whole v-if="activeIndex === 'whole'"/>
         <WholeReport v-if="activeIndex === 'whole_report'"/>
-        <DataExport v-if="activeIndex === 'data_export'"/>
+        <!--<DataExport v-if="activeIndex === 'data_export'"/>-->
       </el-col>
     </el-row>
   </el-card>

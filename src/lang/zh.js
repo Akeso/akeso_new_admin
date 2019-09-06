@@ -153,7 +153,8 @@ export default {
     app_files: '蓝牙文件',
     awards: '奖品管理',
     wx_organizations: '机构管理',
-    weapp: '步步兑换活动'
+    weapp: '步步兑换活动',
+    data_export: '数据导出'
   },
   device: {
     deviceType: '镜腿型号'

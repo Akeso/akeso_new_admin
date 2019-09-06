@@ -132,6 +132,12 @@ export const constantRouterMap = [
         name: 'groupReport',
         component: () => import('@/views/intelligent_data/group_report'),
         meta: { title: 'group_report', icon: 'table' }
+      },
+      {
+        path: 'data_export',
+        name: 'dataExport',
+        component: () => import('@/views/intelligent_data/data_export'),
+        meta: { title: 'data_export', icon: 'table' }
       }
     ]
   },
