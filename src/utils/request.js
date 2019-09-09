@@ -79,7 +79,7 @@ service.interceptors.response.use(
   error => {
     console.log('err' + error) // for debug
     Message({
-      message: error.message,
+      message: '网络请求超时，请重新请求.',
       type: 'error',
       duration: 5 * 1000
     })
