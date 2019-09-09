@@ -77,7 +77,7 @@
           <el-col :span="16">
             <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
           </el-col>
-          <el-col :span="3" class="text-standard-font">{{ monthData.badPostureTimes }}/45次</el-col>
+          <el-col :span="3" class="text-standard-font">{{ monthData.badPostureTimes }}/24次</el-col>
         </el-row>
         <MonthHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
         <MonthHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>

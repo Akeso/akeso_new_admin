@@ -1,12 +1,17 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="创建档案名称" width="50%;" style="text-align:center;">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="创建档案" width="50%;" style="text-align:center;">
     <el-form :model="temp" style="width: 90%; margin-left:20px;">
       <el-row :gutter="20" style="margin-bottom: 20px;">
         <el-col :span="6" :offset="0" style="line-height:36px;">
-          <span class="item-title">填写档案名称：</span>
+          <span class="item-title">选择检查日期：</span>
         </el-col>
-        <el-col :span="14" class="item-value">
-          <el-input v-model="title"/>
+        <el-col :span="2" class="item-value">
+          <!--<el-input v-model="title"/>-->
+          <el-date-picker
+            v-model="title"
+            type="date"
+            placeholder="选择日期"
+            value-format="yyyy-MM-dd"/>
         </el-col>
       </el-row>
     </el-form>

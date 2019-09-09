@@ -16,10 +16,10 @@
         prop="createFileTime"
         label="建档时间"
         min-width="60"/>
-      <el-table-column
-        prop="name"
-        label="档案名称"
-        min-width="100"/>
+      <!--<el-table-column-->
+      <!--prop="name"-->
+      <!--label="档案名称"-->
+      <!--min-width="100"/>-->
       <el-table-column
         prop="doctorName"
         label="所属机构"
