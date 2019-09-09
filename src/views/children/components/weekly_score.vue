@@ -22,7 +22,6 @@
       </el-row>
     </div>
     <el-card class="box-card">
-      <!--<div id="pdfDom" class="pdf-container" style="">-->
       <div id="pdfDom">
         <div style="padding: 20px;">
           <div class="header">
@@ -63,8 +62,8 @@
               <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="13">&nbsp;&nbsp;条件灵敏度下降</label>
             </div>
             <div class="weekly-contents">
-              <h2 class="c-blue">本周评价得分 {{ weekData.healthIndex }}</h2>
-              <ul class="weekle-list">
+              <h2 class="c-blue">本周平均得分 {{ weekData.healthIndex }}</h2>
+              <ul class="score-list">
                 <li>总戴镜时间 <span class="c-blue">{{ weekData.wearTime }}</span></li>
                 <li>总戴镜时间 <span class="c-blue">{{ weekData.upElement }}</span></li>
                 <li>累计危险因素 <span class="c-blue">{{ weekData.downElement }}</span></li>
@@ -81,7 +80,7 @@
               </el-col>
               <el-col :span="8" class="progress-bar">
                 <div class="score-des green-back">
-                  <span>左边为本月平均数据，右边为参考范围</span>
+                  <span>左边为本周平均数据，右边为参考范围</span>
                 </div>
                 <div class="adding-score c-green">加分项</div>
                 <el-row class="indicator-title">
@@ -106,7 +105,7 @@
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.stepCountPercent" status="success" class="progress-l-r"/>
                 </el-row>
                 <div class="score-des red-back">
-                  <span>左边为本月平均数据，右边为参考范围</span>
+                  <span>左边为本周平均数据，右边为参考范围</span>
                 </div>
                 <div class="adding-score c-red m-t-1">减分项</div>
                 <el-row class="indicator-title">
@@ -331,32 +330,6 @@ export default {
 .el-progress__text {
   display: none !important;
 }
-.pdf-container{
-  width: 100%;
-  /*position: absolute;*/
-  top: 20px;
-}
-.clear:after{ display:block; content:""; clear:both;}
-.clear{ zoom:1;}
-.info{
-  padding-top:20px;
-  margin: -17px 1px 0;
-  background: #fff;
-  position: relative;
-}
-.info ul, li{
-  padding: 0;
-  list-style: none;
-}
-.info ul{
-  overflow: hidden;
-  padding-left: 60px;
-  padding-bottom: 20px;
-}
-.info li{
-  float: left;
-  margin-right: 50px;
-}
 .title{
   font-size: 18px;
   font-weight: 400;
@@ -372,20 +345,20 @@ export default {
   font-weight: 20px;
   font-weight: 400;
 }
-.weekle-list, li{
+.score-list, li{
   list-style: none;
   padding:0;
   margin:0;
 }
-.weekle-list{
+.score-list{
   overflow: hidden;
   padding-bottom: 20px;
 }
-.weekle-list li{
+.score-list li{
   float: left;
   margin-right:20px;
 }
-.weekle-list.next li{
+.score-list.next li{
   margin-right:76px;
 }
 .text-left{
