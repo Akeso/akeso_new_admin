@@ -111,7 +111,8 @@ export default {
     new_intelligent_children: '新增智能用户量',
     sync_data_children: '同步数据用户',
     user_tag_statics: '用户标签统计',
-    clinical_tag_statics: '临床标签统计'
+    clinical_tag_statics: '临床标签统计',
+    to_week_children: '本周复查儿童'
   },
   login: {
     logIn: '登录',

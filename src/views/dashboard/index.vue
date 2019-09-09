@@ -4,7 +4,7 @@
     <panel-group :statistics-data="statisticsData" @handleSetLineChartData="handleSetLineChartData" />
 
     <el-row type="flex" class="row-bg" justify="space-between">
-      <el-tag>{{ generateShow('home.time_section') }}</el-tag>
+      <h3>{{ generateShow('home.time_section') }}</h3>
       <el-date-picker
         v-model="paramsQuery.dateSection"
         :picker-options="pickerOptions2"
@@ -23,7 +23,16 @@
     <!--</el-radio-group>-->
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
-    <el-tag>{{ generateShow('home.user_tag_statics') }}</el-tag>
+    <h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>
+    <el-row>
+      <span v-for="item in examineChildren" :key="item.id">
+        <router-link :to="'/preview/child/'+item.id">
+          <el-tag>{{ item.name }}</el-tag>&nbsp;&nbsp;
+        </router-link>
+      </span>
+    </el-row>
+
+    <h3>{{ generateShow('home.user_tag_statics') }}</h3>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
       <el-col v-for="item in userTags" :key="item.id" :span="4">
         <el-card class="box-card">
@@ -35,7 +44,7 @@
       </el-col>
     </el-row>
 
-    <el-tag>{{ generateShow('home.clinical_tag_statics') }}</el-tag>
+    <h3>{{ generateShow('home.clinical_tag_statics') }}</h3>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
       <el-col v-for="item in clinicalTags" :key="item.id" :span="3">
         <el-card class="box-card" >
@@ -52,7 +61,7 @@
 
 <script>
 import PanelGroup from './components/PanelGroup'
-import { fetchIndex, fetchGrowth } from '@/api/statistics'
+import { fetchIndex, fetchGrowth, examineChildren } from '@/api/statistics'
 
 export default {
   name: 'Dashboard',
@@ -118,7 +127,8 @@ export default {
           { 'date': '2018-01-10', 'newChild': 12 },
           { 'date': '2018-01-20', 'newChild': 45 }
         ]
-      }
+      },
+      examineChildren: []
     }
   },
   watch: {
@@ -129,11 +139,14 @@ export default {
   created() {
     this.getStatisticsData()
     this.getGrowthData()
+    this.getExamineChildren()
   },
   methods: {
-    // radioCountChange() {
-    //   this.getGrowthData()
-    // },
+    getExamineChildren() {
+      examineChildren().then(res => {
+        this.examineChildren = res.data
+      })
+    },
     handleSetLineChartData() {
     },
     getStatisticsData() {

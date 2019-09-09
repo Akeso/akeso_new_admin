@@ -25,6 +25,10 @@
         label="所属机构"
         min-width="140"/>
       <el-table-column
+        prop="lastUpdateAt"
+        label="下次复查时间"
+        min-width="100"/>
+      <el-table-column
         label="操作"
         min-width="260"
       >
@@ -33,23 +37,25 @@
           <el-button type="text" size="small" @click="handleData('visual', scope.row.id)">视功能检查</el-button>
           <el-button type="text" size="small" @click="handleData('review', scope.row.id)">复查验光</el-button>
           <el-button type="text" size="small" @click="handleData('eye', scope.row.id)">眼部检查</el-button>
+          <el-button type="text" size="small" @click="handleDataUpdate(scope.row)">下次复查时间</el-button>
           <!--<el-button type="text" size="small" @click="handleData('all', scope.row.id)">查看全部</el-button>-->
         </template>
       </el-table-column>
     </el-table>
     <create-modal ref="modal" :user-id= "userId" @handleDateList="handleList"/>
     <dataModal ref="dataModal" :user-id= "userId" class="modal-w" />
+    <last-update-modal ref="updateModal" @update-success="getList"/>
   </div>
 </template>
 
 <script>
 import { fetchList, QueryOptometricData, showVisualFunctionTests, showReviewOptometry, showObjectiveOcular, showSubjectiveOcular } from '@/api/eye_examinations'
 import createModal from './create_modal'
+import lastUpdateModal from './last_update_modal'
 import dataModal from './data_modal'
 export default {
   components: {
-    createModal,
-    dataModal
+    createModal, dataModal, lastUpdateModal
   },
   props: {
     userId: {
@@ -101,6 +107,9 @@ export default {
     handleList: function(data) {
       console.log('监听子集传值', data)
       this.tableData = data.items
+    },
+    handleDataUpdate: function(val) {
+      this.$refs['updateModal'].show(val)
     },
     // 获取验光数据
     QueryOptometricData: function(str, id) {
