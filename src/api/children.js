@@ -61,3 +61,12 @@ export function updateChildTags(query) {
     data: query
   })
 }
+
+export function fetchSelfItems(query) {
+  console.log('query => ', query)
+  return request({
+    url: '/api/a1/children/self_index',
+    method: 'get',
+    query: query
+  })
+}

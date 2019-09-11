@@ -60,6 +60,13 @@ export const constantRouterMap = [
       //   meta: { title: 'overview', icon: 'table' }
       // },
       {
+        path: 'children',
+        name: 'children',
+        component: () => import('@/views/preview/children'),
+        meta: { title: 'children', icon: 'people', noCache: true },
+        hidden: true
+      },
+      {
         path: 'allchildren',
         name: 'Allchildren',
         component: () => import('@/views/preview/allchildren'),

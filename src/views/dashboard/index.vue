@@ -3,8 +3,8 @@
 
     <panel-group :statistics-data="statisticsData" @handleSetLineChartData="handleSetLineChartData" />
 
+    <h3>{{ generateShow('home.time_section') }}</h3>
     <el-row type="flex" class="row-bg" justify="space-between">
-      <h3>{{ generateShow('home.time_section') }}</h3>
       <el-date-picker
         v-model="paramsQuery.dateSection"
         :picker-options="pickerOptions2"
@@ -16,11 +16,6 @@
         end-placeholder="结束日期"
         value-format="yyyy-MM-dd"/>
     </el-row>
-    <!--<el-radio-group v-model="paramsQuery.radioValue" @change="radioCountChange">-->
-    <!--<el-radio-button label="newChild">新增用户</el-radio-button>-->
-    <!--<el-radio-button label="newDeviceChild">新增智能用户</el-radio-button>-->
-    <!--<el-radio-button label="syncChild">同步用户</el-radio-button>-->
-    <!--</el-radio-group>-->
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
     <h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>
@@ -113,7 +108,8 @@ export default {
         childrenCount: 0,
         deviceChildrenCount: 0,
         appointCount: 0,
-        followCount: 0
+        followCount: 0,
+        toWeekUpdateCount: 0
       },
       userTags: [],
       clinicalTags: [],
@@ -155,6 +151,7 @@ export default {
         this.statisticsData.deviceChildrenCount = response.data.deviceChildrenCount
         this.statisticsData.appointCount = response.data.appointCount
         this.statisticsData.followCount = response.data.followCount
+        this.statisticsData.toWeekUpdateCount = response.data.toWeekUpdateCount
         this.userTags = response.data.userTags
         this.clinicalTags = response.data.clinicalTags
       })
