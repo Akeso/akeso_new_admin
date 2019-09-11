@@ -56,7 +56,7 @@
 
 <script>
 import PanelGroup from './components/PanelGroup'
-import { fetchIndex, fetchGrowth, examineChildren } from '@/api/statistics'
+import { fetchIndex, fetchGrowth } from '@/api/statistics'
 
 export default {
   name: 'Dashboard',
@@ -135,14 +135,8 @@ export default {
   created() {
     this.getStatisticsData()
     this.getGrowthData()
-    this.getExamineChildren()
   },
   methods: {
-    getExamineChildren() {
-      examineChildren().then(res => {
-        this.examineChildren = res.data
-      })
-    },
     handleSetLineChartData() {
     },
     getStatisticsData() {
