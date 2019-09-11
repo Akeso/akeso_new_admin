@@ -67,6 +67,6 @@ export function fetchSelfItems(query) {
   return request({
     url: '/api/a1/children/self_index',
     method: 'get',
-    query: query
+    params: query
   })
 }

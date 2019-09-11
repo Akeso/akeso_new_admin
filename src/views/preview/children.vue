@@ -82,7 +82,9 @@ export default {
       total: null,
       listLoading: true,
       listQuery: {
+        tag_id: undefined,
         title: undefined,
+        type: undefined,
         page: 1,
         limit: 20
       }
@@ -90,6 +92,8 @@ export default {
   },
   created() {
     this.listQuery.title = this.$route.query.title
+    this.listQuery.type = this.$route.query.type
+    this.listQuery.tag_id = this.$route.query.tag_id
     this.getList()
   },
   methods: {
@@ -99,6 +103,7 @@ export default {
       }
     },
     getList() {
+      console.log('aaa => ', this.listQuery)
       fetchSelfItems(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total

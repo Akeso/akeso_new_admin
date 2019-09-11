@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     handleSetLineChartData(type, title) {
-      this.$router.push({ name: type, query: { title: title }})
+      this.$router.push({ name: type, query: { type: type, title: title }})
     }
   }
 }

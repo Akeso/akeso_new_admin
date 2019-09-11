@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-container">
 
-    <panel-group :statistics-data="statisticsData" @handleSetLineChartData="handleSetLineChartData" />
+    <panel-group :statistics-data="statisticsData"/>
 
     <h3>{{ generateShow('home.time_section') }}</h3>
     <el-row type="flex" class="row-bg" justify="space-between">
@@ -31,7 +31,7 @@
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
       <el-col v-for="item in userTags" :key="item.id" :span="4">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
+          <div slot="header" class="clearfix" style="cursor: pointer;" @click="handleClickTag('tag', item)">
             <span>{{ item.name }}</span>
           </div>
           <div class="component-item">{{ item.childrenCount }}</div>
@@ -43,7 +43,7 @@
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
       <el-col v-for="item in clinicalTags" :key="item.id" :span="3">
         <el-card class="box-card" >
-          <div slot="header" class="clearfix">
+          <div slot="header" class="clearfix" style="cursor: pointer;" @click="handleClickTag('tag', item)">
             <span>{{ item.name }}</span>
           </div>
           <div class="component-item">{{ item.childrenCount }}</div>
@@ -137,7 +137,8 @@ export default {
     this.getGrowthData()
   },
   methods: {
-    handleSetLineChartData() {
+    handleClickTag(type, item) {
+      this.$router.push({ name: 'children', query: { type: type, title: item.name, tag_id: item.id }})
     },
     getStatisticsData() {
       fetchIndex().then(response => {
