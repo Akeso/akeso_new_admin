@@ -18,14 +18,14 @@
     </el-row>
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
-    <h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>
-    <el-row>
-      <span v-for="item in examineChildren" :key="item.id">
-        <router-link :to="'/preview/child/'+item.id">
-          <el-tag>{{ item.name }}</el-tag>&nbsp;&nbsp;
-        </router-link>
-      </span>
-    </el-row>
+    <!--<h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>-->
+    <!--<el-row>-->
+    <!--<span v-for="item in examineChildren" :key="item.id">-->
+    <!--<router-link :to="'/preview/child/'+item.id">-->
+    <!--<el-tag>{{ item.name }}</el-tag>&nbsp;&nbsp;-->
+    <!--</router-link>-->
+    <!--</span>-->
+    <!--</el-row>-->
 
     <h3>{{ generateShow('home.user_tag_statics') }}</h3>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
