@@ -80,7 +80,7 @@ export default {
     platform: '平台',
     upload_count: '上次总条数',
     days_count: '数据分布',
-    last_channel_content: '最后咨询内容',
+    last_channel_content: '最后回复内容',
     last_channel_time: '最后咨询时间',
     channel_child: '咨询儿童',
     channel_doctor: '咨询机构',
