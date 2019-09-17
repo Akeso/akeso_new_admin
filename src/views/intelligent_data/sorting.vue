@@ -1,19 +1,16 @@
 <template>
   <div>
     <el-card :body-style="{ padding: '0px 10px 10px 20px' }">
-      <!--<div slot="header">-->
-      <!--<span>智能排序</span>-->
-      <!--</div>-->
-      <el-card :body-style="{ padding: '5px 10px 10px 20px' }">
-        <div slot="header">
-          <span>{{ generateShow('common.setting_show_fields') }}</span>
-        </div>
-        <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">{{ generateShow('common.check_all') }}</el-checkbox>
-        <div style="margin: 15px 0;"/>
-        <el-checkbox-group v-model="checkedOptions" @change="handleCheckedOptionsChange">
-          <el-checkbox v-for="item in options" :label="item.key" :key="item.key">{{ item.label }}</el-checkbox>
-        </el-checkbox-group>
-      </el-card>
+
+      <div slot="header">
+        <span>{{ generateShow('common.setting_show_fields') }}</span>
+      </div>
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">{{ generateShow('common.check_all') }}</el-checkbox>
+      <div style="margin: 15px 0;"/>
+      <el-checkbox-group v-model="checkedOptions" @change="handleCheckedOptionsChange">
+        <el-checkbox v-for="item in options" :label="item.key" :key="item.key" size="small">{{ item.label }}</el-checkbox>
+      </el-checkbox-group>
+
       <el-row style="margin: 10px 0px 10px 0px;">
         <el-col>
           {{ generateShow('common.select_date') }}
@@ -123,12 +120,12 @@ import group_channel from '../components/group_channel'
 const optionsData = [
   { key: 'healthIndex', label: '健康评分' },
   { key: 'wearTime', label: '戴镜时间' },
-  { key: 'outTime', label: '户外时间' },
-  { key: 'luxDay', label: '阳光摄入' },
-  { key: 'stepCount', label: '步数' },
-  { key: 'nearworkDay', label: '近距离用眼时间' },
-  { key: 'nearworkBurdenDay', label: '用眼负荷' },
-  { key: 'badPostureTimes', label: '不良姿势提醒' }
+  { key: 'outTime', label: '户外时间(120分钟)' },
+  { key: 'luxDay', label: '阳光摄入(36万Lux)' },
+  { key: 'stepCount', label: '步数(12000步)' },
+  { key: 'nearworkDay', label: '近距离用眼时间(260分钟)' },
+  { key: 'nearworkBurdenDay', label: '用眼负荷(720D)' },
+  { key: 'badPostureTimes', label: '不良姿势提醒(45次)' }
 ]
 const checkedData = ['healthIndex', 'wearTime', 'outTime', 'luxDay', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
 export default {
