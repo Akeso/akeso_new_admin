@@ -23,3 +23,11 @@ export function fetchFollowList(query) {
     params: query
   })
 }
+
+export function updateState(query) {
+  return request({
+    url: '/api/a1/followers/update_state',
+    method: 'put',
+    data: query
+  })
+}
