@@ -14,6 +14,7 @@ service.interceptors.request.use(
   config => {
     if (store.getters.authenticationToken) {
       config.headers['authenticationToken'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['lang'] = store.getters.language
     }
     return config
   },

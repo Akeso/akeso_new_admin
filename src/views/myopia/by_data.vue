@@ -120,6 +120,7 @@ export default {
   },
   created() {
     this.getList()
+    console.log('lang => ', this.$store.getters.language)
   },
   methods: {
     radioChanged(val) {
