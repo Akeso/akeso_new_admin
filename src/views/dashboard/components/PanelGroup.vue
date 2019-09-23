@@ -1,46 +1,57 @@
 <template>
   <el-row :gutter="20" class="panel-group">
-    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+    <el-col :xs="4" :sm="4" :lg="4" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('Allchildren')">
         <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="bear01" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">全部儿童</div>
+          <div class="card-panel-text">{{ generateShow('home.all_children') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.childrenCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>
     </el-col>
-    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+    <el-col :xs="4" :sm="4" :lg="4" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('Intelligent')">
         <div class="card-panel-icon-wrapper icon-message">
           <svg-icon icon-class="bear02" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">智能儿童</div>
+          <div class="card-panel-text">{{ generateShow('home.intelligent_children') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.deviceChildrenCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>
     </el-col>
-    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+    <el-col :xs="4" :sm="5" :lg="5" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('Appointments')">
         <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="bear01" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">今日预约建档</div>
+          <div class="card-panel-text">{{ generateShow('home.today_appoint') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.appointCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>
     </el-col>
-    <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
+    <el-col :xs="5" :sm="5" :lg="5" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('highWarn')">
         <div class="card-panel-icon-wrapper icon-message">
           <svg-icon icon-class="bear02" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">今日预警随访</div>
+          <div class="card-panel-text">{{ generateShow('home.today_warning') }}</div>
           <count-to :start-val="0" :end-val="statisticsData.followCount" :duration="2000" class="card-panel-num"/>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="5" :sm="5" :lg="5" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('children', '本周复查儿童')">
+        <div class="card-panel-icon-wrapper icon-message">
+          <svg-icon icon-class="bear02" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ generateShow('home.to_week_children') }}</div>
+          <count-to :start-val="0" :end-val="statisticsData.toWeekUpdateCount" :duration="2000" class="card-panel-num"/>
         </div>
       </div>
     </el-col>
@@ -62,14 +73,15 @@ export default {
           childrenCount: 0,
           deviceChildrenCount: 0,
           appointCount: 0,
-          followCount: 0
+          followCount: 0,
+          toWeekUpdateCount: 0
         }
       }
     }
   },
   methods: {
-    handleSetLineChartData(type) {
-      this.$router.push({ name: type })
+    handleSetLineChartData(type, title) {
+      this.$router.push({ name: type, query: { type: type, title: title }})
     }
   }
 }
@@ -123,7 +135,7 @@ export default {
       .card-panel-icon-wrapper {
         float: left;
         margin: 14px 0 0 14px;
-        padding: 16px;
+        padding: 8px;
         transition: all 0.38s ease-out;
         border-radius: 6px;
       }

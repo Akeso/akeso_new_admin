@@ -105,3 +105,12 @@ export function objectiveOcular(query) {
     params: query
   })
 }
+
+// 更新下次复查时间
+export function updateDate(query) {
+  return request({
+    url: '/api/a1/eye_examinations/update_date',
+    method: 'put',
+    data: query
+  })
+}

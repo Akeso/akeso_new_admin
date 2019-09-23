@@ -1,10 +1,10 @@
 <template>
   <div class="dashboard-container">
 
-    <panel-group :statistics-data="statisticsData" @handleSetLineChartData="handleSetLineChartData" />
+    <panel-group :statistics-data="statisticsData"/>
 
+    <h3>{{ generateShow('home.time_section') }}</h3>
     <el-row type="flex" class="row-bg" justify="space-between">
-      <el-tag>时段分布</el-tag>
       <el-date-picker
         v-model="paramsQuery.dateSection"
         :picker-options="pickerOptions2"
@@ -16,18 +16,22 @@
         end-placeholder="结束日期"
         value-format="yyyy-MM-dd"/>
     </el-row>
-    <!--<el-radio-group v-model="paramsQuery.radioValue" @change="radioCountChange">-->
-    <!--<el-radio-button label="newChild">新增用户</el-radio-button>-->
-    <!--<el-radio-button label="newDeviceChild">新增智能用户</el-radio-button>-->
-    <!--<el-radio-button label="syncChild">同步用户</el-radio-button>-->
-    <!--</el-radio-group>-->
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
-    <el-tag>用户标签统计</el-tag>
+    <!--<h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>-->
+    <!--<el-row>-->
+    <!--<span v-for="item in examineChildren" :key="item.id">-->
+    <!--<router-link :to="'/preview/child/'+item.id">-->
+    <!--<el-tag>{{ item.name }}</el-tag>&nbsp;&nbsp;-->
+    <!--</router-link>-->
+    <!--</span>-->
+    <!--</el-row>-->
+
+    <h3>{{ generateShow('home.user_tag_statics') }}</h3>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
       <el-col v-for="item in userTags" :key="item.id" :span="4">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
+          <div slot="header" class="clearfix" style="cursor: pointer;" @click="handleClickTag('tag', item)">
             <span>{{ item.name }}</span>
           </div>
           <div class="component-item">{{ item.childrenCount }}</div>
@@ -35,11 +39,11 @@
       </el-col>
     </el-row>
 
-    <el-tag>临床标签统计</el-tag>
+    <h3>{{ generateShow('home.clinical_tag_statics') }}</h3>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 20px;">
       <el-col v-for="item in clinicalTags" :key="item.id" :span="3">
         <el-card class="box-card" >
-          <div slot="header" class="clearfix">
+          <div slot="header" class="clearfix" style="cursor: pointer;" @click="handleClickTag('tag', item)">
             <span>{{ item.name }}</span>
           </div>
           <div class="component-item">{{ item.childrenCount }}</div>
@@ -104,7 +108,8 @@ export default {
         childrenCount: 0,
         deviceChildrenCount: 0,
         appointCount: 0,
-        followCount: 0
+        followCount: 0,
+        toWeekUpdateCount: 0
       },
       userTags: [],
       clinicalTags: [],
@@ -118,7 +123,8 @@ export default {
           { 'date': '2018-01-10', 'newChild': 12 },
           { 'date': '2018-01-20', 'newChild': 45 }
         ]
-      }
+      },
+      examineChildren: []
     }
   },
   watch: {
@@ -131,10 +137,8 @@ export default {
     this.getGrowthData()
   },
   methods: {
-    // radioCountChange() {
-    //   this.getGrowthData()
-    // },
-    handleSetLineChartData() {
+    handleClickTag(type, item) {
+      this.$router.push({ name: 'children', query: { type: type, title: item.name, tag_id: item.id }})
     },
     getStatisticsData() {
       fetchIndex().then(response => {
@@ -142,6 +146,7 @@ export default {
         this.statisticsData.deviceChildrenCount = response.data.deviceChildrenCount
         this.statisticsData.appointCount = response.data.appointCount
         this.statisticsData.followCount = response.data.followCount
+        this.statisticsData.toWeekUpdateCount = response.data.toWeekUpdateCount
         this.userTags = response.data.userTags
         this.clinicalTags = response.data.clinicalTags
       })

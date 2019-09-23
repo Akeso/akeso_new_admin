@@ -1,41 +1,38 @@
 <template>
   <div>
     <el-card :body-style="{ padding: '0px 10px 10px 20px' }">
+
       <div slot="header">
-        <span>智能排序</span>
+        <span>{{ generateShow('common.setting_show_fields') }}</span>
       </div>
-      <el-card :body-style="{ padding: '5px 10px 10px 20px' }">
-        <div slot="header">
-          <span>设置显示字段</span>
-        </div>
-        <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
-        <div style="margin: 15px 0;"/>
-        <el-checkbox-group v-model="checkedOptions" @change="handleCheckedOptionsChange">
-          <el-checkbox v-for="item in options" :label="item.key" :key="item.key">{{ item.label }}</el-checkbox>
-        </el-checkbox-group>
-      </el-card>
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">{{ generateShow('common.check_all') }}</el-checkbox>
+      <div style="margin: 15px 0;"/>
+      <el-checkbox-group v-model="checkedOptions" @change="handleCheckedOptionsChange">
+        <el-checkbox v-for="item in options" :label="item.key" :key="item.key" size="small">{{ item.label }}</el-checkbox>
+      </el-checkbox-group>
+
       <el-row style="margin: 10px 0px 10px 0px;">
         <el-col>
-          选择日期
+          {{ generateShow('common.select_date') }}
           <el-date-picker
             :clearable="false"
+            :placeholder="generateShow('common.start_date')"
             v-model="listQuery.startDate"
             type="date"
             style="width: 150px;"
             format="yyyy-MM-dd"
-            value-format="yyyy-MM-dd"
-            placeholder="选择日期"/>
+            value-format="yyyy-MM-dd"/>
           至
           <el-date-picker
             :clearable="false"
+            :placeholder="generateShow('common.end_date')"
             v-model="listQuery.endDate"
             type="date"
             style="width: 150px;"
             format="yyyy-MM-dd"
-            value-format="yyyy-MM-dd"
-            placeholder="选择日期"/>
-          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
-          <el-button class="filter-item" type="primary" icon="el-icon-phone" @click="handleClickSendMessages">批量发送消息</el-button>
+            value-format="yyyy-MM-dd"/>
+          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
+          <el-button class="filter-item" type="primary" icon="el-icon-phone" @click="handleClickSendMessages">{{ generateShow('common.send_messages') }}</el-button>
         </el-col>
       </el-row>
       <el-table
@@ -58,55 +55,55 @@
         </el-table-column>
         <el-table-column
           v-if="hasOptions('healthIndex')"
+          :label="generateShow('common.healthIndex')"
           prop="healthIndex"
-          label="用眼健康评分"
           sortable="custom"
           min-width="80"/>
         <el-table-column
           v-if="hasOptions('wearTime')"
+          :label="generateShow('common.wearTime')"
           prop="wearTime"
-          label="戴镜时间(分钟)"
           sortable="custom"
           min-width="80"/>
         <el-table-column
           v-if="hasOptions('outTime')"
+          :label="generateShow('common.outTime')"
           prop="outTime"
-          label="户外时间(分钟)"
           sortable="custom"
           min-width="80"/>
         <el-table-column
           v-if="hasOptions('luxDay')"
+          :label="generateShow('common.luxDay')"
           prop="luxDay"
-          label="阳光摄入(Lux)"
           sortable="custom"
           min-width="80"/>
         <el-table-column
           v-if="hasOptions('nearworkDay')"
+          :label="generateShow('common.nearworkDay')"
           prop="nearworkDay"
-          label="近距离用眼时间(分钟)"
           sortable="custom"
           min-width="80"/>
         <el-table-column
           v-if="hasOptions('nearworkBurdenDay')"
+          :label="generateShow('common.nearworkBurdenDay')"
           prop="nearworkBurdenDay"
-          label="用眼负荷(D)"
           sortable="custom"
           min-width="80"/>
         <el-table-column
           v-if="hasOptions('badPostureTimes')"
+          :label="generateShow('common.badPostureTimes')"
           prop="badPostureTimes"
-          label="不良姿势提醒(次)"
           sortable="custom"
           min-width="80"/>
         <el-table-column
           v-if="hasOptions('stepCount')"
+          :label="generateShow('common.stepCount')"
           prop="stepCount"
-          label="步数(步)"
           sortable="custom"
           min-width="60"/>
         <el-table-column
+          :label="generateShow('common.sync_days_count')"
           prop="daysCount"
-          label="同步天数"
           sortable="custom"
           min-width="80"/>
       </el-table>
@@ -123,12 +120,12 @@ import group_channel from '../components/group_channel'
 const optionsData = [
   { key: 'healthIndex', label: '健康评分' },
   { key: 'wearTime', label: '戴镜时间' },
-  { key: 'outTime', label: '户外时间' },
-  { key: 'luxDay', label: '阳光摄入' },
-  { key: 'stepCount', label: '步数' },
-  { key: 'nearworkDay', label: '近距离用眼时间' },
-  { key: 'nearworkBurdenDay', label: '用眼负荷' },
-  { key: 'badPostureTimes', label: '不良姿势提醒' }
+  { key: 'outTime', label: '户外时间(120分钟)' },
+  { key: 'luxDay', label: '阳光摄入(36万Lux)' },
+  { key: 'stepCount', label: '步数(12000步)' },
+  { key: 'nearworkDay', label: '近距离用眼时间(260分钟)' },
+  { key: 'nearworkBurdenDay', label: '用眼负荷(720D)' },
+  { key: 'badPostureTimes', label: '不良姿势提醒(45次)' }
 ]
 const checkedData = ['healthIndex', 'wearTime', 'outTime', 'luxDay', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
 export default {

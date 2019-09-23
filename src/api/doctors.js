@@ -55,3 +55,11 @@ export function updateLocation(query) {
     data: query
   })
 }
+
+export function authorizeDoctor(query) {
+  return request({
+    url: '/api/a1/doctors/authorize',
+    method: 'put',
+    data: query
+  })
+}

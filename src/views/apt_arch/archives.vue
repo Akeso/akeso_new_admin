@@ -2,11 +2,11 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>建立/查询档案</span>
+        <span>{{ generateShow('route.archives') }}</span>
       </div>
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新建儿童基本信息</el-button>
+        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">{{ generateShow('common.new_child') }}</el-button>
         <!--<el-button class="filter-item" type="primary" icon="el-icon-plus" @click="handleFilterClear">-->
         <!--<i class="el-icon-plus"/>-->
         <!--批量上传档案-->
@@ -14,10 +14,10 @@
       </div>
 
       <el-row>
-        姓名:
+        {{ generateShow('common.name') }}:
         <el-input v-model="listQuery.name" label="姓名" placeholder="姓名" style="width: 100px;" class="filter-item" clearable/>
-        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
-        <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
+        <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
       </el-row>
 
       <el-table
@@ -27,7 +27,7 @@
         style="width: 100%;margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
-          label="姓名"
+          :label="generateShow('common.name')"
           min-width="80">
           <template slot-scope="scope">
             <router-link :to="'/preview/child/'+scope.row.id">
@@ -36,36 +36,35 @@
           </template>
         </el-table-column>
         <el-table-column
+          :label="generateShow('common.age')"
           prop="age"
-          label="年龄"
           min-width="50"/>
         <el-table-column
+          :label="generateShow('common.gender')"
           prop="gender"
-          label="性别"
-          min-width="50"/>
+          min-width="50">
+          <template slot-scope="scope">
+            <span>{{ scope.row.gender | genderFilter }}</span>
+          </template>
+        </el-table-column>
         <el-table-column
-          prop="schoolName"
-          label="学校名称"
-          min-width="90"/>
-        <el-table-column
+          :label="generateShow('common.location')"
           prop="locationString"
-          label="地区"
           min-width="120"/>
         <el-table-column
+          :label="generateShow('common.phone')"
           prop="phone"
-          label="联系电话"
           min-width="100"/>
         <el-table-column
+          :label="generateShow('common.created_at')"
           prop="createdAt"
-          label="创建时间"
-          sortable="custom"
           min-width="120"/>
         <el-table-column
           label="操作"
           min-width="80" >
           <template slot-scope="scope">
             <router-link :to="'/preview/child/'+scope.row.id+'?tabName=third'">
-              <el-button type="text" size="small">建立屈光档案</el-button>
+              <el-button type="text" size="small">{{ generateShow('common.create_eye_examination') }}</el-button>
             </router-link>
           </template>
         </el-table-column>
@@ -84,6 +83,16 @@ import NewArchive from './components/new_archive'
 export default {
   components: {
     NewArchive
+  },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女',
+        unknown: '未知'
+      }
+      return statusMap[status]
+    }
   },
   data() {
     return {

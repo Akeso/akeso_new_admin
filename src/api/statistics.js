@@ -16,3 +16,10 @@ export function fetchGrowth(query) {
   })
 }
 
+export function examineChildren(query) {
+  return request({
+    url: '/api/a1/statistics/examine_children',
+    method: 'get',
+    params: query
+  })
+}

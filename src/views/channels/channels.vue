@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>健康咨询</span>
+        <span>{{ generateShow('route.channels') }}</span>
       </div>
 
       <el-table
@@ -11,11 +11,11 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
+          :label="generateShow('common.last_channel_content')"
           prop="content"
-          label="最后咨询内容"
           min-width="180"/>
         <el-table-column
-          label="咨询儿童"
+          :label="generateShow('common.channel_child')"
           min-width="90">
           <template slot-scope="scope">
             <router-link :to="'/preview/child/'+scope.row.childId">
@@ -24,23 +24,23 @@
           </template>
         </el-table-column>
         <el-table-column
+          :label="generateShow('common.unread_count')"
           prop="userCount"
-          label="未读消息"
           min-width="60"/>
         <el-table-column
+          :label="generateShow('common.last_channel_time')"
           prop="lastDate"
-          label="最后咨询时间"
           min-width="100"/>
         <el-table-column
+          :label="generateShow('common.channel_doctor')"
           prop="merchantName"
-          label="咨询医生"
           min-width="100"/>
         <el-table-column
           v-if="baseType != 'admin'"
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickChannel(scope.row)">联系用户</el-button>
+            <el-button type="text" size="small" @click="handleClickChannel(scope.row)">{{ generateShow('common.contact_user') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

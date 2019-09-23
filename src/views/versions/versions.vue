@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>版本管理</span>
+        <span>{{ generateShow('route.versions') }}</span>
       </div>
 
       <el-table
@@ -11,12 +11,12 @@
         style="width: 100%"
         @sort-change="handleColumnSort">
         <el-table-column
+          :label="generateShow('common.platform')"
           prop="name"
-          label="平台"
           min-width="80"/>
         <el-table-column
+          :label="generateShow('common.description')"
           prop="description"
-          label="描述"
           min-width="100"/>
         <el-table-column
           prop="first"
@@ -39,10 +39,10 @@
           label="版本code"
           min-width="60"/>
         <el-table-column
-          label="操作"
+          :label="generateShow('common.operate')"
           min-width="60" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClick(scope.row)">编辑</el-button>
+            <el-button type="text" size="small" @click="handleClick(scope.row)">{{ generateShow('common.modify') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

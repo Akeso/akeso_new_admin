@@ -60,6 +60,13 @@ export const constantRouterMap = [
       //   meta: { title: 'overview', icon: 'table' }
       // },
       {
+        path: 'children',
+        name: 'children',
+        component: () => import('@/views/preview/children'),
+        meta: { title: 'children', icon: 'people', noCache: true },
+        hidden: true
+      },
+      {
         path: 'allchildren',
         name: 'Allchildren',
         component: () => import('@/views/preview/allchildren'),
@@ -132,6 +139,12 @@ export const constantRouterMap = [
         name: 'groupReport',
         component: () => import('@/views/intelligent_data/group_report'),
         meta: { title: 'group_report', icon: 'table' }
+      },
+      {
+        path: 'data_export',
+        name: 'dataExport',
+        component: () => import('@/views/intelligent_data/data_export'),
+        meta: { title: 'data_export', icon: 'table' }
       }
     ]
   },
@@ -143,16 +156,22 @@ export const constantRouterMap = [
     meta: { title: 'myopia', icon: 'example' },
     children: [
       // {
-      //   path: 'classwarn',
-      //   name: 'classWarn',
-      //   component: () => import('@/views/myopia/class_warn'),
-      //   meta: { title: 'class_warn', icon: 'table' }
+      //   path: 'highwarn',
+      //   name: 'highWarn',
+      //   component: () => import('@/views/myopia/high_warn'),
+      //   meta: { title: 'high_warn', icon: 'table' }
       // },
       {
-        path: 'highwarn',
-        name: 'highWarn',
-        component: () => import('@/views/myopia/high_warn'),
-        meta: { title: 'high_warn', icon: 'table' }
+        path: 'by_data',
+        name: 'byData',
+        component: () => import('@/views/myopia/by_data'),
+        meta: { title: 'by_data', icon: 'table' }
+      },
+      {
+        path: 'by_child',
+        name: 'byChild',
+        component: () => import('@/views/myopia/by_child'),
+        meta: { title: 'by_child', icon: 'table' }
       }
     ]
   },
@@ -253,28 +272,28 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/weapp',
-    component: Layout,
-    redirect: '/weapp/awards',
-    name: 'weapp',
-    only: true,
-    meta: { title: 'weapp', icon: 'example' },
-    children: [
-      {
-        path: 'awards',
-        name: 'awards',
-        component: () => import('@/views/weapp/awards.vue'),
-        meta: { title: 'awards', icon: 'table' }
-      },
-      {
-        path: 'wx_organizations',
-        name: 'wx_organizations',
-        component: () => import('@/views/weapp/organizations.vue'),
-        meta: { title: 'wx_organizations', icon: 'table' }
-      }
-    ]
-  },
+  // {
+  //   path: '/weapp',
+  //   component: Layout,
+  //   redirect: '/weapp/awards',
+  //   name: 'weapp',
+  //   only: true,
+  //   meta: { title: 'weapp', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'awards',
+  //       name: 'awards',
+  //       component: () => import('@/views/weapp/awards.vue'),
+  //       meta: { title: 'awards', icon: 'table' }
+  //     },
+  //     {
+  //       path: 'wx_organizations',
+  //       name: 'wx_organizations',
+  //       component: () => import('@/views/weapp/organizations.vue'),
+  //       meta: { title: 'wx_organizations', icon: 'table' }
+  //     }
+  //   ]
+  // },
   {
     path: '/enChildren',
     component: Layout,
@@ -311,9 +330,15 @@ export const constantRouterMap = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+const constantRenderMap = [
+  { path: '/render/health_report', component: () => import('@/views/renders/health_report'), hidden: true }
+]
+
+var routesMap = constantRouterMap.concat(constantRenderMap)
+
 export default new Router({
   mode: 'history', // 后端支持可开
   base: 'a',
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  routes: routesMap
 })

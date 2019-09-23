@@ -20,173 +20,135 @@
           <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">导出Excel</a>
         </el-button>
       </el-row>
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span>健康月报</span>
-        </div>
-        <el-row>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>得分情况</span>
-            </div>
-            <p style="font-size: 20px; font-weight: bold;">本月平均分 {{ monthData.healthIndex }}</p>
-            <el-row :gutter="20">
-              <el-col :span="8"><span>总戴镜时间 {{ monthData.wearTime }}</span></el-col>
-              <el-col :span="8"><span>累计健康因素 {{ monthData.upElement }}</span></el-col>
-              <el-col :span="8"><span>累计危险因素 {{ monthData.downElement }}</span></el-col>
-            </el-row>
-          </el-card>
-        </el-row>
-        <el-row style="margin-top: 20px;" class="margin-bottom">
-          <el-col :span="3" class="text-center text-standard-font">户外时间</el-col>
-          <el-col :span="16">
-            <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.outTimePercent" status="success" class="progress-l-r"/>
-          </el-col>
-          <el-col :span="4" class="text-standard-font">{{ monthData.outTime }}/120分钟</el-col>
-        </el-row>
-        <el-row class="margin-bottom">
-          <el-col :span="3" class="text-center text-standard-font">光照摄入</el-col>
-          <el-col :span="16">
-            <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.luxDayPercent" status="success" class="progress-l-r"/>
-          </el-col>
-          <el-col :span="3" class="text-standard-font">{{ monthData.luxDay }}/360000lux</el-col>
-        </el-row>
-        <el-row class="margin-bottom">
-          <el-col :span="3" class="text-center text-standard-font">运动步数</el-col>
-          <el-col :span="16">
-            <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.stepCountPercent" status="success" class="progress-l-r"/>
-          </el-col>
-          <el-col :span="3" class="text-standard-font">{{ monthData.stepCount }}/12000步</el-col>
-        </el-row>
-        <el-row class="margin-bottom">
-          <el-col :span="3" class="text-center text-standard-font">用眼负荷</el-col>
-          <el-col :span="16">
-            <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
-          </el-col>
-          <el-col :span="3" class="text-standard-font">{{ monthData.nearworkBurdenDay }}/720D</el-col>
-        </el-row>
-        <el-row class="margin-bottom">
-          <el-col :span="3" class="text-center text-standard-font">近距离用眼时间</el-col>
-          <el-col :span="16">
-            <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkDayPercent" status="exception" class="progress-l-r"/>
-          </el-col>
-          <el-col :span="3" class="text-standard-font">{{ monthData.nearworkDay }}/260分钟</el-col>
-        </el-row>
-        <el-row class="margin-bottom">
-          <el-col :span="3" class="text-center text-standard-font">不良姿势提醒</el-col>
-          <el-col :span="16">
-            <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
-          </el-col>
-          <el-col :span="3" class="text-standard-font">{{ monthData.badPostureTimes }}/45次</el-col>
-        </el-row>
-        <MonthHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
-        <MonthHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
-        <MonthHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
-        <MonthHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
-        <MonthHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
-        <MonthHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
-      </el-card>
     </div>
-    <div id="pdfDom" class="pdf-container" style="">
-      <div class="clear">
-        <div class="header">
-          <h1>儿童用眼健康行为模式风险分析报告</h1>
-          <!--<img :src="avatar" class="avatar" alt="">-->
-        </div>
-        <div class="info">
-          <ul>
-            <li>
+    <el-card class="box-card">
+      <div id="pdfDom">
+        <div style="padding: 20px;">
+          <div class="header">
+            <span style="font-size: 32px; color: white;">儿童用眼健康行为模式风险分析报告</span>
+            <div class="header-avatar">
+              <img :src="headerUrl" style="height: 120px; height: 120px;">
+            </div>
+          </div>
+          <el-row>
+            <el-col :span="8">
               <span class="title">姓名</span>
               <span class="right-bar">{{ child.name }}</span>
-            </li>
-            <li>
+            </el-col>
+            <el-col :span="8">
               <span class="title">年龄</span>
               <span class="right-bar">{{ child.age }}</span>
-            </li>
-            <li>
+            </el-col>
+            <el-col :span="8">
               <span class="title">性别</span>
-              <span class="right-bar">{{ child.gender }}</span>
-            </li>
-          </ul>
-          <ul>
-            <!--<li>-->
-            <!--<span class="title">学校</span>-->
-            <!--<span class="right-bar">****某某某某某某某学校</span>-->
-            <!--</li>-->
-            <li>
+              <span class="right-bar">{{ child.gender | genderFilter }}</span>
+            </el-col>
+          </el-row>
+          <el-row style="margin-top: 20px;">
+            <el-col>
               <span class="title">检查日期</span>
               <span class="right-bar">{{ startDate }} 到 {{ endDate }}</span>
-            </li>
-          </ul>
-        </div>
-        <div class="weekly-contents">
-          <h2 class="c-blue">本月评价得分 {{ monthData.healthIndex }}</h2>
-          <ul class="weekle-list">
-            <li>总戴镜时间 <span class="c-blue">{{ monthData.wearTime }}</span></li>
-            <li>总戴镜时间 <span class="c-blue">{{ monthData.upElement }}</span></li>
-            <li>累计危险因素 <span class="c-blue">{{ monthData.downElement }}</span></li>
-            <!--<li>周一到周五平均分 <span class="c-blue">{{ monthData.weekScoreAvg }}</span></li>
-            <li>周六周日平均分 <span class="c-blue">{{ monthData.weekendScoreAvg }}</span></li>-->
-          </ul>
-          <!--<ul class="weekle-list next"> 1
-          </ul>-->
-        </div>
-        <el-row style="margin:0 10px;">
-          <el-col :span="16" style="padding-right:10px;">
-            <WeekHealthItemPdf :hours="healthIndexArray" :times="timeArray" style="margin-top: -30px; marign-right:10px;"/>
-            <div class="assess-box">
-              {{ monthData.suggest }}
+            </el-col>
+          </el-row>
+          <div>
+            <div class="tags">
+              <h3>近视高危临床分类</h3>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="7">&nbsp;&nbsp;近视家族史</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="8">&nbsp;&nbsp;远视储备不足</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="9">&nbsp;&nbsp;视力不良/弱视</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="10">&nbsp;&nbsp;高AC/A</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="11">&nbsp;&nbsp;调节痉挛</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="12">&nbsp;&nbsp;视近内隐斜</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="13">&nbsp;&nbsp;条件灵敏度下降</label>
             </div>
-          </el-col>
-          <el-col :span="8" class="progress-bar">
-            <div class="adding-score c-green">加分项</div>
-            <el-row class="indicator-title">
-              <el-col :span="12" class="text-left text-standard-font">户外时间</el-col>
-              <el-col :span="12" class="text-standard-font text-right">{{ monthData.outTime }}/120分钟</el-col>
+            <div class="weekly-contents">
+              <h2 class="c-blue">本月平均得分 {{ monthData.healthIndex }}</h2>
+              <ul class="score-list">
+                <li>总戴镜时间 <span class="c-blue">{{ monthData.wearTime }}</span></li>
+                <li>总戴镜时间 <span class="c-blue">{{ monthData.upElement }}</span></li>
+                <li>累计危险因素 <span class="c-blue">{{ monthData.downElement }}</span></li>
+              </ul>
+            </div>
+            <el-row style="margin:0 10px;">
+              <el-col :span="16">
+                <MonthHealthItem :text="textHealthIndex" :hours="healthIndexArray" :times="timeArray"/>
+                <div class="assess-box" style="padding-right:10px;">
+                  {{ monthData.suggest }}
+                </div>
+              </el-col>
+              <el-col :span="8" class="progress-bar">
+                <div class="score-des green-back">
+                  <span>左边为本月平均数据，右边为参考范围</span>
+                </div>
+                <div class="adding-score c-green">加分项</div>
+                <el-row class="indicator-title">
+                  <el-col :span="12" class="text-left text-standard-font">户外时间</el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.outTime }}/120分钟</el-col>
+                </el-row>
+                <el-row>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.outTimePercent" status="success" class="progress-l-r"/>
+                </el-row>
+                <el-row class="indicator-title m-t">
+                  <el-col :span="12" class="text-left text-standard-font">光照摄入</el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.luxDay }}/360000lux</el-col>
+                </el-row>
+                <el-row>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.luxDayPercent" status="success" class="progress-l-r"/>
+                </el-row>
+                <el-row class="indicator-title m-t">
+                  <el-col :span="12" class="text-left text-standard-font">运动步数</el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.stepCount }}/12000步</el-col>
+                </el-row>
+                <el-row>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.stepCountPercent" status="success" class="progress-l-r"/>
+                </el-row>
+                <div class="score-des red-back">
+                  <span>左边为本月平均数据，右边为参考范围</span>
+                </div>
+                <div class="adding-score c-red m-t-1">减分项</div>
+                <el-row class="indicator-title">
+                  <el-col :span="12" class="text-left text-standard-font">用眼负荷</el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkBurdenDay }}/720D</el-col>
+                </el-row>
+                <el-row>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
+                </el-row>
+                <el-row class="indicator-title m-t">
+                  <el-col :span="12" class="text-left text-standard-font">近距离用眼时间</el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkDay }}/260分钟</el-col>
+                </el-row>
+                <el-row>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkDayPercent" status="exception" class="progress-l-r"/>
+                </el-row>
+                <el-row class="indicator-title m-t">
+                  <el-col :span="12" class="text-left text-standard-font">不良姿势提醒</el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.badPostureTimes }}/24次</el-col>
+                </el-row>
+                <el-row>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
+                </el-row>
+              </el-col>
             </el-row>
-            <el-row>
-              <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.outTimePercent" status="success" class="progress-l-r"/>
-            </el-row>
-            <el-row class="indicator-title m-t">
-              <el-col :span="12" class="text-left text-standard-font">光照摄入</el-col>
-              <el-col :span="12" class="text-standard-font text-right">{{ monthData.luxDay }}/360000lux</el-col>
-            </el-row>
-            <el-row>
-              <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.luxDayPercent" status="success" class="progress-l-r"/>
-            </el-row>
-            <el-row class="indicator-title m-t">
-              <el-col :span="12" class="text-left text-standard-font">运动步数</el-col>
-              <el-col :span="12" class="text-standard-font text-right">{{ monthData.stepCount }}/12000步</el-col>
-            </el-row>
-            <el-row>
-              <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.stepCountPercent" status="success" class="progress-l-r"/>
-            </el-row>
-            <div class="adding-score c-red m-t-1">减分项</div>
-            <el-row class="indicator-title">
-              <el-col :span="12" class="text-left text-standard-font">用眼负荷</el-col>
-              <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkBurdenDay }}/720D</el-col>
-            </el-row>
-            <el-row>
-              <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
-            </el-row>
-            <el-row class="indicator-title m-t">
-              <el-col :span="12" class="text-left text-standard-font">近距离用眼时间</el-col>
-              <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkDay }}/260分钟</el-col>
-            </el-row>
-            <el-row>
-              <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkDayPercent" status="exception" class="progress-l-r"/>
-            </el-row>
-            <el-row class="indicator-title m-t">
-              <el-col :span="12" class="text-left text-standard-font">不良姿势提醒</el-col>
-              <el-col :span="12" class="text-standard-font text-right">{{ monthData.badPostureTimes }}/45次</el-col>
-            </el-row>
-            <el-row>
-              <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
-            </el-row>
-          </el-col>
-        </el-row>
+            <div class="tags">
+              <h3>诊断意见</h3>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="1">&nbsp;&nbsp;行为追踪干预</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="2">&nbsp;&nbsp;框架眼镜</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="3">&nbsp;&nbsp;视功能训练</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="4">&nbsp;&nbsp;角膜塑形镜</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="5">&nbsp;&nbsp;低浓度阿托品</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="6">&nbsp;&nbsp;病理性近视</label>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+      <div style="margin-top: 40px;"/>
+      <MonthHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
+      <MonthHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
+      <MonthHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
+      <MonthHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
+      <MonthHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
+      <MonthHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+    </el-card>
   </div>
 </template>
 
@@ -197,6 +159,15 @@ import WeekHealthItemPdf from '../components/week_health_item_pdf'
 import avatar from '@/assets/images/child_boy.png'
 export default {
   components: { MonthHealthItem, WeekHealthItemPdf },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女'
+      }
+      return statusMap[status]
+    }
+  },
   props: {
     userId: {
       type: String,
@@ -213,6 +184,7 @@ export default {
     return {
       avatar,
       downloadUrl: '/api/a1/excels/monthly',
+      headerUrl: require('../../../assets/images/child_boy.png'),
       timeArray: [
         '2019-01-01', '2019-01-02', '2019-01-03', '2019-01-04', '2019-01-05', '2019-01-06', '2019-01-07',
         '2019-01-08', '2019-01-09', '2019-01-10', '2019-01-11', '2019-01-12', '2019-01-13', '2019-01-14',
@@ -221,6 +193,11 @@ export default {
         '2019-01-29', '2019-01-30'
       ],
       healthIndexArray: [0, 0, 0, 0, 0, 0, 0],
+      textHealthIndex: {
+        title: '健康评分',
+        des: '该数值指当天孩子健康用眼得分情况。',
+        unit: '分'
+      },
       textOutTime: {
         title: '户外时间',
         des: '该数值指当天孩子在户外走路、玩耍、运动等累积的时间。该数值与白天户外光照强度及户外紫外线有关，傍晚及夜晚在室外不算户外时间。',
@@ -314,137 +291,115 @@ export default {
 }
 </script>
 <style scoped>
+
+  .score-des {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+    color: #f1e6e6;
+  }
+  .green-back {
+    background-color: #32CD32;
+  }
+  .red-back {
+    background-color: #e30c40;
+  }
+  .adding-score{
+    margin:10px 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ccc;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .header{
+    height: 200px;
+    width: 100%;
+    padding-top: 16px;
+    background-image: url(../../../assets/images/code_banner.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .header-avatar{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+  }
   .el-progress__text {
     display: none !important;
   }
-  /*样式*/
-.pdf-container{
-  width: 800px;
-  position: absolute;
-  top: 20px;
-}
-.clear:after{ display:block; content:""; clear:both;}
-.clear{ zoom:1;}
-.header{
-  height: 120px;
-  width: 100%;
-  /*background-image: url(../../../assets/images/combined.png);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  text-align: center;*/
-  position: relative;
-  background: #27adff;
-}
-.avatar{
-  width:120px;
-  height: 120px;
-  display: inline-block;
-  position: absolute;
-  left: 50%;
-  top: 120px;
-  margin-left: -60px;
-}
-.header h1{
-  margin: 0;
-  padding-top: 32px;
-  font-weight: 400;
-  color: #fff;
-  font-size: 40px;
-}
-.info{
-  padding-top:20px;
-  margin: -17px 1px 0;
-  background: #fff;
-  position: relative;
-}
-.info ul, li{
-  padding: 0;
-  list-style: none;
-}
-.info ul{
-  overflow: hidden;
-  padding-left: 60px;
-  padding-bottom: 20px;
-}
-.info li{
-  float: left;
-  margin-right: 50px;
-}
-.title{
-  font-size: 18px;
-  font-weight: 400;
-}
-.right-bar{
-  min-width: 140px;
-  padding: 0 16px 4px;
-  border-bottom:1px solid #aaa;
-  text-align: center;
-  display: inline-block;
-}
-.weekly-contents{
-  padding: 10px 20px;
-}
-.weekly-contents h2{
-  font-weight: 20px;
-  font-weight: 400;
-}
-.weekle-list, li{
-  list-style: none;
-  padding:0;
-  margin:0;
-}
-.weekle-list{
-  overflow: hidden;
-  padding-bottom: 20px;
-}
-.weekle-list li{
-  float: left;
-  margin-right:20px;
-}
-.weekle-list.next li{
-  margin-right:76px;
-}
-.text-left{
-  text-align: left;
-}
-.text-right{
-  text-align: right;
-}
-.indicator-title{
-  margin-left: 8px;
-  margin-right: 8px;
-  padding-bottom:4px;
-}
-.m-t{
-  margin-top: 30px;
-}
-.adding-score{
-  margin:0 8px 8px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #ccc;
-}
-.m-t-1{
-  margin-top:20px;
-}
-.c-green{
-  color: limegreen;
-}
-.c-red{
-  color: red;
-}
-.c-blue{
-  color: #1197ff;
-}
-.progress-bar >>> .el-progress-bar__outer {
-  background-color: #dcdfe6 !important;
-}
-.assess-box{
-  background-color: #dcdfe6 !important;
-  padding: 10px;
-  border-radius: 4px;
-  height: 148px;
-  margin-top: -20px;
-  font-size: 14px;
-  line-height: 20px;
-}
+  .title{
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .right-bar{
+    min-width: 140px;
+    padding: 0 16px 4px;
+    border-bottom:1px solid #aaa;
+    text-align: center;
+    display: inline-block;
+  }
+  .weekly-contents h2{
+    font-weight: 20px;
+    font-weight: 400;
+  }
+  .score-list, li{
+    list-style: none;
+    padding:0;
+    margin:0;
+  }
+  .score-list{
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+  .score-list li{
+    float: left;
+    margin-right:20px;
+  }
+  .score-list.next li{
+    margin-right:76px;
+  }
+  .text-left{
+    text-align: left;
+  }
+  .text-right{
+    text-align: right;
+  }
+  .indicator-title{
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-bottom:4px;
+  }
+  .m-t{
+    margin-top: 30px;
+  }
+  .m-t-1{
+    margin-top:20px;
+  }
+  .c-green{
+    color: limegreen;
+  }
+  .c-red{
+    color: red;
+  }
+  .c-blue{
+    color: #1197ff;
+  }
+  .progress-bar >>> .el-progress-bar__outer {
+    background-color: #dcdfe6 !important;
+  }
+  .assess-box{
+    background-color: #dcdfe6 !important;
+    padding: 10px;
+    border-radius: 4px;
+    height: 148px;
+    margin-top: -20px;
+    font-size: 14px;
+    line-height: 20px;
+  }
 </style>

@@ -1,18 +1,26 @@
 <template>
   <el-card :body-style="{ padding: '10px' }">
     <div slot="header" class="clearfix">
-      <span>智能分析</span>
+      <span>{{ generateShow('route.analytics') }}</span>
     </div>
+    <!--<el-row>-->
+    <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">-->
+    <!--<el-menu-item index="whole">{{ generateShow('common.whole_analytics') }}</el-menu-item>-->
+    <!--<el-menu-item index="whole_report">{{ generateShow('common.whole_report') }}</el-menu-item>-->
+    <!--<el-menu-item index="data_export">{{ generateShow('common.data_export') }}</el-menu-item>-->
+    <!--</el-menu>-->
+    <!--</el-row>-->
     <el-row>
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="whole">整体分析</el-menu-item>
-        <el-menu-item index="whole_report">整体报告</el-menu-item>
-      </el-menu>
+      <el-radio-group v-model="activeIndex" style="margin-bottom: 30px;">
+        <el-radio-button label="whole">{{ generateShow('common.whole_analytics') }}</el-radio-button>
+        <el-radio-button label="whole_report">{{ generateShow('common.whole_report') }}</el-radio-button>
+      </el-radio-group>
     </el-row>
     <el-row>
       <el-col>
         <Whole v-if="activeIndex === 'whole'"/>
         <WholeReport v-if="activeIndex === 'whole_report'"/>
+        <!--<DataExport v-if="activeIndex === 'data_export'"/>-->
       </el-col>
     </el-row>
   </el-card>
@@ -21,9 +29,10 @@
 <script>
 import Whole from './components/whole'
 import WholeReport from './components/WholeReport'
+import DataExport from './components/data_export'
 export default {
   components: {
-    Whole, WholeReport
+    Whole, WholeReport, DataExport
   },
   data() {
     return {
@@ -39,4 +48,7 @@ export default {
 }
 </script>
 <style scoped>
+  .el-menu-item {
+    font-weight: 800;
+  }
 </style>

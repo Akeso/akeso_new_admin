@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>账户管理</span>
+        <span>{{ generateShow('route.doctors') }}</span>
       </div>
 
       <div class="filter-container">
@@ -11,18 +11,18 @@
 
       <el-row>
         <el-col>
-          名称:
-          <el-input v-model="listQuery.name" label="名称" placeholder="名称" style="width: 200px;" class="filter-item" clearable/>
-          联系电话:
-          <el-input v-model="listQuery.phone" label="联系电话" placeholder="联系电话" style="width: 180px;" class="filter-item" clearable/>
-          登录账号:
-          <el-input v-model="listQuery.email" label="姓名" placeholder="登录账号" style="width: 180px;" class="filter-item" clearable/>
+          {{ generateShow('common.name_field') }}:
+          <el-input v-model="listQuery.name" :placeholder="generateShow('common.name_field')" label="名称" style="width: 200px;" class="filter-item" clearable/>
+          {{ generateShow('common.phone') }}:
+          <el-input v-model="listQuery.phone" :placeholder="generateShow('common.phone')" label="联系电话" style="width: 180px;" class="filter-item" clearable/>
+          {{ generateShow('common.account_login') }}:
+          <el-input v-model="listQuery.email" :placeholder="generateShow('common.account_login')" style="width: 180px;" class="filter-item" clearable/>
         </el-col>
       </el-row>
       <el-row style="margin-top: 10px;">
         <el-col>
-          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-          <el-button class="filter-item" type="primary" @click="handleFilterClear">清空</el-button>
+          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
+          <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
         </el-col>
       </el-row>
 
@@ -32,41 +32,55 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
+          :label="generateShow('common.name_field')"
           prop="name"
-          label="名称"
           min-width="90"/>
         <el-table-column
+          :label="generateShow('common.address')"
           prop="address"
-          label="详细地址"
           min-width="120"/>
         <el-table-column
+          :label="generateShow('common.location')"
           prop="locationStreet"
-          label="位置"
+          sortable
           min-width="80"/>
         <el-table-column
+          :label="generateShow('common.children_count')"
+          prop="childrenCount"
+          sortable
+          min-width="90"/>
+        <el-table-column
+          :label="generateShow('common.phone')"
           prop="phone"
-          label="联系电话"
           min-width="100"/>
         <el-table-column
+          :label="generateShow('common.account_login')"
           prop="email"
-          label="登录账号"
           min-width="160"/>
         <el-table-column
+          :label="generateShow('common.created_at')"
           prop="createdAt"
-          label="创建时间"
           min-width="120"/>
         <el-table-column
-          prop="baseTypeVal"
-          label="账户类型"
-          min-width="60"/>
+          :label="generateShow('common.state')"
+          min-width="80">
+          <template slot-scope="scope">
+            <span>{{ scope.row.authorize | stateFileter }}</span>
+            <el-button v-if="scope.row.authorize === 'pending'" type="text" size="small" @click="handleClickAuthorize(scope.row)">{{ generateShow('common.authorize') }}</el-button>
+          </template>
+        </el-table-column>
+        <!--<el-table-column-->
+        <!--:label="generateShow('common.account_type')"-->
+        <!--prop="baseTypeVal"-->
+        <!--min-width="80"/>-->
         <el-table-column
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
-            <el-button type="text" size="small" @click="handleClickLocation(scope.row)">修改位置</el-button>
-            <el-button type="text" size="small" @click="handleClickSkilled(scope.row)">擅长业务</el-button>
-            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">{{ generateShow('common.modify') }}</el-button>
+            <el-button type="text" size="small" @click="handleClickLocation(scope.row)">{{ generateShow('common.modify_location') }}</el-button>
+            <el-button type="text" size="small" @click="handleClickSkilled(scope.row)">{{ generateShow('common.modify_skilled') }}</el-button>
+            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">{{ generateShow('common.delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -82,13 +96,23 @@
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/doctors'
+import { fetchList, deleteItem, authorizeDoctor } from '@/api/doctors'
 import NewDoctor from './components/new_doctor'
 import EditDoctor from './components/edit_doctor'
 import Services from './components/services'
 import Location from './components/location'
 export default {
   components: { NewDoctor, EditDoctor, Services, Location },
+  filters: {
+    stateFileter(state) {
+      const stateMap = {
+        pending: '审核中',
+        pass: '审核通过',
+        reject: '审核拒绝'
+      }
+      return stateMap[state]
+    }
+  },
   data() {
     return {
       list: null,
@@ -102,8 +126,8 @@ export default {
         phone: undefined,
         email: undefined,
         type: undefined,
-        sortProp: undefined,
-        sortOrder: undefined
+        sort_prop: undefined,
+        sort_order: undefined
       }
     }
   },
@@ -111,6 +135,22 @@ export default {
     this.getList()
   },
   methods: {
+    handleClickAuthorize(val) {
+      this.$confirm('确定要审核通过该账户吗?', '提示', {
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        type: 'warning'
+      }).then(() => {
+        authorizeDoctor({ id: val.id }).then(response => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '审核成功!'
+          })
+        })
+      }).catch(() => {
+      })
+    },
     handleClickLocation(val) {
       this.$refs.location.show(val)
     },
@@ -160,8 +200,8 @@ export default {
       this.getList()
     },
     handleColumnSort(val) {
-      this.listQuery.sortProp = val.prop
-      this.listQuery.sortOrder = val.order
+      this.listQuery.sort_prop = val.prop
+      this.listQuery.sort_order = val.order
       this.getList()
     },
     handleFilter() {
