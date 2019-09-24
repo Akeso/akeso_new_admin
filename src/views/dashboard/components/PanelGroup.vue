@@ -22,7 +22,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="4" :sm="5" :lg="5" class="card-panel-col">
+    <el-col :xs="4" :sm="5" :lg="4" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('Appointments')">
         <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="bear01" class-name="card-panel-icon" />
@@ -33,7 +33,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="5" :sm="5" :lg="5" class="card-panel-col">
+    <el-col :xs="5" :sm="5" :lg="4" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('highWarn')">
         <div class="card-panel-icon-wrapper icon-message">
           <svg-icon icon-class="bear02" class-name="card-panel-icon" />
@@ -44,7 +44,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="5" :sm="5" :lg="5" class="card-panel-col">
+    <el-col :xs="5" :sm="5" :lg="4" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('children', '本周复查儿童')">
         <div class="card-panel-icon-wrapper icon-message">
           <svg-icon icon-class="bear02" class-name="card-panel-icon" />
