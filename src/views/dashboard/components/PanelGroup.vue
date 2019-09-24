@@ -134,8 +134,7 @@ export default {
       }
       .card-panel-icon-wrapper {
         float: left;
-        margin: 14px 0 0 14px;
-        padding: 8px;
+        margin: 14px 0 0 0px;
         transition: all 0.38s ease-out;
         border-radius: 6px;
       }
