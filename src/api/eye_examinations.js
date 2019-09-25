@@ -8,6 +8,13 @@ export function fetchList(query) {
   })
 }
 
+export function deleteItem(query) {
+  return request({
+    url: '/api/a1/eye_examinations/' + query.id,
+    method: 'delete'
+  })
+}
+
 // 创建屈光档案
 export function createArchives(query) {
   return request({
