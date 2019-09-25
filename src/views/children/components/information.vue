@@ -39,37 +39,37 @@
                   <td>体重指数BMI</td>
                   <td>{{ child.bmi || 0 }}</td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>近家族史</td>
                   <td colspan="2">{{ child.motherEye }} - {{ child.fatherEye }}</td>
                   <td>联系电话</td>
                   <td colspan="2">{{ child.phone }}</td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>眼病史</td>
                   <td colspan="5">{{ child.eyeIllnessHistory || '-' }}</td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>居住地</td>
                   <td colspan="2">{{ child.locationString || '-' }}</td>
-                  <td>学校</td>
-                  <td colspan="2">{{ child.school || '-' }}</td>
+                  <!--<td>学校</td>-->
+                  <!--<td colspan="2">{{ child.school || '-' }}</td>-->
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>用户标签</td>
                   <td colspan="5">
                     <span v-if="child.userTags.length === 0"> - </span>
                     <el-tag v-for="item in child.userTags" :key="item">{{ item }}</el-tag>
                   </td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>临床标签</td>
                   <td colspan="5">
                     <span v-if="child.clinicalTags.length === 0"> - </span>
                     <el-tag v-for="item in child.clinicalTags" :key="item">{{ item }}</el-tag>
                   </td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>绑定设备</td>
                   <td colspan="2">{{ child.device || '-' }}</td>
                   <td>绑定医生</td>
@@ -78,19 +78,13 @@
                     <el-button v-if="$store.getters.baseType && child.doctor" type="primary" size="mini" round @click="handleClickUnbindDoctor">解绑</el-button>
                   </td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>用户资料完成度</td>
                   <td colspan="5">
                     <el-progress :text-inside="true" :stroke-width="20" :percentage="child.integrity" status="success" style="margin-top: 10px;"/>
                   </td>
                 </tr>
               </table>
-              <el-row v-if="loadSuccess" type="flex" justify="space-around" style="margin-top: 5px;">
-                <span style="cursor: pointer;" @click="clickToShow">
-                  <i :class="showMore ? 'el-icon-arrow-up' : 'el-icon-arrow-down'"/>
-                  {{ showMore ? '隐藏' : '显示更多' }}
-                </span>
-              </el-row>
             </el-row>
           </el-col>
         </el-row>
@@ -129,7 +123,6 @@ export default {
   data() {
     return {
       loadSuccess: false,
-      showMore: false,
       avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
       emptyText: '',
       child: {
@@ -137,7 +130,9 @@ export default {
         gender: '.',
         age: '.',
         height: '.',
-        weight: '.'
+        weight: '.',
+        userTags: [],
+        clinicalTags: []
       }
     }
   },
@@ -184,9 +179,6 @@ export default {
         this.child = response.data
         this.eventBus.$emit('updateChild', this.child)
       })
-    },
-    clickToShow() {
-      this.showMore = !this.showMore
     }
   }
 }
