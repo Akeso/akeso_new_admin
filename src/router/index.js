@@ -239,6 +239,19 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/products',
+    component: Layout,
+    meta: { title: 'productManage', icon: 'example' },
+    children: [
+      {
+        path: 'products',
+        name: 'Products',
+        component: () => import('@/views/products/index'),
+        meta: { title: 'products', icon: 'people' }
+      }
+    ]
+  },
+  {
     path: '/system_setting',
     component: Layout,
     only: true,
