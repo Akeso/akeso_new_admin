@@ -15,21 +15,30 @@
         style="width: 100%; margin-top: 10px;">
         <el-table-column
           :label="generateShow('product.name')"
+          prop="name"
           min-width="80"/>
         <el-table-column
           :label="generateShow('product.brand')"
+          prop="brand"
           min-width="80"/>
         <el-table-column
           :label="generateShow('product.serial')"
+          prop="serial"
           min-width="80"/>
         <el-table-column
           :label="generateShow('product.price')"
+          prop="price"
+          min-width="80"/>
+        <el-table-column
+          :label="generateShow('product.total')"
+          prop="total"
           min-width="80"/>
         <el-table-column
           :label="generateShow('common.operate')"
           min-width="100" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClick(scope.row)">解绑</el-button>
+            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
+            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -39,13 +48,15 @@
       </div>
     </el-card>
     <NewProduct ref="newProduct" @create-success="getList"/>
+    <EditProduct ref="editProduct" @create-success="getList"/>
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/products'
+import { fetchList, deleteItem } from '@/api/products'
 import NewProduct from './components/new_product'
+import EditProduct from './components/edit_product'
 export default {
-  components: { NewProduct },
+  components: { NewProduct, EditProduct },
   data() {
     return {
       list: [],
@@ -62,6 +73,21 @@ export default {
   methods: {
     handleClickNew() {
       this.$refs.newProduct.show()
+    },
+    handleClickEdit(val) {
+      this.$refs.editProduct.show(val)
+    },
+    handleClickDelete(val) {
+      this.$confirm('确定要删除该产品吗?', '提示', {
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        type: 'warning'
+      }).then(() => {
+        deleteItem(val).then(res => {
+          this.getList()
+        })
+      }).catch(() => {
+      })
     },
     getList() {
       fetchList().then(res => {

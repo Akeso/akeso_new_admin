@@ -105,7 +105,8 @@ export default {
     name: '产品名称',
     brand: '品牌',
     serial: '系列',
-    price: '价格'
+    price: '价格',
+    total: '总量'
   },
   home: {
     all_children: '全部儿童',
@@ -161,6 +162,7 @@ export default {
     removements: '解绑申请',
     productManage: '产品管理',
     products: '产品列表',
+    product_logs: '消费记录',
     versions: '版本管理',
     app_files: '蓝牙文件',
     awards: '奖品管理',

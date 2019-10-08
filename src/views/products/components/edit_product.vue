@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { createItem } from '@/api/products'
+import { updateItem } from '@/api/products'
 
 export default {
   data() {
@@ -70,7 +70,7 @@ export default {
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
-          createItem(this.temp).then(response => {
+          updateItem(this.temp).then(response => {
             this.resetData()
             this.dialogFormVisible = false
             this.$emit('create-success')
@@ -80,7 +80,8 @@ export default {
         }
       })
     },
-    show() {
+    show(val) {
+      this.temp = val
       this.dialogFormVisible = true
     },
     resetData() {
