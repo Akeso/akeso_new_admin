@@ -9,6 +9,23 @@
         <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增产品</el-button>
       </div>
 
+      <el-row>
+        <el-col>
+          {{ generateShow('product.name') }}:
+          <el-input v-model="listQuery.name" :placeholder="generateShow('product.name')" label="名称" style="width: 200px;" class="filter-item" clearable/>
+          {{ generateShow('product.brand') }}:
+          <el-input v-model="listQuery.brand" :placeholder="generateShow('product.brand')" label="品牌" style="width: 180px;" class="filter-item" clearable/>
+          {{ generateShow('product.serial') }}:
+          <el-input v-model="listQuery.serial" :placeholder="generateShow('product.serial')" label="系列" style="width: 180px;" class="filter-item" clearable/>
+        </el-col>
+      </el-row>
+      <el-row style="margin-top: 10px;">
+        <el-col>
+          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="getList">{{ generateShow('common.search') }}</el-button>
+          <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
+        </el-col>
+      </el-row>
+
       <el-table
         :data="list"
         border
@@ -63,7 +80,10 @@ export default {
       total: 0,
       listQuery: {
         page: 1,
-        limit: 20
+        limit: 20,
+        name: undefined,
+        brand: undefined,
+        serial: undefined
       }
     }
   },
@@ -90,7 +110,7 @@ export default {
       })
     },
     getList() {
-      fetchList().then(res => {
+      fetchList(this.listQuery).then(res => {
         this.list = res.data.items
         this.total = res.data.total
       })
@@ -102,6 +122,11 @@ export default {
     handleSizeChange(val) {
       this.listQuery.limit = val
       this.getList()
+    },
+    handleFilterClear() {
+      this.listQuery.name = undefined
+      this.listQuery.brand = undefined
+      this.listQuery.serial = undefined
     }
   }
 }

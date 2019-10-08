@@ -244,16 +244,16 @@ export const constantRouterMap = [
     meta: { title: 'productManage', icon: 'example' },
     children: [
       {
-        path: 'product_logs',
-        name: 'ProductLogs',
-        component: () => import('@/views/products/logs'),
-        meta: { title: 'product_logs', icon: 'people' }
-      },
-      {
         path: 'products',
         name: 'Products',
         component: () => import('@/views/products/index'),
         meta: { title: 'products', icon: 'people' }
+      },
+      {
+        path: 'product_logs',
+        name: 'ProductLogs',
+        component: () => import('@/views/products/logs'),
+        meta: { title: 'product_logs', icon: 'people' }
       }
     ]
   },

@@ -72,7 +72,7 @@
                 <tr>
                   <td>绑定设备</td>
                   <td colspan="2">{{ child.device || '-' }}</td>
-                  <td>绑定医生</td>
+                  <td>绑定机构</td>
                   <td colspan="2">
                     {{ child.doctor || '-' }}
                     <el-button v-if="$store.getters.baseType && child.doctor" type="primary" size="mini" round @click="handleClickUnbindDoctor">解绑</el-button>
