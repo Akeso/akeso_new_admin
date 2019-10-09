@@ -11,13 +11,16 @@
               <img :src="avatarUrl" class="pan-thumb">
             </div>
             <div class="btn-user">
-              <el-button type="success" @click="handleClickEditChild">编辑用户信息</el-button>
+              <el-button type="primary" @click="handleClickEditChild">编辑用户信息</el-button>
+            </div>
+            <div class="btn-user">
+              <el-button type="primary" @click="handleClickEditTags">编辑标签</el-button>
             </div>
             <div class="btn-user">
               <el-button type="success" @click="handleClickChannel">健康咨询</el-button>
             </div>
             <div class="btn-user">
-              <el-button type="success" @click="handleClickEditTags">编辑标签</el-button>
+              <el-button type="success" @click="handleClickBilling">销售开单</el-button>
             </div>
           </el-col>
           <el-col :span="18">
@@ -154,6 +157,9 @@ export default {
       if (this.childId) {
         this.$refs.channel.handleShow(this.childId)
       }
+    },
+    handleClickBilling() {
+      this.$router.push({ path: '/preview/billing/' + this.childId })
     },
     handleClickUnbindDoctor() {
       if (this.childId) {

@@ -160,6 +160,8 @@ export default {
     channels: '健康咨询',
     popular_science_centers: '内容发布',
     removements: '解绑申请',
+    billings: '销售开单',
+    billing_child: '销售开单',
     productManage: '产品管理',
     products: '产品列表',
     product_logs: '消费记录',
