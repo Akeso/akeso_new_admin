@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="margin:0px 5px;">
       <el-col :span="4">
-        <div>
+        <div style="margin-top: 60px;">
           <h3>{{ child.name }}</h3>
           <p>性别：{{ child.gender | genderFilter }}</p>
           <p>年龄：{{ child.age }}岁</p>
@@ -12,9 +12,9 @@
         </div>
       </el-col>
       <el-col :span="20">
-        <el-button type="primary" @click="handleClickProduct">添加产品</el-button>
-        <el-row>
+        <el-row class="mg-t">
           <el-col>
+            <el-button type="primary" @click="handleClickProduct">添加产品</el-button>
             问诊医生：<el-input v-model="seller" placeholder="输入问诊医生" label="名称" style="width: 200px;" class="filter-item" clearable/>
           </el-col>
         </el-row>
@@ -23,7 +23,7 @@
           :summary-method="getSummaries"
           border
           show-summary
-          height="500"
+          height="450"
           style="width: 100%; margin-top: 10px;">
           <el-table-column
             :label="generateShow('product.name')"
@@ -53,7 +53,9 @@
             </template>
           </el-table-column>
         </el-table>
-        <el-button type="primary" @click="handleClickSave">保存</el-button>
+        <div class="mg-t">
+          <el-button type="primary" @click="handleClickSave">保存</el-button>
+        </div>
       </el-col>
     </el-row>
     <ProductSelect ref="productSelect" @select-product="selectProduct"/>
@@ -166,3 +168,8 @@ export default {
   }
 }
 </script>
+<style scope>
+  .mg-t {
+    margin-top: 10px;
+  }
+</style>

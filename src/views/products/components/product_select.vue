@@ -83,7 +83,7 @@ export default {
       this.dialogFormVisible = false
     },
     handleClickSearch(row) {
-      console.log(row)
+      this.getList()
     },
     handleCurrentChange(val) {
       this.listQuery.page = val

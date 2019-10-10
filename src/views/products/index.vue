@@ -54,8 +54,8 @@
           :label="generateShow('common.operate')"
           min-width="100" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
-            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="handleClickEdit(scope.row)">修改</el-button>
+            <el-button type="danger" icon="el-icon-delete" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

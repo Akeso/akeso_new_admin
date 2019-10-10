@@ -7,8 +7,8 @@
       <el-row>
         {{ generateShow('common.name') }}:
         <el-input v-model="listQuery.name" :label="generateShow('common.name')" :placeholder="generateShow('common.name')" style="width: 100px;" class="filter-item" clearable />
-        {{ generateShow('common.parent_phone') }}:
-        <el-input v-model="listQuery.parentPhone" :label="generateShow('common.parent_phone')" :placeholder="generateShow('common.parent_phone')" style="width: 150px;" class="filter-item" clearable />
+        {{ generateShow('common.phone') }}:
+        <el-input v-model="listQuery.phone" :label="generateShow('common.phone')" :placeholder="generateShow('common.phone')" style="width: 150px;" class="filter-item" clearable />
         {{ generateShow('common.created_at') }}:
         <el-date-picker v-model="listQuery.startDate" :placeholder="generateShow('common.start_date')" type="date" style="width: 150px;" /> -
         <el-date-picker v-model="listQuery.endDate" :placeholder="generateShow('common.end_date')" type="date" style="width: 150px;"/>
@@ -96,7 +96,7 @@ export default {
         page: 1,
         limit: 20,
         name: '',
-        parent_phone: undefined,
+        phone: undefined,
         start_date: '',
         end_date: '',
         sort_prop: '',

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="选择儿童" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="选择用户" width="70%" top="30px">
     <el-row>
       <el-col>
         <el-input v-model="listQuery.name" placeholder="输入姓名" label="名称" style="width: 200px;" class="filter-item" clearable/>
@@ -95,7 +95,7 @@ export default {
       this.$router.push({ path: '/billings/billing/' + val.id })
     },
     handleClickSearch(row) {
-      console.log(row)
+      this.getList()
     },
     handleCurrentChange(val) {
       this.listQuery.page = val
