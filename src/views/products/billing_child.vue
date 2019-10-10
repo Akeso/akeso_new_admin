@@ -2,18 +2,22 @@
   <div>
     <el-row :gutter="20">
       <el-col :span="4">
-        <div patient-info="" on-click="showPatient()" customer-id="fee.customerId" patient-id="patientId" class="ng-isolate-scope">
-          <h3 class="mt5 ng-binding">王静</h3>
-          <p class="ng-binding">性别：男</p>
-          <p class="ng-binding">年龄：3月</p>
-          <p>身高：<span ng-show="updatePatientFactory.object.height" class="ng-binding ng-hide">CM</span></p>
-          <p>体重：<span ng-show="updatePatientFactory.object.weight" class="ng-binding ng-hide">KG</span></p>
-          <p class="ng-binding">联系人：王静</p>
-          <p class="ng-binding">手机号：13165029807</p>
+        <div>
+          <h3>{{ child.name }}</h3>
+          <p>性别：{{ child.gender | genderFilter }}</p>
+          <p>年龄：{{ child.age }}岁</p>
+          <p>身高：{{ child.height }}CM</p>
+          <p>体重：{{ child.weight }}KG</p>
+          <p>手机号：{{ child.phone }}</p>
         </div>
       </el-col>
       <el-col :span="20">
-        <el-button type="success" @click="handleClickProduct">添加产品</el-button>
+        <el-button type="primary" @click="handleClickProduct">添加产品</el-button>
+        <el-row>
+          <el-col>
+            问诊医生：<el-input v-model="seller" placeholder="输入问诊医生" label="名称" style="width: 200px;" class="filter-item" clearable/>
+          </el-col>
+        </el-row>
         <el-table
           :data="list"
           :summary-method="getSummaries"
@@ -45,11 +49,11 @@
             :label="generateShow('common.operate')"
             min-width="100" >
             <template slot-scope="scope">
-              <el-button type="text" size="small" @click="handleClickDelete(scope.$index)">删除</el-button>
+              <el-button size="mini" @click="handleClickDelete(scope.$index)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
-        <el-button type="success" @click="handleClickSave">保存</el-button>
+        <el-button type="primary" @click="handleClickSave">保存</el-button>
       </el-col>
     </el-row>
     <ProductSelect ref="productSelect" @select-product="selectProduct"/>
@@ -59,12 +63,32 @@
 <script>
 import ProductSelect from './components/product_select'
 import { createItem } from '@/api/product_logs'
+import { fetchChild } from '@/api/children'
 export default {
   components: { ProductSelect },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女',
+        unknown: '未知'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       child_id: this.$route.params.id,
+      child: {
+        name: '',
+        gender: 'unknown',
+        age: undefined,
+        height: undefined,
+        weight: undefined,
+        phone: undefined
+      },
       dialogFormVisible: false,
+      seller: '',
       list: [],
       total: null,
       total_price: 0,
@@ -81,9 +105,14 @@ export default {
   watch: {
   },
   created() {
-    console.log('child_id => ', this.child_id)
+    this.getChild()
   },
   methods: {
+    getChild() {
+      fetchChild({ id: this.child_id }).then(res => {
+        this.child = res.data
+      })
+    },
     getSummaries(param) {
       const { columns, data } = param
       const sums = []
@@ -114,10 +143,15 @@ export default {
       return sums
     },
     handleClickSave() {
+      if (this.list.length === 0) {
+        this.$message({ message: '请选择商品', type: 'warning' })
+        return
+      }
       var product_ids = this.list.map(item => { return item.id })
       var prices = this.list.map(item => { return item.price })
-      createItem({ child_id: this.child_id, seller: '测试销售', product_ids: product_ids, prices: prices, total_price: 1 }).then(res => {
+      createItem({ child_id: this.child_id, seller: this.seller, products: this.list, product_ids: product_ids, prices: prices, total_price: 1 }).then(res => {
         console.log('res => ', res.data)
+        this.$router.back()
       })
     },
     handleClickDelete(index) {

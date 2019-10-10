@@ -80,6 +80,7 @@ export default {
     },
     handleClickSelect(val) {
       this.$emit('select-product', val)
+      this.dialogFormVisible = false
     },
     handleClickSearch(row) {
       console.log(row)

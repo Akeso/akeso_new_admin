@@ -1,6 +1,6 @@
 <template>
   <div class="box-container">
-    <el-row :gutter="20" class="m-t-2">
+    <el-row class="m-t-2">
       <el-col>
         选择日期
         <el-date-picker
@@ -357,8 +357,7 @@ export default {
     overflow: hidden;
   }
   .m-t-2{
-    margin-top:14px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .m-l-2{
     margin-left:20px;

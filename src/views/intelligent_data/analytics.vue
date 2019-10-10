@@ -11,7 +11,7 @@
     <!--</el-menu>-->
     <!--</el-row>-->
     <el-row>
-      <el-radio-group v-model="activeIndex" style="margin-bottom: 30px;">
+      <el-radio-group v-model="activeIndex">
         <el-radio-button label="whole">{{ generateShow('common.whole_analytics') }}</el-radio-button>
         <el-radio-button label="whole_report">{{ generateShow('common.whole_report') }}</el-radio-button>
       </el-radio-group>

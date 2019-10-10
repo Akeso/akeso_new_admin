@@ -34,19 +34,18 @@
           type="expand">
           <template slot-scope="props">
             <el-form label-position="left" inline class="demo-table-expand">
-              <el-form-item label="姓名">
-                <span>{{ props.row.child_name }}</span>
-              </el-form-item>
+              <div v-for="item in props.row.products" :key="item.key">
+                <el-form-item label="商品">
+                  <span>{{ item.name }}</span>
+                </el-form-item>
+                <el-form-item label="价格">
+                  <span>{{ item.price }}</span>
+                </el-form-item>
+              </div>
               <el-form-item label="接诊医生">
                 <span>{{ props.row.seller }}</span>
               </el-form-item>
-              <el-form-item label="商品">
-                <span>{{ props.row.product_ids }}</span>
-              </el-form-item>
-              <el-form-item label="价格">
-                <span>{{ props.row.prices }}</span>
-              </el-form-item>
-              <el-form-item label="描述">
+              <el-form-item label="备注">
                 <span>{{ props.row.desc }}</span>
               </el-form-item>
             </el-form>
@@ -72,7 +71,7 @@
           :label="generateShow('common.operate')"
           min-width="100" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button size="mini" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -86,7 +85,7 @@
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/product_logs'
+import { fetchList, deleteItem } from '@/api/product_logs'
 import EditProduct from './components/edit_product'
 import ChildSelect from './components/child_select'
 export default {
@@ -112,7 +111,24 @@ export default {
       this.$refs.childSelect.show()
     },
     handleClickDelete(val) {
-      console.log('delete ... ')
+      this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteItem({ id: val.id }).then(res => {
+          this.$message({
+            type: 'success',
+            message: res.message
+          })
+          this.getList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     },
     getList() {
       fetchList(this.listQuery).then(res => {
