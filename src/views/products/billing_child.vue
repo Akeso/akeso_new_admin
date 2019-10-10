@@ -136,12 +136,12 @@ export default {
               return prev
             }
           }, 0)
+          this.total_price = sums[index]
           sums[index] += ' 元'
         } else {
           sums[index] = 'N/A'
         }
       })
-      this.total_price = sums
       return sums
     },
     handleClickSave() {
@@ -151,7 +151,7 @@ export default {
       }
       var product_ids = this.list.map(item => { return item.id })
       var prices = this.list.map(item => { return item.price })
-      createItem({ child_id: this.child_id, seller: this.seller, products: this.list, product_ids: product_ids, prices: prices, total_price: 1 }).then(res => {
+      createItem({ child_id: this.child_id, seller: this.seller, products: this.list, product_ids: product_ids, prices: prices, total_price: this.total_price }).then(res => {
         console.log('res => ', res.data)
         this.$router.back()
       })
