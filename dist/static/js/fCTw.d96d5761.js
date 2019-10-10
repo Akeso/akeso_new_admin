@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["fCTw"],{fCTw:function(e,n,t){"use strict";t.r(n);var s=t("KHd+"),l=Object(s.a)({},function(){var e=this.$createElement;return(this._self._c||e)("h1",[this._v("消费记录")])},[],!1,null,null,null);l.options.__file="logs.vue";n.default=l.exports}}]);
