@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 0px 20px 0px 20px">
+  <div>
     <el-row style="background-color: #eeeeee; padding: 20px 0px 0px 10px; border-radius: 6px;">
       <el-form :inline="true" :model="conditionQuery" class="demo-form-inline">
         <el-form-item label="度数">
@@ -36,7 +36,7 @@
               :value="item.value"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="健康评分">
+        <el-form-item label="用眼健康行为评级">
           <el-select v-model="conditionQuery.health_data" placeholder="请选择" style="width: 140px;">
             <el-option
               v-for="item in options.healthDataOptions"
@@ -48,11 +48,11 @@
       </el-form>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span="14" style="margin-top: 10px;">
+      <el-col :span="16" style="margin-top: 10px;">
         <ve-line v-if="conditionQuery.sight_type === 'short'" :series="series_short" :title="title" :tooltip="tooltip" :legend="legend_short" :x-axis="xAxis" :y-axis="yAxis"/>
         <ve-line v-else :series="series_long" :title="title" :tooltip="tooltip" :x-axis="xAxis" :y-axis="yAxis"/>
       </el-col>
-      <el-col :span="10" style="padding: 10px 30px 0px 5px;">
+      <el-col :span="8" style="padding: 10px 30px 0px 5px;">
         <div class="ng-binding" style="margin: 48px 0px 12px 0px; color: #4B8DF8;">亲爱的小朋友，你现在{{ textIndicator.age }}岁，{{ textIndicator.sightType }}是{{ textIndicator.re }}。</div>
         <div v-if="conditionQuery.sight_type === 'short'">
           <div class="ng-binding">
@@ -301,7 +301,7 @@ export default {
         this.options = response.data
         this.conditionQuery.age = this.options.ageStartOptions[0]
         this.conditionQuery.re = this.options.reOptions[0].value
-        this.conditionQuery.ctrl_type = this.options.ctrlTypeOptions[1].value
+        this.conditionQuery.ctrl_type = this.options.ctrlTypeOptions[0].value
         this.conditionQuery.health_data = this.options.healthDataOptions[0].value
         this.getForecasts()
       })
@@ -330,15 +330,15 @@ export default {
 </script>
 
 <style scope>
-  /*.el-input__inner {*/
-    /*padding-left: 10px !important;*/
-  /*}*/
   .ng-binding {
     color: #000000;
     font-size: 14px;
     /*font-weight: bold;*/
     line-height: 28px;
     line-height: 26px;
+  }
+  .el-form-item__label {
+    padding: 0px 6px 0px 0px;
   }
   .sky {
     color: #00aeef;
