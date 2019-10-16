@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>{{ generateShow('route.app_files') }}</span>
+        <span>{{ generateShow('route.server_app_files') }}</span>
       </div>
 
       <div class="filter-container">
@@ -15,21 +15,25 @@
         style="width: 100%"
         @sort-change="handleColumnSort">
         <el-table-column
-          prop="name"
-          label="名称"
-          min-width="40"/>
+          prop="deviceType"
+          label="镜腿大版本名"
+          min-width="60"/>
+        <el-table-column
+          prop="secondType"
+          label="镜腿小版本名"
+          min-width="60"/>
         <el-table-column
           prop="version"
-          label="版本名"
-          min-width="40"/>
+          label="升级版本号"
+          min-width="50"/>
         <el-table-column
-          prop="url"
-          label="下载地址"
+          prop="fileName"
+          label="文件名"
           min-width="120"/>
         <el-table-column
           prop="fileSize"
           label="文件大小(B)"
-          min-width="40"/>
+          min-width="50"/>
         <el-table-column
           :label="generateShow('common.created_at')"
           prop="createdAt"
@@ -38,7 +42,7 @@
           :label="generateShow('common.operate')"
           min-width="40" >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button type="text" size="small" @click="handleClick(scope.row)">{{ generateShow('common.modify') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -47,14 +51,16 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <Edit ref="edit" @updateVersionSuccess="getList"/>
     <New ref="new" @updateVersionSuccess="getList"/>
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/app_files'
+import { fetchList } from '@/api/server_app_files'
+import Edit from './components/edit'
 import New from './components/new'
 export default {
-  components: { New },
+  components: { Edit, New },
   filters: {
     stateFilter(status) {
       const statusMap = {
@@ -79,25 +85,20 @@ export default {
     this.getList()
   },
   methods: {
-    handleClickDelete(val) {
-      this.$confirm('确定要删除该文件吗?', '提示', {
-        confirmButtonText: '是',
-        cancelButtonText: '否',
-        type: 'warning'
-      }).then(() => {
-        deleteItem(val).then(res => {
-          this.getList()
-        })
-      }).catch(() => {
-      })
-    },
     handleClickNew() {
       this.$refs.new.show()
+    },
+    handleClick(val) {
+      this.$refs.edit.show(val)
     },
     getList() {
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
+        // Just to simulate the time of the request
+        // setTimeout(() => {
+        //   this.listLoading = false
+        // }, 1.5 * 1000)
       })
     },
     handleCurrentChange(val) {

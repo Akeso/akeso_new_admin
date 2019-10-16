@@ -147,7 +147,8 @@ export default {
     removements: 'apply for doctor',
     channels: 'channels',
     versions: 'Version',
-    app_files: 'App Files'
+    server_app_files: 'App Files',
+    app_files: 'APKs'
   },
   device: {
     deviceType: 'Device Type'
