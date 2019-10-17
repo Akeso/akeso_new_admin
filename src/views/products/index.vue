@@ -12,6 +12,7 @@
             :before-remove="beforeRemove"
             :on-success="handleSuccess"
             :limit="1"
+            :data="uploadData"
             class="upload-demo"
             accept=".xlsx, .xls"
             action="/api/common/excels/upload_products">
@@ -92,6 +93,9 @@ export default {
   components: { NewProduct, EditProduct },
   data() {
     return {
+      uploadData: {
+        authenticationToken: this.$store.state.user.authenticationToken
+      },
       list: [],
       total: 0,
       listQuery: {
@@ -136,8 +140,18 @@ export default {
     },
 
     handleSuccess(res, file) {
-      console.log('res => ', res)
-      console.log('file => ', file)
+      console.log('handleSuccess : res => ', res)
+      if (res.status === 200) {
+        this.$message({
+          message: '恭喜你，上传成功.',
+          type: 'success'
+        })
+      } else {
+        this.$message({
+          message: '上传失败，请检查后重新上传.',
+          type: 'warning'
+        })
+      }
     },
     handleClickNew() {
       this.$refs.newProduct.show()
