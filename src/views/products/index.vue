@@ -14,7 +14,7 @@
             :limit="1"
             class="upload-demo"
             accept=".xlsx, .xls"
-            action="/api/common/excels/upload_report">
+            action="/api/common/excels/upload_products">
             <!--<div class="overflow">-->
             <el-button class="filter-item" size="small" type="success" icon="el-icon-plus" @click.stop="handleClickNew">新增产品</el-button>
             <el-button size="small" type="primary" class="left">{{ generateShow('common.upload') }}Excel</el-button>
@@ -105,6 +105,25 @@ export default {
   },
   created() {
     this.getList()
+  },
+  channels: {
+    ProductChannel: {
+      connected() {
+        console.log('ChatChannel => connected.')
+      },
+      rejected() {
+        console.log('ChatChannel => rejected.')
+      },
+      received(data) {
+        console.log('ChatChannel => received. => ', data)
+      },
+      disconnected() {
+        console.log('ChatChannel => disconnected.')
+      }
+    }
+  },
+  mounted() {
+    // this.$cable.subscribe({ channel: 'ProductChannel' })
   },
   methods: {
     handleRemove(file, fileList) {
