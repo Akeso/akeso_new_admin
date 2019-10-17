@@ -4,25 +4,41 @@
       <div slot="header" class="clearfix">
         <span>{{ generateShow('route.products') }}</span>
       </div>
+      <el-row :gutter="20" style="margin-bottom: 10px;">
+        <el-col>
+          <el-upload
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :before-remove="beforeRemove"
+            :on-success="handleSuccess"
+            :limit="1"
+            class="upload-demo"
+            accept=".xlsx, .xls"
+            action="/api/common/excels/upload_report">
+            <!--<div class="overflow">-->
+            <el-button class="filter-item" size="small" type="success" icon="el-icon-plus" @click.stop="handleClickNew">新增产品</el-button>
+            <el-button size="small" type="primary" class="left">{{ generateShow('common.upload') }}Excel</el-button>
+            <el-button size="small" class="left m-l-2" @click.stop="downloadExc">{{ generateShow('common.download') }}Excel模板</el-button>
+            <span slot="tip" class="el-upload__tip c-red left tit-btn">只能{{ generateShow('common.upload') }}.xlsx, .xls文件</span>
+            <!--</div>-->
+          </el-upload>
+        </el-col>
+      </el-row>
 
-      <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增产品</el-button>
-      </div>
+      <!--<div class="filter-container">-->
+      <!--<el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增产品</el-button>-->
+      <!--</div>-->
 
       <el-row>
         <el-col>
           {{ generateShow('product.name') }}:
-          <el-input v-model="listQuery.name" :placeholder="generateShow('product.name')" label="名称" style="width: 200px;" class="filter-item" clearable/>
+          <el-input v-model="listQuery.name" :placeholder="generateShow('product.name')" size="small" label="名称" style="width: 160px;" class="filter-item" clearable/>
           {{ generateShow('product.brand') }}:
-          <el-input v-model="listQuery.brand" :placeholder="generateShow('product.brand')" label="品牌" style="width: 180px;" class="filter-item" clearable/>
+          <el-input v-model="listQuery.brand" :placeholder="generateShow('product.brand')" size="small" label="品牌" style="width: 160px;" class="filter-item" clearable/>
           {{ generateShow('product.serial') }}:
-          <el-input v-model="listQuery.serial" :placeholder="generateShow('product.serial')" label="系列" style="width: 180px;" class="filter-item" clearable/>
-        </el-col>
-      </el-row>
-      <el-row style="margin-top: 10px;">
-        <el-col>
-          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="getList">{{ generateShow('common.search') }}</el-button>
-          <el-button class="filter-item" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
+          <el-input v-model="listQuery.serial" :placeholder="generateShow('product.serial')" size="small" label="系列" style="width: 160px;" class="filter-item" clearable/>
+          <el-button class="filter-item" size="small" type="primary" icon="el-icon-search" @click="getList">{{ generateShow('common.search') }}</el-button>
+          <el-button class="filter-item" size="small" type="primary" @click="handleFilterClear">{{ generateShow('common.clear') }}</el-button>
         </el-col>
       </el-row>
 
@@ -91,6 +107,19 @@ export default {
     this.getList()
   },
   methods: {
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview(file) {
+      console.log(file)
+    },
+    beforeRemove(file, fileList) {
+    },
+
+    handleSuccess(res, file) {
+      console.log('res => ', res)
+      console.log('file => ', file)
+    },
     handleClickNew() {
       this.$refs.newProduct.show()
     },
@@ -127,8 +156,23 @@ export default {
       this.listQuery.name = undefined
       this.listQuery.brand = undefined
       this.listQuery.serial = undefined
+    },
+    downloadExc() {
+      window.location.href = 'https://akeso.com.cn/template/import_products.xlsx'
     }
   }
 }
 </script>
+<style scoped>
+  .c-blue{
+    color: #27adff;
+  }
+  .c-red{
+    color: red;
+  }
+  .tit-btn{
+    font-size: 14px;
+    margin-left:16px;
+  }
+</style>
 
