@@ -8,7 +8,10 @@
         <el-row type="flex" class="row-bg">
           <el-col :span="4">
             <div>
-              <img :src="avatarUrl" class="pan-thumb">
+              <!--<img :src="child.avatar" class="pan-thumb">-->
+              <el-avatar :size="140" :src="child.avatar" fit="fill" shape="circle">
+                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
+              </el-avatar>
             </div>
             <div class="btn-user">
               <el-button type="primary" @click="handleClickEditChild">编辑用户信息</el-button>
@@ -55,8 +58,8 @@
                 <tr>
                   <td>居住地</td>
                   <td colspan="2">{{ child.locationString || '-' }}</td>
-                  <!--<td>学校</td>-->
-                  <!--<td colspan="2">{{ child.school || '-' }}</td>-->
+                  <td>学校</td>
+                  <td colspan="2">{{ child.school || '-' }}</td>
                 </tr>
                 <tr>
                   <td>用户标签</td>
@@ -126,9 +129,10 @@ export default {
   data() {
     return {
       loadSuccess: false,
-      avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+      // avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
       emptyText: '',
       child: {
+        avatar: '',
         name: '.',
         gender: '.',
         age: '.',
@@ -192,14 +196,10 @@ export default {
 
 <style scoped>
   .pan-thumb {
-    width: 90%;
-    height: 100%;
-    /*background-size: 100%;*/
-    /*border-radius: 50%;*/
-    /*overflow: hidden;*/
-    /*position: absolute;*/
-    transform-origin: 95% 40%;
-    transition: all 0.3s ease-in-out;
+    /*width: 90%;*/
+    /*height: 100%;*/
+    /*transform-origin: 95% 40%;*/
+    /*transition: all 0.3s ease-in-out;*/
   }
   /* element中的样式 */
   .el-row {
