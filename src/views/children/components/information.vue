@@ -10,7 +10,7 @@
             <div>
               <!--<img :src="child.avatar" class="pan-thumb">-->
               <el-avatar :size="140" :src="child.avatar" fit="fill" shape="circle">
-                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
+                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png">
               </el-avatar>
             </div>
             <div class="btn-user">
