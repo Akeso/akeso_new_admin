@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>{{ generateShow('route.products') }}</span>
+        <span>开单列表</span>
       </div>
 
       <div class="filter-container">
@@ -46,7 +46,7 @@
                 <span>{{ props.row.seller }}</span>
               </el-form-item>
               <el-form-item label="备注">
-                <span>{{ props.row.desc }}</span>
+                <span>{{ props.row.des }}</span>
               </el-form-item>
             </el-form>
           </template>
