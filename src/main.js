@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VCharts from 'v-charts'
 import VeLine from 'v-charts/lib/line.common'
 import CKEditor from '@ckeditor/ckeditor5-vue'
+import ActionCableVue from 'actioncable-vue'
 
 import Cookies from 'js-cookie'
 
@@ -25,6 +26,14 @@ import eventBus from '@/utils/event_bus.js'
 import htmlToPdf from '@/utils/htmlToPdf'
 import htmlToPdfObj from '@/utils/htmlToPdfObj'
 import generateShow from '@/utils/i18n'
+
+const cableHost = 'ws://' + window.location.host + '/cable'
+Vue.use(ActionCableVue, {
+  debug: true,
+  debugLevel: 'error',
+  connectionUrl: cableHost,
+  connectImmediately: true
+})
 
 Vue.prototype.eventBus = eventBus.eventBus
 

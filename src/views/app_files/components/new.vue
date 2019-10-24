@@ -1,24 +1,18 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" title="新增蓝牙文件">
+  <el-dialog :visible.sync="dialogFormVisible" title="新增安装文件">
     <el-form :model="form">
-      <el-form-item :label-width="formLabelWidth" label="镜腿大版本名">
-        <el-input v-model="form.deviceType" autocomplete="off"/>
+      <el-form-item :label-width="formLabelWidth" label="名称">
+        <el-input v-model="form.name" autocomplete="off"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="镜腿小版本名">
-        <el-input v-model="form.secondType" autocomplete="off"/>
-      </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="升级版本号">
+      <el-form-item :label-width="formLabelWidth" label="版本号">
         <el-input v-model="form.version" autocomplete="off"/>
-      </el-form-item>
-      <el-form-item :label-width="formLabelWidth" label="描述">
-        <el-input v-model="form.des" autocomplete="off"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="文件">
         <el-upload
           :limit="1"
           :on-success="handleSuccess"
           class="upload-demo"
-          action="/api/common/uploads/server_app_files">
+          action="/api/common/uploads/app_files">
           <el-button size="small" type="primary">点击上传</el-button>
         </el-upload>
       </el-form-item>
@@ -31,7 +25,7 @@
 </template>
 
 <script>
-import { createItem } from '@/api/server_app_files'
+import { createItem } from '@/api/app_files'
 // /api/common/uploads/server_app_files
 export default {
   data() {
@@ -39,9 +33,7 @@ export default {
       dialogFormVisible: false,
       formLabelWidth: '120px',
       form: {
-        deviceType: undefined,
-        secondType: undefined,
-        des: undefined,
+        name: undefined,
         version: undefined,
         file_id: undefined
       }
@@ -49,6 +41,7 @@ export default {
   },
   methods: {
     show: function() {
+      this.resetData()
       this.dialogFormVisible = true
     },
     handleSuccess(res, file) {
@@ -60,6 +53,13 @@ export default {
         this.$emit('updateVersionSuccess')
         this.dialogFormVisible = false
       })
+    },
+    resetData: function() {
+      this.form = {
+        name: undefined,
+        version: undefined,
+        file_id: undefined
+      }
     }
   }
 }

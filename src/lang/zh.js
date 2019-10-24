@@ -101,6 +101,13 @@ export default {
     query: '查询',
     period: '周期'
   },
+  product: {
+    name: '产品名称',
+    brand: '品牌',
+    serial: '系列',
+    price: '价格',
+    total: '总量'
+  },
   home: {
     all_children: '全部儿童',
     intelligent_children: '智能儿童',
@@ -153,8 +160,14 @@ export default {
     channels: '健康咨询',
     popular_science_centers: '内容发布',
     removements: '解绑申请',
+    billings: '销售开单',
+    billing_child: '销售开单',
+    productManage: '产品管理',
+    products: '产品列表',
+    product_logs: '消费记录',
     versions: '版本管理',
-    app_files: '蓝牙文件',
+    server_app_files: '蓝牙文件',
+    app_files: '安装包',
     awards: '奖品管理',
     wx_organizations: '机构管理',
     weapp: '步步兑换活动',

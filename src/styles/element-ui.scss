@@ -28,3 +28,19 @@
     }
   }
 }
+
+// 重定义dialog样式
+.el-dialog__header {
+  padding: 10px;
+}
+.el-dialog__body {
+  padding: 10px;
+}
+
+// 修改card样式
+.el-card__header {
+  padding: 10px;
+}
+.el-card__body {
+  padding: 10px;
+}

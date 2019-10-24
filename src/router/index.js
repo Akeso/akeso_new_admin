@@ -239,6 +239,39 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/billings',
+    component: Layout,
+    meta: { title: 'billings', icon: 'example' },
+    children: [
+      {
+        path: 'logs',
+        name: 'billingLogs',
+        component: () => import('@/views/products/logs'),
+        meta: { title: 'billings', icon: 'people' }
+      },
+      {
+        path: 'billing/:id(\\d+)',
+        name: 'BillingChild',
+        component: () => import('@/views/products/billing_child'),
+        meta: { title: 'billing_child', noCache: true },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/products',
+    component: Layout,
+    meta: { title: 'productManage', icon: 'example' },
+    children: [
+      {
+        path: 'products',
+        name: 'Products',
+        component: () => import('@/views/products/index'),
+        meta: { title: 'products', icon: 'people' }
+      }
+    ]
+  },
+  {
     path: '/system_setting',
     component: Layout,
     only: true,
@@ -257,6 +290,12 @@ export const constantRouterMap = [
         name: 'Versions',
         component: () => import('@/views/versions/versions'),
         meta: { title: 'versions', icon: 'bug' }
+      },
+      {
+        path: 'server_app_files',
+        name: 'ServerAppFiles',
+        component: () => import('@/views/server_app_files/index'),
+        meta: { title: 'server_app_files', icon: 'bug' }
       },
       {
         path: 'app_files',

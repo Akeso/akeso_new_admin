@@ -18,6 +18,10 @@ module.exports = {
         pathRewrite: {
           '^/api': '/api'   //重写接口
         }
+      },
+      '/cable': {
+        target: 'ws://localhost:3000/',
+        changeOrigin: true
       }
     },
 

@@ -8,16 +8,22 @@
         <el-row type="flex" class="row-bg">
           <el-col :span="4">
             <div>
-              <img :src="avatarUrl" class="pan-thumb">
+              <!--<img :src="child.avatar" class="pan-thumb">-->
+              <el-avatar :size="140" :src="child.avatar" fit="fill" shape="circle">
+                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png">
+              </el-avatar>
             </div>
             <div class="btn-user">
-              <el-button type="success" @click="handleClickEditChild">编辑用户信息</el-button>
+              <el-button type="primary" @click="handleClickEditChild">编辑用户信息</el-button>
+            </div>
+            <div class="btn-user">
+              <el-button type="primary" @click="handleClickEditTags">编辑标签</el-button>
             </div>
             <div class="btn-user">
               <el-button type="success" @click="handleClickChannel">健康咨询</el-button>
             </div>
             <div class="btn-user">
-              <el-button type="success" @click="handleClickEditTags">编辑标签</el-button>
+              <el-button type="success" @click="handleClickBilling">销售开单</el-button>
             </div>
           </el-col>
           <el-col :span="18">
@@ -39,58 +45,52 @@
                   <td>体重指数BMI</td>
                   <td>{{ child.bmi || 0 }}</td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>近家族史</td>
                   <td colspan="2">{{ child.motherEye }} - {{ child.fatherEye }}</td>
                   <td>联系电话</td>
                   <td colspan="2">{{ child.phone }}</td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>眼病史</td>
                   <td colspan="5">{{ child.eyeIllnessHistory || '-' }}</td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>居住地</td>
                   <td colspan="2">{{ child.locationString || '-' }}</td>
                   <td>学校</td>
                   <td colspan="2">{{ child.school || '-' }}</td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>用户标签</td>
                   <td colspan="5">
                     <span v-if="child.userTags.length === 0"> - </span>
                     <el-tag v-for="item in child.userTags" :key="item">{{ item }}</el-tag>
                   </td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>临床标签</td>
                   <td colspan="5">
                     <span v-if="child.clinicalTags.length === 0"> - </span>
                     <el-tag v-for="item in child.clinicalTags" :key="item">{{ item }}</el-tag>
                   </td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>绑定设备</td>
                   <td colspan="2">{{ child.device || '-' }}</td>
-                  <td>绑定医生</td>
+                  <td>绑定机构</td>
                   <td colspan="2">
                     {{ child.doctor || '-' }}
                     <el-button v-if="$store.getters.baseType && child.doctor" type="primary" size="mini" round @click="handleClickUnbindDoctor">解绑</el-button>
                   </td>
                 </tr>
-                <tr v-if="showMore">
+                <tr>
                   <td>用户资料完成度</td>
                   <td colspan="5">
                     <el-progress :text-inside="true" :stroke-width="20" :percentage="child.integrity" status="success" style="margin-top: 10px;"/>
                   </td>
                 </tr>
               </table>
-              <el-row v-if="loadSuccess" type="flex" justify="space-around" style="margin-top: 5px;">
-                <span style="cursor: pointer;" @click="clickToShow">
-                  <i :class="showMore ? 'el-icon-arrow-up' : 'el-icon-arrow-down'"/>
-                  {{ showMore ? '隐藏' : '显示更多' }}
-                </span>
-              </el-row>
             </el-row>
           </el-col>
         </el-row>
@@ -129,15 +129,17 @@ export default {
   data() {
     return {
       loadSuccess: false,
-      showMore: false,
-      avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+      // avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
       emptyText: '',
       child: {
+        avatar: '',
         name: '.',
         gender: '.',
         age: '.',
         height: '.',
-        weight: '.'
+        weight: '.',
+        userTags: [],
+        clinicalTags: []
       }
     }
   },
@@ -159,6 +161,9 @@ export default {
       if (this.childId) {
         this.$refs.channel.handleShow(this.childId)
       }
+    },
+    handleClickBilling() {
+      this.$router.push({ path: '/preview/billing/' + this.childId })
     },
     handleClickUnbindDoctor() {
       if (this.childId) {
@@ -184,9 +189,6 @@ export default {
         this.child = response.data
         this.eventBus.$emit('updateChild', this.child)
       })
-    },
-    clickToShow() {
-      this.showMore = !this.showMore
     }
   }
 }
@@ -194,14 +196,10 @@ export default {
 
 <style scoped>
   .pan-thumb {
-    width: 90%;
-    height: 100%;
-    /*background-size: 100%;*/
-    /*border-radius: 50%;*/
-    /*overflow: hidden;*/
-    /*position: absolute;*/
-    transform-origin: 95% 40%;
-    transition: all 0.3s ease-in-out;
+    /*width: 90%;*/
+    /*height: 100%;*/
+    /*transform-origin: 95% 40%;*/
+    /*transition: all 0.3s ease-in-out;*/
   }
   /* element中的样式 */
   .el-row {

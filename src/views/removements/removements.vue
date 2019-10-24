@@ -6,10 +6,8 @@
       </div>
 
       <el-row>
-        {{ generateShow('common.mac_address') }}:
-        <el-input v-model="listQuery.macAddress" :placeholder="generateShow('common.mac_address')" style="width: 180px;" class="filter-item" clearable/>
         {{ generateShow('common.child_name') }}:
-        <el-input v-model="listQuery.childName" :placeholder="generateShow('common.child_name')" style="width: 120px;" class="filter-item" clearable/>
+        <el-input v-model="listQuery.child_name" :placeholder="generateShow('common.child_name')" style="width: 120px;" class="filter-item" clearable/>
       </el-row>
       <el-row style="margin-top: 10px;">
         <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ generateShow('common.search') }}</el-button>
@@ -89,10 +87,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        macAddress: undefined,
-        state: undefined,
-        deviceType: undefined,
-        childName: undefined
+        child_name: undefined
       }
     }
   },
@@ -147,9 +142,7 @@ export default {
       this.listQuery.page = 1
       this.listQuery.limit = 20
       this.listQuery.macAddress = ''
-      this.listQuery.state = ''
-      this.listQuery.deviceType = ''
-      this.listQuery.childName = ''
+      this.listQuery.child_name = ''
     }
   }
 }

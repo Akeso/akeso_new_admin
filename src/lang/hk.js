@@ -146,7 +146,8 @@ export default {
     popular_science_centers: '內容發布',
     removements: '解綁申請',
     versions: '版本管理',
-    app_files: '藍牙文件',
+    server_app_files: '藍牙文件',
+    app_files: '安装包',
     awards: '獎品管理',
     wx_organizations: '機構管理',
     weapp: '步步兌換活動'

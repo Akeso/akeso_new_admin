@@ -56,10 +56,11 @@
               <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="7">&nbsp;&nbsp;近视家族史</label>
               <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="8">&nbsp;&nbsp;远视储备不足</label>
               <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="9">&nbsp;&nbsp;视力不良/弱视</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="10">&nbsp;&nbsp;高AC/A</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="11">&nbsp;&nbsp;调节痉挛</label>
+              <!--<label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="10">&nbsp;&nbsp;高AC/A</label>-->
+              <!--<label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="11">&nbsp;&nbsp;调节痉挛</label>-->
               <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="12">&nbsp;&nbsp;视近内隐斜</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="13">&nbsp;&nbsp;条件灵敏度下降</label>
+              <!--<label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="13">&nbsp;&nbsp;调节灵敏度下降</label>-->
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="14">&nbsp;&nbsp;眼球调节/集合功能紊乱</label>
             </div>
             <div class="weekly-contents">
               <h2 class="c-blue">本月平均得分 {{ monthData.healthIndex }}</h2>

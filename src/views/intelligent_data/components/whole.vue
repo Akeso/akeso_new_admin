@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <el-row :gutter="20">
+    <el-row>
       {{ generateShow('common.select_date') }}
       <el-date-picker
         :clearable="false"
@@ -246,7 +246,8 @@ export default {
 
 <style scoped>
   .container {
-    padding: 20px 5px 10px 5px;
+    /*padding: 20px 5px 10px 5px;*/
+    padding: 5px;
   }
   .table-cls {
     margin-top: 20px;

@@ -38,6 +38,7 @@
           <el-button type="text" size="small" @click="handleData('review', scope.row.id)">复查验光</el-button>
           <el-button type="text" size="small" @click="handleData('eye', scope.row.id)">眼部检查</el-button>
           <el-button type="text" size="small" @click="handleDataUpdate(scope.row)">下次复查时间</el-button>
+          <el-button type="text" size="small" @click="handleDelete(scope.row)">删除</el-button>
           <!--<el-button type="text" size="small" @click="handleData('all', scope.row.id)">查看全部</el-button>-->
         </template>
       </el-table-column>
@@ -49,7 +50,7 @@
 </template>
 
 <script>
-import { fetchList, QueryOptometricData, showVisualFunctionTests, showReviewOptometry, showObjectiveOcular, showSubjectiveOcular } from '@/api/eye_examinations'
+import { fetchList, QueryOptometricData, showVisualFunctionTests, showReviewOptometry, showObjectiveOcular, showSubjectiveOcular, deleteItem } from '@/api/eye_examinations'
 import createModal from './create_modal'
 import lastUpdateModal from './last_update_modal'
 import dataModal from './data_modal'
@@ -79,6 +80,26 @@ export default {
   mounted: function() {
   },
   methods: {
+    handleDelete: function(val) {
+      this.$confirm('此操作将永久删除该档案, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteItem(val).then(res => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
     getList: function() {
       fetchList({ child_id: this.userId }).then(response => {
         this.tableData = response.data.items

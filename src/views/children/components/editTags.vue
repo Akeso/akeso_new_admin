@@ -3,7 +3,7 @@
 
     <el-row :gutter="20">
       <el-col :span="6">
-        <h3>用户标签</h3>
+        <h3>诊断意见</h3>
         <!--<el-checkbox :indeterminate="isIndeterminateUser" v-model="checkAllUser" @change="handleCheckAllChange">全选</el-checkbox>-->
         <div style="margin: 15px 0;"/>
         <el-checkbox-group v-model="tag_ids" @change="handleCheckedCitiesChange">

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="修改医生信息" width="70%">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="修改医生信息" width="70%" top="30px">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" label="名称" prop="name">
         <el-input v-model="temp.name" class="filter-item" placeholder="名称" style="width: 50%;"/>

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增文章" width="70%" @close="resetData">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增文章" width="70%" top="30px" @close="resetData">
     <el-form ref="ruleForm" :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="标题">
         <el-input v-model="temp.title" autocomplete="off" clearable style="width: 50%;" placeholder="标题"/>

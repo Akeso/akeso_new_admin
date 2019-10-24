@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="聊天" width="60%">
+    <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="聊天" width="60%" top="30px">
       <div style="height: 300px;overflow-y: scroll; padding: 20px;background-color: rgba(196,196,196,0.23);">
         <el-row v-for="item in data" :style="{ textAlign: item.source === 'merchant' ? 'right' : 'left' }" :key="item.id" :gutter="20" class="chat-con">
           <!--<el-tag type="success">{{ item.source === 'merchant' ? merchantName : childName }}</el-tag>-->
