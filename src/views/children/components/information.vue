@@ -22,9 +22,9 @@
             <div class="btn-user">
               <el-button type="success" @click="handleClickChannel">健康咨询</el-button>
             </div>
-            <div class="btn-user">
-              <el-button type="success" @click="handleClickBilling">销售开单</el-button>
-            </div>
+            <!--<div class="btn-user">-->
+            <!--<el-button type="success" @click="handleClickBilling">销售开单</el-button>-->
+            <!--</div>-->
           </el-col>
           <el-col :span="18">
             <el-row>

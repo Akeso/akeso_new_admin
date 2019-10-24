@@ -53,6 +53,10 @@
             </template>
           </el-table-column>
         </el-table>
+        <div style="margin-top: 10px;">
+          备注：<br>
+          <el-input v-model="des" :rows="2" placeholder="输入备注" label="备注" type="textarea" style="width: 400px;" class="filter-item" clearable/>
+        </div>
         <div class="mg-t">
           <el-button type="primary" @click="handleClickSave">保存</el-button>
         </div>
@@ -91,6 +95,7 @@ export default {
       },
       dialogFormVisible: false,
       seller: '',
+      des: '',
       list: [],
       total: null,
       total_price: 0,
@@ -151,7 +156,7 @@ export default {
       }
       var product_ids = this.list.map(item => { return item.id })
       var prices = this.list.map(item => { return item.price })
-      createItem({ child_id: this.child_id, seller: this.seller, products: this.list, product_ids: product_ids, prices: prices, total_price: this.total_price }).then(res => {
+      createItem({ child_id: this.child_id, seller: this.seller, products: this.list, product_ids: product_ids, prices: prices, total_price: this.total_price, des: this.des }).then(res => {
         console.log('res => ', res.data)
         this.$router.back()
       })
