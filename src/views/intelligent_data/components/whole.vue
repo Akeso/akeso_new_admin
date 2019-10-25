@@ -106,7 +106,7 @@
     </el-row>
     <el-row :gutter="10">
       <el-col :span="12">
-        <StandardItemGood :title="generateShow('common.lux_day_field')" :done-count="wholeData.luxDayCount" :total-count="wholeData.totalCount" :done-percent="wholeData.luxDayPercent"/>
+        <StandardItemGood :title="generateShow('common.out_time_lux_field')" :done-count="wholeData.outTimeLuxCount" :total-count="wholeData.totalCount" :done-percent="wholeData.outTimeLuxPercent"/>
       </el-col>
       <el-col :span="12">
         <StandardItemBad :title="generateShow('common.bad_posture_times_field')" :done-count="wholeData.badPostureTimesCount" :total-count="wholeData.totalCount" :done-percent="wholeData.badPostureTimesPercent"/>
@@ -139,11 +139,11 @@
           <td>{{ outTimeCondition(wholeData.outTimeAvg) }}</td>
         </tr>
         <tr>
-          <td class="title-font">{{ generateShow('common.lux_day_field') }}</td>
+          <td class="title-font">{{ generateShow('common.out_time_lux_field') }}</td>
           <td class="title-font">36万lux/天</td>
           <td>≥24万lux</td>
-          <td>{{ wholeData.luxDayAvg }}lux</td>
-          <td>{{ luxDayCondition(wholeData.luxDayAvg) }}</td>
+          <td>{{ wholeData.outTimeLuxAvg }}lux</td>
+          <td>{{ outTimeLuxCondition(wholeData.outTimeLuxAvg) }}</td>
         </tr>
         <tr>
           <td class="title-font">{{ generateShow('common.step_count_field') }}</td>
@@ -186,7 +186,7 @@
 import { fetchWhole } from '@/api/summary'
 import StandardItemGood from './standard_item_good'
 import StandardItemBad from './standard_item_bad'
-import { outTimeCondition, luxDayCondition, stepCountCondition, nearworkBurdenDayCondition, nearworkDayCondition, badPostureTimesCondition } from '@/utils/standard'
+import { outTimeCondition, outTimeLuxCondition, stepCountCondition, nearworkBurdenDayCondition, nearworkDayCondition, badPostureTimesCondition } from '@/utils/standard'
 const dateOptions = [
   { key: 'first', label: '近一周' },
   { key: 'second', label: '近一个月' },
@@ -207,7 +207,7 @@ export default {
       },
       wholeData: {},
       outTimeCondition: outTimeCondition,
-      luxDayCondition: luxDayCondition,
+      outTimeLuxCondition: outTimeLuxCondition,
       stepCountCondition: stepCountCondition,
       nearworkBurdenDayCondition: nearworkBurdenDayCondition,
       nearworkDayCondition: nearworkDayCondition,
