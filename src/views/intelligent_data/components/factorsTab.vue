@@ -21,8 +21,8 @@
           <td class="title-font">阳光摄入</td>
           <td>36W lux/天</td>
           <td>≥24W lux/天</td>
-          <td class="c-blue">{{ luxDay }}lux/天</td>
-          <td class="c-blue">{{ luxDayCondition(luxDay) }}</td>
+          <td class="c-blue">{{ outTimeLux }}lux/天</td>
+          <td class="c-blue">{{ outTimeLuxCondition(outTimeLux) }}</td>
         </tr>
         <tr>
           <td class="title-font">运动步数</td>
@@ -65,7 +65,7 @@
 <script>
 // import { fetchList } from '@/api/article'
 // import Sortable from 'sortablejs'
-import { outTimeCondition, luxDayCondition, stepCountCondition, nearworkBurdenDayCondition, nearworkDayCondition, badPostureTimesCondition } from '@/utils/standard'
+import { outTimeCondition, outTimeLuxCondition, stepCountCondition, nearworkBurdenDayCondition, nearworkDayCondition, badPostureTimesCondition } from '@/utils/standard'
 export default {
   props: {
     outTime: {
@@ -76,7 +76,7 @@ export default {
       type: Number,
       default: 0
     },
-    luxDay: {
+    outTimeLux: {
       type: Number,
       default: 0
     },
@@ -106,7 +106,7 @@ export default {
       oldList: [],
       newList: [],
       outTimeCondition: outTimeCondition,
-      luxDayCondition: luxDayCondition,
+      outTimeLuxCondition: outTimeLuxCondition,
       stepCountCondition: stepCountCondition,
       nearworkBurdenDayCondition: nearworkBurdenDayCondition,
       nearworkDayCondition: nearworkDayCondition,
