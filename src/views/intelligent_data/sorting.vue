@@ -72,9 +72,9 @@
           sortable="custom"
           min-width="80"/>
         <el-table-column
-          v-if="hasOptions('luxDay')"
-          :label="generateShow('common.luxDay')"
-          prop="luxDay"
+          v-if="hasOptions('outTimeLux')"
+          :label="generateShow('common.outTimeLux')"
+          prop="outTimeLux"
           sortable="custom"
           min-width="80"/>
         <el-table-column
@@ -121,13 +121,13 @@ const optionsData = [
   { key: 'healthIndex', label: '健康评分' },
   { key: 'wearTime', label: '戴镜时间' },
   { key: 'outTime', label: '户外时间(120分钟)' },
-  { key: 'luxDay', label: '阳光摄入(36万Lux)' },
+  { key: 'outTimeLux', label: '阳光摄入(36万Lux)' },
   { key: 'stepCount', label: '步数(12000步)' },
   { key: 'nearworkDay', label: '近距离用眼时间(260分钟)' },
   { key: 'nearworkBurdenDay', label: '用眼负荷(720D)' },
   { key: 'badPostureTimes', label: '不良姿势提醒(45次)' }
 ]
-const checkedData = ['healthIndex', 'wearTime', 'outTime', 'luxDay', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
+const checkedData = ['healthIndex', 'wearTime', 'outTime', 'outTimeLux', 'nearworkDay', 'nearworkBurdenDay', 'badPostureTimes', 'stepCount']
 export default {
   components: { group_channel },
   data() {

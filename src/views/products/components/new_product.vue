@@ -19,9 +19,9 @@
       <el-form-item :label-width="formLabelWidth" prop="unit" label="单位">
         <el-input v-model="temp.unit" autocomplete="off" clearable style="width: 50%;" placeholder="单位"/>
       </el-form-item>
-      <el-form-item :label-width="formLabelWidth" prop="des" label="描述">
-        <el-input v-model="temp.des" autocomplete="off" clearable style="width: 50%;" placeholder="描述"/>
-      </el-form-item>
+      <!--<el-form-item :label-width="formLabelWidth" prop="des" label="描述">-->
+      <!--<el-input v-model="temp.des" autocomplete="off" clearable style="width: 50%;" placeholder="描述"/>-->
+      <!--</el-form-item>-->
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="handleClickCancel">取 消</el-button>

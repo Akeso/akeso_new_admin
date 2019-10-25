@@ -16,7 +16,7 @@ export function outTimeCondition(val) {
   return '优'
 }
 
-export function luxDayCondition(val) {
+export function outTimeLuxCondition(val) {
   if (val === 0) {
     return '无'
   }
