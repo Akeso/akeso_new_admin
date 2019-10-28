@@ -10,7 +10,8 @@
             <div>
               <!--<img :src="child.avatar" class="pan-thumb">-->
               <el-avatar :size="140" :src="child.avatar" fit="fill" shape="circle">
-                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png">
+                <img v-if="child.gender == 'male'" :src="avatarBoy" >
+                <img v-else :src="avatarGirl" >
               </el-avatar>
             </div>
             <div class="btn-user">
@@ -109,6 +110,8 @@ import Contact from './contact'
 import Channel from '../../components/channel'
 import EditChild from '../../components/edit_child'
 import EditTags from './editTags'
+import avatarBoy from '@/assets/images/child_boy.png'
+import avatarGirl from '@/assets/images/child_girl.png'
 export default {
   components: { Contact, Channel, EditChild, EditTags },
   filters: {
@@ -128,6 +131,8 @@ export default {
   },
   data() {
     return {
+      avatarBoy,
+      avatarGirl,
       loadSuccess: false,
       // avatarUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
       emptyText: '',
