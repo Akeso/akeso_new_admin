@@ -93,7 +93,8 @@
       <div style="padding: 0px 20px 10px 20px;">
         <p style="font-size: 16px; color: #000;">
           本近视预测专为亚洲儿童设计，有着众多参考文献支持，且这些参考文献大部分是近年来的最新研究数据，可以说，“
-          <a href="https://calculator.brienholdenvision.org/#!#collapseOne" style="color: #409EFF;" target="view_window">近视计算器</a>
+          <!--<a href="https://calculator.brienholdenvision.org/#!#collapseOne" style="color: #409EFF;" target="view_window">近视计算器</a>-->
+          近视计算器
           ”乃是站在近视科学技术尖端的最新近视防控工具。
         </p>
         <p style="font-size: 14px; color: #787878;">注：对于近视的咨询和治疗，您应该咨询专业眼科医师，他们可以进行必要的检查并提供适当的建议。随着近视眼管理研究的不断深入，我们不保证现在的信息是正确的或将来会适用。如果您因阅读内容或使用本小程序而对眼睛或一般健康有任何疑虑，应始终咨询相关眼科医师。</p>
@@ -103,7 +104,7 @@
           如果孩子感觉近视，家长们就在眼镜店草率配镜，那么很可能孩子并非真性近视，或者因未经专业眼科医院做医学诊断致孩子配镜度数不准。这样孩子配戴了一副不合适的眼镜，随着学业负担不断加重，造成孩子的眼睛长期视疲劳，最终会导致孩子近视度数急剧增加。
         </p>
         <p style="width: 100%; text-align: center; font-size: 12px; color: #787878;">
-          华伯恩视觉研究中心、国家眼科工程中心联合研发 <br>
+          艾索健康科技 国家眼科诊断治疗设备工程研究中心联合研发 <br>
           北京艾索健康科技有限公司作技术支持
         </p>
       </div>

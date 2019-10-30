@@ -1,7 +1,7 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="编辑标签" width="60%" @close="resetData">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" width="60%" @close="resetData">
 
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="margin-left: 30px;">
       <el-col :span="6">
         <h3>诊断意见</h3>
         <!--<el-checkbox :indeterminate="isIndeterminateUser" v-model="checkAllUser" @change="handleCheckAllChange">全选</el-checkbox>-->
@@ -43,7 +43,6 @@ export default {
     }
   },
   created() {
-    this.getData()
   },
   methods: {
     handleCheckAllChange() {
@@ -65,6 +64,7 @@ export default {
       })
     },
     show(val) {
+      this.getData()
       this.id = val.id
       this.tag_ids = val.tagIds
       this.dialogFormVisible = true

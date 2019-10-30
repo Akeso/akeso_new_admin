@@ -63,16 +63,10 @@
                   <td colspan="2">{{ child.school || '-' }}</td>
                 </tr>
                 <tr>
-                  <td>用户标签</td>
+                  <td>诊断意见</td>
                   <td colspan="5">
-                    <span v-if="child.userTags.length === 0"> - </span>
+                    <span v-if="child.userTags.length === 0 && child.clinicalTags.length == 0"> - </span>
                     <el-tag v-for="item in child.userTags" :key="item">{{ item }}</el-tag>
-                  </td>
-                </tr>
-                <tr>
-                  <td>临床标签</td>
-                  <td colspan="5">
-                    <span v-if="child.clinicalTags.length === 0"> - </span>
                     <el-tag v-for="item in child.clinicalTags" :key="item">{{ item }}</el-tag>
                   </td>
                 </tr>
@@ -243,6 +237,6 @@ export default {
     border: 1px solid #409EFF;
   }
   .el-tag {
-    margin-right: 5px;
+    margin:3px 5px;
   }
 </style>
