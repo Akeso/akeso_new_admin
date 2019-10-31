@@ -24,7 +24,7 @@
       </el-col>
     </el-row>
     <el-row class="position">
-      <!--<el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>-->
+      <el-button class="pdf-item right" type="primary" @click="getPdfs('#pdfDom', '报告')">生成PDF</el-button>
       <el-card id="pdfDom" class="box-card">
         <div class="clearfix header">
           <h1>{{ generateShow('common.report_title') }}</h1>

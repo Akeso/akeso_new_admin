@@ -144,13 +144,30 @@
           </div>
         </div>
       </div>
-      <div style="margin-top: 40px;"/>
-      <WeekHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
-      <WeekHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
-      <WeekHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+      <div style="padding: 40px 20px 0px 20px;">
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <WeekHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <WeekHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+          </el-col>
+        </el-row>
+      </div>
     </el-card>
   </div>
 </template>

@@ -142,13 +142,32 @@
           </div>
         </div>
       </div>
-      <div style="margin-top: 40px;"/>
-      <MonthHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
-      <MonthHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
-      <MonthHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
-      <MonthHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
-      <MonthHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
-      <MonthHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+      <div style="padding: 40px 20px 0px 20px;">
+        <el-row :gutter="20">
+          <el-col :span="12">
+            <MonthHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="12">
+            <MonthHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="12">
+            <MonthHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="12">
+            <MonthHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="12">
+            <MonthHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="12">
+            <MonthHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+          </el-col>
+        </el-row>
+      </div>
     </el-card>
   </div>
 </template>

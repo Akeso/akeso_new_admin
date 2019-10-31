@@ -79,12 +79,32 @@
       </el-col>
       <el-col :span="3" class="text-standard-font">{{ healthScore.badPostureTimes }}/45次</el-col>
     </el-row>
-    <HealthItem :text="textOutTime" :hours="hourOutTime"/>
-    <HealthItem :text="textLux" :hours="hourLux"/>
-    <HealthItem :text="textStepCount" :hours="hourStepCount"/>
-    <HealthItem :text="textBurden" :hours="hourBurden"/>
-    <HealthItem :text="textNearwork" :hours="hourNearwork"/>
-    <HealthItem :text="textBadPosture" :hours="hourBadPostureTimes"/>
+    <div style="padding: 40px 20px 0px 20px;">
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <HealthItem :text="textOutTime" :hours="hourOutTime"/>
+        </el-col>
+        <el-col :span="12">
+          <HealthItem :text="textLux" :hours="hourLux"/>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <HealthItem :text="textStepCount" :hours="hourStepCount"/>
+        </el-col>
+        <el-col :span="12">
+          <HealthItem :text="textBurden" :hours="hourBurden"/>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <HealthItem :text="textNearwork" :hours="hourNearwork"/>
+        </el-col>
+        <el-col :span="12">
+          <HealthItem :text="textBadPosture" :hours="hourBadPostureTimes"/>
+        </el-col>
+      </el-row>
+    </div>
   </el-card>
 </template>
 
