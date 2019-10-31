@@ -329,8 +329,6 @@ export default {
     width: 100%;
     text-align: center;
     position: absolute;
-    margin-left: -60px;
-    left: 50%;
     top: 30%;
   }
   #pdfDom .imgUrl{
