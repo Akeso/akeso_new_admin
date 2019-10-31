@@ -27,8 +27,7 @@
           <div class="header">
             <span style="font-size: 32px; color: white;">儿童用眼健康行为模式风险分析报告</span>
             <div class="header-avatar">
-              <!--这个-->
-              <!--<img :src="headerUrl" style="height: 120px; height: 120px;">-->
+              <img :src="headerUrl" class="imgUrl">
             </div>
           </div>
           <el-row>
@@ -326,11 +325,16 @@ export default {
     position: relative;
     margin-bottom: 20px;
   }
-  .header-avatar{
+  #pdfDom .header-avatar{
     width: 100%;
     text-align: center;
     position: absolute;
+    left: 50%;
     top: 30%;
+  }
+  #pdfDom .imgUrl{
+    width: 120px;
+    height: 120px;
   }
   .el-progress__text {
     display: none !important;
