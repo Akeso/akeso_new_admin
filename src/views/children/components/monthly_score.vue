@@ -23,11 +23,11 @@
     </div>
     <el-card class="box-card">
       <div id="pdfDom">
-        <div style="padding: 20px;">
+        <div style="padding: 20px 0; margin: 0 20px;">
           <div class="header">
             <span style="font-size: 32px; color: white;">儿童用眼健康行为模式风险分析报告</span>
             <div class="header-avatar">
-              <img :src="headerUrl" style="height: 120px; height: 120px;">
+              <!--<img :src="headerUrl" style="height: 120px; height: 120px;">-->
             </div>
           </div>
           <el-row>
@@ -318,7 +318,7 @@ export default {
     height: 200px;
     width: 100%;
     padding-top: 16px;
-    background-image: url(../../../assets/images/code_banner.png);
+    /*background-image: url(../../../assets/images/code_banner.png);*/
     background-repeat: no-repeat;
     background-size: 100% 100%;
     text-align: center;
