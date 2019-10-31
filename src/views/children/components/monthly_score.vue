@@ -315,7 +315,7 @@ export default {
     font-size: 20px;
     font-weight: 500;
   }
-  .header{
+  #pdfDom .header{
     height: 200px;
     width: 100%;
     padding-top: 16px;
@@ -323,7 +323,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     text-align: center;
-    /*position: relative;*/
+    position: relative;
     margin-bottom: 20px;
   }
   .header-avatar{
