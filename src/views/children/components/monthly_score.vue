@@ -21,7 +21,7 @@
         </el-button>
       </el-row>
     </div>
-    <el-card class="box-card">
+    <el-card>
       <div id="pdfDom">
         <div style="padding: 20px;">
           <div class="header">
