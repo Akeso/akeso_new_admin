@@ -27,6 +27,7 @@
           <div class="header">
             <span style="font-size: 32px; color: white;">儿童用眼健康行为模式风险分析报告</span>
             <div class="header-avatar">
+              <!--这个-->
               <!--<img :src="headerUrl" style="height: 120px; height: 120px;">-->
             </div>
           </div>
