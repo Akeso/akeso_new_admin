@@ -319,11 +319,11 @@ export default {
     height: 200px;
     width: 100%;
     padding-top: 16px;
-    /*background-image: url(../../../assets/images/code_banner.png);*/
+    background-image: url(../../../assets/images/code_banner.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     text-align: center;
-    position: relative;
+    /*position: relative;*/
     margin-bottom: 20px;
   }
   .header-avatar{
