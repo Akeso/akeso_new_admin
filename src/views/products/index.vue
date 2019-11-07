@@ -68,6 +68,10 @@
           prop="total"
           min-width="80"/>
         <el-table-column
+          label="剩余数量"
+          prop="rest_count"
+          min-width="80"/>
+        <el-table-column
           :label="generateShow('common.operate')"
           min-width="100" >
           <template slot-scope="scope">

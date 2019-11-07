@@ -31,37 +31,21 @@
         border
         style="width: 100%; margin-top: 10px;">
         <el-table-column
-          type="expand">
-          <template slot-scope="props">
-            <el-form label-position="left" inline class="demo-table-expand">
-              <div v-for="item in props.row.products" :key="item.key">
-                <el-form-item label="商品">
-                  <span>{{ item.name }}</span>
-                </el-form-item>
-                <el-form-item label="价格">
-                  <span>{{ item.price }}</span>
-                </el-form-item>
-              </div>
-              <el-form-item label="接诊医生">
-                <span>{{ props.row.seller }}</span>
-              </el-form-item>
-              <el-form-item label="备注">
-                <span>{{ props.row.des }}</span>
-              </el-form-item>
-            </el-form>
+          label="儿童姓名"
+          min-width="80">
+          <template slot-scope="scope">
+            <router-link :to="'/preview/child/'+scope.row.child_id">
+              <el-button type="text" size="small">{{ scope.row.child_name }}</el-button>
+            </router-link>
           </template>
         </el-table-column>
-        <el-table-column
-          label="儿童姓名"
-          prop="child_name"
-          min-width="80"/>
         <el-table-column
           label="接诊医生"
           prop="seller"
           min-width="80"/>
         <el-table-column
-          label="时间"
-          prop="created_at"
+          label="开单日期"
+          prop="selled_at"
           min-width="80"/>
         <el-table-column
           label="总价"
@@ -71,6 +55,8 @@
           :label="generateShow('common.operate')"
           min-width="100" >
           <template slot-scope="scope">
+            <el-button size="mini" type="primary" plain @click="handleClickShow(scope.row)">查看</el-button>
+            <el-button size="mini" type="primary" @click="handleClickEdit(scope.row)">修改</el-button>
             <el-button size="mini" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -82,14 +68,16 @@
     </el-card>
     <EditProduct ref="editProduct" @create-success="getList"/>
     <ChildSelect ref="childSelect" />
+    <LogInfo ref="logInfo" />
   </div>
 </template>
 <script>
 import { fetchList, deleteItem } from '@/api/product_logs'
 import EditProduct from './components/edit_product'
 import ChildSelect from './components/child_select'
+import LogInfo from './components/log_info'
 export default {
-  components: { EditProduct, ChildSelect },
+  components: { EditProduct, ChildSelect, LogInfo },
   data() {
     return {
       list: [],
@@ -129,6 +117,13 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    handleClickShow(val) {
+      this.$refs.logInfo.show(val)
+    },
+    handleClickEdit(val) {
+      console.log('aaaaa')
+      // this.$refs.logInfo.show(val)
     },
     getList() {
       fetchList(this.listQuery).then(res => {
