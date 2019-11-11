@@ -15,7 +15,8 @@
         <el-row class="mg-t">
           <el-col>
             <el-button type="primary" @click="handleClickProduct">添加产品</el-button>
-            问诊医生：<el-input v-model="seller" placeholder="输入问诊医生" label="名称" style="width: 200px;" class="filter-item" clearable/>
+            <span>问诊医生：</span><el-input v-model="seller" placeholder="输入问诊医生" label="名称" style="width: 200px;" class="filter-item" clearable/>
+            <span>销售日期：</span><el-date-picker v-model="selled_at" type="date" placeholder="选择日期"/>
           </el-col>
         </el-row>
         <el-table
@@ -53,9 +54,9 @@
             </template>
           </el-table-column>
         </el-table>
-        <div style="margin-top: 10px;">
+        <div style="margin-top: 5px;">
           备注：<br>
-          <el-input v-model="des" :rows="2" placeholder="输入备注" label="备注" type="textarea" style="width: 400px;" class="filter-item" clearable/>
+          <el-input v-model="des" :rows="2" placeholder="输入备注" label="备注" type="textarea" style="width: 400px;margin-top: 5px;" class="filter-item" clearable/>
         </div>
         <div class="mg-t">
           <el-button type="primary" @click="handleClickSave">保存</el-button>
@@ -95,6 +96,7 @@ export default {
       },
       dialogFormVisible: false,
       seller: '',
+      selled_at: new Date(),
       des: '',
       list: [],
       total: null,
@@ -156,7 +158,7 @@ export default {
       }
       var product_ids = this.list.map(item => { return item.id })
       var prices = this.list.map(item => { return item.price })
-      createItem({ child_id: this.child_id, seller: this.seller, products: this.list, product_ids: product_ids, prices: prices, total_price: this.total_price, des: this.des }).then(res => {
+      createItem({ child_id: this.child_id, seller: this.seller, selled_at: this.selled_at, products: this.list, product_ids: product_ids, prices: prices, total_price: this.total_price, des: this.des }).then(res => {
         console.log('res => ', res.data)
         this.$router.back()
       })

@@ -21,7 +21,7 @@
           <div style="text-align: center;">
             <span class="text-score">{{ healthScore.healthIndex }}</span>
           </div>
-          <div style="text-align: center; margin-top: 20px;">
+          <div style="text-align: center; margin-top: 10px;">
             <span style="font-size: 14px; background: #2bd710; padding: 8px 12px; border-radius:25px; color: #fff;">总加分{{ healthScore.upScoreMax }}</span>
             <span style="font-size: 14px; background: #d71f1f; padding: 8px 12px; border-radius:25px; color: #fff;">总减分{{ healthScore.downScoreMax }}</span>
           </div>
@@ -33,12 +33,7 @@
       <el-col :span="14">
         <span class="des-font" style="line-height: 30px;">
           诺瞳眼健康评分（eye-health index），
-          是借助“物联网”的数据采集技术和智能硬件对户外活动
-          及近距离用眼等近视相关指标进行精准量化计算得出的数值。
-          每⽇同步数据后起始分数设定在100分，最高分为220分，
-          其中户外活动相关指标占100分（加分项），近距离⼯作
-          相关指标占100分（减分项），运动步数占20分（额外加分），
-          每次同步数据后根据指标达成条件进⾏增减。
+          是借助“物联网”的数据采集技术和智能硬件对户外活动 、近距离用眼、运动步数等近视相关指标进行精准量化计算得出的用眼健康状况量化数值，100分为满分。
         </span>
       </el-col>
     </el-row>
@@ -84,12 +79,32 @@
       </el-col>
       <el-col :span="3" class="text-standard-font">{{ healthScore.badPostureTimes }}/45次</el-col>
     </el-row>
-    <HealthItem :text="textOutTime" :hours="hourOutTime"/>
-    <HealthItem :text="textLux" :hours="hourLux"/>
-    <HealthItem :text="textStepCount" :hours="hourStepCount"/>
-    <HealthItem :text="textBurden" :hours="hourBurden"/>
-    <HealthItem :text="textNearwork" :hours="hourNearwork"/>
-    <HealthItem :text="textBadPosture" :hours="hourBadPostureTimes"/>
+    <div style="padding: 40px 20px 0px 20px;">
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <HealthItem :text="textOutTime" :hours="hourOutTime"/>
+        </el-col>
+        <el-col :span="12">
+          <HealthItem :text="textLux" :hours="hourLux"/>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <HealthItem :text="textStepCount" :hours="hourStepCount"/>
+        </el-col>
+        <el-col :span="12">
+          <HealthItem :text="textBurden" :hours="hourBurden"/>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <HealthItem :text="textNearwork" :hours="hourNearwork"/>
+        </el-col>
+        <el-col :span="12">
+          <HealthItem :text="textBadPosture" :hours="hourBadPostureTimes"/>
+        </el-col>
+      </el-row>
+    </div>
   </el-card>
 </template>
 

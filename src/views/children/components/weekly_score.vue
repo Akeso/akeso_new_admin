@@ -27,7 +27,7 @@
           <div class="header">
             <span style="font-size: 32px; color: white;">儿童用眼健康行为模式风险分析报告</span>
             <div class="header-avatar">
-              <img :src="headerUrl" style="height: 120px; height: 120px;">
+              <img :src="headerUrl" class="imgUrl">
             </div>
           </div>
           <el-row>
@@ -144,13 +144,30 @@
           </div>
         </div>
       </div>
-      <div style="margin-top: 40px;"/>
-      <WeekHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
-      <WeekHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
-      <WeekHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
-      <WeekHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+      <div style="padding: 40px 20px 0px 20px;">
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <WeekHealthItem :text="textOutTime" :hours="outTimeArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textLux" :hours="luxDayArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textStepCount" :hours="stepCountArray" :times="timeArray"/>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <WeekHealthItem :text="textBurden" :hours="nearworkBurdenDayArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textNearwork" :hours="nearworkDayArray" :times="timeArray"/>
+          </el-col>
+          <el-col :span="8">
+            <WeekHealthItem :text="textBadPosture" :hours="badPostureTimesArray" :times="timeArray"/>
+          </el-col>
+        </el-row>
+      </div>
     </el-card>
   </div>
 </template>
@@ -311,7 +328,7 @@ export default {
   font-size: 20px;
   font-weight: 500;
 }
-.header{
+#pdfDom .header{
   height: 200px;
   width: 100%;
   padding-top: 16px;
@@ -322,11 +339,15 @@ export default {
   position: relative;
   margin-bottom: 20px;
 }
-.header-avatar{
+#pdfDom .header-avatar{
   width: 100%;
   text-align: center;
   position: absolute;
   top: 30%;
+}
+#pdfDom .imgUrl{
+  width: 120px;
+  height: 120px;
 }
 .el-progress__text {
   display: none !important;

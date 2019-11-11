@@ -21,6 +21,8 @@ export default{
       html2Canvas(document.querySelector('#pdfDom'), opts).then(function(canvas) {
         const contentWidth = canvas.width
         const contentHeight = canvas.height
+        console.log('contentWidth => ', contentWidth)
+        console.log('contentHeight => ', contentHeight)
         const pageHeight = contentWidth / 592.28 * 841.89
         let leftHeight = contentHeight
         let position = 0
@@ -41,8 +43,7 @@ export default{
           }
         }
         PDF.save(titleName + '.pdf')
-      }
-      )
+      })
     }
   }
 }

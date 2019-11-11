@@ -27,7 +27,7 @@
           :label="generateShow('common.name')"
           min-width="60">
           <template slot-scope="scope">
-            <router-link :to="'/preview/child/'+scope.row.childId">
+            <router-link :to="'/preview/child/'+scope.row.child_id">
               <el-button type="text" size="small">{{ scope.row.child_name }}</el-button>
             </router-link>
           </template>

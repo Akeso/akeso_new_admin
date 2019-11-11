@@ -1,7 +1,7 @@
 <template>
   <div>
     <span style="font-size: 18px; font-weight: bold;">{{ text.title }}</span>
-    <div style="font-size: 14px; margin: 5px 0px;">
+    <div style="font-size: 14px; margin: 5px 0px;height: 60px;">
       <span>{{ text.des }}</span>
     </div>
     <el-row>
