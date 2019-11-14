@@ -66,18 +66,18 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
-    <EditProduct ref="editProduct" @create-success="getList"/>
+    <EditProductSelect ref="editProductSelect" @edit-log-success="getList"/>
     <ChildSelect ref="childSelect" />
     <LogInfo ref="logInfo" />
   </div>
 </template>
 <script>
 import { fetchList, deleteItem } from '@/api/product_logs'
-import EditProduct from './components/edit_product'
+import EditProductSelect from './components/edit_product_select'
 import ChildSelect from './components/child_select'
 import LogInfo from './components/log_info'
 export default {
-  components: { EditProduct, ChildSelect, LogInfo },
+  components: { EditProductSelect, ChildSelect, LogInfo },
   data() {
     return {
       list: [],
@@ -122,8 +122,7 @@ export default {
       this.$refs.logInfo.show(val)
     },
     handleClickEdit(val) {
-      console.log('aaaaa')
-      // this.$refs.logInfo.show(val)
+      this.$refs.editProductSelect.show(val)
     },
     getList() {
       fetchList(this.listQuery).then(res => {

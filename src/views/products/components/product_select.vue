@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="选择商品" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="选择商品" width="70%" top="30px" append-to-body>
     <el-row>
       <el-col>
         <el-input v-model="listQuery.name" placeholder="输入名称" label="名称" style="width: 200px;" class="filter-item" clearable/>
