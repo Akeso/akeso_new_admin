@@ -69,7 +69,7 @@
 
 <script>
 import ProductSelect from './components/product_select'
-import { createItem } from '@/api/product_logs'
+import { createItem } from '@/api/indents'
 import { fetchChild } from '@/api/children'
 export default {
   components: { ProductSelect },

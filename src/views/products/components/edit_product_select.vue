@@ -60,7 +60,7 @@
 <script>
 import ProductSelect from '../components/product_select'
 // import { fetchList } from '@/api/products'
-import { updateItem } from '@/api/product_logs'
+import { updateItem } from '@/api/indents'
 export default {
   components: { ProductSelect },
   data() {

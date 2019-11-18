@@ -72,7 +72,7 @@
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/product_logs'
+import { fetchList, deleteItem } from '@/api/indents'
 import EditProductSelect from './components/edit_product_select'
 import ChildSelect from './components/child_select'
 import LogInfo from './components/log_info'

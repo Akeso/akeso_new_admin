@@ -18,6 +18,8 @@
     </el-row>
     <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
 
+    <h3>开单统计</h3>
+
     <!--<h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>-->
     <!--<el-row>-->
     <!--<span v-for="item in examineChildren" :key="item.id">-->
