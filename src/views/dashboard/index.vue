@@ -4,45 +4,13 @@
     <panel-group :statistics-data="statisticsData"/>
 
     <h3>{{ generateShow('home.time_section') }}</h3>
-    <!--<el-row type="flex" class="row-bg" justify="space-between">-->
-    <!--<el-date-picker-->
-    <!--v-model="queryStatistics.dateSection"-->
-    <!--:picker-options="pickerOptions2"-->
-    <!--type="daterange"-->
-    <!--align="right"-->
-    <!--unlink-panels-->
-    <!--range-separator="至"-->
-    <!--start-placeholder="开始日期"-->
-    <!--end-placeholder="结束日期"-->
-    <!--value-format="yyyy-MM-dd"/>-->
-    <!--</el-row>-->
-    <!--<ve-line :data="chartStatisticsData" :settings="chartSettings" :set-option-opts="true"/>-->
     <StatisticsLine/>
 
     <h3>开单统计</h3>
     <IndentsLine/>
-    <!--<el-row type="flex" class="row-bg" justify="space-between">-->
-    <!--<el-date-picker-->
-    <!--v-model="queryIndents.dateSection"-->
-    <!--:picker-options="pickerOptions2"-->
-    <!--type="daterange"-->
-    <!--align="right"-->
-    <!--unlink-panels-->
-    <!--range-separator="至"-->
-    <!--start-placeholder="开始日期"-->
-    <!--end-placeholder="结束日期"-->
-    <!--value-format="yyyy-MM-dd"/>-->
-    <!--</el-row>-->
-    <!--<ve-line :data="chartIndentsData" :settings="chartSettings" :set-option-opts="true"/>-->
 
-    <!--<h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>-->
-    <!--<el-row>-->
-    <!--<span v-for="item in examineChildren" :key="item.id">-->
-    <!--<router-link :to="'/preview/child/'+item.id">-->
-    <!--<el-tag>{{ item.name }}</el-tag>&nbsp;&nbsp;-->
-    <!--</router-link>-->
-    <!--</span>-->
-    <!--</el-row>-->
+    <h3>销售额统计</h3>
+    <IndentPriceLine/>
 
     <h3>{{ generateShow('home.user_tag_statics') }}</h3>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
@@ -75,13 +43,14 @@
 import PanelGroup from './components/PanelGroup'
 import StatisticsLine from './components/statistics_line'
 import IndentsLine from './components/indents_line'
+import IndentPriceLine from './components/indent_price_line'
 import { fetchIndex, fetchGrowth } from '@/api/statistics'
 import { fetchIndentsGrowth } from '@/api/indents_statistics'
 
 export default {
   name: 'Dashboard',
   components: {
-    PanelGroup, StatisticsLine, IndentsLine
+    PanelGroup, StatisticsLine, IndentsLine, IndentPriceLine
   },
   data() {
     this.chartSettings = {

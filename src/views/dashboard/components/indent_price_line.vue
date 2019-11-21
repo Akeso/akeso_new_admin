@@ -16,14 +16,13 @@
   </div>
 </template>
 <script>
-import { fetchIndentsGrowth } from '@/api/indents_statistics'
+import { fetchTotalProce } from '@/api/indents_statistics'
 export default {
   name: 'IndentsLine',
   data() {
     this.chartSettings = {
       labelMap: {
-        identsCount: '订单数量',
-        productLogsCount: '产品数量'
+        totalPrice: '销售额'
       },
       area: true
     }
@@ -59,14 +58,14 @@ export default {
         dateSection: [new Date(new Date() - 7 * 24 * 3600 * 1000), new Date()]
       },
       chartData: {
-        columns: ['date', 'identsCount', 'productLogsCount'],
+        columns: ['date', 'totalPrice'],
         rows: [
-          { 'date': '2018-01-01', 'identsCount': 2 },
-          { 'date': '2018-01-02', 'identsCount': 3 },
-          { 'date': '2018-01-03', 'identsCount': 9 },
-          { 'date': '2018-01-05', 'identsCount': 1 },
-          { 'date': '2018-01-10', 'identsCount': 12 },
-          { 'date': '2018-01-20', 'identsCount': 45 }
+          { 'date': '2018-01-01', 'totalPrice': 2 },
+          { 'date': '2018-01-02', 'totalPrice': 3 },
+          { 'date': '2018-01-03', 'totalPrice': 9 },
+          { 'date': '2018-01-05', 'totalPrice': 1 },
+          { 'date': '2018-01-10', 'totalPrice': 12 },
+          { 'date': '2018-01-20', 'totalPrice': 45 }
         ]
       }
     }
@@ -81,7 +80,7 @@ export default {
   },
   methods: {
     getGrowthData() {
-      fetchIndentsGrowth(this.query).then(response => {
+      fetchTotalProce(this.query).then(response => {
         this.chartData.rows = response.data.items
       })
     }
