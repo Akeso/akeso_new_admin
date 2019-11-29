@@ -85,7 +85,16 @@ export default {
     },
     resetData() {
       this.temp = {
-        title: undefined
+        course_id: undefined,
+        title: undefined,
+        explain: undefined,
+        position: undefined,
+        answers: [{
+          alias: 'A',
+          text: '',
+          state: false,
+          show_index: false
+        }]
       }
     }
   }
