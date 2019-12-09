@@ -110,8 +110,8 @@
                 </div>
                 <div class="adding-score c-red m-t-1">减分项</div>
                 <el-row class="indicator-title">
-                  <el-col :span="12" class="text-left text-standard-font">用眼负荷</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ weekData.nearworkBurdenDay }}/720D</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">颈椎和用眼负担/分钟</el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ weekData.nearworkBurdenDay }}/22公斤</el-col>
                 </el-row>
                 <el-row>
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="weekData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
@@ -227,9 +227,9 @@ export default {
         unit: '步数'
       },
       textBurden: {
-        title: '用眼负荷',
-        des: '用眼负荷定义：室内状态下不同的低头角度（视物距离）的时间对应关系 放松：抬头或0-14度=0.5D，轻：15-29度=2D，中：30-44度=3D。',
-        unit: 'D'
+        title: '颈椎和用眼负担',
+        des: '用眼负荷定义：室内状态下不同的低头角度（视物距离）的时间对应关系。戴镜的每一分钟颈椎承担的重量压力。',
+        unit: '公斤'
       },
       textNearwork: {
         title: '近距离用眼时间',

@@ -38,46 +38,46 @@
       </el-col>
     </el-row>
     <el-row style="margin-top: 20px;" class="margin-bottom">
-      <el-col :span="3" class="text-center text-standard-font">户外时间</el-col>
+      <el-col :span="4" class="text-center text-standard-font">户外时间</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.outTimePercent" status="success" class="progress-l-r"/>
       </el-col>
       <el-col :span="4" class="text-standard-font">{{ healthScore.outTime }}/120分钟</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="3" class="text-center text-standard-font">光照摄入</el-col>
+      <el-col :span="4" class="text-center text-standard-font">光照摄入</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.luxDayPercent" status="success" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.outTimeLux }}/360000lux</el-col>
+      <el-col :span="4" class="text-standard-font">{{ healthScore.outTimeLux }}/360000lux</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="3" class="text-center text-standard-font">运动步数</el-col>
+      <el-col :span="4" class="text-center text-standard-font">运动步数</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.stepCountPercent" status="success" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.stepCount }}/12000步</el-col>
+      <el-col :span="4" class="text-standard-font">{{ healthScore.stepCount }}/12000步</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="3" class="text-center text-standard-font">用眼负荷</el-col>
+      <el-col :span="4" class="text-center text-standard-font">颈椎和用眼负担/分钟</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkBurdenPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/720D</el-col>
+      <el-col :span="4" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/22公斤</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="3" class="text-center text-standard-font">近距离用眼时间</el-col>
+      <el-col :span="4" class="text-center text-standard-font">近距离用眼时间</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.nearworkDay }}/260分钟</el-col>
+      <el-col :span="4" class="text-standard-font">{{ healthScore.nearworkDay }}/260分钟</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="3" class="text-center text-standard-font">不良姿势提醒</el-col>
+      <el-col :span="4" class="text-center text-standard-font">不良姿势提醒</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.badPostureTimesPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="3" class="text-standard-font">{{ healthScore.badPostureTimes }}/45次</el-col>
+      <el-col :span="4" class="text-standard-font">{{ healthScore.badPostureTimes }}/45次</el-col>
     </el-row>
     <div style="padding: 40px 20px 0px 20px;">
       <el-row :gutter="20">
@@ -142,9 +142,9 @@ export default {
         unit: '步数'
       },
       textBurden: {
-        title: '用眼负荷',
-        des: '用眼负荷定义：室内状态下不同的低头角度（视物距离）的时间对应关系 放松：抬头或0-14度=0.5D，轻：15-29度=2D，中：30-44度=3D。',
-        unit: 'D'
+        title: '颈椎和用眼负担/分钟',
+        des: '用眼负荷定义：室内状态下不同的低头角度（视物距离）的时间对应关系。戴镜的每一分钟颈椎承担的重量压力。',
+        unit: '公斤'
       },
       textNearwork: {
         title: '近距离用眼时间',
