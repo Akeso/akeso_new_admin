@@ -166,6 +166,8 @@ export default {
     billing_child: '销售开单',
     productManage: '产品管理',
     products: '产品列表',
+    courses: '课程列表',
+    questions: '题目列表',
     product_logs: '消费记录',
     versions: '版本管理',
     server_app_files: '蓝牙文件',

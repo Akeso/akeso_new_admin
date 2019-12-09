@@ -148,6 +148,13 @@ export default {
     popular_science_centers: 'popular science centers',
     removements: 'apply for doctor',
     channels: 'channels',
+    billings: '销售开单',
+    billing_child: '销售开单',
+    productManage: '产品管理',
+    products: '产品列表',
+    courses: '课程列表',
+    questions: '题目列表',
+    product_logs: '消费记录',
     versions: 'Version',
     server_app_files: 'App Files',
     app_files: 'APKs'

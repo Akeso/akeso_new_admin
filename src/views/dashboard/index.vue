@@ -4,28 +4,13 @@
     <panel-group :statistics-data="statisticsData"/>
 
     <h3>{{ generateShow('home.time_section') }}</h3>
-    <el-row type="flex" class="row-bg" justify="space-between">
-      <el-date-picker
-        v-model="paramsQuery.dateSection"
-        :picker-options="pickerOptions2"
-        type="daterange"
-        align="right"
-        unlink-panels
-        range-separator="至"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        value-format="yyyy-MM-dd"/>
-    </el-row>
-    <ve-line :data="chartData" :settings="chartSettings" :set-option-opts="true"/>
+    <StatisticsLine/>
 
-    <!--<h3>{{ generateShow('home.to_week_children') }} {{ examineChildren.length }}人</h3>-->
-    <!--<el-row>-->
-    <!--<span v-for="item in examineChildren" :key="item.id">-->
-    <!--<router-link :to="'/preview/child/'+item.id">-->
-    <!--<el-tag>{{ item.name }}</el-tag>&nbsp;&nbsp;-->
-    <!--</router-link>-->
-    <!--</span>-->
-    <!--</el-row>-->
+    <h3>开单统计</h3>
+    <IndentsLine/>
+
+    <h3>销售额统计</h3>
+    <IndentPriceLine/>
 
     <h3>{{ generateShow('home.user_tag_statics') }}</h3>
     <el-row :gutter="20" style="margin-top:10px; margin-bottom: 10px;">
@@ -56,12 +41,16 @@
 
 <script>
 import PanelGroup from './components/PanelGroup'
+import StatisticsLine from './components/statistics_line'
+import IndentsLine from './components/indents_line'
+import IndentPriceLine from './components/indent_price_line'
 import { fetchIndex, fetchGrowth } from '@/api/statistics'
+import { fetchIndentsGrowth } from '@/api/indents_statistics'
 
 export default {
   name: 'Dashboard',
   components: {
-    PanelGroup
+    PanelGroup, StatisticsLine, IndentsLine, IndentPriceLine
   },
   data() {
     this.chartSettings = {
@@ -100,9 +89,11 @@ export default {
           }
         }]
       },
-      paramsQuery: {
+      queryStatistics: {
         dateSection: [new Date(new Date() - 7 * 24 * 3600 * 1000), new Date()]
-        // radioValue: 'newChild'
+      },
+      queryIndents: {
+        dateSection: [new Date(new Date() - 7 * 24 * 3600 * 1000), new Date()]
       },
       statisticsData: {
         childrenCount: 0,
@@ -113,7 +104,18 @@ export default {
       },
       userTags: [],
       clinicalTags: [],
-      chartData: {
+      chartStatisticsData: {
+        columns: ['date', 'newChild', 'newDeviceChild', 'syncChild'],
+        rows: [
+          { 'date': '2018-01-01', 'newChild': 2 },
+          { 'date': '2018-01-02', 'newChild': 3 },
+          { 'date': '2018-01-03', 'newChild': 9 },
+          { 'date': '2018-01-05', 'newChild': 1 },
+          { 'date': '2018-01-10', 'newChild': 12 },
+          { 'date': '2018-01-20', 'newChild': 45 }
+        ]
+      },
+      chartIndentsData: {
         columns: ['date', 'newChild', 'newDeviceChild', 'syncChild'],
         rows: [
           { 'date': '2018-01-01', 'newChild': 2 },
@@ -128,13 +130,13 @@ export default {
     }
   },
   watch: {
-    'paramsQuery.dateSection': function(val, oldVal) {
-      this.getGrowthData()
-    }
+    // 'queryStatistics.dateSection': function(val, oldVal) {
+    //   this.getGrowthData()
+    // }
   },
   created() {
     this.getStatisticsData()
-    this.getGrowthData()
+    // this.getGrowthData()
   },
   methods: {
     handleClickTag(type, item) {
@@ -152,9 +154,13 @@ export default {
       })
     },
     getGrowthData() {
-      // fetchGrowth({ start_at: this.paramsQuery.dateSection[0], end_at: this.paramsQuery.dateSection[1], radioValue: this.paramsQuery.radioValue }).then(response => {
-      fetchGrowth(this.paramsQuery).then(response => {
-        this.chartData.rows = response.data.items
+      fetchGrowth(this.queryStatistics).then(response => {
+        this.chartStatisticsData.rows = response.data.items
+      })
+    },
+    getIndentsGrowthData() {
+      fetchIndentsGrowth(this.queryIndents).then(response => {
+        this.chartIndentsData.rows = response.data.items
       })
     }
   }

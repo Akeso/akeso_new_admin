@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchList(query) {
   return request({
-    url: '/api/a1/product_logs',
+    url: '/api/a1/courses',
     method: 'get',
     params: query
   })
@@ -10,7 +10,7 @@ export function fetchList(query) {
 
 export function createItem(query) {
   return request({
-    url: '/api/a1/product_logs',
+    url: '/api/a1/courses',
     method: 'post',
     data: query
   })
@@ -18,7 +18,7 @@ export function createItem(query) {
 
 export function updateItem(query) {
   return request({
-    url: '/api/a1/product_logs/' + query.id,
+    url: '/api/a1/courses/' + query.id,
     method: 'put',
     data: query
   })
@@ -26,8 +26,7 @@ export function updateItem(query) {
 
 export function deleteItem(query) {
   return request({
-    url: '/api/a1/product_logs/' + query.id,
-    method: 'delete',
-    params: query
+    url: '/api/a1/courses/' + query.id,
+    method: 'delete'
   })
 }

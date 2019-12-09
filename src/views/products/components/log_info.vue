@@ -2,12 +2,12 @@
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="开单详情" width="70%" top="30px">
     <div style="padding: 10px;">
       <el-row :gutter="10" style="margin-bottom: 20px;">
-        <el-col :span="4"><span>开单儿童：</span>{{ product_log.child_name }}</el-col>
-        <el-col :span="4"><span>接诊医生：</span>{{ product_log.seller }}</el-col>
-        <el-col :span="4"><span>总价：</span>{{ product_log.total_price }}</el-col>
-        <el-col :span="6"><span>开单日期：</span>{{ product_log.selled_at }}</el-col>
+        <el-col :span="4"><span>开单儿童：</span>{{ indent.child_name }}</el-col>
+        <el-col :span="4"><span>接诊医生：</span>{{ indent.seller }}</el-col>
+        <el-col :span="4"><span>总价：</span>{{ indent.total_price }}</el-col>
+        <el-col :span="6"><span>开单日期：</span>{{ indent.selled_at }}</el-col>
       </el-row>
-      <el-table :data="product_log.products" border style="width: 100%">
+      <el-table :data="indent.products" border style="width: 100%">
         <el-table-column
           prop="name"
           label="名称"
@@ -33,12 +33,12 @@
 </template>
 
 <script>
-
+// import { showItem } from '@/api/indents'
 export default {
   data() {
     return {
       dialogFormVisible: false,
-      product_log: {
+      indent: {
         child_name: '-',
         seller: '-',
         created_at: '-',
@@ -59,7 +59,10 @@ export default {
     },
     show(val) {
       console.log('val => ', val)
-      this.product_log = val
+      // showItem({ id: val.id }).then(res => {
+      //   this.indent = res.data
+      // })
+      this.indent = val
       this.dialogFormVisible = true
     }
   }

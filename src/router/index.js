@@ -272,6 +272,27 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/courses',
+    component: Layout,
+    only: true,
+    meta: { title: 'courses', icon: 'example' },
+    children: [
+      {
+        path: 'courses',
+        name: 'Courses',
+        component: () => import('@/views/courses/index'),
+        meta: { title: 'courses', icon: 'people' }
+      },
+      {
+        path: 'courses/:id(\\d+)',
+        name: 'Questions',
+        component: () => import('@/views/courses/questions'),
+        meta: { title: 'questions', icon: 'people' },
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/system_setting',
     component: Layout,
     only: true,

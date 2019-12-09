@@ -1,17 +1,7 @@
 <template>
-  <div>
-    <el-row :gutter="20" style="margin:0px 5px;">
-      <el-col :span="4">
-        <div style="margin-top: 60px;">
-          <h3>{{ child.name }}</h3>
-          <p>性别：{{ child.gender | genderFilter }}</p>
-          <p>年龄：{{ child.age }}岁</p>
-          <p>身高：{{ child.height }}CM</p>
-          <p>体重：{{ child.weight }}KG</p>
-          <p>手机号：{{ child.phone }}</p>
-        </div>
-      </el-col>
-      <el-col :span="20">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="修改记录" width="70%" top="30px" @closed="resetData">
+    <div>
+      <el-row>
         <el-row class="mg-t">
           <el-col>
             <el-button type="primary" @click="handleClickProduct">添加产品</el-button>
@@ -61,57 +51,57 @@
         <div class="mg-t">
           <el-button type="primary" @click="handleClickSave">保存</el-button>
         </div>
-      </el-col>
-    </el-row>
+      </el-row>
+    </div>
     <ProductSelect ref="productSelect" @select-product="selectProduct"/>
-  </div>
+  </el-dialog>
 </template>
 
 <script>
-import ProductSelect from './components/product_select'
-import { createItem } from '@/api/indents'
-import { fetchChild } from '@/api/children'
+import ProductSelect from '../components/product_select'
+// import { fetchList } from '@/api/products'
+import { updateItem } from '@/api/indents'
 export default {
   components: { ProductSelect },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
-      child: {
-        name: '',
-        gender: 'unknown',
-        age: undefined,
-        height: undefined,
-        weight: undefined,
-        phone: undefined
-      },
       dialogFormVisible: false,
       product_log: {
-        child_id: this.$route.params.id,
+        id: '',
         seller: '',
-        selled_at: new Date(),
+        selled_at: '',
         des: '',
         products: []
-      },
-      total: null,
-      total_price: 0
+      }
     }
   },
   created() {
-    this.getChild()
   },
   methods: {
-    getChild() {
-      fetchChild({ id: this.product_log.child_id }).then(res => {
-        this.child = res.data
+    handleClickSelect(val) {
+      this.$emit('select-product', val)
+      this.dialogFormVisible = false
+    },
+    show(val) {
+      this.product_log = JSON.parse(JSON.stringify(val))
+      // Object.assign(this.product_log, val)
+      this.dialogFormVisible = true
+    },
+    handleClickProduct() {
+      this.$refs.productSelect.show()
+    },
+    handleClickSave() {
+      console.log('aaa => ', this.product_log)
+      if (this.product_log.products.length === 0) {
+        this.$message({ message: '请选择商品', type: 'warning' })
+        return
+      }
+      var product_ids = this.product_log.products.map(item => { return item.id })
+      var prices = this.product_log.products.map(item => { return item.price })
+      updateItem(Object.assign(this.product_log, { product_ids: product_ids, prices: prices, total_price: this.total_price })).then(res => {
+        console.log('res => ', res.data)
+        this.$emit('edit-log-success')
+        this.dialogFormVisible = false
       })
     },
     getSummaries(param) {
@@ -143,33 +133,20 @@ export default {
       })
       return sums
     },
-    handleClickSave() {
-      if (this.product_log.products.length === 0) {
-        this.$message({ message: '请选择商品', type: 'warning' })
-        return
-      }
-      var product_ids = this.product_log.products.map(item => { return item.id })
-      var prices = this.product_log.products.map(item => { return item.price })
-      createItem(Object.assign(this.product_log, { product_ids: product_ids, prices: prices, total_price: this.total_price })).then(res => {
-        console.log('res => ', res.data)
-        this.$router.back()
-      })
-    },
     handleClickDelete(index) {
       this.product_log.products.splice(index, 1)
     },
     selectProduct(val) {
-      console.log('val => ', val, '===> ', this.product_log)
       this.product_log.products.push(val)
     },
-    handleClickProduct() {
-      this.$refs.productSelect.show()
+    resetData() {
+      this.product_log = {
+        seller: '',
+        selled_at: '',
+        des: '',
+        products: []
+      }
     }
   }
 }
 </script>
-<style scope>
-  .mg-t {
-    margin-top: 10px;
-  }
-</style>

@@ -149,7 +149,7 @@
               </el-col>
               <el-col :xs="24" :sm="24" :lg="8">
                 <div class="title-header">
-                  <p class="left">不良用眼姿势建议45次/天</p>
+                  <p class="left">不良用眼姿势建议24次/天</p>
                   <!--<p class="right">参考值30次/天</p>-->
                 </div>
                 <echarts-legend/>
