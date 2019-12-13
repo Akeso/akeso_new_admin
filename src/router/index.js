@@ -176,6 +176,27 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/schools',
+    component: Layout,
+    redirect: '/schools/list',
+    name: 'myopia',
+    meta: { title: 'schools', icon: 'example' },
+    children: [
+      {
+        path: 'school_list',
+        name: 'school_list',
+        component: () => import('@/views/schools/list'),
+        meta: { title: 'school_list', icon: 'table' }
+      },
+      {
+        path: 'by_data',
+        name: 'byData',
+        component: () => import('@/views/myopia/by_data'),
+        meta: { title: 'by_data', icon: 'table' }
+      }
+    ]
+  },
+  {
     path: '/doctors',
     component: Layout,
     only: true,
