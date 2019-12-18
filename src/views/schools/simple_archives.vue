@@ -62,7 +62,7 @@
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/simple_archives'
+import { fetchList } from '@/api/simple_archives'
 export default {
   data() {
     return {
