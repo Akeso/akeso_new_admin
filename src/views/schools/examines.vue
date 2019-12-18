@@ -28,6 +28,7 @@
           min-width="120" >
           <template slot-scope="scope">
             <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
+            <el-button type="success" size="small" @click="handleClickShow(scope.row)">查看</el-button>
             <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -80,6 +81,9 @@ export default {
     },
     handleClickNew() {
       this.$refs.newExamine.show()
+    },
+    handleClickShow(val) {
+      this.$router.push({ path: '/schools/simple_archives?examine_id=' + val.id })
     },
     handleClickDelete(val) {
       this.$confirm('确认删除本次筛查?', '提示', {

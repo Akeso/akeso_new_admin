@@ -1,10 +1,23 @@
 <template>
   <div>
     <el-card class="box-card">
-
-      <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
-      </div>
+      <el-row>
+        <el-upload
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :on-success="handleSuccess"
+          :limit="1"
+          :data="uploadData"
+          class="upload-demo"
+          accept=".xlsx, .xls"
+          action="/api/common/excels/upload_rosters">
+          <div class="overflow">
+            <el-button type="success" icon="el-icon-plus" @click.stop="handleClickNew">新增</el-button>
+            <el-button size="small" type="primary" class="left">上传Excel</el-button>
+            <el-button size="small" class="left m-l-2" @click.stop="downloadExc">下载Excel模板</el-button>
+          </div>
+        </el-upload>
+      </el-row>
 
       <el-table
         :data="list"
@@ -12,12 +25,20 @@
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
         <el-table-column
-          label="学校"
-          prop="school_name"
+          label="姓名"
+          prop="child_name"
           min-width="90"/>
         <el-table-column
-          label="班级"
-          prop="class_grade"
+          label="性别"
+          prop="gender"
+          min-width="90"/>
+        <el-table-column
+          label="右眼视力"
+          prop="ucva_od"
+          min-width="90"/>
+        <el-table-column
+          label="左眼视力"
+          prop="ucva_os"
           min-width="90"/>
         <el-table-column
           label="创建日期"
@@ -28,6 +49,7 @@
           min-width="120" >
           <template slot-scope="scope">
             <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
+            <el-button type="success" size="small" @click="handleClickDelete(scope.row)">查看</el-button>
             <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -37,22 +59,21 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
-    <NewExamine ref="newExamine" @create-success="getList"/>
-    <EditExamine ref="editExamine" @update-success="getList"/>
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/examines'
-import NewExamine from './components/new_examine'
-import EditExamine from './components/edit_examine'
+import { fetchList, deleteItem } from '@/api/simple_archives'
 export default {
-  components: { NewExamine, EditExamine },
   data() {
     return {
+      uploadData: {
+        authenticationToken: this.$store.state.user.authenticationToken
+      },
       list: null,
       total: null,
       listLoading: true,
       listQuery: {
+        examine_id: this.$route.query.examine_id,
         page: 1,
         limit: 20,
         importance: undefined,
@@ -69,33 +90,39 @@ export default {
     this.getList()
   },
   methods: {
-    handleClickLocation(val) {
-      this.$refs.location.show(val)
+    downloadExc() {
+      window.location.href = 'https://akeso.com.cn/template/roster_template.xlsx'
     },
-    handleClickSkilled(val) {
-      this.$refs.services.show(val)
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview(file) {
+      console.log(file)
+    },
+    handleSuccess(res, file) {
+      console.log('res => ', res)
+      console.log('file => ', file)
     },
     handleClickEdit(val) {
-      this.$refs.editExamine.show(val)
     },
     handleClickNew() {
-      this.$refs.newExamine.show()
+      console.log('aaaaaaaaaa')
     },
     handleClickDelete(val) {
-      this.$confirm('确认删除本次筛查?', '提示', {
-        confirmButtonText: '是',
-        cancelButtonText: '否',
-        type: 'warning'
-      }).then(() => {
-        deleteItem({ id: val.id }).then(response => {
-          this.getList()
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          })
-        })
-      }).catch(() => {
-      })
+      // this.$confirm('确认删除本次筛查?', '提示', {
+      //   confirmButtonText: '是',
+      //   cancelButtonText: '否',
+      //   type: 'warning'
+      // }).then(() => {
+      //   deleteItem({ id: val.id }).then(response => {
+      //     this.getList()
+      //     this.$message({
+      //       type: 'success',
+      //       message: '删除成功!'
+      //     })
+      //   })
+      // }).catch(() => {
+      // })
     },
     getList() {
       fetchList(this.listQuery).then(response => {
