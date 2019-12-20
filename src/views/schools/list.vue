@@ -13,11 +13,7 @@
         @sort-change="handleColumnSort">
         <el-table-column
           label="学校"
-          prop="school_name"
-          min-width="90"/>
-        <el-table-column
-          label="班级"
-          prop="class_grade"
+          prop="name"
           min-width="90"/>
         <el-table-column
           label="创建日期"
@@ -37,19 +33,19 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
-    <NewExamine ref="newExamine" @create-success="getList"/>
-    <EditExamine ref="editExamine" @update-success="getList"/>
+    <NewSchool ref="new_school" @create-success="getList"/>
+    <EditSchool ref="edit_school" @update-success="getList"/>
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/examines'
-import NewExamine from './components/new_examine'
-import EditExamine from './components/edit_examine'
+import { fetchList, deleteItem } from '@/api/schools'
+import NewSchool from './components/new_school'
+import EditSchool from './components/edit_school'
 export default {
-  components: { NewExamine, EditExamine },
+  components: { NewSchool, EditSchool },
   data() {
     return {
-      list: null,
+      list: [],
       total: null,
       listLoading: true,
       listQuery: {
@@ -69,17 +65,11 @@ export default {
     this.getList()
   },
   methods: {
-    handleClickLocation(val) {
-      this.$refs.location.show(val)
-    },
-    handleClickSkilled(val) {
-      this.$refs.services.show(val)
-    },
     handleClickEdit(val) {
-      this.$refs.editExamine.show(val)
+      this.$refs.edit_school.show(val)
     },
     handleClickNew() {
-      this.$refs.newExamine.show()
+      this.$refs.new_school.show()
     },
     handleClickDelete(val) {
       this.$confirm('确认删除本次筛查?', '提示', {
