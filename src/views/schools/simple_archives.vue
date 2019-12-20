@@ -30,8 +30,11 @@
           min-width="90"/>
         <el-table-column
           label="性别"
-          prop="gender"
-          min-width="90"/>
+          min-width="90">
+          <template slot-scope="scope">
+            {{ scope.row.gender | genderFilter }}
+          </template>
+        </el-table-column>
         <el-table-column
           label="右眼视力"
           prop="ucva_od"
@@ -40,10 +43,6 @@
           label="左眼视力"
           prop="ucva_os"
           min-width="90"/>
-        <el-table-column
-          label="创建日期"
-          prop="created_at"
-          min-width="120"/>
         <el-table-column
           label="操作"
           min-width="120" >
@@ -59,11 +58,26 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <NewSimpleArchive ref="new_simple_archive" @create-success="getList"/>
+    <EditSimpleArchive ref="edit_simple_archive" @update-success="getList"/>
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/simple_archives'
+import { fetchList, deleteItem } from '@/api/simple_archives'
+import NewSimpleArchive from './components/new_simple_archive'
+import EditSimpleArchive from './components/edit_simple_archive'
 export default {
+  components: { NewSimpleArchive, EditSimpleArchive },
+  filters: {
+    genderFilter(status) {
+      const statusMap = {
+        male: '男',
+        female: '女',
+        unknown: '未知'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       uploadData: {
@@ -104,25 +118,26 @@ export default {
       console.log('file => ', file)
     },
     handleClickEdit(val) {
+      this.$refs.edit_simple_archive.show(val)
     },
     handleClickNew() {
-      console.log('aaaaaaaaaa')
+      this.$refs.new_simple_archive.show()
     },
     handleClickDelete(val) {
-      // this.$confirm('确认删除本次筛查?', '提示', {
-      //   confirmButtonText: '是',
-      //   cancelButtonText: '否',
-      //   type: 'warning'
-      // }).then(() => {
-      //   deleteItem({ id: val.id }).then(response => {
-      //     this.getList()
-      //     this.$message({
-      //       type: 'success',
-      //       message: '删除成功!'
-      //     })
-      //   })
-      // }).catch(() => {
-      // })
+      this.$confirm('确认删除该条筛查?', '提示', {
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        type: 'warning'
+      }).then(() => {
+        deleteItem({ id: val.id }).then(response => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() => {
+      })
     },
     getList() {
       fetchList(this.listQuery).then(response => {

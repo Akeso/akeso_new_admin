@@ -14,3 +14,19 @@ export function deleteItem(query) {
     method: 'delete'
   })
 }
+
+export function createItem(query) {
+  return request({
+    url: '/api/a1/simple_archives',
+    method: 'post',
+    data: query
+  })
+}
+
+export function updateItem(query) {
+  return request({
+    url: '/api/a1/simple_archives/' + query.id,
+    method: 'put',
+    data: query
+  })
+}
