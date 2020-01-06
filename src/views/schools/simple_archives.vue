@@ -48,7 +48,7 @@
           min-width="120" >
           <template slot-scope="scope">
             <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
-            <el-button type="success" size="small" @click="handleClickDelete(scope.row)">查看</el-button>
+            <el-button type="success" size="small" @click="handleClickShow(scope.row)">查看</el-button>
             <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -60,14 +60,16 @@
     </el-card>
     <NewSimpleArchive ref="new_simple_archive" @create-success="getList"/>
     <EditSimpleArchive ref="edit_simple_archive" @update-success="getList"/>
+    <ShowSimpleArchive ref="show_simple_archive"/>
   </div>
 </template>
 <script>
 import { fetchList, deleteItem } from '@/api/simple_archives'
 import NewSimpleArchive from './components/new_simple_archive'
 import EditSimpleArchive from './components/edit_simple_archive'
+import ShowSimpleArchive from './components/show_simple_archive'
 export default {
-  components: { NewSimpleArchive, EditSimpleArchive },
+  components: { NewSimpleArchive, EditSimpleArchive, ShowSimpleArchive },
   filters: {
     genderFilter(status) {
       const statusMap = {
@@ -122,6 +124,9 @@ export default {
     },
     handleClickNew() {
       this.$refs.new_simple_archive.show()
+    },
+    handleClickShow(val) {
+      this.$refs.show_simple_archive.show(val)
     },
     handleClickDelete(val) {
       this.$confirm('确认删除该条筛查?', '提示', {
