@@ -170,6 +170,9 @@ export default {
             this.passwork_valid = true
             return
           }
+          if (this.$store.getters.baseType === 'agent') {
+            Object.assign(this.temp, { agent_id: this.$store.getters.id })
+          }
           createItem(this.temp).then(response => {
             this.resetData()
             this.dialogFormVisible = false

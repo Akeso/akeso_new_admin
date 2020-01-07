@@ -78,8 +78,8 @@
           min-width="120" >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">{{ generateShow('common.modify') }}</el-button>
-            <el-button type="text" size="small" @click="handleClickLocation(scope.row)">{{ generateShow('common.modify_location') }}</el-button>
-            <el-button type="text" size="small" @click="handleClickSkilled(scope.row)">{{ generateShow('common.modify_skilled') }}</el-button>
+            <el-button v-if="$store.getters.baseType === 'admin'" type="text" size="small" @click="handleClickLocation(scope.row)">{{ generateShow('common.modify_location') }}</el-button>
+            <el-button v-if="$store.getters.baseType === 'admin'" type="text" size="small" @click="handleClickSkilled(scope.row)">{{ generateShow('common.modify_skilled') }}</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">{{ generateShow('common.delete') }}</el-button>
           </template>
         </el-table-column>
@@ -182,6 +182,9 @@ export default {
       })
     },
     getList() {
+      if (this.$store.getters.baseType === 'agent') {
+        Object.assign(this.listQuery, { agent_id: this.$store.getters.id })
+      }
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
