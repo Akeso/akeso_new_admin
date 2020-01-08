@@ -115,7 +115,7 @@ export default {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
-            if (this.$store.getters.baseType === 'admin') {
+            if (this.$store.getters.baseType === 'admin' || this.$store.getters.baseType === 'organization') {
               this.$router.push({ path: '/' })
             } else {
               this.$router.push({ path: '/doctors' })
