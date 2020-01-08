@@ -41,7 +41,10 @@
             value-format="yyyy-MM-dd"/>
           <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter(2)">{{ generateShow('common.query') }}</el-button>
           <el-button class="filter-item" type="primary" icon="el-icon-download">
-            <a :href="downloadMoreUrl + '?date=' + listQuery.date + '&authenticationToken=' + $store.getters.authenticationToken">导出Excel</a>
+            <a :href="downloadMoreUrl + '?date=' + listQuery.date + '&authenticationToken=' + $store.getters.authenticationToken">导出一天Excel</a>
+          </el-button>
+          <el-button class="filter-item" type="primary" icon="el-icon-download">
+            <a :href="downloadMoreHalfUrl + '?date=' + listQuery.date + '&authenticationToken=' + $store.getters.authenticationToken">导出节点Excel</a>
           </el-button>
         </el-col>
       </el-row>
@@ -108,6 +111,7 @@ export default {
     return {
       downloadOneUrl: '/api/a1/excels/daily_one',
       downloadMoreUrl: '/api/a1/excels/daily_more',
+      downloadMoreHalfUrl: '/api/a1/excels/daily_more_half',
       isPeriod: 1,
       list: null,
       total: null,

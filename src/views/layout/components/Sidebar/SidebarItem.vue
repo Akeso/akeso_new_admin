@@ -1,6 +1,6 @@
 <template>
   <!--<div v-if="!item.hidden&&item.children&&englishShowingItem(item.children, item)&&canShow(item)" class="menu-wrapper">-->
-  <div v-if="!item.hidden&&item.children&&canShow(item)" class="menu-wrapper">
+  <div v-if="!item.hidden && item.children && canShow(item) && permissionShow(item)" class="menu-wrapper">
 
     <!--没有子菜单-->
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
@@ -71,7 +71,7 @@ export default {
       'baseType'
     ]),
     isAdmin: function() {
-      return this.baseType === 'admin'
+      return this.baseType === 'admin' || this.baseType === 'agent'
     }
   },
   methods: {
@@ -80,6 +80,14 @@ export default {
       //   return
       // }
       return this.isAdmin ? item.name !== 'Appointments' : !item.only
+    },
+    permissionShow(item) {
+      if (item.meta === undefined) { return true }
+      // console.log('item => ', item.meta.roles)
+      // console.log('item flag => ', item.meta.roles.includes('agent'))
+      // if (!item.meta.roles) { return true }
+      if (item.meta.roles.includes(this.baseType)) { return true }
+      return false
     },
     englishShowingItem(children, parent) {
       if (this.$store.getters.language === 'en') {

@@ -39,11 +39,17 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dashboard',
     // hidden: true,
+    meta: { roles: ['doctor', 'admin'] },
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
+      meta: {
+        title: 'dashboard',
+        icon: 'dashboard',
+        noCache: true,
+        roles: ['doctor', 'admin']
+      }
     }]
   },
   {
@@ -51,7 +57,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/preview/allchildren',
     name: 'Preview',
-    meta: { title: 'preview', icon: 'example' },
+    meta: { title: 'preview', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       // {
       //   path: 'overview',
@@ -92,7 +98,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/apt_arch/appintments',
     name: 'aptArch',
-    meta: { title: 'aptArch', icon: 'example' },
+    meta: { title: 'aptArch', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'admin_appoints',
@@ -120,7 +126,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/intelligent_data/class_warn',
     name: 'intelligentData',
-    meta: { title: 'intelligentData', icon: 'example' },
+    meta: { title: 'intelligentData', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'sorting',
@@ -153,7 +159,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/myopia/high_warn',
     name: 'myopia',
-    meta: { title: 'myopia', icon: 'example' },
+    meta: { title: 'myopia', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       // {
       //   path: 'highwarn',
@@ -176,6 +182,34 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/schools',
+    component: Layout,
+    redirect: '/schools/examines',
+    name: 'schools',
+    meta: { title: 'schools', icon: 'example', roles: ['doctor', 'admin'] },
+    children: [
+      {
+        path: 'examines',
+        name: 'examines',
+        component: () => import('@/views/schools/examines'),
+        meta: { title: 'examines', icon: 'table' }
+      },
+      {
+        path: 'simple_archives',
+        name: 'simple_archives',
+        component: () => import('@/views/schools/simple_archives'),
+        meta: { title: 'simple_archives', icon: 'table' },
+        hidden: true
+      },
+      {
+        path: 'school_list',
+        name: 'school_list',
+        component: () => import('@/views/schools/list'),
+        meta: { title: 'school_list', icon: 'table' }
+      }
+    ]
+  },
+  {
     path: '/doctors',
     component: Layout,
     only: true,
@@ -184,7 +218,7 @@ export const constantRouterMap = [
         path: 'doctors',
         name: 'Doctors',
         component: () => import('@/views/doctors/doctors'),
-        meta: { title: 'doctors', icon: 'people' }
+        meta: { title: 'doctors', icon: 'people', roles: ['doctor', 'admin'] }
       }
     ]
   },
@@ -192,36 +226,39 @@ export const constantRouterMap = [
     path: '/frequency',
     component: Layout,
     only: true,
+    meta: { roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'frequency',
         name: 'Frequency',
         component: () => import('@/views/frequency/frequency'),
-        meta: { title: 'frequency', icon: 'guide' }
+        meta: { title: 'frequency', icon: 'guide', roles: ['doctor', 'admin'] }
       }
     ]
   },
   {
     path: '/channels',
     component: Layout,
+    meta: { roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'channels',
         name: 'Channels',
         component: () => import('@/views/channels/channels'),
-        meta: { title: 'channels', icon: 'bug' }
+        meta: { title: 'channels', icon: 'bug', roles: ['doctor', 'admin'] }
       }
     ]
   },
   {
     path: '/popular_science_centers',
     component: Layout,
+    meta: { roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'popular_science_centers',
         name: 'PopularScienceCenters',
         component: () => import('@/views/popular_science_centers/popular_science_centers'),
-        meta: { title: 'popular_science_centers', icon: 'bug' }
+        meta: { title: 'popular_science_centers', icon: 'bug', roles: ['doctor', 'admin'] }
       }
     ]
   },
@@ -229,19 +266,20 @@ export const constantRouterMap = [
     path: '/removements',
     component: Layout,
     only: true,
+    meta: { roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'removements',
         name: 'Removements',
         component: () => import('@/views/removements/removements'),
-        meta: { title: 'removements', icon: 'bug' }
+        meta: { title: 'removements', icon: 'bug', roles: ['doctor', 'admin'] }
       }
     ]
   },
   {
     path: '/billings',
     component: Layout,
-    meta: { title: 'billings', icon: 'example' },
+    meta: { title: 'billings', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'logs',
@@ -261,7 +299,7 @@ export const constantRouterMap = [
   {
     path: '/products',
     component: Layout,
-    meta: { title: 'productManage', icon: 'example' },
+    meta: { title: 'productManage', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'products',
@@ -275,7 +313,7 @@ export const constantRouterMap = [
     path: '/courses',
     component: Layout,
     only: true,
-    meta: { title: 'courses', icon: 'example' },
+    meta: { title: 'courses', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'courses',
@@ -298,7 +336,7 @@ export const constantRouterMap = [
     only: true,
     redirect: '/system_setting/devices',
     name: 'systemSetting',
-    meta: { title: 'systemSetting', icon: 'example' },
+    meta: { title: 'systemSetting', icon: 'example', roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'devices',
@@ -358,6 +396,7 @@ export const constantRouterMap = [
     path: '/enChildren',
     component: Layout,
     only: true,
+    meta: { roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'enChildren',
@@ -378,6 +417,7 @@ export const constantRouterMap = [
   {
     path: '/account',
     component: Layout,
+    meta: { roles: ['doctor', 'admin'] },
     children: [
       {
         path: 'index',

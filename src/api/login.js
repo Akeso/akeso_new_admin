@@ -1,12 +1,13 @@
 import request from '@/utils/request'
 
-export function login(username, password) {
+export function login(username, password, account_type) {
   return request({
     url: '/api/a1/sessions',
     method: 'post',
     data: {
       username,
-      password
+      password,
+      account_type
     }
   })
 }

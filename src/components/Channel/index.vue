@@ -23,9 +23,11 @@ export default {
     }
   },
   created() {
-    fetchCount().then(res => {
-      this.count = res.data.count
-    })
+    if (this.$store.getters.baseType === 'admin') {
+      fetchCount().then(res => {
+        this.count = res.data.count
+      })
+    }
   },
   methods: {
     handleClick() {

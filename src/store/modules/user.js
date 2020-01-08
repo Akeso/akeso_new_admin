@@ -54,7 +54,7 @@ const user = {
     Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
+        login(username, userInfo.password, userInfo.account_type).then(response => {
           const data = response.data
           commit('SET_USER_INFO', data)
           resolve()
