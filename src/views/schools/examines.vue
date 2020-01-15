@@ -30,7 +30,7 @@
             <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
             <el-button type="success" size="small" @click="handleClickShow(scope.row)">查看</el-button>
             <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
-            <el-button size="small" @click="handleClickEdit(scope.row)">统计</el-button>
+            <el-button size="small" @click="handleClickStatics(scope.row)">统计</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -41,14 +41,16 @@
     </el-card>
     <NewExamine ref="newExamine" @create-success="getList"/>
     <EditExamine ref="editExamine" @update-success="getList"/>
+    <ExamineStatistics ref="examineStatistics"/>
   </div>
 </template>
 <script>
 import { fetchList, deleteItem } from '@/api/examines'
 import NewExamine from './components/new_examine'
 import EditExamine from './components/edit_examine'
+import ExamineStatistics from './components/examine_statistics'
 export default {
-  components: { NewExamine, EditExamine },
+  components: { NewExamine, EditExamine, ExamineStatistics },
   data() {
     return {
       list: null,
@@ -79,6 +81,9 @@ export default {
     },
     handleClickEdit(val) {
       this.$refs.editExamine.show(val)
+    },
+    handleClickStatics(val) {
+      this.$refs.examineStatistics.show(val)
     },
     handleClickNew() {
       this.$refs.newExamine.show()
