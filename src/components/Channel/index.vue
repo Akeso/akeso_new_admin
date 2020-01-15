@@ -29,9 +29,21 @@ export default {
       })
     }
   },
+  mounted() {
+    this.initCable()
+  },
   methods: {
     handleClick() {
       console.log('message')
+    },
+    initCable: function() {
+      this.$cable.subscriptions.create({
+        channel: 'NotificationChannel'
+      }, {
+        received(data) {
+          console.log('receive data => ', data)
+        }
+      })
     }
   }
 }

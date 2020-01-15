@@ -30,6 +30,7 @@
             <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
             <el-button type="success" size="small" @click="handleClickShow(scope.row)">查看</el-button>
             <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button size="small" @click="handleClickEdit(scope.row)">统计</el-button>
           </template>
         </el-table-column>
       </el-table>

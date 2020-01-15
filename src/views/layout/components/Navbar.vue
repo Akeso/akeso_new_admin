@@ -6,6 +6,8 @@
 
     <div class="right-menu">
 
+      <!--<el-button type="success" @click="testNotification">测试通知</el-button>-->
+
       <channel id="screenfull" class="right-menu-item hover-effect" />
 
       <lang-select class="international right-menu-item"/>
@@ -38,6 +40,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import LangSelect from '@/components/LangSelect'
 import Channel from '@/components/Channel'
+import { testNf } from '@/api/notification'
 
 export default {
   components: { Breadcrumb, Hamburger, LangSelect, Channel },
@@ -53,6 +56,9 @@ export default {
     // console.log('mouted.', this.$store.state.user)
   },
   methods: {
+    testNotification() {
+      testNf().then(res => {})
+    },
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
     },
