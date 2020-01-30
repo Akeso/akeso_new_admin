@@ -1,11 +1,19 @@
 <template>
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="" width="70%" top="30px">
     <el-row>
-      <el-col :span="24">
+      <el-col :span="24" style="margin-bottom: 20px;">
         <div>
           <p class="header-title">班级近视筛查报告统计</p>
         </div>
         <table border="0" cellspacing="0" cellpadding="4" class="table-a">
+          <tr>
+            <td class="table-td">男生</td>
+            <td class="table-td">10</td>
+            <td class="table-td">女生</td>
+            <td class="table-td">14</td>
+            <td class="table-td">-</td>
+            <td class="table-td">-</td>
+          </tr>
           <tr>
             <td class="table-td">近视率</td>
             <td class="table-td">80%</td>
@@ -17,10 +25,7 @@
         </table>
       </el-col>
       <el-row>
-        <el-col :span="12">
-          <ve-histogram :data="chartData" :settings="chartSettings"/>
-        </el-col>
-        <el-col :span="12">
+        <el-col :span="24">
           <ve-histogram :data="chartData" :settings="chartSettings"/>
         </el-col>
       </el-row>
@@ -43,20 +48,20 @@ export default {
       borderColor: '#000'
     }
     this.chartSettings = {
-      metrics: ['人数'],
+      metrics: ['左眼人数', '右眼人数'],
       dimension: ['左眼视力']
     }
     return {
       chartData: {
-        columns: ['左眼视力', '人数'],
+        columns: ['视力', '左眼人数', '右眼人数'],
         rows: [
-          { '左眼视力': '4.5以下', '人数': 2 },
-          { '左眼视力': '4.6', '人数': 3 },
-          { '左眼视力': '4.7', '人数': 4 },
-          { '左眼视力': '4.8', '人数': 3 },
-          { '左眼视力': '4.9', '人数': 6 },
-          { '左眼视力': '5.0', '人数': 4 },
-          { '左眼视力': '5.0以上', '人数': 5 }
+          { '左眼视力': '4.5以下', '左眼人数': 2, '右眼人数': 2 },
+          { '左眼视力': '4.6', '左眼人数': 3, '右眼人数': 2 },
+          { '左眼视力': '4.7', '左眼人数': 4, '右眼人数': 2 },
+          { '左眼视力': '4.8', '左眼人数': 3, '右眼人数': 2 },
+          { '左眼视力': '4.9', '左眼人数': 6, '右眼人数': 2 },
+          { '左眼视力': '5.0', '左眼人数': 4, '右眼人数': 2 },
+          { '左眼视力': '5.0以上', '左眼人数': 5, '右眼人数': 2 }
         ]
       },
       dialogFormVisible: false,

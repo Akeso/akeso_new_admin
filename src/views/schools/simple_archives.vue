@@ -36,11 +36,11 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="右眼视力"
+          label="右眼裸眼视力"
           prop="ucva_od"
           min-width="90"/>
         <el-table-column
-          label="左眼视力"
+          label="左眼裸眼视力"
           prop="ucva_os"
           min-width="90"/>
         <el-table-column

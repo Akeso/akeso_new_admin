@@ -14,15 +14,15 @@
         <el-table-column
           label="学校"
           prop="school_name"
-          min-width="90"/>
+          min-width="60"/>
         <el-table-column
           label="班级"
           prop="class_grade"
-          min-width="90"/>
+          min-width="60"/>
         <el-table-column
           label="创建日期"
           prop="created_at"
-          min-width="120"/>
+          min-width="60"/>
         <el-table-column
           label="操作"
           min-width="120" >
@@ -30,7 +30,7 @@
             <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
             <el-button type="success" size="small" @click="handleClickShow(scope.row)">查看</el-button>
             <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
-            <el-button size="small" @click="handleClickStatics(scope.row)">统计</el-button>
+            <el-button size="small" @click="handleClickStatics(scope.row)">生成班级报告</el-button>
           </template>
         </el-table-column>
       </el-table>
