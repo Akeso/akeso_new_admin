@@ -245,7 +245,7 @@ export const constantRouterMap = [
         path: 'channels',
         name: 'Channels',
         component: () => import('@/views/channels/channels'),
-        meta: { title: 'channels', icon: 'bug', roles: ['doctor', 'admin', 'organization'] }
+        meta: { title: 'channels', icon: 'bug', roles: ['doctor'] }
       }
     ]
   },

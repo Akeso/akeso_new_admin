@@ -10,23 +10,21 @@
         border
         style="width: 100%; margin-top: 10px;"
         @sort-change="handleColumnSort">
-        <el-table-column
-          :label="generateShow('common.last_channel_content')"
-          prop="content"
-          min-width="180"/>
+        <!--<el-table-column-->
+        <!--:label="generateShow('common.last_channel_content')"-->
+        <!--prop="content"-->
+        <!--min-width="180"/>-->
         <el-table-column
           :label="generateShow('common.channel_child')"
           min-width="90">
           <template slot-scope="scope">
             <router-link :to="'/preview/child/'+scope.row.childId">
-              <el-button type="text" size="small">{{ scope.row.childName }}</el-button>
+              <el-badge :value="scope.row.userCount" :hidden="!scope.row.userCount" class="item">
+                <el-button size="small">{{ scope.row.childName }}</el-button>
+              </el-badge>
             </router-link>
           </template>
         </el-table-column>
-        <el-table-column
-          :label="generateShow('common.unread_count')"
-          prop="userCount"
-          min-width="60"/>
         <el-table-column
           :label="generateShow('common.last_channel_time')"
           prop="lastDate"
@@ -128,4 +126,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .item {
+    margin: 8px !important;
+  }
+</style>
 
