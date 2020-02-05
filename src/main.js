@@ -31,8 +31,8 @@ import generateShow from '@/utils/i18n'
 const cableHost = 'ws://' + window.location.host + '/cable'
 console.log('cableHost => ', cableHost)
 // const cable = ActionCable.createConsumer('ws://localhost:3000/cable')
-const cable = ActionCable.createConsumer('ws://staging.akeso.com.cn/cable')
-// const cable = ActionCable.createConsumer(cableHost)
+// const cable = ActionCable.createConsumer('ws://staging.akeso.com.cn/cable')
+const cable = ActionCable.createConsumer(cableHost)
 Vue.prototype.$cable = cable
 
 Vue.prototype.eventBus = eventBus.eventBus
