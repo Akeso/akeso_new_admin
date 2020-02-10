@@ -27,9 +27,7 @@ export default {
       'sidebar'
     ]),
     routes() {
-      var rroutes = this.$router.options.routes
-      // console.log('rroutes => ', rroutes.map((item) => item.meta.roles))
-      return rroutes
+      return this.$router.options.routes
     },
     variables() {
       return variables
