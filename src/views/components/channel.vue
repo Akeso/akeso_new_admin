@@ -55,26 +55,58 @@ export default {
       data: [],
       merchantName: '',
       childName: '',
-      avatar: avatar
+      avatar: avatar,
+      channelId: undefined
     }
   },
   created() {
   },
   methods: {
+    initCable() {
+      var _this = this
+      this.channel = this.$cable.subscriptions.create({
+        channel: 'AdminUserLogsChannel',
+        channel_id: this.channelId
+      }, {
+        connected() {
+          console.log('client connected to server!')
+        },
+        disconnected() {
+          console.log('client disconnected from server!')
+        },
+        received(data) {
+          console.log('data => ', data)
+          _this.data.push(data)
+        }
+      })
+    },
     handleTemplateShow() {
       this.dialogTemplateVisible = true
     },
     handlerClickCancel() {
       this.dialogVisible = false
     },
-    handleShow(val) {
-      this.childId = val
+    getData() {
       fetchLogs({ child_id: this.childId }).then(res => {
         this.merchantName = res.data.merchantName
         this.childName = res.data.childName
         this.data = res.data.items
-        this.dialogVisible = true
+        this.channelId = res.data.channelId
       })
+    },
+    handleShow(val) {
+      this.childId = val
+      this.getData()
+      this.initCable()
+      this.dialogVisible = true
+      // fetchLogs({ child_id: this.childId }).then(res => {
+      //   this.merchantName = res.data.merchantName
+      //   this.childName = res.data.childName
+      //   this.data = res.data.items
+      //   this.channelId = res.data.channelId
+      //   this.initCable()
+      //   this.dialogVisible = true
+      // })
     },
     handleClickSubmit() {
       console.log('提交')
