@@ -3,7 +3,7 @@
     <el-card class="box-card">
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+        <el-button class="filter-item" type="success" icon="el-icon-plus">新增</el-button>
       </div>
 
       <el-table
@@ -23,8 +23,8 @@
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" @click="handleClickEdit(scope.row)">编辑</el-button>
-            <el-button type="danger" size="mini" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
+            <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -33,16 +33,14 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
-    <NewSchool ref="new_school" @create-success="getList"/>
-    <EditSchool ref="edit_school" @update-success="getList"/>
+    <NewScreening />
   </div>
 </template>
+
 <script>
-import { fetchList, deleteItem } from '@/api/schools'
-import NewSchool from './components/new_school'
-import EditSchool from './components/edit_school'
+import NewScreening from './components/new_screening'
 export default {
-  components: { NewSchool, EditSchool },
+  components: { NewScreening },
   data() {
     return {
       list: [],
@@ -65,12 +63,6 @@ export default {
     this.getList()
   },
   methods: {
-    handleClickEdit(val) {
-      this.$refs.edit_school.show(val)
-    },
-    handleClickNew() {
-      this.$refs.new_school.show()
-    },
     handleClickDelete(val) {
       this.$confirm('确认删除本次筛查?', '提示', {
         confirmButtonText: '是',
@@ -88,14 +80,14 @@ export default {
       })
     },
     getList() {
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
-      })
+      // fetchList(this.listQuery).then(response => {
+      //   this.list = response.data.items
+      //   this.total = response.data.total
+      //   // Just to simulate the time of the request
+      //   setTimeout(() => {
+      //     this.listLoading = false
+      //   }, 1.5 * 1000)
+      // })
     },
     handleCurrentChange(val) {
       this.listQuery.page = val
@@ -122,3 +114,6 @@ export default {
 }
 </script>
 
+<style scoped>
+
+</style>

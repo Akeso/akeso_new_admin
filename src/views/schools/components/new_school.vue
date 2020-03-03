@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增筛查" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增学校" width="70%" top="30px">
     <el-form :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" label="学校名称">
         <el-input v-model="temp.name" clearable/>
