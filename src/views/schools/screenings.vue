@@ -3,47 +3,101 @@
     <el-card class="box-card">
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus">新增</el-button>
+        <router-link :to="'/schools/new_screening'">
+          <el-button size="mini" plain icon="el-icon-plus">新增</el-button>
+        </router-link>
+        <el-button size="mini" plain icon="el-icon-search" @click="handleClickShow(currentSelected)">查看</el-button>
+        <el-button size="mini" plain icon="el-icon-edit" @click="handleClickEdit">编辑</el-button>
+        <el-button size="mini" plain icon="el-icon-delete" @click="handleClickDelete(currentSelected)">删除</el-button>
+        <el-button size="mini" plain icon="el-icon-upload2">导入</el-button>
+        <el-button size="mini" plain icon="el-icon-download">模板下载</el-button>
       </div>
 
       <el-table
         :data="list"
         border
         style="width: 100%; margin-top: 10px;"
-        @sort-change="handleColumnSort">
+        highlight-current-row
+        @sort-change="handleColumnSort"
+        @selection-change="handleSelectionChange"
+        @current-change="handleCurrentSelect">
+        <el-table-column
+          type="selection"
+          min-width="10"/>
         <el-table-column
           label="学校"
           prop="name"
-          min-width="90"/>
+          min-width="60"/>
         <el-table-column
-          label="创建日期"
-          prop="created_at"
-          min-width="120"/>
+          label="年级"
+          prop="name"
+          min-width="30"/>
         <el-table-column
-          label="操作"
-          min-width="120" >
+          label="班级"
+          prop="name"
+          min-width="30"/>
+        <el-table-column
+          label="姓名"
+          prop="name"
+          min-width="60"/>
+        <el-table-column
+          label="联系电话"
+          prop="phone"
+          min-width="80"/>
+        <el-table-column
+          label="性别"
+          min-width="40">
           <template slot-scope="scope">
-            <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
-            <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            {{ scope.row.sex | genderFilter }}
           </template>
         </el-table-column>
+        <el-table-column
+          label="年龄"
+          min-width="40">
+          <template slot-scope="scope">
+            {{ scope.row.birthday | ageFilter }}
+          </template>
+        </el-table-column>
+        <el-table-column label="裸眼视力">
+          <el-table-column
+            label="右眼"
+            prop="ucva_od"
+            min-width="40"/>
+          <el-table-column
+            label="左眼"
+            prop="ucva_os"
+            min-width="40"/>
+        </el-table-column>
+        <el-table-column label="戴镜视力">
+          <el-table-column
+            label="右眼"
+            prop="wear_eyesight_od"
+            min-width="40"/>
+          <el-table-column
+            label="左眼"
+            prop="wear_eyesight_os"
+            min-width="40"/>
+        </el-table-column>
+        <el-table-column
+          label="所属机构"
+          prop="merchant_name"
+          min-width="80"/>
       </el-table>
 
       <div class="pagination-container">
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
-    <NewScreening />
   </div>
 </template>
 
 <script>
-import NewScreening from './components/new_screening'
+import { fetchList, deleteItem } from '@/api/screenings'
 export default {
-  components: { NewScreening },
   data() {
     return {
       list: [],
+      currentSelected: {},
       total: null,
       listLoading: true,
       listQuery: {
@@ -63,13 +117,14 @@ export default {
     this.getList()
   },
   methods: {
-    handleClickDelete(val) {
-      this.$confirm('确认删除本次筛查?', '提示', {
+    handleClickDelete() {
+      if (this.noSelectMessage()) { return }
+      this.$confirm('确认删除本条筛查记录?', '提示', {
         confirmButtonText: '是',
         cancelButtonText: '否',
         type: 'warning'
       }).then(() => {
-        deleteItem({ id: val.id }).then(response => {
+        deleteItem({ id: this.currentSelected.id }).then(response => {
           this.getList()
           this.$message({
             type: 'success',
@@ -79,15 +134,15 @@ export default {
       }).catch(() => {
       })
     },
+    handleClickEdit() {
+      if (this.noSelectMessage()) { return }
+      this.$router.push({ path: '/schools/edit_screening/' + this.currentSelected.id })
+    },
     getList() {
-      // fetchList(this.listQuery).then(response => {
-      //   this.list = response.data.items
-      //   this.total = response.data.total
-      //   // Just to simulate the time of the request
-      //   setTimeout(() => {
-      //     this.listLoading = false
-      //   }, 1.5 * 1000)
-      // })
+      fetchList(this.listQuery).then(response => {
+        this.list = response.data.items
+        this.total = response.data.total
+      })
     },
     handleCurrentChange(val) {
       this.listQuery.page = val
@@ -109,11 +164,23 @@ export default {
       this.listQuery.name = ''
       this.listQuery.phone = ''
       this.listQuery.email = ''
+    },
+    handleSelectionChange(value) {
+      console.log('handleSelectionChange => ', value)
+    },
+    handleCurrentSelect(value) {
+      this.currentSelected = value
+    },
+    noSelectMessage() {
+      if (this.currentSelected.id) {
+        return false
+      }
+      this.$message({ type: 'warning', message: '请选择一条数据!' })
+      return true
     }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

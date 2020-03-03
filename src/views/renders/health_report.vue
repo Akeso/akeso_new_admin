@@ -245,14 +245,6 @@ export default {
     BarChart
   },
   filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '--'
-      }
-      return statusMap[status]
-    },
     gradeFilter(status) {
       const gradeMap = {
         a: '优', b: '良', c: '中', d: '差', e: '数据不完整', f: '无'

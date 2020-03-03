@@ -108,15 +108,6 @@ import avatarBoy from '@/assets/images/child_boy.png'
 import avatarGirl from '@/assets/images/child_girl.png'
 export default {
   components: { Contact, Channel, EditChild, EditTags },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女'
-      }
-      return statusMap[status]
-    }
-  },
   props: {
     childId: {
       type: String,

@@ -43,16 +43,6 @@
 <script>
 import { fetchList } from '@/api/products'
 export default {
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       dialogFormVisible: false,

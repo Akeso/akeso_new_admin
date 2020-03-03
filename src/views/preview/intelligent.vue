@@ -93,16 +93,6 @@ import { fetchIntelligentChildren } from '@/api/children'
 import Channel from '../components/channel'
 export default {
   components: { Channel },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,

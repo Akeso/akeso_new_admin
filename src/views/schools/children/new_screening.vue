@@ -1,17 +1,14 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增筛查" width="70%" top="30px">
-    <el-form :model="temp" style="width: 90%; margin-left:20px;">
-      <el-form-item :label-width="formLabelWidth" prop="parent_name" label="家长姓名">
-        <el-input v-model="temp.parent_name" clearable style="width: 50%;"/>
+  <div style="background-color: #ffffff; margin: 20px; padding: 20px;">
+    <el-form :model="temp">
+      <el-form-item :label-width="formLabelWidth" prop="name" label="姓名">
+        <el-input v-model="temp.name" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="phone" label="联系电话">
-        <el-input v-model="temp.phone" disabled style="width: 50%;"/>
-      </el-form-item>
-      <el-form-item :label-width="formLabelWidth" prop="child_name" label="儿童姓名">
-        <el-input v-model="temp.child_name" clearable style="width: 50%;"/>
+        <el-input v-model="temp.phone" clearable style="width: 50%;"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="孩子性别" prop="gender">
-        <el-select v-model="temp.gender" class="filter-item">
+        <el-select v-model="temp.sex" class="filter-item">
           <el-option v-for="item in genderOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
         </el-select>
       </el-form-item>
@@ -41,16 +38,16 @@
           左眼轴向：<el-input v-model="temp.axial_os" clearable style="width: 15%;"/>
         </p>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth">
+        <el-button @click="handleClickCancel">取 消</el-button>
+        <el-button type="primary" @click="handleClickSubmit">确 定</el-button>
+      </el-form-item>
     </el-form>
-    <div slot="footer" class="dialog-footer">
-      <el-button @click="handleClickCancel">取 消</el-button>
-      <el-button type="primary" @click="handleClickSubmit">确 定</el-button>
-    </div>
-  </el-dialog>
+  </div>
 </template>
 
 <script>
-import { updateItem } from '@/api/simple_archives'
+import { createItem } from '@/api/screenings'
 const genderOptions = [
   { key: 'male', display_name: '男' },
   { key: 'female', display_name: '女' }
@@ -58,14 +55,11 @@ const genderOptions = [
 export default {
   data() {
     return {
-      dialogFormVisible: false,
-      formLabelWidth: '120px',
+      formLabelWidth: '200px',
       temp: {
-        id: undefined,
-        parent_name: undefined,
+        name: undefined,
         phone: undefined,
-        child_name: undefined,
-        gender: undefined,
+        sex: undefined,
         birthday: undefined,
         ucva_od: undefined,
         ucva_os: undefined,
@@ -87,32 +81,12 @@ export default {
   },
   methods: {
     handleClickCancel() {
-      this.resetData()
-      this.dialogFormVisible = false
+      this.$router.go(-1)
     },
     handleClickSubmit() {
-      updateItem(this.temp).then(response => {
-        this.resetData()
-        this.dialogFormVisible = false
-        this.$emit('update-success')
+      createItem(this.temp).then(response => {
+        this.$router.go(-1)
       })
-    },
-    show(val) {
-      this.temp = val
-      this.dialogFormVisible = true
-    },
-    resetData() {
-      this.temp = {
-        parent_name: undefined,
-        phone: undefined,
-        child_name: undefined,
-        gender: undefined,
-        birthday: undefined,
-        ucva_od: undefined,
-        ucva_os: undefined,
-        wear_eyesight_od: undefined,
-        wear_eyesight_os: undefined
-      }
     }
   }
 }

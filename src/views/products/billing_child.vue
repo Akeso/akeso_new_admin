@@ -73,16 +73,6 @@ import { createItem } from '@/api/indents'
 import { fetchChild } from '@/api/children'
 export default {
   components: { ProductSelect },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       child: {
