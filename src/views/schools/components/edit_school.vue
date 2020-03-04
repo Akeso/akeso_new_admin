@@ -4,6 +4,11 @@
       <el-form-item :label-width="formLabelWidth" label="学校名称">
         <el-input v-model="temp.name" clearable/>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="学校类别">
+        <el-select v-model="temp.kind" placeholder="请选择">
+          <el-option v-for="item in schoolOptions" :key="item.value" :label="item.label" :value="item.value"/>
+        </el-select>
+      </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="handleClickCancel">取 消</el-button>
@@ -14,6 +19,12 @@
 
 <script>
 import { updateItem } from '@/api/schools'
+const schoolOptions = [
+  { key: 'nursery', value: '幼儿园' },
+  { key: 'small', value: '小学' },
+  { key: 'medium', value: '初中' },
+  { key: 'high', value: '高中' }
+]
 export default {
   data() {
     return {
@@ -21,8 +32,10 @@ export default {
       formLabelWidth: '120px',
       temp: {
         id: undefined,
-        name: undefined
+        name: undefined,
+        kind: undefined
       },
+      schoolOptions: schoolOptions,
       num_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       loading: false
     }

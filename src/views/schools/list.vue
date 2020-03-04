@@ -3,7 +3,7 @@
     <el-card class="box-card">
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+        <el-button class="filter-item" size="small" explain icon="el-icon-plus" @click="handleClickNew">新增</el-button>
       </div>
 
       <el-table
@@ -23,8 +23,8 @@
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
-            <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
-            <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+            <el-button type="primary" size="mini" @click="handleClickEdit(scope.row)">编辑</el-button>
+            <el-button type="danger" size="mini" @click="handleClickDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

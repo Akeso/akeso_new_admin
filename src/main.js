@@ -12,7 +12,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css'
 
-import '@/styles/index.scss' // global css
+import './styles/index.scss' // global css
+
+//  全局引入 过滤器
+import '@/utils/filter'
 
 import App from './App'
 import store from './store'
@@ -28,7 +31,7 @@ import htmlToPdf from '@/utils/htmlToPdf'
 import htmlToPdfObj from '@/utils/htmlToPdfObj'
 import generateShow from '@/utils/i18n'
 
-const cableHost = 'wss://' + window.location.host + '/cable'
+const cableHost = 'ws://' + window.location.host + '/cable'
 console.log('cableHost => ', cableHost)
 // const cable = ActionCable.createConsumer('ws://localhost:3000/cable')
 // const cable = ActionCable.createConsumer('ws://staging.akeso.com.cn/cable')

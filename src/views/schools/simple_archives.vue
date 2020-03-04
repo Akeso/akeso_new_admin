@@ -70,16 +70,6 @@ import EditSimpleArchive from './components/edit_simple_archive'
 import ShowSimpleArchive from './components/show_simple_archive'
 export default {
   components: { NewSimpleArchive, EditSimpleArchive, ShowSimpleArchive },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       uploadData: {
