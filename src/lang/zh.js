@@ -176,7 +176,7 @@ export default {
     wx_organizations: '机构管理',
     weapp: '步步兑换活动',
     data_export: '数据导出',
-    schools: '视力筛查',
+    schools: '学校筛查',
     examines: '筛查列表',
     school_list: '学校管理',
     simple_archives: '筛查列表',

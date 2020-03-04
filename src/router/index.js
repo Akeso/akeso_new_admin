@@ -194,17 +194,6 @@ export const constantRouterMap = [
       component: () => import('@/views/schools/list'),
       meta: { title: 'school_list', icon: 'table' }
     }, {
-      path: 'examines',
-      name: 'examines',
-      component: () => import('@/views/schools/examines'),
-      meta: { title: 'examines', icon: 'table' }
-    }, {
-      path: 'simple_archives',
-      name: 'simple_archives',
-      component: () => import('@/views/schools/simple_archives'),
-      meta: { title: 'simple_archives', icon: 'table' },
-      hidden: true
-    }, {
       path: 'screenings',
       name: 'screenings',
       component: () => import('@/views/schools/screenings'),
@@ -219,6 +208,19 @@ export const constantRouterMap = [
       path: 'edit_screening/:id',
       name: 'edit_screening',
       component: () => import('@/views/schools/children/edit_screening'),
+      meta: { title: 'simple_archives', icon: 'table' },
+      hidden: true
+    },
+    //   {
+    //   path: 'examines',
+    //   name: 'examines',
+    //   component: () => import('@/views/schools/examines'),
+    //   meta: { title: 'examines', icon: 'table' }
+    // },
+    {
+      path: 'simple_archives',
+      name: 'simple_archives',
+      component: () => import('@/views/schools/simple_archives'),
       meta: { title: 'simple_archives', icon: 'table' },
       hidden: true
     }]

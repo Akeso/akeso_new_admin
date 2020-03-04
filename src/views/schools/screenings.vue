@@ -6,11 +6,11 @@
         <router-link :to="'/schools/new_screening'">
           <el-button size="mini" plain icon="el-icon-plus">新增</el-button>
         </router-link>
-        <el-button size="mini" plain icon="el-icon-search" @click="handleClickShow(currentSelected)">查看</el-button>
+        <el-button size="mini" plain icon="el-icon-search" @click="handleClickShow">查看</el-button>
         <el-button size="mini" plain icon="el-icon-edit" @click="handleClickEdit">编辑</el-button>
         <el-button size="mini" plain icon="el-icon-delete" @click="handleClickDelete(currentSelected)">删除</el-button>
-        <el-button size="mini" plain icon="el-icon-upload2">导入</el-button>
-        <el-button size="mini" plain icon="el-icon-download">模板下载</el-button>
+        <el-button size="mini" plain icon="el-icon-upload2" @click="uploadDialogVisible = true">导入</el-button>
+        <el-button size="mini" plain icon="el-icon-download" @click="downloadExc">模板下载</el-button>
       </div>
 
       <el-table
@@ -21,21 +21,21 @@
         @sort-change="handleColumnSort"
         @selection-change="handleSelectionChange"
         @current-change="handleCurrentSelect">
-        <el-table-column
-          type="selection"
-          min-width="10"/>
-        <el-table-column
-          label="学校"
-          prop="name"
-          min-width="60"/>
-        <el-table-column
-          label="年级"
-          prop="name"
-          min-width="30"/>
-        <el-table-column
-          label="班级"
-          prop="name"
-          min-width="30"/>
+        <!--<el-table-column-->
+        <!--type="selection"-->
+        <!--min-width="10"/>-->
+        <!--<el-table-column-->
+        <!--label="学校"-->
+        <!--prop="name"-->
+        <!--min-width="60"/>-->
+        <!--<el-table-column-->
+        <!--label="年级"-->
+        <!--prop="name"-->
+        <!--min-width="30"/>-->
+        <!--<el-table-column-->
+        <!--label="班级"-->
+        <!--prop="name"-->
+        <!--min-width="30"/>-->
         <el-table-column
           label="姓名"
           prop="name"
@@ -88,14 +88,41 @@
         <el-pagination v-show="total>0" :current-page="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" :total="total" background layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
       </div>
     </el-card>
+    <div>
+      <el-dialog
+        :visible.sync="uploadDialogVisible"
+        title="提示"
+        width="30%">
+        <el-upload
+          :limit="1"
+          :data="uploadData"
+          :on-success="uploadSuccess"
+          :file-list="fileList"
+          drag
+          class="upload-demo"
+          action="/api/common/excels/upload_screenings">
+          <i class="el-icon-upload"/>
+          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          <div slot="tip" class="el-upload__tip">只能上传excel文件</div>
+        </el-upload>
+      </el-dialog>
+    </div>
+    <ShowScreening ref="show_screening"/>
   </div>
 </template>
 
 <script>
 import { fetchList, deleteItem } from '@/api/screenings'
+import ShowScreening from './components/show_screening'
 export default {
+  components: { ShowScreening },
   data() {
     return {
+      uploadDialogVisible: false,
+      uploadData: {
+        authenticationToken: this.$store.state.user.authenticationToken
+      },
+      fileList: [],
       list: [],
       currentSelected: {},
       total: null,
@@ -117,6 +144,19 @@ export default {
     this.getList()
   },
   methods: {
+    downloadExc() {
+      window.location.href = 'https://akeso.com.cn/template/筛查记录录入模板.xlsx'
+    },
+    uploadSuccess(file, fileList) {
+      console.log('file => ', file)
+      console.log('fileList => ', fileList)
+      this.fileList = []
+      this.uploadDialogVisible = false
+    },
+    handleClickShow() {
+      if (this.noSelectMessage()) { return }
+      this.$refs.show_screening.show(this.currentSelected)
+    },
     handleClickDelete() {
       if (this.noSelectMessage()) { return }
       this.$confirm('确认删除本条筛查记录?', '提示', {

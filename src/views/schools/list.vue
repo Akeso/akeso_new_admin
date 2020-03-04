@@ -3,7 +3,7 @@
     <el-card class="box-card">
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+        <el-button class="filter-item" size="small" explain icon="el-icon-plus" @click="handleClickNew">新增</el-button>
       </div>
 
       <el-table
