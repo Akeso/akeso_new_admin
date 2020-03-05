@@ -5,9 +5,14 @@
         <el-input v-model="temp.name" clearable/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="学校类别">
-        <el-select v-model="temp.kind" placeholder="请选择">
-          <el-option v-for="item in schoolOptions" :key="item.value" :label="item.label" :value="item.value"/>
+        <el-select v-model="temp.level" placeholder="请选择">
+          <el-option v-for="item in schoolOptions" :key="item.value" :label="item.value" :value="item.key"/>
         </el-select>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="地区">
+        <el-cascader
+          v-model="temp.address"
+          :options="areaList"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -19,24 +24,24 @@
 
 <script>
 import { updateItem } from '@/api/schools'
+import areaList from '@/utils/area.js'
 const schoolOptions = [
-  { key: 'nursery', value: '幼儿园' },
-  { key: 'small', value: '小学' },
-  { key: 'medium', value: '初中' },
-  { key: 'high', value: '高中' }
+  { key: 'primary', value: '小学' },
+  { key: 'junior', value: '初中' }
 ]
 export default {
   data() {
     return {
       dialogFormVisible: false,
       formLabelWidth: '120px',
+      areaList: areaList,
       temp: {
         id: undefined,
         name: undefined,
-        kind: undefined
+        level: undefined,
+        address: []
       },
       schoolOptions: schoolOptions,
-      num_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       loading: false
     }
   },

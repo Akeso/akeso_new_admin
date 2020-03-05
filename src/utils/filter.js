@@ -22,3 +22,15 @@ Vue.filter('ageFilter', (value) => {
   }
   return age
 })
+
+Vue.filter('schoolLevelFilter', (value) => {
+  const levelMap = {
+    nursery: '幼儿园',
+    primary: '小学',
+    junior: '初中',
+    senior: '高中',
+    univer: '大学'
+  }
+  return levelMap[value]
+})
+
