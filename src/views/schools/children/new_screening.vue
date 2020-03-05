@@ -7,6 +7,15 @@
       <el-form-item :label-width="formLabelWidth" prop="phone" label="联系电话">
         <el-input v-model="temp.phone" clearable style="width: 50%;"/>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="批次选择">
+        <el-select v-model="temp.examine_id" placeholder="请选择" style="width: 240px;">
+          <el-option
+            v-for="item in examines"
+            :key="item.name"
+            :label="item.name"
+            :value="item.id"/>
+        </el-select>
+      </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="孩子性别" prop="gender">
         <el-select v-model="temp.sex" class="filter-item">
           <el-option v-for="item in genderOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
@@ -48,6 +57,7 @@
 
 <script>
 import { createItem } from '@/api/screenings'
+import { fetchList } from '@/api/examines'
 const genderOptions = [
   { key: 'male', display_name: '男' },
   { key: 'female', display_name: '女' }
@@ -59,6 +69,7 @@ export default {
       temp: {
         name: undefined,
         phone: undefined,
+        examine_id: undefined,
         sex: undefined,
         birthday: undefined,
         ucva_od: undefined,
@@ -72,14 +83,21 @@ export default {
         cyl_os: undefined,
         axial_os: undefined
       },
+      examines: [],
       genderOptions: genderOptions,
       num_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       loading: false
     }
   },
   created() {
+    this.getExamines()
   },
   methods: {
+    getExamines() {
+      fetchList().then(res => {
+        this.examines = res.data.items
+      })
+    },
     handleClickCancel() {
       this.$router.go(-1)
     },

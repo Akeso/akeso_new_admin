@@ -3,36 +3,39 @@
     <el-card class="box-card">
 
       <div class="filter-container">
-        <el-button class="filter-item" type="success" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+        <el-button explain size="mini" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
+        <el-button size="mini" @click="handleClickEdit">编辑</el-button>
+        <el-button size="mini" @click="handleClickDelete">删除</el-button>
+        <!--<el-button size="mini" @click="handleClickStatics(scope.row)">生成班级报告</el-button>-->
       </div>
 
       <el-table
         :data="list"
         border
+        highlight-current-row
         style="width: 100%; margin-top: 10px;"
+        @current-change="handleCurrentSelect"
         @sort-change="handleColumnSort">
+        <el-table-column
+          label="批次名称"
+          prop="name"
+          min-width="60"/>
         <el-table-column
           label="学校"
           prop="school_name"
           min-width="60"/>
         <el-table-column
+          label="年级"
+          prop="class_value"
+          min-width="30"/>
+        <el-table-column
           label="班级"
-          prop="class_grade"
-          min-width="60"/>
+          prop="grade_value"
+          min-width="30"/>
         <el-table-column
           label="创建日期"
           prop="created_at"
           min-width="60"/>
-        <el-table-column
-          label="操作"
-          min-width="120" >
-          <template slot-scope="scope">
-            <el-button type="primary" size="small" @click="handleClickEdit(scope.row)">编辑</el-button>
-            <el-button type="success" size="small" @click="handleClickShow(scope.row)">查看</el-button>
-            <el-button type="danger" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
-            <el-button size="small" @click="handleClickStatics(scope.row)">生成班级报告</el-button>
-          </template>
-        </el-table-column>
       </el-table>
 
       <div class="pagination-container">
@@ -66,21 +69,17 @@ export default {
         type: undefined,
         sort_prop: undefined,
         sort_order: undefined
-      }
+      },
+      currentSelected: {}
     }
   },
   created() {
     this.getList()
   },
   methods: {
-    handleClickLocation(val) {
-      this.$refs.location.show(val)
-    },
-    handleClickSkilled(val) {
-      this.$refs.services.show(val)
-    },
-    handleClickEdit(val) {
-      this.$refs.editExamine.show(val)
+    handleClickEdit() {
+      if (this.noSelectMessage()) { return }
+      this.$refs.editExamine.show(this.currentSelected)
     },
     handleClickStatics(val) {
       this.$refs.examineStatistics.show(val)
@@ -91,18 +90,16 @@ export default {
     handleClickShow(val) {
       this.$router.push({ path: '/schools/simple_archives?examine_id=' + val.id })
     },
-    handleClickDelete(val) {
+    handleClickDelete() {
+      if (this.noSelectMessage()) { return }
       this.$confirm('确认删除本次筛查?', '提示', {
         confirmButtonText: '是',
         cancelButtonText: '否',
         type: 'warning'
       }).then(() => {
-        deleteItem({ id: val.id }).then(response => {
+        deleteItem({ id: this.currentSelected.id }).then(res => {
           this.getList()
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          })
+          this.$message({ type: 'success', message: '删除成功!' })
         })
       }).catch(() => {
       })
@@ -137,6 +134,16 @@ export default {
       this.listQuery.name = ''
       this.listQuery.phone = ''
       this.listQuery.email = ''
+    },
+    handleCurrentSelect(value) {
+      this.currentSelected = value
+    },
+    noSelectMessage() {
+      if (this.currentSelected.id) {
+        return false
+      }
+      this.$message({ type: 'warning', message: '请选择一条数据!' })
+      return true
     }
   }
 }

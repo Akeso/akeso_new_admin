@@ -24,18 +24,14 @@
         <!--<el-table-column-->
         <!--type="selection"-->
         <!--min-width="10"/>-->
-        <!--<el-table-column-->
-        <!--label="学校"-->
-        <!--prop="name"-->
-        <!--min-width="60"/>-->
-        <!--<el-table-column-->
-        <!--label="年级"-->
-        <!--prop="name"-->
-        <!--min-width="30"/>-->
-        <!--<el-table-column-->
-        <!--label="班级"-->
-        <!--prop="name"-->
-        <!--min-width="30"/>-->
+        <el-table-column
+          label="学校"
+          prop="school_name"
+          min-width="60"/>
+        <el-table-column
+          label="筛查批次"
+          prop="examine_name"
+          min-width="60"/>
         <el-table-column
           label="姓名"
           prop="name"
@@ -92,7 +88,7 @@
       <el-dialog
         :visible.sync="uploadDialogVisible"
         title="提示"
-        width="30%">
+        width="40%">
         <el-upload
           :limit="1"
           :data="uploadData"
@@ -147,11 +143,12 @@ export default {
     downloadExc() {
       window.location.href = 'https://akeso.com.cn/template/筛查记录录入模板.xlsx'
     },
-    uploadSuccess(file, fileList) {
-      console.log('file => ', file)
+    uploadSuccess(res, fileList) {
+      this.$message({ type: 'warning', message: res.message })
       console.log('fileList => ', fileList)
       this.fileList = []
       this.uploadDialogVisible = false
+      this.getList()
     },
     handleClickShow() {
       if (this.noSelectMessage()) { return }

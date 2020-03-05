@@ -16,6 +16,13 @@
           prop="name"
           min-width="90"/>
         <el-table-column
+          label="类别"
+          min-width="90">
+          <template slot-scope="scope">
+            {{ scope.row.level | schoolLevelFilter }}
+          </template>
+        </el-table-column>
+        <el-table-column
           label="创建日期"
           prop="created_at"
           min-width="120"/>

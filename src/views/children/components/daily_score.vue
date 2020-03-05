@@ -63,7 +63,7 @@
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkBurdenPercent" status="exception" class="progress-l-r"/>
       </el-col>
-      <el-col :span="4" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/22公斤</el-col>
+      <el-col :span="4" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/18公斤</el-col>
     </el-row>
     <el-row class="margin-bottom">
       <el-col :span="4" class="text-center text-standard-font">近距离用眼时间</el-col>
