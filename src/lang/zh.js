@@ -180,7 +180,9 @@ export default {
     examines: '筛查批次',
     school_list: '学校管理',
     simple_archives: '筛查列表',
-    screenings: '筛查记录'
+    screenings: '筛查记录',
+    school_report: '视力报告',
+    report_distribute: '视力分布'
   },
   device: {
     deviceType: '镜腿型号'
