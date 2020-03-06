@@ -45,7 +45,7 @@
   </div>
 </template>
 <script>
-import { fetchList, deleteItem } from '@/api/schools'
+import { fetchSchools, deleteItem } from '@/api/schools'
 import NewSchool from './components/new_school'
 import EditSchool from './components/edit_school'
 export default {
@@ -95,7 +95,7 @@ export default {
       })
     },
     getList() {
-      fetchList(this.listQuery).then(response => {
+      fetchSchools(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
         // Just to simulate the time of the request

@@ -31,7 +31,7 @@
         <el-table-column
           label="筛查批次"
           prop="examine_name"
-          min-width="60"/>
+          min-width="90"/>
         <el-table-column
           label="姓名"
           prop="name"

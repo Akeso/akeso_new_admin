@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/schools'
+import { fetchSchools } from '@/api/schools'
 import { createItem } from '@/api/examines'
 export default {
   data() {
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     getSchools() {
-      fetchList().then(res => {
+      fetchSchools().then(res => {
         this.schools = res.data.items
       })
     },
