@@ -31,9 +31,7 @@ service.interceptors.response.use(
     /**
      * code为非20000是抛错 可结合自己业务进行修改
      */
-    console.log('response : ', response)
     const res = response.data
-    console.log('res : ', res)
     if (res.status === 402) {
       MessageBox.confirm(
         '你已被登出，请重新登录',

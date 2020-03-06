@@ -20,8 +20,8 @@ module.exports = {
         // }
       },
       '/cable': {
-        target: 'ws://staging.akeso.com.cn/',  //目标接口域名
-        // target: 'ws://localhost:3000/',
+        // target: 'ws://staging.akeso.com.cn/',  //目标接口域名
+        target: 'ws://localhost:3000/',
         changeOrigin: true
       }
     },

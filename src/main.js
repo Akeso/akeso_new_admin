@@ -31,8 +31,10 @@ import htmlToPdf from '@/utils/htmlToPdf'
 import htmlToPdfObj from '@/utils/htmlToPdfObj'
 import generateShow from '@/utils/i18n'
 
-const cableHost = 'ws://' + window.location.host + '/cable'
+const cableHost = process.env.WS_PRE + window.location.host + '/cable'
 console.log('cableHost => ', cableHost)
+
+console.log('process.env => ', process.env)
 // const cable = ActionCable.createConsumer('ws://localhost:3000/cable')
 // const cable = ActionCable.createConsumer('ws://staging.akeso.com.cn/cable')
 const cable = ActionCable.createConsumer(cableHost)
