@@ -49,9 +49,6 @@ export default {
       'avatarUrl'
     ])
   },
-  mounted: function() {
-    // console.log('mouted.', this.$store.state.user)
-  },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')

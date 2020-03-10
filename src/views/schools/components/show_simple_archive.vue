@@ -108,14 +108,6 @@
 <script>
 export default {
   filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    },
     wearStateFilter(status) {
       const statusMap = {
         no_wear: '无',

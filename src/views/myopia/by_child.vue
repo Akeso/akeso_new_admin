@@ -90,14 +90,6 @@ export default {
         uncontact: '无法联系'
       }
       return statusMap[status]
-    },
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
     }
   },
   data() {

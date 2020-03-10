@@ -36,11 +36,11 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="右眼视力"
+          label="右眼裸眼视力"
           prop="ucva_od"
           min-width="90"/>
         <el-table-column
-          label="左眼视力"
+          label="左眼裸眼视力"
           prop="ucva_os"
           min-width="90"/>
         <el-table-column
@@ -70,16 +70,6 @@ import EditSimpleArchive from './components/edit_simple_archive'
 import ShowSimpleArchive from './components/show_simple_archive'
 export default {
   components: { NewSimpleArchive, EditSimpleArchive, ShowSimpleArchive },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       uploadData: {

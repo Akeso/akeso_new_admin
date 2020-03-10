@@ -58,9 +58,7 @@ export default {
           this.$router.push({ path: '/mobile/bind_success', query: { child_id: this.child_id }})
         }).catch(() => {
         })
-        console.log('绑定成功')
       })
-      // this.$router.push({ path: '/mobile/bind_success' })
     },
     changeSelectChild(val) {
       this.errorVisible = false

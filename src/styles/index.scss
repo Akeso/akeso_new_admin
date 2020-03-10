@@ -13,6 +13,11 @@ body {
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
+.current-row > td {
+  //background: #2b91c9 !important;
+  background: #a9bbc1 !important;
+}
+
 label {
   font-weight: 700;
 }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VCharts from 'v-charts'
 import VeLine from 'v-charts/lib/line.common'
 import CKEditor from '@ckeditor/ckeditor5-vue'
-import ActionCableVue from 'actioncable-vue'
+import ActionCable from 'actioncable'
 
 import Cookies from 'js-cookie'
 
@@ -12,7 +12,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css'
 
-import '@/styles/index.scss' // global css
+import './styles/index.scss' // global css
+
+//  全局引入 过滤器
+import '@/utils/filter'
 
 import App from './App'
 import store from './store'
@@ -28,13 +31,14 @@ import htmlToPdf from '@/utils/htmlToPdf'
 import htmlToPdfObj from '@/utils/htmlToPdfObj'
 import generateShow from '@/utils/i18n'
 
-const cableHost = 'ws://' + window.location.host + '/cable'
-Vue.use(ActionCableVue, {
-  debug: true,
-  debugLevel: 'error',
-  connectionUrl: cableHost,
-  connectImmediately: true
-})
+const cableHost = process.env.WS_PRE + window.location.host + '/cable'
+console.log('cableHost => ', cableHost)
+
+console.log('process.env => ', process.env)
+// const cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+// const cable = ActionCable.createConsumer('ws://staging.akeso.com.cn/cable')
+const cable = ActionCable.createConsumer(cableHost)
+Vue.prototype.$cable = cable
 
 Vue.prototype.eventBus = eventBus.eventBus
 

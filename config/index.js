@@ -15,11 +15,12 @@ module.exports = {
         // target: 'http://akeso.com.cn/',//目标接口域名
         target: 'http://localhost:3000/',  //目标接口域名
         changeOrigin: true,  //是否跨域
-        pathRewrite: {
-          '^/api': '/api'   //重写接口
-        }
+        // pathRewrite: {
+        //   '^/api': '/api'   //重写接口
+        // }
       },
       '/cable': {
+        // target: 'ws://staging.akeso.com.cn/',  //目标接口域名
         target: 'ws://localhost:3000/',
         changeOrigin: true
       }
@@ -44,15 +45,9 @@ module.exports = {
     /**
      * Source Maps
      */
-
     // https://webpack.js.org/configuration/devtool/#development
     devtool: 'cheap-source-map',
 
-    // CSS Sourcemaps off by default because relative paths are "buggy"
-    // with this option, according to the CSS-Loader README
-    // (https://github.com/webpack/css-loader#sourcemaps)
-    // In our experience, they generally work as expected,
-    // just be aware of this issue when enabling this option.
     cssSourceMap: false
   },
 

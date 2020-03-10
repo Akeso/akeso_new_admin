@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import schoolRoutes from './schools'
+import renderRoutes from './render'
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
@@ -180,36 +182,55 @@ export const constantRouterMap = [
         meta: { title: 'by_child', icon: 'table' }
       }
     ]
-  },
-  {
+  }, {
     path: '/schools',
     component: Layout,
-    redirect: '/schools/examines',
+    redirect: '/schools/school_list',
     name: 'schools',
     meta: { title: 'schools', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
-    children: [
-      {
-        path: 'examines',
-        name: 'examines',
-        component: () => import('@/views/schools/examines'),
-        meta: { title: 'examines', icon: 'table' }
-      },
-      {
-        path: 'simple_archives',
-        name: 'simple_archives',
-        component: () => import('@/views/schools/simple_archives'),
-        meta: { title: 'simple_archives', icon: 'table' },
-        hidden: true
-      },
-      {
-        path: 'school_list',
-        name: 'school_list',
-        component: () => import('@/views/schools/list'),
-        meta: { title: 'school_list', icon: 'table' }
-      }
+    children: [{
+      path: 'school_list',
+      name: 'school_list',
+      component: () => import('@/views/schools/schools'),
+      meta: { title: 'school_list', icon: 'table' }
+    }, {
+      path: 'examines',
+      name: 'examines',
+      component: () => import('@/views/schools/examines'),
+      meta: { title: 'examines', icon: 'table' }
+    }, {
+      path: 'screenings',
+      name: 'screenings',
+      component: () => import('@/views/schools/screenings'),
+      meta: { title: 'screenings', icon: 'table' }
+    }, {
+      path: 'new_screening',
+      name: 'new_screening',
+      component: () => import('@/views/schools/children/new_screening'),
+      meta: { title: 'simple_archives', icon: 'table' },
+      hidden: true
+    }, {
+      path: 'edit_screening/:id',
+      name: 'edit_screening',
+      component: () => import('@/views/schools/children/edit_screening'),
+      meta: { title: 'simple_archives', icon: 'table' },
+      hidden: true
+    },
+    {
+      path: 'report/distribute',
+      name: 'reportDistribute',
+      component: () => import('@/views/schools/reports/distribute'),
+      meta: { title: 'report_distribute', icon: 'table' }
+    }
+    // {
+    //   path: 'simple_archives',
+    //   name: 'simple_archives',
+    //   component: () => import('@/views/schools/simple_archives'),
+    //   meta: { title: 'simple_archives', icon: 'table' },
+    //   hidden: true
+    // }
     ]
-  },
-  {
+  }, {
     path: '/doctors',
     component: Layout,
     only: true,
@@ -245,7 +266,7 @@ export const constantRouterMap = [
         path: 'channels',
         name: 'Channels',
         component: () => import('@/views/channels/channels'),
-        meta: { title: 'channels', icon: 'bug', roles: ['doctor', 'admin', 'organization'] }
+        meta: { title: 'channels', icon: 'bug', roles: ['doctor'] }
       }
     ]
   },
@@ -430,11 +451,7 @@ export const constantRouterMap = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const constantRenderMap = [
-  { path: '/render/health_report', component: () => import('@/views/renders/health_report'), hidden: true }
-]
-
-var routesMap = constantRouterMap.concat(constantRenderMap)
+var routesMap = constantRouterMap.concat(renderRoutes)
 
 export default new Router({
   mode: 'history', // 后端支持可开

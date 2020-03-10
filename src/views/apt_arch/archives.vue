@@ -84,16 +84,6 @@ export default {
   components: {
     NewArchive
   },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女',
-        unknown: '未知'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,

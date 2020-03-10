@@ -83,8 +83,6 @@ export default {
     },
     permissionShow(item) {
       if (item.meta === undefined) { return true }
-      // console.log('item => ', item.meta.roles)
-      // console.log('item flag => ', item.meta.roles.includes('agent'))
       // if (!item.meta.roles) { return true }
       if (item.meta.roles.includes(this.baseType)) { return true }
       return false

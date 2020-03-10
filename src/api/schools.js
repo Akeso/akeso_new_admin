@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
+export function fetchSchools(query) {
   return request({
     url: '/api/a1/schools',
     method: 'get',

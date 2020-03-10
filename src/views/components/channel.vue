@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="聊天" width="60%" top="30px">
-      <div style="height: 300px;overflow-y: scroll; padding: 20px;background-color: rgba(196,196,196,0.23);">
+      <div style="height: 600px;overflow-y: scroll; padding: 20px;background-color: rgba(196,196,196,0.23);">
         <el-row v-for="item in data" :style="{ textAlign: item.source === 'merchant' ? 'right' : 'left' }" :key="item.id" :gutter="20" class="chat-con">
           <!--<el-tag type="success">{{ item.source === 'merchant' ? merchantName : childName }}</el-tag>-->
           <div :class="item.source === 'merchant' ? 'header-logr' : 'header-logl'"> <img :src="avatar" alt=""></div>
@@ -55,26 +55,58 @@ export default {
       data: [],
       merchantName: '',
       childName: '',
-      avatar: avatar
+      avatar: avatar,
+      channelId: undefined
     }
   },
   created() {
   },
   methods: {
+    initCable() {
+      var _this = this
+      this.channel = this.$cable.subscriptions.create({
+        channel: 'AdminUserLogsChannel',
+        channel_id: this.channelId
+      }, {
+        connected() {
+          console.log('client connected to server!')
+        },
+        disconnected() {
+          console.log('client disconnected from server!')
+        },
+        received(data) {
+          console.log('data => ', data)
+          _this.data.push(data)
+        }
+      })
+    },
     handleTemplateShow() {
       this.dialogTemplateVisible = true
     },
     handlerClickCancel() {
       this.dialogVisible = false
     },
-    handleShow(val) {
-      this.childId = val
+    getData() {
       fetchLogs({ child_id: this.childId }).then(res => {
         this.merchantName = res.data.merchantName
         this.childName = res.data.childName
         this.data = res.data.items
-        this.dialogVisible = true
+        this.channelId = res.data.channelId
       })
+    },
+    handleShow(val) {
+      this.childId = val
+      this.getData()
+      this.initCable()
+      this.dialogVisible = true
+      // fetchLogs({ child_id: this.childId }).then(res => {
+      //   this.merchantName = res.data.merchantName
+      //   this.childName = res.data.childName
+      //   this.data = res.data.items
+      //   this.channelId = res.data.channelId
+      //   this.initCable()
+      //   this.dialogVisible = true
+      // })
     },
     handleClickSubmit() {
       console.log('提交')

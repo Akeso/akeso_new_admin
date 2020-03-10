@@ -179,15 +179,6 @@ import WeekHealthItemPdf from '../components/week_health_item_pdf'
 import avatar from '@/assets/images/child_boy.png'
 export default {
   components: { MonthHealthItem, WeekHealthItemPdf },
-  filters: {
-    genderFilter(status) {
-      const statusMap = {
-        male: '男',
-        female: '女'
-      }
-      return statusMap[status]
-    }
-  },
   props: {
     userId: {
       type: String,
