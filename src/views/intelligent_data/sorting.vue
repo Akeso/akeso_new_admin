@@ -13,6 +13,10 @@
 
       <el-row style="margin: 10px 0px 10px 0px;">
         <el-col>
+          {{ generateShow('common.name') }}:
+          <el-input v-model="listQuery.name" :label="generateShow('common.name')" :placeholder="generateShow('common.name')" style="width: 100px;" class="filter-item" clearable />
+          {{ generateShow('common.phone') }}:
+          <el-input v-model="listQuery.phone" :label="generateShow('common.phone')" :placeholder="generateShow('common.phone')" style="width: 150px;" class="filter-item" clearable />
           {{ generateShow('common.select_date') }}
           <el-date-picker
             :clearable="false"
@@ -143,7 +147,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        importance: undefined,
+        name: undefined,
+        phone: undefined,
         startDate: new Date(),
         endDate: new Date(),
         sortProp: '',
@@ -180,6 +185,7 @@ export default {
     },
     getList() {
       fetchSorting(this.listQuery).then(response => {
+        console.log('aa => ', response)
         this.list = response.data.items
         this.total = response.data.total
       })
