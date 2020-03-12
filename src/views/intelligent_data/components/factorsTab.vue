@@ -5,15 +5,17 @@
         <tr>
           <td rowspan="4" class="td-20 title-font">健康因素</td>
           <td class="td-20 title-font tab-header" style="width: 16%;">监测项目</td>
-          <td class="td-20 title-font tab-header" style="width: 20%;">标准值</td>
-          <td class="td-20 title-font tab-header" style="width: 20%;">建议达标值</td>
-          <td class="td-20 title-font tab-header" style="width: 20%;">监测结果</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">标准值</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">建议达标值</td>
+          <td class="td-20 title-font tab-header" style="width: 10%;">达标天数</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">监测结果</td>
           <td class="td-20 title-font tab-header" style="width: 10%;">评分</td>
         </tr>
         <tr>
           <td class="title-font">户外时间</td>
           <td>120分钟/天</td>
-          <td>≥80分钟/天</td>
+          <td>≥60分钟/天</td>
+          <td>{{ reachDays.outTime }}天</td>
           <td class="c-blue">{{ outTime }}分钟/天</td>
           <td class="c-blue">{{ outTimeCondition(outTime) }}</td>
         </tr>
@@ -21,6 +23,7 @@
           <td class="title-font">阳光摄入</td>
           <td>36W lux/天</td>
           <td>≥24W lux/天</td>
+          <td>{{ reachDays.outTimeLux }}天</td>
           <td class="c-blue">{{ outTimeLux }}lux/天</td>
           <td class="c-blue">{{ outTimeLuxCondition(outTimeLux) }}</td>
         </tr>
@@ -28,6 +31,7 @@
           <td class="title-font">运动步数</td>
           <td>12000步/天</td>
           <td>≥8000步/天</td>
+          <td>{{ reachDays.stepCount }}天</td>
           <td class="c-blue">{{ stepCount }}步/天</td>
           <td class="c-blue">{{ stepCountCondition(stepCount) }}</td>
         </tr>
@@ -36,6 +40,7 @@
           <td class="title-font">颈椎与用眼负荷</td>
           <td>720D/天</td>
           <td>≤480D/天</td>
+          <td>{{ reachDays.nearworkBurdenDay }}天</td>
           <td class="c-blue">{{ nearworkBurdenDay }}D/天</td>
           <td class="c-blue">{{ nearworkBurdenDayCondition(nearworkBurdenDay) }}</td>
         </tr>
@@ -43,6 +48,7 @@
           <td class="title-font">不良用眼姿势</td>
           <td>45次/天</td>
           <td>≤30次/天</td>
+          <td>{{ reachDays.badPostureTimes }}天</td>
           <td class="c-blue">{{ badPostureTimes }}次/天</td>
           <td class="c-blue">{{ badPostureTimesCondition(badPostureTimes) }}</td>
         </tr>
@@ -50,6 +56,7 @@
           <td class="title-font">近距离用眼时间</td>
           <td>240分钟/天</td>
           <td>≤160分钟/天</td>
+          <td>{{ reachDays.nearworkDay }}天</td>
           <td class="c-blue">{{ nearworkDay }}分钟/天</td>
           <td class="c-blue">{{ nearworkDayCondition(nearworkDay) }}</td>
         </tr>
@@ -63,11 +70,30 @@
 </template>
 
 <script>
-// import { fetchList } from '@/api/article'
-// import Sortable from 'sortablejs'
-import { outTimeCondition, outTimeLuxCondition, stepCountCondition, nearworkBurdenDayCondition, nearworkDayCondition, badPostureTimesCondition } from '@/utils/standard'
+import {
+  outTimeCondition,
+  outTimeLuxCondition,
+  stepCountCondition,
+  nearworkBurdenDayCondition,
+  nearworkDayCondition,
+  badPostureTimesCondition
+} from '@/utils/standard'
+
 export default {
   props: {
+    reachDays: {
+      type: Object,
+      default: function() {
+        return {
+          outTime: 0,
+          stepCount: 0,
+          outTimeLux: 0,
+          nearworkDay: 0,
+          nearworkBurdenDay: 0,
+          badPostureTimes: 0
+        }
+      }
+    },
     outTime: {
       type: Number,
       default: 0
@@ -154,32 +180,37 @@ export default {
 </script>
 
 <style scoped>
-.icon-star{
-  margin-right:2px;
-}
-.drag-handler{
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-.show-d{
-  margin-top: 15px;
-}
-.table-cls{
-  width: 100%;
-  border:.5px solid #ebeef5;
-  border-left: 0.5px solid #ebeef5;
-  border-top: .5px;
-}
-.table-cls td,.table-cls tr{
-  border-right: 0.5px solid #ebeef5;
-  border-bottom: 0.5px;
-  border-left: 0.5px;
-  border-top: 0.5px solid #ebeef5;
-  border-color:#ebeef5;
-}
-.tab-header{
-  background: #27adff;
-  color: #fff;
-}
+  .icon-star {
+    margin-right: 2px;
+  }
+
+  .drag-handler {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .show-d {
+    margin-top: 15px;
+  }
+
+  .table-cls {
+    width: 100%;
+    border: .5px solid #ebeef5;
+    border-left: 0.5px solid #ebeef5;
+    border-top: .5px;
+  }
+
+  .table-cls td, .table-cls tr {
+    border-right: 0.5px solid #ebeef5;
+    border-bottom: 0.5px;
+    border-left: 0.5px;
+    border-top: 0.5px solid #ebeef5;
+    border-color: #ebeef5;
+  }
+
+  .tab-header {
+    background: #27adff;
+    color: #fff;
+  }
 </style>
