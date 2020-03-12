@@ -184,7 +184,7 @@
             </el-row>
           </el-col>
         </el-row>
-        <factors-tab :out-time="outTime.average" :step-count="stepCount.average" :lux-day="luxDay.average" :nearwork-day="nearworkDay.average" :nearwork-burden-day="nearworkBurdenDay.average" :bad-posture-times="badPostureTimes.average"/>
+        <factors-tab :out-time="outTime.average" :step-count="stepCount.average" :out-time-lux="luxDay.average" :nearwork-day="nearworkDay.average" :nearwork-burden-day="nearworkBurdenDay.average" :bad-posture-times="badPostureTimes.average"/>
       </el-card>
       <el-row class="position">
         <el-button class="pdf-itemt right" type="primary" @click="getPdfs('#pdfT', '高危人群报告')">生成PDF</el-button>

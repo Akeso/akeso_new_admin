@@ -103,19 +103,6 @@ export const constantRouterMap = [
     meta: { title: 'aptArch', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
     children: [
       {
-        path: 'admin_appoints',
-        name: 'AdminAppoints',
-        only: true,
-        component: () => import('@/views/apt_arch/admin_appoints'),
-        meta: { title: 'admin_appoints', icon: 'table' }
-      },
-      {
-        path: 'appointments',
-        name: 'Appointments',
-        component: () => import('@/views/apt_arch/appointments'),
-        meta: { title: 'appointments', icon: 'table' }
-      },
-      {
         path: 'archives',
         name: 'Archives',
         component: () => import('@/views/apt_arch/archives'),
@@ -169,6 +156,19 @@ export const constantRouterMap = [
       //   component: () => import('@/views/myopia/high_warn'),
       //   meta: { title: 'high_warn', icon: 'table' }
       // },
+      {
+        path: 'admin_appoints',
+        name: 'AdminAppoints',
+        only: true,
+        component: () => import('@/views/apt_arch/admin_appoints'),
+        meta: { title: 'admin_appoints', icon: 'table' }
+      },
+      {
+        path: 'appointments',
+        name: 'Appointments',
+        component: () => import('@/views/apt_arch/appointments'),
+        meta: { title: 'appointments', icon: 'table' }
+      },
       {
         path: 'by_data',
         name: 'byData',
@@ -330,27 +330,27 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/courses',
-    component: Layout,
-    only: true,
-    meta: { title: 'courses', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
-    children: [
-      {
-        path: 'courses',
-        name: 'Courses',
-        component: () => import('@/views/courses/index'),
-        meta: { title: 'courses', icon: 'people' }
-      },
-      {
-        path: 'courses/:id(\\d+)',
-        name: 'Questions',
-        component: () => import('@/views/courses/questions'),
-        meta: { title: 'questions', icon: 'people' },
-        hidden: true
-      }
-    ]
-  },
+  // {
+  //   path: '/courses',
+  //   component: Layout,
+  //   only: true,
+  //   meta: { title: 'courses', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
+  //   children: [
+  //     {
+  //       path: 'courses',
+  //       name: 'Courses',
+  //       component: () => import('@/views/courses/index'),
+  //       meta: { title: 'courses', icon: 'people' }
+  //     },
+  //     {
+  //       path: 'courses/:id(\\d+)',
+  //       name: 'Questions',
+  //       component: () => import('@/views/courses/questions'),
+  //       meta: { title: 'questions', icon: 'people' },
+  //       hidden: true
+  //     }
+  //   ]
+  // },
   {
     path: '/system_setting',
     component: Layout,
