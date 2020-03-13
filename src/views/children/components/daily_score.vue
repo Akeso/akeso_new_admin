@@ -1,6 +1,6 @@
 <template>
   <el-card class="box-card">
-    <el-row style="margin-bottom: 10px;">
+    <el-row class="margin-bottom">
       <el-col>
         <label for="">选择日期</label>
         <el-date-picker
@@ -21,63 +21,83 @@
           <div style="text-align: center;">
             <span class="text-score">{{ healthScore.healthIndex }}</span>
           </div>
-          <div style="text-align: center; margin-top: 10px;">
+          <div class="margin-bottom text-center">
             <span style="font-size: 14px; background: #2bd710; padding: 8px 12px; border-radius:25px; color: #fff;">总加分{{ healthScore.upScoreMax }}</span>
             <span style="font-size: 14px; background: #d71f1f; padding: 8px 12px; border-radius:25px; color: #fff;">总减分{{ healthScore.downScoreMax }}</span>
           </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <span style="font-size: 16px;">戴镜时间{{ healthScore.wearTime }}分钟 </span>
+          <div class="margin-bottom text-center">
+            <span style="font-size: 16px; font-weight: bold;">戴镜时间{{ healthScore.wearTime }}分钟 </span>
           </div>
         </el-row>
       </el-col>
       <el-col :span="14">
-        <span class="des-font" style="line-height: 30px;">
+        <span class="des-font margin-bottom" style="line-height: 30px;">
           诺瞳眼健康评分（eye-health index），
           是借助“物联网”的数据采集技术和智能硬件对户外活动 、近距离用眼、运动步数等近视相关指标进行精准量化计算得出的用眼健康状况量化数值，100分为满分。
         </span>
       </el-col>
     </el-row>
-    <el-row style="margin-top: 20px;" class="margin-bottom">
-      <el-col :span="4" class="text-center text-standard-font">户外时间</el-col>
+    <el-row class="margin-bottom">
+      <el-col :span="4" class="text-right text-standard-font">户外时间</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.outTimePercent" status="success" class="progress-l-r"/>
       </el-col>
       <el-col :span="4" class="text-standard-font">{{ healthScore.outTime }}/120分钟</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="4" class="text-center text-standard-font">光照摄入</el-col>
+      <el-col :span="4" class="text-right text-standard-font">光照摄入</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.luxDayPercent" status="success" class="progress-l-r"/>
       </el-col>
       <el-col :span="4" class="text-standard-font">{{ healthScore.outTimeLux }}/360000lux</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="4" class="text-center text-standard-font">运动步数</el-col>
+      <el-col :span="4" class="text-right text-standard-font">运动步数</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.stepCountPercent" status="success" class="progress-l-r"/>
       </el-col>
       <el-col :span="4" class="text-standard-font">{{ healthScore.stepCount }}/12000步</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="4" class="text-center text-standard-font">颈椎和用眼负担/分钟</el-col>
+      <el-col :span="4" class="text-right text-standard-font">颈椎和用眼负担/分钟</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkBurdenPercent" status="exception" class="progress-l-r"/>
       </el-col>
       <el-col :span="4" class="text-standard-font">{{ healthScore.nearworkBurdenDay }}/18公斤</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="4" class="text-center text-standard-font">近距离用眼时间</el-col>
+      <el-col :span="4" class="text-right text-standard-font">近距离用眼时间</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.nearworkPercent" status="exception" class="progress-l-r"/>
       </el-col>
       <el-col :span="4" class="text-standard-font">{{ healthScore.nearworkDay }}/260分钟</el-col>
     </el-row>
     <el-row class="margin-bottom">
-      <el-col :span="4" class="text-center text-standard-font">不良姿势提醒</el-col>
+      <el-col :span="4" class="text-right text-standard-font">不良姿势提醒</el-col>
       <el-col :span="16">
         <el-progress :text-inside="true" :stroke-width="18" :percentage="healthScore.badPostureTimesPercent" status="exception" class="progress-l-r"/>
       </el-col>
       <el-col :span="4" class="text-standard-font">{{ healthScore.badPostureTimes }}/45次</el-col>
+    </el-row>
+    <el-row style="padding: 20px 20px 0px 20px;">
+      <table border="5" cellspacing="0" cellpadding="10" class="table-cls">
+        <tr>
+          <td class="td-20 title-font tab-header" style="width: 16%;">光照摄入（阈值）</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">>1000lux</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">>2000lux</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">>5000lux</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">>10000lux</td>
+          <td class="td-20 title-font tab-header" style="width: 16%;">>25000lux</td>
+        </tr>
+        <tr>
+          <td class="title-font">时间（分钟）</td>
+          <td>{{ healthScore.luxThreshold[0] }}</td>
+          <td>{{ healthScore.luxThreshold[1] }}</td>
+          <td>{{ healthScore.luxThreshold[2] }}</td>
+          <td>{{ healthScore.luxThreshold[3] }}</td>
+          <td>{{ healthScore.luxThreshold[4] }}</td>
+        </tr>
+      </table>
     </el-row>
     <div style="padding: 40px 20px 0px 20px;">
       <el-row :gutter="20">
@@ -174,6 +194,7 @@ export default {
   methods: {
     getDaily() {
       fetchDaily({ child_id: this.userId, selectDate: this.selectDate }).then(response => {
+        console.log('data => ', response.data)
         this.healthScore = response.data
         this.hourOutTime = response.data.outTimeHour
         this.hourLux = response.data.luxHour
@@ -190,7 +211,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .el-progress-bar__outer {
   background-color: gray !important;
 }
@@ -200,18 +221,27 @@ export default {
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
 .text-standard-font {
   font-size: 14px;
 }
 .margin-bottom {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .progress-l-r {
   margin-left: 8px;
   margin-right: 8px;
 }
-  .des-font {
-    font-size: 14px;
-    color: black;
-  }
+.des-font {
+  font-size: 14px;
+  color: black;
+}
+.table-cls {
+  width: 100%;
+  border: .5px solid #ebeef5;
+  border-left: 0.5px solid #ebeef5;
+  border-top: .5px;
+}
 </style>
