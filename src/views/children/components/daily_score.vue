@@ -183,7 +183,9 @@ export default {
       hourNearwork: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       hourBadPostureTimes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       selectDate: new Date(),
-      healthScore: {}
+      healthScore: {
+        luxThreshold: [0, 0, 0, 0, 0]
+      }
     }
   },
   created() {
