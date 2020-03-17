@@ -15,7 +15,8 @@
         </el-col>
       </el-row>
       <el-row style="margin: 10px;">
-        <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF
+        </el-button>
         <el-button class="filter-item" type="primary" icon="el-icon-download">
           <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">导出Excel</a>
         </el-button>
@@ -53,14 +54,10 @@
           <div>
             <div class="tags">
               <h3>近视高危临床分类</h3>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="7">&nbsp;&nbsp;近视家族史</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="8">&nbsp;&nbsp;远视储备不足</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="9">&nbsp;&nbsp;视力不良/弱视</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="12">&nbsp;&nbsp;视近内隐斜</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="7">&nbsp;&nbsp;近视家族史</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="8">&nbsp;&nbsp;远视储备不足</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="9">&nbsp;&nbsp;视力不良/弱视</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="12">&nbsp;&nbsp;视近内隐斜</label>
               <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="14">&nbsp;&nbsp;眼球调节/集合功能紊乱</label>
             </div>
             <div class="weekly-contents">
@@ -84,74 +81,73 @@
                 </div>
                 <div class="adding-score c-green">加分项</div>
                 <el-row class="indicator-title">
-                  <el-col :span="12" class="text-left text-standard-font">户外时间</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.outTime }}/120分钟</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">户外时间
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.outTime }}/120分钟
+                  </el-col>
                 </el-row>
                 <el-row>
-                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.outTimePercent"
-                               status="success" class="progress-l-r"/>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.outTimePercent" status="success" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">光照摄入</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.luxDay }}/360000lux</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">光照摄入
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.luxDay }}/360000lux
+                  </el-col>
                 </el-row>
                 <el-row>
-                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.luxDayPercent"
-                               status="success" class="progress-l-r"/>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.luxDayPercent" status="success" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">运动步数</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.stepCount }}/12000步</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">运动步数
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.stepCount }}/12000步
+                  </el-col>
                 </el-row>
                 <el-row>
-                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.stepCountPercent"
-                               status="success" class="progress-l-r"/>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.stepCountPercent" status="success" class="progress-l-r"/>
                 </el-row>
                 <div class="score-des red-back">
                   <span>左边为本月平均数据，右边为参考范围</span>
                 </div>
                 <div class="adding-score c-red m-t-1">减分项</div>
                 <el-row class="indicator-title">
-                  <el-col :span="12" class="text-left text-standard-font">颈椎和用眼负担/分钟</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">颈椎和用眼负担/分钟
+                  </el-col>
                   <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkBurdenDay }}/22公斤
                   </el-col>
                 </el-row>
                 <el-row>
-                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkBurdenDayPercent"
-                               status="exception" class="progress-l-r"/>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">近距离用眼时间</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkDay }}/260分钟</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">近距离用眼时间
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkDay }}/260分钟
+                  </el-col>
                 </el-row>
                 <el-row>
-                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkDayPercent"
-                               status="exception" class="progress-l-r"/>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkDayPercent" status="exception" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">不良姿势提醒</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.badPostureTimes }}/24次</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">不良姿势提醒
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.badPostureTimes }}/24次
+                  </el-col>
                 </el-row>
                 <el-row>
-                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent"
-                               status="exception" class="progress-l-r"/>
+                  <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
                 </el-row>
               </el-col>
             </el-row>
             <div class="tags">
               <h3>诊断意见</h3>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="1">&nbsp;&nbsp;行为追踪干预</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="2">&nbsp;&nbsp;框架眼镜</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="3">&nbsp;&nbsp;视功能训练</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="4">&nbsp;&nbsp;角膜塑形镜</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="5">&nbsp;&nbsp;低浓度阿托品</label>
-              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox"
-                            value="6">&nbsp;&nbsp;病理性近视</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="1">&nbsp;&nbsp;行为追踪干预</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="2">&nbsp;&nbsp;框架眼镜</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="3">&nbsp;&nbsp;视功能训练</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="4">&nbsp;&nbsp;角膜塑形镜</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="5">&nbsp;&nbsp;低浓度阿托品</label>
+              <label><input v-model="child.tagIds" name="type_clinical" type="checkbox" value="6">&nbsp;&nbsp;病理性近视</label>
             </div>
           </div>
         </div>
@@ -195,7 +191,7 @@
 </template>
 
 <script>
-import {fetchMonthly} from '@/api/reports'
+import { fetchMonthly } from '@/api/reports'
 import MonthHealthItem from '../components/month_health_item'
 import WeekHealthItemPdf from '../components/week_health_item_pdf'
 import factorsTab from '@/views/intelligent_data/components/factorsTab'
@@ -210,7 +206,7 @@ export default {
     },
     child: {
       type: Object,
-      default: function () {
+      default: function() {
         return {}
       }
     }
@@ -304,7 +300,7 @@ export default {
     }
   },
   computed: {
-    htmlTitle: function () {
+    htmlTitle: function() {
       return this.selectDate + '月报'
     }
   },
