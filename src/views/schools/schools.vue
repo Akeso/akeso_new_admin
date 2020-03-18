@@ -23,6 +23,10 @@
           </template>
         </el-table-column>
         <el-table-column
+          label="所属机构"
+          prop="doctor_name"
+          min-width="100"/>
+        <el-table-column
           label="创建日期"
           prop="created_at"
           min-width="120"/>
@@ -96,6 +100,7 @@ export default {
     },
     getList() {
       fetchSchools(this.listQuery).then(response => {
+        console.log('response => ', response)
         this.list = response.data.items
         this.total = response.data.total
         // Just to simulate the time of the request

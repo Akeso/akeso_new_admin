@@ -6,7 +6,6 @@
       <!--</div>-->
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
         <h3 class="title">艾索健康后台管理系统</h3>
-        <h3 class="title-sub">{{ accountText }}</h3>
         <el-form-item prop="username">
           <span class="svg-container">
             <svg-icon icon-class="user" />
@@ -33,9 +32,6 @@
             {{ $t('login.logIn') }}
           </el-button>
         </el-form-item>
-        <el-button type="primary" @click="changeLoginType">
-          切换登录方式
-        </el-button>
         <div class="tips">
           <span style="margin-right:20px;">AKESO信息管理平台 技术支持：400-778-0080</span>
         </div>
@@ -69,8 +65,7 @@ export default {
     return {
       loginForm: {
         username: '',
-        password: '',
-        account_type: 'admin'
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -79,11 +74,6 @@ export default {
       loading: false,
       pwdType: 'password',
       redirect: undefined
-    }
-  },
-  computed: {
-    accountText: function() {
-      return this.loginForm.account_type === 'admin' ? '管理员登录' : '代理商登录'
     }
   },
   watch: {
@@ -95,13 +85,6 @@ export default {
     }
   },
   methods: {
-    changeLoginType() {
-      if (this.loginForm.account_type === 'admin') {
-        this.loginForm.account_type = 'agent'
-      } else {
-        this.loginForm.account_type = 'admin'
-      }
-    },
     showPwd() {
       if (this.pwdType === 'password') {
         this.pwdType = ''

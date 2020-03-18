@@ -79,7 +79,6 @@ export default {
       return this.isAdmin ? item.name !== 'Appointments' : !item.only
     },
     permissionShow(item) {
-      console.log('item.roles => ', item.roles)
       if (item.roles === undefined) { return true }
       // if (!item.meta.roles) { return true }
       if (item.roles.includes(this.baseType)) { return true }

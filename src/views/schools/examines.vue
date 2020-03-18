@@ -33,6 +33,10 @@
           prop="grade_value"
           min-width="30"/>
         <el-table-column
+          label="所属机构"
+          prop="merchant_name"
+          min-width="60"/>
+        <el-table-column
           label="创建日期"
           prop="created_at"
           min-width="60"/>

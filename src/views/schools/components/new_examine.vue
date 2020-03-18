@@ -57,7 +57,6 @@ export default {
     }
   },
   created() {
-    this.getSchools()
   },
   methods: {
     getSchools() {
@@ -77,6 +76,7 @@ export default {
       })
     },
     show() {
+      this.getSchools()
       this.dialogFormVisible = true
     },
     resetData() {
