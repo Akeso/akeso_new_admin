@@ -197,7 +197,7 @@ export default {
           type: 'line',
           data: [],
           tooltip: {
-            formatter: '{b0}: {c0}<br />11111{a0}: {c0}'
+            formatter: '{b0}: {c0}<br />{a0}: {c0}'
           },
           lineStyle: {
             normal: {
@@ -310,6 +310,7 @@ export default {
     getForecasts: function() {
       if (this.conditionQuery.sight_type === 'short') {
         fetchForecasts(this.conditionQuery).then(response => {
+          console.log('response => ', response)
           this.xAxis.data = response.data.ages
           this.series_short[0].data = response.data.noCtrlData
           this.series_short[1].data = response.data.ctrlDataDefault
