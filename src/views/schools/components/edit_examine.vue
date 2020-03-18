@@ -60,7 +60,6 @@ export default {
     }
   },
   created() {
-    this.getSchools()
   },
   methods: {
     getSchools() {
@@ -80,6 +79,7 @@ export default {
       })
     },
     show(val) {
+      this.getSchools()
       this.temp = val
       console.log('aaa => ', this.temp)
       this.dialogFormVisible = true

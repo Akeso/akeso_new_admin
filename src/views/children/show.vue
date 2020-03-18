@@ -8,10 +8,9 @@
 <script>
 import Information from './components/information'
 import HealthData from './components/health_data'
+
 export default {
-  components: {
-    Information, HealthData
-  },
+  components: { Information, HealthData },
   data() {
     return {
       defaultTabName: 'first',
@@ -28,8 +27,7 @@ export default {
       this.defaultTabName = this.$route.query.tabName
     }
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 

@@ -15,7 +15,8 @@
         </el-col>
       </el-row>
       <el-row style="margin: 10px;">
-        <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF</el-button>
+        <el-button class="filter-item" type="primary" icon="el-icon-download" @click="getPdf()">导出PDF
+        </el-button>
         <el-button class="filter-item" type="primary" icon="el-icon-download">
           <a :href="downloadUrl + '?child_id=' + userId + '&selectDate=' + selectDate">导出Excel</a>
         </el-button>
@@ -80,22 +81,28 @@
                 </div>
                 <div class="adding-score c-green">加分项</div>
                 <el-row class="indicator-title">
-                  <el-col :span="12" class="text-left text-standard-font">户外时间</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.outTime }}/120分钟</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">户外时间
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.outTime }}/120分钟
+                  </el-col>
                 </el-row>
                 <el-row>
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.outTimePercent" status="success" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">光照摄入</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.luxDay }}/360000lux</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">光照摄入
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.luxDay }}/360000lux
+                  </el-col>
                 </el-row>
                 <el-row>
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.luxDayPercent" status="success" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">运动步数</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.stepCount }}/12000步</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">运动步数
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.stepCount }}/12000步
+                  </el-col>
                 </el-row>
                 <el-row>
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.stepCountPercent" status="success" class="progress-l-r"/>
@@ -105,7 +112,8 @@
                 </div>
                 <div class="adding-score c-red m-t-1">减分项</div>
                 <el-row class="indicator-title">
-                  <el-col :span="12" class="text-left text-standard-font">颈椎和用眼负担/分钟</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">颈椎和用眼负担/分钟
+                  </el-col>
                   <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkBurdenDay }}/22公斤
                   </el-col>
                 </el-row>
@@ -113,15 +121,19 @@
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkBurdenDayPercent" status="exception" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">近距离用眼时间</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkDay }}/260分钟</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">近距离用眼时间
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.nearworkDay }}/260分钟
+                  </el-col>
                 </el-row>
                 <el-row>
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.nearworkDayPercent" status="exception" class="progress-l-r"/>
                 </el-row>
                 <el-row class="indicator-title m-t">
-                  <el-col :span="12" class="text-left text-standard-font">不良姿势提醒</el-col>
-                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.badPostureTimes }}/24次</el-col>
+                  <el-col :span="12" class="text-left text-standard-font">不良姿势提醒
+                  </el-col>
+                  <el-col :span="12" class="text-standard-font text-right">{{ monthData.badPostureTimes }}/24次
+                  </el-col>
                 </el-row>
                 <el-row>
                   <el-progress :text-inside="true" :stroke-width="18" :percentage="monthData.badPostureTimesPercent" status="exception" class="progress-l-r"/>
@@ -179,14 +191,14 @@
 </template>
 
 <script>
-import {fetchMonthly} from '@/api/reports'
+import { fetchMonthly } from '@/api/reports'
 import MonthHealthItem from '../components/month_health_item'
 import WeekHealthItemPdf from '../components/week_health_item_pdf'
 import factorsTab from '@/views/intelligent_data/components/factorsTab'
 import avatar from '@/assets/images/child_boy.png'
 
 export default {
-  components: {MonthHealthItem, WeekHealthItemPdf, factorsTab},
+  components: { MonthHealthItem, WeekHealthItemPdf, factorsTab },
   props: {
     userId: {
       type: String,
@@ -297,7 +309,7 @@ export default {
   },
   methods: {
     getData() {
-      fetchMonthly({child_id: this.userId, date: this.selectDate}).then(response => {
+      fetchMonthly({ child_id: this.userId, date: this.selectDate }).then(response => {
         console.log('response => ', response)
         this.timeArray = response.data.timeArray
         this.healthIndexArray = response.data.healthIndexArray
