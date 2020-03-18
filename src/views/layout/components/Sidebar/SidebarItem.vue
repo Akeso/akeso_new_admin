@@ -76,15 +76,13 @@ export default {
   },
   methods: {
     canShow(item) {
-      // if(item.name === 'Appointments') {
-      //   return
-      // }
       return this.isAdmin ? item.name !== 'Appointments' : !item.only
     },
     permissionShow(item) {
-      if (item.meta === undefined) { return true }
+      console.log('item.roles => ', item.roles)
+      if (item.roles === undefined) { return true }
       // if (!item.meta.roles) { return true }
-      if (item.meta.roles.includes(this.baseType)) { return true }
+      if (item.roles.includes(this.baseType)) { return true }
       return false
     },
     englishShowingItem(children, parent) {

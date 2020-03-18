@@ -10,6 +10,10 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
+import childRoutes from './modules/child'
+import intelligentRoutes from './modules/intelligent'
+import myopiaRoutes from './modules/myopia'
+import schoolRoutes from './modules/schools'
 
 /**
  * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -40,8 +44,7 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    // hidden: true,
-    meta: { roles: ['doctor', 'admin', 'organization', 'organization'] },
+    roles: ['doctor', 'admin', 'organization', 'agent'],
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
@@ -50,57 +53,18 @@ export const constantRouterMap = [
         title: 'dashboard',
         icon: 'dashboard',
         noCache: true,
-        roles: ['doctor', 'admin', 'organization', 'organization']
+        roles: ['doctor', 'admin', 'organization', 'agent']
       }
     }]
   },
-  {
-    path: '/preview',
-    component: Layout,
-    redirect: '/preview/allchildren',
-    name: 'Preview',
-    meta: { title: 'preview', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
-    children: [
-      // {
-      //   path: 'overview',
-      //   name: 'Overview',
-      //   component: () => import('@/views/preview/overview'),
-      //   meta: { title: 'overview', icon: 'table' }
-      // },
-      {
-        path: 'children',
-        name: 'children',
-        component: () => import('@/views/preview/children'),
-        meta: { title: 'children', icon: 'people', noCache: true },
-        hidden: true
-      },
-      {
-        path: 'allchildren',
-        name: 'Allchildren',
-        component: () => import('@/views/preview/allchildren'),
-        meta: { title: 'allchildren', icon: 'table' }
-      },
-      {
-        path: 'intelligent',
-        name: 'Intelligent',
-        component: () => import('@/views/preview/intelligent'),
-        meta: { title: 'intelligent', icon: 'table' }
-      },
-      {
-        path: 'child/:id(\\d+)',
-        name: 'ShowChild',
-        component: () => import('@/views/children/show'),
-        meta: { title: 'showChild', noCache: true },
-        hidden: true
-      }
-    ]
-  },
+  childRoutes,
   {
     path: '/apt_arch',
     component: Layout,
     redirect: '/apt_arch/appintments',
     name: 'aptArch',
-    meta: { title: 'aptArch', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
+    roles: ['doctor', 'admin', 'organization'],
+    meta: { title: 'aptArch', icon: 'example' },
     children: [
       {
         path: 'archives',
@@ -110,136 +74,27 @@ export const constantRouterMap = [
       }
     ]
   },
+  intelligentRoutes,
+  myopiaRoutes,
+  schoolRoutes,
   {
-    path: '/intelligent_data',
-    component: Layout,
-    redirect: '/intelligent_data/class_warn',
-    name: 'intelligentData',
-    meta: { title: 'intelligentData', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
-    children: [
-      {
-        path: 'sorting',
-        name: 'sorting',
-        component: () => import('@/views/intelligent_data/sorting'),
-        meta: { title: 'sorting', icon: 'table' }
-      },
-      {
-        path: 'analytics',
-        name: 'analytics',
-        component: () => import('@/views/intelligent_data/analytics'),
-        meta: { title: 'analytics', icon: 'table' }
-      },
-      {
-        path: 'group_report',
-        name: 'groupReport',
-        component: () => import('@/views/intelligent_data/group_report'),
-        meta: { title: 'group_report', icon: 'table' }
-      },
-      {
-        path: 'data_export',
-        name: 'dataExport',
-        component: () => import('@/views/intelligent_data/data_export'),
-        meta: { title: 'data_export', icon: 'table' }
-      }
-    ]
-  },
-  {
-    path: '/myopia',
-    component: Layout,
-    redirect: '/myopia/high_warn',
-    name: 'myopia',
-    meta: { title: 'myopia', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
-    children: [
-      // {
-      //   path: 'highwarn',
-      //   name: 'highWarn',
-      //   component: () => import('@/views/myopia/high_warn'),
-      //   meta: { title: 'high_warn', icon: 'table' }
-      // },
-      {
-        path: 'admin_appoints',
-        name: 'AdminAppoints',
-        only: true,
-        component: () => import('@/views/apt_arch/admin_appoints'),
-        meta: { title: 'admin_appoints', icon: 'table' }
-      },
-      {
-        path: 'appointments',
-        name: 'Appointments',
-        component: () => import('@/views/apt_arch/appointments'),
-        meta: { title: 'appointments', icon: 'table' }
-      },
-      {
-        path: 'by_data',
-        name: 'byData',
-        component: () => import('@/views/myopia/by_data'),
-        meta: { title: 'by_data', icon: 'table' }
-      },
-      {
-        path: 'by_child',
-        name: 'byChild',
-        component: () => import('@/views/myopia/by_child'),
-        meta: { title: 'by_child', icon: 'table' }
-      }
-    ]
-  }, {
-    path: '/schools',
-    component: Layout,
-    redirect: '/schools/school_list',
-    name: 'schools',
-    meta: { title: 'schools', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
-    children: [{
-      path: 'school_list',
-      name: 'school_list',
-      component: () => import('@/views/schools/schools'),
-      meta: { title: 'school_list', icon: 'table' }
-    }, {
-      path: 'examines',
-      name: 'examines',
-      component: () => import('@/views/schools/examines'),
-      meta: { title: 'examines', icon: 'table' }
-    }, {
-      path: 'screenings',
-      name: 'screenings',
-      component: () => import('@/views/schools/screenings'),
-      meta: { title: 'screenings', icon: 'table' }
-    }, {
-      path: 'new_screening',
-      name: 'new_screening',
-      component: () => import('@/views/schools/children/new_screening'),
-      meta: { title: 'simple_archives', icon: 'table' },
-      hidden: true
-    }, {
-      path: 'edit_screening/:id',
-      name: 'edit_screening',
-      component: () => import('@/views/schools/children/edit_screening'),
-      meta: { title: 'simple_archives', icon: 'table' },
-      hidden: true
-    },
-    {
-      path: 'report/distribute',
-      name: 'reportDistribute',
-      component: () => import('@/views/schools/reports/distribute'),
-      meta: { title: 'report_distribute', icon: 'table' }
-    }
-      // {
-      //   path: 'simple_archives',
-      //   name: 'simple_archives',
-      //   component: () => import('@/views/schools/simple_archives'),
-      //   meta: { title: 'simple_archives', icon: 'table' },
-      //   hidden: true
-      // }
-    ]
-  }, {
     path: '/doctors',
     component: Layout,
     only: true,
+    roles: ['admin', 'agent'],
+    meta: { title: 'merchants', icon: 'example' },
     children: [
       {
         path: 'doctors',
         name: 'Doctors',
         component: () => import('@/views/doctors/doctors'),
         meta: { title: 'doctors', icon: 'people', roles: ['doctor', 'admin', 'organization'] }
+      },
+      {
+        path: 'agents',
+        name: 'Agents',
+        component: () => import('@/views/doctors/agents'),
+        meta: { title: 'agents', icon: 'people', roles: ['doctor', 'admin', 'organization'] }
       }
     ]
   },
@@ -247,7 +102,7 @@ export const constantRouterMap = [
     path: '/frequency',
     component: Layout,
     only: true,
-    meta: { roles: ['doctor', 'admin', 'organization'] },
+    roles: ['admin'],
     children: [
       {
         path: 'frequency',
@@ -260,7 +115,7 @@ export const constantRouterMap = [
   {
     path: '/channels',
     component: Layout,
-    meta: { roles: ['doctor', 'admin', 'organization'] },
+    roles: ['doctor', 'admin', 'organization'],
     children: [
       {
         path: 'channels',
@@ -273,7 +128,7 @@ export const constantRouterMap = [
   {
     path: '/popular_science_centers',
     component: Layout,
-    meta: { roles: ['doctor', 'admin', 'organization'] },
+    roles: ['admin'],
     children: [
       {
         path: 'popular_science_centers',
@@ -287,7 +142,7 @@ export const constantRouterMap = [
     path: '/removements',
     component: Layout,
     only: true,
-    meta: { roles: ['doctor', 'admin', 'organization'] },
+    roles: ['doctor', 'admin', 'organization'],
     children: [
       {
         path: 'removements',
@@ -300,7 +155,8 @@ export const constantRouterMap = [
   {
     path: '/billings',
     component: Layout,
-    meta: { title: 'billings', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
+    roles: ['doctor', 'admin', 'organization'],
+    meta: { title: 'billings', icon: 'example' },
     children: [
       {
         path: 'logs',
@@ -320,7 +176,8 @@ export const constantRouterMap = [
   {
     path: '/products',
     component: Layout,
-    meta: { title: 'productManage', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
+    roles: ['doctor', 'admin', 'organization'],
+    meta: { title: 'productManage', icon: 'example' },
     children: [
       {
         path: 'products',
@@ -357,7 +214,8 @@ export const constantRouterMap = [
     only: true,
     redirect: '/system_setting/devices',
     name: 'systemSetting',
-    meta: { title: 'systemSetting', icon: 'example', roles: ['doctor', 'admin', 'organization'] },
+    roles: ['admin'],
+    meta: { title: 'systemSetting', icon: 'example' },
     children: [
       {
         path: 'devices',
@@ -417,7 +275,7 @@ export const constantRouterMap = [
     path: '/enChildren',
     component: Layout,
     only: true,
-    meta: { roles: ['doctor', 'admin', 'organization'] },
+    roles: ['admin'],
     children: [
       {
         path: 'enChildren',
@@ -438,7 +296,7 @@ export const constantRouterMap = [
   {
     path: '/account',
     component: Layout,
-    meta: { roles: ['doctor', 'admin', 'organization'] },
+    roles: ['doctor', 'admin', 'organization'],
     children: [
       {
         path: 'index',
