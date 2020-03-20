@@ -32,6 +32,10 @@
           prop="name"
           min-width="90"/>
         <el-table-column
+          label="代理级别"
+          prop="depth"
+          min-width="60"/>
+        <el-table-column
           :label="generateShow('common.address')"
           prop="address"
           min-width="120"/>

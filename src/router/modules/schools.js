@@ -1,13 +1,13 @@
 import Layout from '@/views/layout/Layout'
 
-// 预约随访
+// 学校筛查
 
 const routes = {
   path: '/schools',
   component: Layout,
   redirect: '/schools/school_list',
   name: 'schools',
-  roles: ['doctor', 'admin', 'organization'],
+  roles: ['doctor', 'admin', 'organization', 'agent'],
   meta: { title: 'schools', icon: 'example' },
   children: [{
     path: 'school_list',
