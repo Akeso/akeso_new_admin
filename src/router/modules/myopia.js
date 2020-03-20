@@ -7,7 +7,7 @@ const routes = {
   component: Layout,
   redirect: '/myopia/high_warn',
   name: 'myopia',
-  roles: ['doctor', 'admin', 'organization'],
+  roles: ['doctor', 'admin', 'organization', 'agent'],
   meta: { title: 'myopia', icon: 'example' },
   children: [
     // {

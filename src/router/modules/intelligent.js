@@ -7,7 +7,7 @@ const routes = {
   component: Layout,
   redirect: '/intelligent_data/class_warn',
   name: 'intelligentData',
-  roles: ['doctor', 'admin', 'organization'],
+  roles: ['doctor', 'admin', 'organization', 'agent'],
   meta: { title: 'intelligentData', icon: 'example' },
   children: [
     {
