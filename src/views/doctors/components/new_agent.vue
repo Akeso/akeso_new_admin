@@ -2,7 +2,7 @@
   <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增代理商账号" width="70%" top="30px">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
-        <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="机构/医生名称"/>
+        <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="代理商名称"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
         <el-input v-model="temp.principal" clearable style="width: 50%;" placeholder="负责人" />
