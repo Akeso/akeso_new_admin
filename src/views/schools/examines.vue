@@ -33,6 +33,10 @@
           prop="grade_value"
           min-width="30"/>
         <el-table-column
+          label="筛查数量"
+          prop="screenings_count"
+          min-width="30"/>
+        <el-table-column
           label="所属机构"
           prop="merchant_name"
           min-width="60"/>
