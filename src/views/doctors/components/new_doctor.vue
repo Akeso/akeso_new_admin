@@ -30,6 +30,7 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="email" label="登录账号">
         <el-input v-model="temp.email" style="width: 50%;"/>
+        <el-button type="primary" @click="onClickInspectEmail">检查账号</el-button>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="password" label="登录密码">
         <el-input v-model="temp.password" type="password" style="width: 50%;"/>
@@ -77,6 +78,7 @@
 
 <script>
 import { createItem } from '@/api/doctors'
+import { checkEmail } from '@/api/merchants'
 import { fetchChinaData } from '@/api/china_map'
 const base_types = [
   { key: 'organization', value: '机构' },
@@ -159,6 +161,11 @@ export default {
   created() {
   },
   methods: {
+    onClickInspectEmail() { // 检查账号
+      checkEmail({ email: this.temp.email }).then(res => {
+        console.log('res => ', res.data)
+      })
+    },
     handleClickCancel() {
       this.resetData()
       this.dialogFormVisible = false

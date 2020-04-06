@@ -58,6 +58,10 @@
           prop="email"
           min-width="160"/>
         <el-table-column
+          label="所属代理"
+          prop="parentName"
+          min-width="160"/>
+        <el-table-column
           :label="generateShow('common.created_at')"
           prop="createdAt"
           min-width="120"/>
