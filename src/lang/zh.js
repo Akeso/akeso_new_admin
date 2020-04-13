@@ -156,7 +156,7 @@ export default {
     feedback: '意见反馈',
     organizations: '机构管理',
     merchants: '账户管理',
-    doctors: '医生机构',
+    doctors: '申请医生机构',
     agents: '代理商',
     systemSetting: '系统设置',
     devices: '镜腿设备',
