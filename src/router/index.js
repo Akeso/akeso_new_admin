@@ -274,8 +274,7 @@ export const constantRouterMap = [
   {
     path: '/enChildren',
     component: Layout,
-    only: true,
-    roles: ['admin'],
+    roles: ['doctor', 'admin', 'organization'],
     children: [
       {
         path: 'enChildren',

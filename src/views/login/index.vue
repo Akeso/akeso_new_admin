@@ -100,9 +100,10 @@ export default {
             this.loading = false
             if (this.$store.getters.baseType === 'admin' || this.$store.getters.baseType === 'organization') {
               this.$router.push({ path: '/' })
-            } else {
-              this.$router.push({ path: '/doctors' })
             }
+            // else {
+            //   this.$router.push({ path: '/doctors' })
+            // }
             location.reload()
           }).catch((e) => {
             this.loading = false
