@@ -1,8 +1,9 @@
 import { login, logout } from '@/api/login'
 import { setToken, removeToken } from '@/utils/auth'
 
+const defaultUserInfo = '{"id": 0, "name": null, "email": null, "avatarUrl": null, "authenticationToken": "", "type": "", "baseType": "", "super": true, "controlPaths": []}'
 const user = {
-  state: JSON.parse(localStorage.getItem('user') || '{"id": 0, "name": null, "email": null, "avatarUrl": null, "authenticationToken": "", "type": "", "baseType": ""}'),
+  state: JSON.parse(localStorage.getItem('user') || defaultUserInfo),
 
   mutations: {
     SET_TOKEN: (state, token) => {
@@ -94,7 +95,9 @@ const user = {
     baseType: state => state.baseType,
     email: state => state.email,
     avatarUrl: state => state.avatarUrl,
-    authenticationToken: state => state.authenticationToken
+    authenticationToken: state => state.authenticationToken,
+    controlPaths: state => state.controlPaths,
+    super: state => state.super
   }
 }
 

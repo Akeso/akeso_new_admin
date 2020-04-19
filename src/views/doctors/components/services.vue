@@ -44,7 +44,6 @@ export default {
     getServiceList() {
       fetchList().then(res => {
         this.dataOptions = res.data
-        console.log('data => ', this.dataOptions)
       })
     },
     handleClickCancel() {
@@ -63,7 +62,6 @@ export default {
     },
     handleChangeData(val) {
       console.log('val => ', val)
-      console.log('checkBox => ', this.checkedOptions)
     },
     show(val) {
       this.getServiceList()
