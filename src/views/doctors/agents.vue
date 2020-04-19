@@ -55,6 +55,7 @@
           label="操作"
           min-width="120" >
           <template slot-scope="scope">
+            <el-button v-if="$store.getters.super && !scope.row.super" type="text" size="small" @click="handleClickEditPaths(scope.row)">编辑权限</el-button>
             <el-button type="text" size="small" @click="handleClickEdit(scope.row)">{{ generateShow('common.modify') }}</el-button>
             <el-button type="text" size="small" @click="handleClickDelete(scope.row)">{{ generateShow('common.delete') }}</el-button>
           </template>
@@ -67,15 +68,17 @@
     </el-card>
     <NewAgent ref="newAgent" @create-success="getList"/>
     <EditAgent ref="editAgent" @update-success="getList"/>
+    <ControlPaths v-if="controlState" :item="currentItem" @hidden="hideControl"/>
   </div>
 </template>
 <script>
 import { fetchList, deleteItem, authorizeDoctor } from '@/api/agents'
 import NewAgent from './components/new_agent'
 import EditAgent from './components/edit_agent'
+import ControlPaths from './components/control_paths'
 
 export default {
-  components: { NewAgent, EditAgent },
+  components: { NewAgent, EditAgent, ControlPaths },
   filters: {
     stateFileter(state) {
       const stateMap = {
@@ -88,6 +91,8 @@ export default {
   },
   data() {
     return {
+      controlState: false,
+      currentItem: undefined,
       list: null,
       total: null,
       listLoading: true,
@@ -108,6 +113,14 @@ export default {
     this.getList()
   },
   methods: {
+    hideControl(val) {
+      if (val) { this.getList() }
+      this.controlState = false
+    },
+    handleClickEditPaths(item) {
+      this.currentItem = item
+      this.controlState = true
+    },
     handleClickAuthorize(val) {
       this.$confirm('确定要审核通过该账户吗?', '提示', {
         confirmButtonText: '是',
@@ -129,8 +142,6 @@ export default {
     },
     handleClickNew() {
       this.$refs.newAgent.show()
-    },
-    handleClick(val) {
     },
     handleClickDelete(val) {
       this.$confirm('确认删除该账号?', '提示', {
