@@ -12,6 +12,7 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="email" label="登录账号">
         <el-input v-model="temp.email" style="width: 50%;"/>
+        <el-button type="primary" @click="onClickInspectEmail">检查账号</el-button>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="password" label="登录密码">
         <el-input v-model="temp.password" type="password" style="width: 50%;"/>
@@ -60,7 +61,7 @@
 <script>
 import { createItem } from '@/api/agents'
 import { fetchChinaData } from '@/api/china_map'
-
+import { checkEmail } from '@/api/merchants'
 export default {
   data() {
     return {
@@ -124,6 +125,15 @@ export default {
   created() {
   },
   methods: {
+    onClickInspectEmail() { // 检查账号
+      checkEmail({ email: this.temp.email }).then(res => {
+        if (res.data) {
+          this.$message({ message: '该账号已被注册', type: 'warning' })
+        } else {
+          this.$message({ message: '恭喜你，该账号可以注册', type: 'success' })
+        }
+      })
+    },
     handleClickCancel() {
       this.resetData()
       this.dialogFormVisible = false
