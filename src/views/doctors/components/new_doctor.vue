@@ -6,20 +6,12 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="账户类型">
         <el-select v-model="temp.base_type" placeholder="请选择" style="width: 130px;">
-          <el-option
-            v-for="item in base_types"
-            :key="item.key"
-            :label="item.value"
-            :value="item.key"/>
+          <el-option v-for="item in base_types" :key="item.key" :label="item.value" :value="item.key"/>
         </el-select>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="类别">
         <el-select v-model="temp.cate" placeholder="请选择" style="width: 130px;">
-          <el-option
-            v-for="item in cateNames"
-            :key="item.key"
-            :label="item.value"
-            :value="item.key"/>
+          <el-option v-for="item in cateNames" :key="item.key" :label="item.value" :value="item.key"/>
         </el-select>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="负责人" prop="gender">
@@ -41,25 +33,13 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="地区">
         <el-select v-model="temp.province_code" placeholder="请选择" style="width: 130px;">
-          <el-option
-            v-for="item in provinceData"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code"/>
+          <el-option v-for="item in provinceData" :key="item.code" :label="item.name" :value="item.code"/>
         </el-select>
         <el-select v-model="temp.city_code" placeholder="请选择" style="width: 120px;">
-          <el-option
-            v-for="item in cityData"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code"/>
+          <el-option v-for="item in cityData" :key="item.code" :label="item.name" :value="item.code"/>
         </el-select>
         <el-select v-model="temp.district_code" placeholder="请选择" style="width: 120px;">
-          <el-option
-            v-for="item in districtData"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code"/>
+          <el-option v-for="item in districtData" :key="item.code" :label="item.name" :value="item.code"/>
         </el-select>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="详细地址">
@@ -163,7 +143,11 @@ export default {
   methods: {
     onClickInspectEmail() { // 检查账号
       checkEmail({ email: this.temp.email }).then(res => {
-        console.log('res => ', res.data)
+        if (res.data) {
+          this.$message({ message: '该账号已被注册', type: 'warning' })
+        } else {
+          this.$message({ message: '恭喜你，该账号可以注册', type: 'success' })
+        }
       })
     },
     handleClickCancel() {

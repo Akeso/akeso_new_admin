@@ -22,35 +22,19 @@
         </el-col>
       </el-row>
 
-      <el-table
-        :data="list"
-        border
-        style="width: 100%; margin-top: 10px;"
-        @sort-change="handleColumnSort">
-        <el-table-column
-          :label="generateShow('common.name_field')"
-          prop="name"
-          min-width="90"/>
-        <el-table-column
-          label="代理级别"
-          prop="depth"
-          min-width="60"/>
-        <el-table-column
-          :label="generateShow('common.address')"
-          prop="address"
-          min-width="120"/>
-        <el-table-column
-          :label="generateShow('common.phone')"
-          prop="phone"
-          min-width="100"/>
-        <el-table-column
-          :label="generateShow('common.account_login')"
-          prop="email"
-          min-width="160"/>
-        <el-table-column
-          :label="generateShow('common.created_at')"
-          prop="createdAt"
-          min-width="120"/>
+      <el-table :data="list" border style="width: 100%; margin-top: 10px;" @sort-change="handleColumnSort">
+        <el-table-column :label="generateShow('common.name_field')" prop="name" min-width="90"/>
+        <el-table-column label="代理级别" prop="depth" min-width="60"/>
+        <el-table-column :label="generateShow('common.address')" prop="address" min-width="120"/>
+        <el-table-column :label="generateShow('common.phone')" prop="phone" min-width="100"/>
+        <el-table-column :label="generateShow('common.account_login')" prop="email" min-width="160"/>
+        <el-table-column :label="generateShow('common.created_at')" prop="createdAt" min-width="120"/>
+        <el-table-column :label="generateShow('common.state')" min-width="80">
+          <template slot-scope="scope">
+            <span>{{ scope.row.authorize | stateFileter }}</span>
+            <el-button v-if="scope.row.authorize === 'pending' && $store.getters.super" type="text" size="small" @click="handleClickAuthorize(scope.row)">{{ generateShow('common.authorize') }}</el-button>
+          </template>
+        </el-table-column>
         <el-table-column
           label="操作"
           min-width="120" >
