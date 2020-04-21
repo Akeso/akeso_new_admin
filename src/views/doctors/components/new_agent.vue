@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增代理商账号" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="新增代理商账号" width="70%" top="30px">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
         <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="代理商名称"/>
@@ -63,9 +63,14 @@ import { createItem } from '@/api/agents'
 import { fetchChinaData } from '@/api/china_map'
 import { checkEmail } from '@/api/merchants'
 export default {
+  props: {
+    dialogVisible: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
-      dialogFormVisible: false,
       formLabelWidth: '120px',
       passwork_valid: false,
       temp: {
@@ -123,6 +128,7 @@ export default {
     }
   },
   created() {
+    this.getProvinceData()
   },
   methods: {
     onClickInspectEmail() { // 检查账号
@@ -135,8 +141,7 @@ export default {
       })
     },
     handleClickCancel() {
-      this.resetData()
-      this.dialogFormVisible = false
+      this.$emit('hidden', false)
     },
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
@@ -145,35 +150,13 @@ export default {
             this.passwork_valid = true
             return
           }
-          createItem(this.temp).then(response => {
-            this.resetData()
-            this.dialogFormVisible = false
-            this.$emit('create-success')
+          createItem(this.temp).then(res => {
+            this.$emit('hidden', true)
           })
         } else {
           return false
         }
       })
-    },
-    show() {
-      this.getProvinceData()
-      this.dialogFormVisible = true
-    },
-    resetData() {
-      this.$refs['ruleForm'].resetFields()
-      this.temp = {
-        name: undefined,
-        base_type: 'agent',
-        phone: undefined,
-        email: undefined,
-        password: undefined,
-        password_confirmation: undefined,
-        description: '',
-        start_work_date: undefined,
-        province_code: undefined,
-        city_code: undefined,
-        district_code: undefined
-      }
     },
     getProvinceData() {
       fetchChinaData().then(response => {
