@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="擅长业务" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="擅长业务" width="70%" top="30px">
     <el-form :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
         <el-input v-model="temp.name" autocomplete="off" style="width: 50%;" placeholder="机构/医生名称" disabled/>
@@ -39,18 +39,28 @@
 import { updateLocation } from '@/api/doctors'
 import { fetchChinaData } from '@/api/china_map'
 export default {
+  props: {
+    dialogVisible: {
+      type: Boolean,
+      default: true
+    },
+    item: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
   data() {
     return {
-      dialogFormVisible: false,
       formLabelWidth: '120px',
       temp: {
-        id: undefined,
-        name: undefined,
+        id: this.item.id,
+        name: this.item.name,
         province_code: undefined,
         city_code: undefined,
         district_code: undefined
       },
-      tttt: undefined,
       loading: false,
       provinceData: [],
       cityData: [],
@@ -75,38 +85,15 @@ export default {
     }
   },
   created() {
+    this.getProvinceData()
   },
   methods: {
-    handleClickCancel() {
-      this.resetData()
-      this.dialogFormVisible = false
-    },
+    handleClickCancel() { this.$emit('hidden', false) },
     handleClickSubmit() {
       updateLocation(this.temp).then(res => {
-        this.dialogFormVisible = false
-        this.resetData()
-        this.$emit('update-success')
-        this.$message({
-          type: 'success',
-          message: '修改成功!'
-        })
+        this.$emit('hidden', true)
+        this.$message({ type: 'success', message: '修改成功!' })
       })
-    },
-    show(val) {
-      this.getProvinceData()
-      // this.temp = JSON.parse(JSON.stringify(val))
-      this.temp.id = val.id
-      this.temp.name = val.name
-      this.dialogFormVisible = true
-    },
-    resetData() {
-      this.temp = {
-        id: undefined,
-        name: undefined,
-        province_code: undefined,
-        city_code: undefined,
-        district_code: undefined
-      }
     },
     getProvinceData() {
       fetchChinaData().then(response => {

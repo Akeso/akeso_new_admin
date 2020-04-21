@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="新增机构/医生账号" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="新增机构/医生账号" width="70%" top="30px">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
         <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="机构/医生名称"/>
@@ -71,9 +71,14 @@ const cates2 = [
   { key: 'doctor_a', value: '主任医师' }, { key: 'doctor_b', value: '副主任医师' }, { key: 'doctor_c', value: '主治医生' }, { key: 'doctor_d', value: '眼科医生' }, { key: 'doctor_e', value: '视光师' }
 ]
 export default {
+  props: {
+    dialogVisible: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
-      dialogFormVisible: false,
       formLabelWidth: '120px',
       passwork_valid: false,
       temp: {
@@ -139,6 +144,7 @@ export default {
     }
   },
   created() {
+    this.getProvinceData()
   },
   methods: {
     onClickInspectEmail() { // 检查账号
@@ -151,8 +157,7 @@ export default {
       })
     },
     handleClickCancel() {
-      this.resetData()
-      this.dialogFormVisible = false
+      this.$emit('hidden', false)
     },
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
@@ -164,37 +169,13 @@ export default {
           if (this.$store.getters.baseType === 'agent') {
             Object.assign(this.temp, { agent_id: this.$store.getters.id })
           }
-          createItem(this.temp).then(response => {
-            this.resetData()
-            this.dialogFormVisible = false
-            this.$emit('create-success')
+          createItem(this.temp).then(res => {
+            this.$emit('hidden', true)
           })
         } else {
           return false
         }
       })
-    },
-    show() {
-      this.getProvinceData()
-      this.dialogFormVisible = true
-    },
-    resetData() {
-      this.$refs['ruleForm'].resetFields()
-      this.temp = {
-        name: undefined,
-        base_type: 'organization',
-        gender: undefined,
-        phone: undefined,
-        email: undefined,
-        password: undefined,
-        password_confirmation: undefined,
-        organization_id: undefined,
-        description: '',
-        start_work_date: undefined,
-        province_code: undefined,
-        city_code: undefined,
-        district_code: undefined
-      }
     },
     getProvinceData() {
       fetchChinaData().then(response => {
