@@ -9,41 +9,14 @@
         <!--<el-button size="mini" @click="handleClickStatics(scope.row)">生成班级报告</el-button>-->
       </div>
 
-      <el-table
-        :data="list"
-        border
-        highlight-current-row
-        style="width: 100%; margin-top: 10px;"
-        @current-change="handleCurrentSelect"
-        @sort-change="handleColumnSort">
-        <el-table-column
-          label="批次名称"
-          prop="name"
-          min-width="60"/>
-        <el-table-column
-          label="学校"
-          prop="school_name"
-          min-width="60"/>
-        <el-table-column
-          label="年级"
-          prop="class_value"
-          min-width="30"/>
-        <el-table-column
-          label="班级"
-          prop="grade_value"
-          min-width="30"/>
-        <el-table-column
-          label="筛查数量"
-          prop="screenings_count"
-          min-width="30"/>
-        <el-table-column
-          label="所属机构"
-          prop="merchant_name"
-          min-width="60"/>
-        <el-table-column
-          label="创建日期"
-          prop="created_at"
-          min-width="60"/>
+      <el-table :data="list" border highlight-current-row style="width: 100%; margin-top: 10px;" @current-change="handleCurrentSelect" @sort-change="handleColumnSort">
+        <el-table-column label="批次名称" prop="name" min-width="60"/>
+        <el-table-column label="学校" prop="school_name" min-width="60"/>
+        <el-table-column label="年级" prop="class_value" min-width="30"/>
+        <el-table-column label="班级" prop="grade_value" min-width="30"/>
+        <el-table-column label="筛查数量" prop="screenings_count" min-width="30"/>
+        <el-table-column label="所属机构" prop="merchant_name" min-width="60"/>
+        <el-table-column label="创建日期" prop="created_at" min-width="60"/>
       </el-table>
 
       <div class="pagination-container">

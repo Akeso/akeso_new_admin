@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="编辑代理商权限" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="编辑代理商权限" width="70%" top="30px">
     <el-form :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
         <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="名称" disabled/>

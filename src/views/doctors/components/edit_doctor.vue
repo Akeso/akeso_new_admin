@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="修改医生信息" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="修改医生信息" width="70%" top="30px">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" label="名称" prop="name">
         <el-input v-model="temp.name" class="filter-item" placeholder="名称" style="width: 50%;"/>
@@ -64,29 +64,36 @@ const cates2 = [
   { key: 'doctor_a', value: '主任医师' }, { key: 'doctor_b', value: '副主任医师' }, { key: 'doctor_c', value: '主治医生' }, { key: 'doctor_d', value: '眼科医生' }, { key: 'doctor_e', value: '视光师' }
 ]
 export default {
+  props: {
+    dialogVisible: {
+      type: Boolean,
+      default: true
+    },
+    item: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
   data() {
     return {
-      dialogVisible: false,
       formLabelWidth: '100px',
       passwork_valid: false,
       temp: {
-        id: undefined,
-        name: undefined,
+        id: this.item.id,
+        name: this.item.name,
         baseType: 'organization',
-        principal: undefined,
-        phone: undefined,
-        email: undefined,
-        start_work_date: undefined,
-        description: undefined,
-        address: undefined
+        principal: this.item.principal,
+        phone: this.item.phone,
+        email: this.item.email,
+        start_work_date: this.item.start_work_date,
+        description: this.item.description,
+        address: this.item.address
       },
       rules: {
-        name: [
-          { required: true, message: '请输入名称', trigger: 'blur' }
-        ],
-        email: [
-          { required: true, message: '请输入登录账号', trigger: 'blur' }
-        ]
+        name: [{ required: true, message: '请输入名称', trigger: 'blur' }],
+        email: [{ required: true, message: '请输入登录账号', trigger: 'blur' }]
       },
       base_types: base_types
     }
@@ -96,16 +103,8 @@ export default {
       return this.temp.baseType === 'organization' ? cates1 : cates2
     }
   },
-  created() {
-  },
   methods: {
-    handlerClickCancel() {
-      this.dialogVisible = false
-    },
-    handleShow(val) {
-      this.temp = JSON.parse(JSON.stringify(val))
-      this.dialogVisible = true
-    },
+    handlerClickCancel() { this.$emit('hidden', false) },
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
@@ -119,12 +118,8 @@ export default {
             type: 'warning'
           }).then(() => {
             updateItem(this.temp).then(response => {
-              this.dialogVisible = false
-              this.$emit('update-success')
-              this.$message({
-                type: 'success',
-                message: '修改成功!'
-              })
+              this.$emit('hidden', true)
+              this.$message({ type: 'success', message: '修改成功!' })
             })
           }).catch(() => {})
         } else {

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" title="修改代理商账号" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="修改代理商账号" width="70%" top="30px">
     <el-form ref="ruleForm" :model="temp" :rules="rules" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" label="名称" prop="name">
         <el-input v-model="temp.name" class="filter-item" placeholder="名称" style="width: 50%;"/>
@@ -36,28 +36,35 @@
 <script>
 import { updateItem } from '@/api/agents'
 export default {
+  props: {
+    dialogVisible: {
+      type: Boolean,
+      default: true
+    },
+    item: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
   data() {
     return {
-      dialogVisible: false,
       formLabelWidth: '100px',
       passwork_valid: false,
       temp: {
-        id: undefined,
-        name: undefined,
+        id: this.item.id,
+        name: this.item.name,
         baseType: 'agent',
-        principal: undefined,
-        phone: undefined,
-        email: undefined,
-        description: undefined,
-        address: undefined
+        principal: this.item.principal,
+        phone: this.item.phone,
+        email: this.item.email,
+        description: this.item.description,
+        address: this.item.address
       },
       rules: {
-        name: [
-          { required: true, message: '请输入名称', trigger: 'blur' }
-        ],
-        email: [
-          { required: true, message: '请输入登录账号', trigger: 'blur' }
-        ]
+        name: [{ required: true, message: '请输入名称', trigger: 'blur' }],
+        email: [{ required: true, message: '请输入登录账号', trigger: 'blur' }]
       }
     }
   },
@@ -65,17 +72,17 @@ export default {
   },
   methods: {
     handlerClickCancel() {
-      this.dialogVisible = false
-    },
-    handleShow(val) {
-      this.temp = JSON.parse(JSON.stringify(val))
-      this.dialogVisible = true
+      this.$emit('hidden', false)
     },
     handleClickSubmit() {
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
+          if (this.temp.password !== undefined && this.temp.password.length < 6) {
+            this.$message({ type: 'warning', message: '密码至少为6位!' })
+            return
+          }
           if (this.temp.password !== this.temp.password_confirmation) {
-            this.passwork_valid = true
+            this.$message({ type: 'warning', message: '两次输入密码不一致!' })
             return
           }
           this.$confirm('确定修改该账号信息吗？, 是否继续?', '提示', {
@@ -83,9 +90,8 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            updateItem(this.temp).then(response => {
-              this.dialogVisible = false
-              this.$emit('update-success')
+            updateItem(this.temp).then(res => {
+              this.$emit('hidden', true)
               this.$message({
                 type: 'success',
                 message: '修改成功!'

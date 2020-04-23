@@ -79,7 +79,7 @@ export default {
       return this.isAdmin ? item.name !== 'Appointments' : !item.only
     },
     permissionShow(item) {
-      if (this.baseType === 'agent' && ['/apt_arch', '/intelligent_data', '/myopia', '/schools'].includes(item.path)) {
+      if (this.baseType === 'agent' && !this.super && ['/apt_arch', '/intelligent_data', '/myopia', '/schools'].includes(item.path)) {
         if (this.controlPaths.includes(item.path)) { return true }
       } else {
         if (item.roles === undefined) { return true }
