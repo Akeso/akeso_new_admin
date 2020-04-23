@@ -11,6 +11,7 @@
         <el-button v-if="$store.getters.baseType === 'admin'" size="mini" icon="el-icon-location-outline" @click="handleClickLocation">修改地区</el-button>
         <el-button v-if="$store.getters.baseType === 'admin'" size="mini" icon="el-icon-finished" @click="handleClickSkilled">{{ generateShow('common.modify_skilled') }}</el-button>
         <el-button size="mini" icon="el-icon-delete" @click="handleClickDelete">{{ generateShow('common.delete') }}</el-button>
+        <el-button v-if="$store.getters.super" size="mini" @click="handleClickAuthorize">{{ generateShow('common.authorize') }}</el-button>
       </div>
 
       <el-row style="margin-top: 10px;">
@@ -38,15 +39,6 @@
         <el-table-column :label="generateShow('common.state')" min-width="80">
           <template slot-scope="scope">
             <span>{{ scope.row.authorize | stateFileter }}</span>
-            <el-button v-if="scope.row.authorize === 'pending' && $store.getters.super" type="text" size="small" @click="handleClickAuthorize(scope.row)">{{ generateShow('common.authorize') }}</el-button>
-          </template>
-        </el-table-column>
-        <el-table-column label="操作" min-width="120" >
-          <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleClickEdit(scope.row)">{{ generateShow('common.modify') }}</el-button>
-            <el-button v-if="$store.getters.baseType === 'admin'" type="text" size="small" @click="handleClickLocation(scope.row)">{{ generateShow('common.modify_location') }}</el-button>
-            <el-button v-if="$store.getters.baseType === 'admin'" type="text" size="small" @click="handleClickSkilled(scope.row)">{{ generateShow('common.modify_skilled') }}</el-button>
-            <el-button type="text" size="small" @click="handleClickDelete(scope.row)">{{ generateShow('common.delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -67,15 +59,12 @@ import NewDoctor from './components/new_doctor'
 import EditDoctor from './components/edit_doctor'
 import Services from './components/services'
 import Location from './components/location'
+
 export default {
   components: { NewDoctor, EditDoctor, Services, Location },
   filters: {
     stateFileter(state) {
-      const stateMap = {
-        pending: '审核中',
-        pass: '审核通过',
-        reject: '审核拒绝'
-      }
+      const stateMap = { pending: '审核中', pass: '审核通过', reject: '审核拒绝' }
       return stateMap[state]
     }
   },
@@ -102,9 +91,7 @@ export default {
       }
     }
   },
-  created() {
-    this.getList()
-  },
+  created() { this.getList() },
   methods: {
     hideChangeEmit(refreshState) {
       if (refreshState) { this.getList() }
@@ -113,17 +100,16 @@ export default {
       this.locationDoctorVisible = false
       this.skillDoctorVisible = false
     },
-    handleCurrentSelect(item) {
-      this.currentItem = item
-    },
-    handleClickAuthorize(val) {
+    handleCurrentSelect(item) { this.currentItem = item },
+    handleClickAuthorize() {
+      if (!this.currentItem) { this.$message({ type: 'warning', message: '请先选择一项进行操作!' }); return }
+      if (this.currentItem.authorize !== 'pending') { this.$message({ type: 'warning', message: '该账号已审核通过!' }); return }
       this.$confirm('确定要审核通过该账户吗?', '提示', { confirmButtonText: '是', cancelButtonText: '否', type: 'warning' }).then(() => {
-        authorizeDoctor({ id: val.id }).then(response => {
+        authorizeDoctor({ id: this.currentItem.id }).then(res => {
           this.getList()
           this.$message({ type: 'success', message: '审核成功!' })
         })
-      }).catch(() => {
-      })
+      }).catch(() => {})
     },
     handleClickEdit() {
       if (!this.currentItem) { this.$message({ type: 'warning', message: '请先选择一项进行操作!' }); return }
