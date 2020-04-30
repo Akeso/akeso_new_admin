@@ -184,7 +184,10 @@ export default {
     simple_archives: '筛查列表',
     screenings: '筛查记录',
     school_report: '视力报告',
-    report_distribute: '视力分布'
+    report_distribute: '视力分布',
+    coins: '积分商城',
+    coin_products: '商品管理',
+    coin_product_log: '兑换记录'
   },
   device: {
     deviceType: '镜腿型号'

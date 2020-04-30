@@ -14,6 +14,7 @@ import childRoutes from './modules/child'
 import intelligentRoutes from './modules/intelligent'
 import myopiaRoutes from './modules/myopia'
 import schoolRoutes from './modules/schools'
+import coinRoutes from './modules/coins'
 
 /**
  * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -98,6 +99,7 @@ export const constantRouterMap = [
       }
     ]
   },
+  coinRoutes,
   {
     path: '/frequency',
     component: Layout,
