@@ -1,13 +1,11 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" :close-on-click-modal="false" title="擅长业务" width="70%" top="30px">
+  <el-dialog :visible.sync="dialogVisible" :modal="true" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="擅长业务" width="70%" top="30px">
     <el-form :model="temp" style="width: 90%; margin-left:20px;">
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
         <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="机构/医生名称" disabled/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="擅长业务">
-        <el-checkbox-group
-          v-model="temp.serviceIds"
-          @change="handleChangeData">
+        <el-checkbox-group v-model="temp.serviceIds">
           <el-checkbox v-for="item in dataOptions" :label="item.alias" :key="item.alias">{{ item.name }}</el-checkbox>
         </el-checkbox-group>
       </el-form-item>
@@ -21,17 +19,27 @@
 
 <script>
 import { fetchList, updateMerchant } from '@/api/services'
-// import { createItem } from '@/api/doctors'
 export default {
+  props: {
+    dialogVisible: {
+      type: Boolean,
+      default: true
+    },
+    item: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
   data() {
     return {
-      dialogFormVisible: false,
       formLabelWidth: '120px',
       temp: {
-        id: undefined,
-        name: undefined,
+        id: this.item.id,
+        name: this.item.name,
         baseType: 'organization',
-        serviceIds: []
+        serviceIds: this.item.serviceIds
       },
       loading: false,
       dataOptions: [],
@@ -39,43 +47,22 @@ export default {
     }
   },
   created() {
+    this.getServiceList()
   },
   methods: {
     getServiceList() {
       fetchList().then(res => {
         this.dataOptions = res.data
-        console.log('data => ', this.dataOptions)
       })
     },
     handleClickCancel() {
-      this.resetData()
-      this.dialogFormVisible = false
+      this.$emit('hidden', false)
     },
     handleClickSubmit() {
       updateMerchant({ id: this.temp.id, service_ids: this.temp.serviceIds }).then(res => {
-        this.dialogFormVisible = false
-        this.$emit('update-success')
-        this.$message({
-          type: 'success',
-          message: '修改成功!'
-        })
+        this.$emit('hidden', true)
+        this.$message({ type: 'success', message: '修改成功!' })
       })
-    },
-    handleChangeData(val) {
-      console.log('val => ', val)
-      console.log('checkBox => ', this.checkedOptions)
-    },
-    show(val) {
-      this.getServiceList()
-      this.temp = JSON.parse(JSON.stringify(val))
-      this.dialogFormVisible = true
-    },
-    resetData() {
-      this.temp = {
-        id: undefined,
-        name: undefined,
-        base_type: 'organization'
-      }
     }
   }
 }

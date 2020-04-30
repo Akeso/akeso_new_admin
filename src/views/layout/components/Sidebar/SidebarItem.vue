@@ -68,7 +68,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'baseType'
+      'baseType', 'controlPaths', 'super'
     ]),
     isAdmin: function() {
       return this.baseType === 'admin' || this.baseType === 'agent'
@@ -79,9 +79,12 @@ export default {
       return this.isAdmin ? item.name !== 'Appointments' : !item.only
     },
     permissionShow(item) {
-      if (item.roles === undefined) { return true }
-      // if (!item.meta.roles) { return true }
-      if (item.roles.includes(this.baseType)) { return true }
+      if (this.baseType === 'agent' && !this.super && ['/apt_arch', '/intelligent_data', '/myopia', '/schools'].includes(item.path)) {
+        if (this.controlPaths.includes(item.path)) { return true }
+      } else {
+        if (item.roles === undefined) { return true }
+        if (item.roles.includes(this.baseType)) { return true }
+      }
       return false
     },
     englishShowingItem(children, parent) {

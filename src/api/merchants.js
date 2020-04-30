@@ -8,3 +8,10 @@ export function checkEmail(query) {
   })
 }
 
+export function updateControlPaths(data) {
+  return request({
+    url: '/api/a1/merchants/control_paths',
+    method: 'post',
+    data: data
+  })
+}

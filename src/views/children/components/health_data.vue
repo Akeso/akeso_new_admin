@@ -49,6 +49,25 @@
     <el-tab-pane label="屈光档案" name="third">
       <EyeExaminations v-if="tabName === 'third'" :user-id="userId"/>
     </el-tab-pane>
+    <el-tab-pane label="视觉健康检查档案1" name="visual_health1">
+      视觉健康检查档案1
+      <!--<EyeExaminations v-if="tabName === 'third'" :user-id="userId"/>-->
+    </el-tab-pane>
+    <el-tab-pane label="视觉健康检查档案2" name="visual_health2">
+      视觉健康检查档案2
+    </el-tab-pane>
+    <el-tab-pane label="角塑筛查表" name="angle_screen_table">
+      角塑筛查表
+    </el-tab-pane>
+    <el-tab-pane label="特检表" name="special_inspect_table">
+      特检表
+    </el-tab-pane>
+    <el-tab-pane label="角塑配适单" name="angle_match_form">
+      角塑配适单
+    </el-tab-pane>
+    <el-tab-pane label="复查单" name="review_form">
+      复查单
+    </el-tab-pane>
     <!--<el-tab-pane label="防控意见" name="four">防控意见</el-tab-pane>-->
   </el-tabs>
 </template>

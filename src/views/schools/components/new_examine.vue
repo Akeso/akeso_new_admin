@@ -6,11 +6,7 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="学校">
         <el-select v-model="temp.school_id" placeholder="请选择" style="width: 240px;">
-          <el-option
-            v-for="item in schools"
-            :key="item.name"
-            :label="item.name"
-            :value="item.id"/>
+          <el-option v-for="item in schools" :key="item.id" :label="item.name" :value="item.id"/>
         </el-select>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="年级">
@@ -25,7 +21,7 @@
       <el-form-item :label-width="formLabelWidth" label="班级">
         <el-select v-model="temp.grade_value" placeholder="请选择" style="width: 120px;">
           <el-option
-            v-for="item in [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+            v-for="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
             :key="item"
             :label="item"
             :value="item"/>
