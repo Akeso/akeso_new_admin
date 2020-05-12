@@ -6,18 +6,13 @@
       </div>
 
       <div class="filter-container">
+        名称：
+        <el-input v-model="listQuery.name" :placeholder="generateShow('common.name_field')" size="mini" label="名称" style="width: 200px;" class="filter-item" clearable/>
+        <el-button class="filter-item" size="mini" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
         <el-button size="mini" icon="el-icon-plus" @click="handleClickNew">新增</el-button>
         <el-button size="mini" icon="el-icon-edit" @click="handleClickEdit">修改</el-button>
         <el-button size="mini" icon="el-icon-delete" @click="handleClickDelete">删除</el-button>
       </div>
-
-      <el-row style="margin-top: 10px;">
-        <el-col>
-          名称：
-          <el-input v-model="listQuery.name" :placeholder="generateShow('common.name_field')" size="mini" label="名称" style="width: 200px;" class="filter-item" clearable/>
-          <el-button class="filter-item" size="mini" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-        </el-col>
-      </el-row>
 
       <el-table :data="list" border style="width: 100%; margin-top: 10px;" highlight-current-row @current-change="handleCurrentSelect">
         <el-table-column label="名称" prop="name" min-width="90"/>
