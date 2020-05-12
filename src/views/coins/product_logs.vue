@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>产品管理</span>
+        <span>兑换记录</span>
       </div>
 
       <el-row style="margin-top: 10px;">
@@ -10,15 +10,24 @@
           名称：
           <el-input v-model="listQuery.name" :placeholder="generateShow('common.name_field')" size="mini" label="名称" style="width: 200px;" class="filter-item" clearable/>
           <el-button class="filter-item" size="mini" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+          <el-button size="mini" @click="handleClickExchange">核销</el-button>
         </el-col>
       </el-row>
 
       <el-table :data="list" border style="width: 100%; margin-top: 10px;" highlight-current-row @current-change="handleCurrentSelect">
-        <el-table-column label="名称" prop="name" min-width="90"/>
-        <el-table-column label="类别" prop="kind" min-width="120"/>
-        <el-table-column label="兑换积分" prop="akeso_coin" min-width="120"/>
-        <el-table-column label="原价(元)" prop="origin_price" min-width="120"/>
-        <el-table-column label="创建时间" prop="created_at" min-width="120"/>
+        <el-table-column label="手机号" prop="phone" min-width="90"/>
+        <el-table-column label="商品" min-width="120">
+          <template slot-scope="scope" row>
+            <span>{{ scope.row.product.name }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="兑换积分" prop="take_coins" min-width="120"/>
+        <el-table-column label="兑换时间" prop="created_at" min-width="120"/>
+        <el-table-column label="核销状态" min-width="120">
+          <template slot-scope="scope" row>
+            <span>{{ scope.row.state === 0 ? '未核销' : '已核销' }}</span>
+          </template>
+        </el-table-column>
       </el-table>
 
       <div class="pagination-container">
@@ -28,7 +37,7 @@
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/coin_products'
+import { fetchList, putExchange } from '@/api/coin_product_logs'
 
 export default {
   data() {
@@ -46,18 +55,20 @@ export default {
   },
   created() { this.getList() },
   methods: {
+    handleClickExchange() {
+      this.$confirm('确认核销本条记录?', '提示', { confirmButtonText: '是', cancelButtonText: '否', type: 'warning' }).then(() => {
+        putExchange(this.currentItem).then(res => {
+          this.getList()
+          this.$message({ type: 'success', message: '核销成功!' })
+        })
+      }).catch(() => {})
+    },
     handleCurrentSelect(item) { this.currentItem = item },
     getList() {
-      if (this.$store.getters.baseType === 'agent') {
-        Object.assign(this.listQuery, { agent_id: this.$store.getters.id })
-      }
       fetchList(this.listQuery).then(response => {
+        console.log('response -> ', response)
         this.list = response.data.items
         this.total = response.data.total
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
       })
     },
     handleCurrentChange(val) {
