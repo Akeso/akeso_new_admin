@@ -15,6 +15,26 @@
       <el-form-item :label-width="formLabelWidth" label="原价">
         <el-input v-model="temp.origin_price" clearable style="width: 50%;"/>元
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="产品图片">
+        <el-upload
+          :action="uploadUrl"
+          :show-file-list="false"
+          :on-success="uploadLogoSuccess"
+          class="avatar-uploader">
+          <img v-if="temp.logo_url" :src="temp.logo_url" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"/>
+        </el-upload>
+      </el-form-item>
+      <el-form-item :label-width="formLabelWidth" label="产品详情图">
+        <el-upload
+          :action="uploadUrl"
+          :show-file-list="false"
+          :on-success="uploadContentuccess"
+          class="avatar-uploader">
+          <img v-if="temp.content_url" :src="temp.content_url" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"/>
+        </el-upload>
+      </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="handleClickCancel">取 消</el-button>
@@ -35,9 +55,12 @@ export default {
   },
   data() {
     return {
+      uploadUrl: '/api/common/uploads/common',
       formLabelWidth: '120px',
       kinds: kinds,
       temp: {
+        logo_url: undefined,
+        content_url: undefined,
         name: undefined,
         kind: undefined,
         akeso_coin: undefined,
@@ -49,6 +72,13 @@ export default {
   created() {
   },
   methods: {
+    uploadLogoSuccess(res, file) {
+      // console.log('res = > ', res)
+      this.temp.logo_url = res.data.url
+    },
+    uploadContentuccess(res, file) {
+      this.temp.content_url = res.data.url
+    },
     handleClickCancel() {
       this.$emit('hidden', false)
     },
