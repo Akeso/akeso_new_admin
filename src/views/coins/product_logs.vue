@@ -18,7 +18,7 @@
         <el-table-column label="手机号" prop="phone" min-width="90"/>
         <el-table-column label="商品" min-width="120">
           <template slot-scope="scope" row>
-            <span>{{ scope.row.product.name }}</span>
+            <span>{{ scope.row.product_name }}</span>
           </template>
         </el-table-column>
         <el-table-column label="兑换积分" prop="take_coins" min-width="120"/>
