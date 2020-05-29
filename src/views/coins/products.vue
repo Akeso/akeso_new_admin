@@ -61,6 +61,7 @@ export default {
     },
     handleCurrentSelect(item) { this.currentItem = item },
     handleClickEdit() {
+      console.log('this.currentItem', this.currentItem)
       if (!this.currentItem) { this.$message({ type: 'warning', message: '请先选择一项进行操作!' }); return }
       this.editDoctorVisible = true
     },
