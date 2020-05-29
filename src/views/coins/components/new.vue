@@ -7,7 +7,7 @@
         </el-select>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" prop="name" label="名称">
-        <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="机构/医生名称"/>
+        <el-input v-model="temp.name" autocomplete="off" clearable style="width: 50%;" placeholder="产品名称"/>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="兑换积分">
         <el-input v-model="temp.akeso_coin" clearable style="width: 50%;" placeholder="0" />积分
@@ -28,11 +28,16 @@
       <el-form-item :label-width="formLabelWidth" label="产品详情图">
         <el-upload
           :action="uploadUrl"
-          :show-file-list="false"
+          :show-file-list="true"
           :on-success="uploadContentuccess"
+          :file-list="fileList"
+          list-type="picture"
+          multiple
           class="avatar-uploader">
-          <img v-if="temp.content_url" :src="temp.content_url" class="avatar">
-          <i v-else class="el-icon-plus avatar-uploader-icon"/>
+          <!--<img v-if="temp.content_url" :src="temp.content_url" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"/>-->
+          <el-button size="small" type="primary">点击上传</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/jpeg/png文件</div>
         </el-upload>
       </el-form-item>
     </el-form>
@@ -64,9 +69,11 @@ export default {
         name: undefined,
         kind: undefined,
         akeso_coin: undefined,
-        origin_price: undefined
+        origin_price: undefined,
+        content_urls: []
       },
-      loading: false
+      loading: false,
+      fileList: []
     }
   },
   created() {
@@ -77,12 +84,16 @@ export default {
       this.temp.logo_url = res.data.url
     },
     uploadContentuccess(res, file) {
-      this.temp.content_url = res.data.url
+      // console.log(res)
+      // this.temp.content_urls = res.data.url
+      this.temp.content_urls = this.temp.content_urls.concat(res.data)
+      console.log(this.temp.content_urls)
     },
     handleClickCancel() {
       this.$emit('hidden', false)
     },
     handleClickSubmit() {
+      console.log(this.temp)
       createItem(this.temp).then(res => {
         this.$emit('hidden', true)
       })
@@ -104,10 +115,11 @@ export default {
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
   text-align: center;
+  border:1px solid #8c939d;
 }
 .avatar {
   width: 178px;
