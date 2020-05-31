@@ -27,9 +27,13 @@
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="产品详情图">
         <el-upload
+          ref="uploadFile"
           :action="uploadUrl"
+          :before-upload="beforeUpload"
           :show-file-list="true"
           :on-success="uploadContentuccess"
+          :on-remove="onRemove"
+          :on-progress="uploadProgress"
           :file-list="fileList"
           list-type="picture"
           multiple
@@ -70,7 +74,8 @@ export default {
         kind: undefined,
         akeso_coin: undefined,
         origin_price: undefined,
-        content_urls: []
+        content_urls: [],
+        fileList: []
       },
       loading: false,
       fileList: []
@@ -83,20 +88,75 @@ export default {
       // console.log('res = > ', res)
       this.temp.logo_url = res.data.url
     },
-    uploadContentuccess(res, file) {
-      // console.log(res)
-      // this.temp.content_urls = res.data.url
-      this.temp.content_urls = this.temp.content_urls.concat(res.data)
+    uploadContentuccess(res, file, fileList) {
+      this.temp.fileList = fileList
+      const uploadData = res.data
+      // fileList.map((item, index) => {
+      //   console.log('item===success', item)
+      // })
+      if (file.response.status === 200 && file.response.data.id === res.data.id) {
+        uploadData.sort = file.sort
+      }
+      // console.log('res.data == ', uploadData)
+      this.temp.content_urls = this.temp.content_urls.concat(uploadData)
+      this.temp.content_urls = this.temp.content_urls.sort(function(a, b) {
+        return a.sort - b.sort
+      })
       console.log(this.temp.content_urls)
+    },
+    beforeUpload() {
+      // this.$refs.uploadFile.clearFiles()
+      // console.log('==', this.$refs.uploadFile)
+    },
+    onRemove(res, fileList) {
+      for (const item in this.temp.content_urls) {
+        if (this.temp.content_urls[item].id === res.response.data.id) {
+          this.temp.content_urls.splice(item, 1)
+        }
+      }
+      console.log('re==this.temp.content_urls', this.temp.content_urls)
+    },
+    uploadProgress(event, file, fileList) {
+      fileList.map((item, index) => {
+        item.sort = index + 1
+      })
     },
     handleClickCancel() {
       this.$emit('hidden', false)
     },
     handleClickSubmit() {
-      console.log(this.temp)
-      createItem(this.temp).then(res => {
-        this.$emit('hidden', true)
-      })
+      if (this.temp.content_urls.length > 0 && this.temp.logo_url && this.temp.name && this.temp.akeso_coin && this.temp.origin_price && this.temp.kind) {
+        let states = false
+        for (const it in this.temp.fileList) {
+          console.log(this.temp.fileList[it])
+          if (this.temp.fileList[it].status !== 'success') {
+            states = true
+          }
+        }
+        if (states) {
+          this.$confirm('上传图片列表中有未成功或失败的，请删除或者重新上传！', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).catch(() => {
+            // this.$message({
+            //   type: 'info',
+            //   message: '已取消删除'
+            // })
+          })
+        } else {
+          createItem(this.temp).then(res => {
+            this.$emit('hidden', true)
+          })
+        }
+      } else {
+        this.$confirm('请填写所有信息！', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).catch(() => {
+        })
+      }
     }
   }
 }
