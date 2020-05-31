@@ -85,19 +85,19 @@ export default {
       this.temp.content_urls = this.temp.content_urls.sort(function(a, b) {
         return a.sort - b.sort
       })
-      console.log(this.temp.content_urls)
+      // console.log(this.temp.content_urls)
     },
     beforeUpload() {
       // this.$refs.uploadFile.clearFiles()
     },
     onRemove(res, fileList) {
-      console.log(res, fileList)
+      // console.log(res, fileList)
       for (const item in this.temp.content_urls) {
         if (this.temp.content_urls[item].id === res.id) {
           this.temp.content_urls.splice(item, 1)
         }
       }
-      console.log('re==this.temp.content_urls', this.temp.content_urls)
+      // console.log('re==this.temp.content_urls', this.temp.content_urls)
     },
     uploadProgress(event, file, fileList) {
       fileList.map((item, index) => {

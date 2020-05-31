@@ -102,7 +102,7 @@ export default {
       this.temp.content_urls = this.temp.content_urls.sort(function(a, b) {
         return a.sort - b.sort
       })
-      console.log(this.temp.content_urls)
+      // console.log(this.temp.content_urls)
     },
     beforeUpload() {
       // this.$refs.uploadFile.clearFiles()
@@ -114,7 +114,7 @@ export default {
           this.temp.content_urls.splice(item, 1)
         }
       }
-      console.log('re==this.temp.content_urls', this.temp.content_urls)
+      // console.log('re==this.temp.content_urls', this.temp.content_urls)
     },
     uploadProgress(event, file, fileList) {
       fileList.map((item, index) => {
