@@ -46,6 +46,9 @@
           <el-button class="filter-item" type="primary" icon="el-icon-download">
             <a :href="downloadMoreHalfUrl + '?date=' + listQuery.date + '&authenticationToken=' + $store.getters.authenticationToken">导出节点Excel</a>
           </el-button>
+          <el-button class="filter-item" type="primary" icon="el-icon-download">
+            <a :href="downloadMoreAUrl + '?date=' + listQuery.date + '&authenticationToken=' + $store.getters.authenticationToken">一小时数据Excel</a>
+          </el-button>
         </el-col>
       </el-row>
       <el-table
@@ -112,6 +115,7 @@ export default {
       downloadOneUrl: '/api/a1/excels/daily_one',
       downloadMoreUrl: '/api/a1/excels/daily_more',
       downloadMoreHalfUrl: '/api/a1/excels/daily_more_half',
+      downloadMoreAUrl: '/api/a1/excels/daily_more_a',
       isPeriod: 1,
       list: null,
       total: null,
