@@ -5,7 +5,7 @@
       <!--<el-button type="text" size="large" style="color: white;" @click="handleClickRegist">医生注册</el-button>-->
       <!--</div>-->
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-        <h3 class="title">艾索健康后台管理系统</h3>
+        <h3 class="title">康视创明后台管理系统</h3>
         <el-form-item prop="username">
           <span class="svg-container">
             <svg-icon icon-class="user" />
@@ -33,7 +33,7 @@
           </el-button>
         </el-form-item>
         <div class="tips">
-          <span style="margin-right:20px;">AKESO信息管理平台 技术支持：400-778-0080</span>
+          <!-- <span style="margin-right:20px;">AKESO信息管理平台 技术支持：400-778-0080</span> -->
         </div>
       </el-form>
     </div>
