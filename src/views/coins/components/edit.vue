@@ -22,7 +22,7 @@
         </el-upload>
       </el-form-item>
       <el-form-item :label-width="formLabelWidth" label="产品详情图">
-        <el-upload :action="uploadUrl" :show-file-list="true" :on-success="uploadContentuccess" :on-remove="onRemove" :file-list="fileList" list-type="picture" multiple class="avatar-uploader">
+        <el-upload :action="uploadUrl" :show-file-list="true" :on-success="uploadContentuccess" :on-progress="uploadProgress" :on-remove="onRemove" :file-list="fileList" list-type="picture" multiple class="avatar-uploader">
           <!--<img v-if="temp.content_url" :src="temp.content_url" class="avatar">-->
           <!--<i v-else class="el-icon-plus avatar-uploader-icon" />-->
           <el-button size="small" type="primary">点击上传</el-button>
@@ -75,14 +75,34 @@ export default {
       // console.log('res = > ', res)
       this.temp.logo_url = res.data.url
     },
-    uploadContentuccess(res, file) {
-      // this.temp.content_url = res.data.url
-      // this.temp.feilList.push(res.data.url)
-      this.temp.content_urls = this.temp.content_urls.concat(res.data)
+    uploadContentuccess(res, file, fileList) {
+      const uploadData = res.data
+      if (file.response.status === 200 && file.response.data.id === res.data.id) {
+        uploadData.sort = file.sort
+      }
+      // console.log('res.data == ', uploadData)
+      this.temp.content_urls = this.temp.content_urls.concat(uploadData)
+      this.temp.content_urls = this.temp.content_urls.sort(function(a, b) {
+        return a.sort - b.sort
+      })
+      // console.log(this.temp.content_urls)
+    },
+    beforeUpload() {
+      // this.$refs.uploadFile.clearFiles()
     },
     onRemove(res, fileList) {
       // console.log(res, fileList)
-      this.temp.content_urls = fileList
+      for (const item in this.temp.content_urls) {
+        if (this.temp.content_urls[item].id === res.id) {
+          this.temp.content_urls.splice(item, 1)
+        }
+      }
+      // console.log('re==this.temp.content_urls', this.temp.content_urls)
+    },
+    uploadProgress(event, file, fileList) {
+      fileList.map((item, index) => {
+        item.sort = index + 1
+      })
     },
     handlerClickCancel() { this.$emit('hidden', false) },
     handleClickSubmit() {
