@@ -74,6 +74,17 @@
             prop="wear_eyesight_os"
             min-width="40"/>
         </el-table-column>
+        <el-table-column prop="iop" label="眼压" min-width="40"></el-table-column>
+        <el-table-column label="眼轴">
+          <el-table-column prop="left_axis_oculi" label="左眼" min-width="40"></el-table-column>
+          <el-table-column prop="right_axis_oculi" label="右眼" min-width="40"></el-table-column>
+        </el-table-column>
+        <el-table-column label="曲率">
+          <el-table-column prop="left_curvature_k1" label="右眼K1" min-width="40"></el-table-column>
+          <el-table-column prop="left_curvature_k2" label="右眼K2" min-width="40"></el-table-column>
+          <el-table-column prop="right_curvature_k1" label="左眼K1" min-width="40"></el-table-column>
+          <el-table-column prop="right_curvature_k2" label="左眼K2" min-width="40"></el-table-column>
+        </el-table-column>
         <el-table-column
           label="所属机构"
           prop="merchant_name"
