@@ -152,7 +152,7 @@ export default {
   },
   methods: {
     downloadExc() {
-      window.location.href = 'https://akeso.com.cn/template/筛查记录录入模板.xlsx'
+      window.location.href = 'https://akeso.kangshicm.com/template/筛查记录录入模板.xlsx'
     },
     uploadSuccess(res, fileList) {
       this.$message({ type: 'warning', message: res.message })
